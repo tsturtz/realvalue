@@ -1,6 +1,16 @@
 /**
  * Created by danh on 11/15/16.
  */
+    // Initialize Firebase
+var config2 = {
+    apiKey: "AIzaSyD7lWychYO044cw2lPl6chSaBTt85kId5E",
+    authDomain: "datamap-3c35f.firebaseapp.com",
+    databaseURL: "https://datamap-3c35f.firebaseio.com",
+    storageBucket: "datamap-3c35f.appspot.com",
+    messagingSenderId: "582541890710"
+};
+//firebase.initializeApp(config2);
+//var fbRef = firebase.database();
 
     // Initialize Firebase
 var config = {
@@ -47,9 +57,11 @@ function makeInfoBox(controlDiv, map) {
 }
 
 function initMap() {
+    var centerPoint = {lat:33.667011, lng: -117.764183};
+
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 33.667011, lng: -117.764183},
-        zoom: 10,
+        center: centerPoint,
+        zoom: 12,
         styles: [{
             featureType: 'poi',
             stylers: [{ visibility: 'off' }]  // Turn off points of interest.
@@ -70,6 +82,7 @@ function initMap() {
     map.addListener('click', function(e) {
         data.lat = e.latLng.lat();
         data.lng = e.latLng.lng();
+        console.log(DistanceBetweenTwoPoints(centerPoint,data));
         addToFirebase(data);
     });
 
@@ -88,15 +101,15 @@ function initMap() {
         for(var key in obj){
             if(obj.hasOwnProperty(key)) {
                 //console.log(obj[key].lat, obj[key].lng);
-                var point = new google.maps.LatLng(obj[key].lat, obj[key].lng);
-                heatmap.getData().push(point);
-                /*
+                //var point = new google.maps.LatLng(obj[key].lat, obj[key].lng);
+                //heatmap.getData().push(point);
+
                 var marker = new google.maps.Marker({
                     position: { lat: Number(obj[key].lat),
                         lng: Number(obj[key].lng) },
                     label: obj[key].name,
                     map: map
-                }); */
+                });
                 //console.log(marker);
                 var p = $("<p>",{
                     text: i++ + ' ' + obj[key].lat + ' ' + obj[key].lng + ' ' + obj[key].zindex + ' ' + obj[key].name
@@ -119,7 +132,8 @@ function initFirebase(heatmap) {
     var startTime = new Date().getTime() - (60 * 10 * 1000);
 
     // Reference to the clicks in Firebase.
-    var clicks = fbRef.ref('clicks');
+    //var clicks = fbRef.ref('clicks');
+    var clicks = fbRef.ref('places'); //
 
     // Listener for when a click is added.
     clicks.orderByChild('timestamp').startAt(startTime).on('child_added',
@@ -190,6 +204,16 @@ function ajaxCall() {
             }
         }
     });
+}
+
+function DistanceBetweenTwoPoints(obj, obj2) {
+
+    var a = obj.lat - obj2.lat;
+    var b = obj.lng - obj2.lng;
+
+    var c = Math.sqrt( a*a + b*b);
+
+    return c;
 }
 
 //ajaxCall();
