@@ -102,11 +102,33 @@ function createMarker(place, location) {
         infowindow.open(map, this);
     });
 }
+fb.ref(placeType).on('value', function(snapshot) {
+    for (x in snapshot.val()) {
+        //console.log('each key in DB ', x);
+        initMap2(x);
+        function initMap2(x) {
+                service.getDetails({
+                    placeId: x
+                }, function(place) {
+                    console.log(
+                        'NAME: ' + place.name + '\n',
+                        'ADDRESS: ' + place.formatted_address + '\n',
+                        'PHONE: ' + place.formatted_phone_number + '\n',
+                        'ICON: ' + place.icon + '\n',
+                        'RATING: ' + place.rating + '\n',
+                        'URL: ' + place.url + '\n',
+                        'ZIP CODE: ' + place.address_components[6].short_name + '\n',
+                        'LAT: ' + place.geometry.location.lat() + '\n',
+                        'LNG: ' + place.geometry.location.lng()
+                    );
+                });
+            }
+        }
+});
 
 /*function initMap2() {
-    service = new google.maps.places.PlacesService(map);
     service.getDetails({
-        placeId: "ChIJl_N4tlno3IARWDJLc0k1zX0" //place.place_id
+        placeId: x
     }, function(place) {
         console.log(
             'NAME: ' + place.name + '\n',
@@ -121,6 +143,13 @@ function createMarker(place, location) {
         );
     });
 }*/
+
+//random place id: "ChIJl_N4tlno3IARWDJLc0k1zX0"
+
+
+
+
+
 
 // note: custom markers - https://developers.google.com/maps/documentation/javascript/custom-markers
 
