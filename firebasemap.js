@@ -64,25 +64,101 @@ var markers = [];
 var cmarkers = [];
 var initLoad = true;
 var realvalue = 0;
+var map;
+var centerPoint = {lat: 33.667011, lng: -117.764183};
+var styleArray = [
+    {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+    {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+    {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+    {
+        featureType: 'administrative.locality',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+    },
+    {
+        featureType: 'poi',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+    },
+    {
+        featureType: 'poi.park',
+        elementType: 'geometry',
+        stylers: [{color: '#263c3f'}]
+    },
+    {
+        featureType: 'poi.park',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#6b9a76'}]
+    },
+    {
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [{color: '#38414e'}]
+    },
+    {
+        featureType: 'road',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#212a37'}]
+    },
+    {
+        featureType: 'road',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#9ca5b3'}]
+    },
+    {
+        featureType: 'road.highway',
+        elementType: 'geometry',
+        stylers: [{color: '#746855'}]
+    },
+    {
+        featureType: 'road.highway',
+        elementType: 'geometry.stroke',
+        stylers: [{color: '#1f2835'}]
+    },
+    {
+        featureType: 'road.highway',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#f3d19c'}]
+    },
+    {
+        featureType: 'transit',
+        elementType: 'geometry',
+        stylers: [{color: '#2f3948'}]
+    },
+    {
+        featureType: 'transit.station',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#d59563'}]
+    },
+    {
+        featureType: 'water',
+        elementType: 'geometry',
+        stylers: [{color: '#17263c'}]
+    },
+    {
+        featureType: 'water',
+        elementType: 'labels.text.fill',
+        stylers: [{color: '#515c6d'}]
+    },
+    {
+        featureType: 'water',
+        elementType: 'labels.text.stroke',
+        stylers: [{color: '#17263c'}]
+    }
+];
 /**
  *
  */
 function initMap() {
-    var centerPoint = {lat:33.667011, lng: -117.764183};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    // make map a global variable for all outside functions of init
+    map = new google.maps.Map(document.getElementById('map'), {
         center: centerPoint,
         zoom: 11,
-        styles: [{
-            featureType: 'poi',
-            stylers: [{ visibility: 'off' }]  // Turn off points of interest.
-        }, {
-            featureType: 'transit.station',
-            stylers: [{ visibility: 'off' }]  // Turn off bus stations, train stations, etc.
-        }],
-        disableDoubleClickZoom: true
+        disableDoubleClickZoom: true,
+        styles: styleArray
     });
 
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: centerPoint,
         label: 'A',
         map: map
@@ -96,11 +172,12 @@ function initMap() {
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(infoBoxDiv);
 
     // Listen for clicks and add the location of the click to firebase.
-    map.addListener('click', function(e) {
+    map.addListener('click', function (e) {
+        console.log("fired");
         initLoad = false;
         data.lat = e.latLng.lat();
         data.lng = e.latLng.lng();
-        var calculateDistance = DistanceBetweenTwoPoints(centerPoint,data);
+        var calculateDistance = DistanceBetweenTwoPoints(centerPoint, data);
         //console.log("distance between center and clicked is " + calculateDistance);
         // Clear markers on map and clear reference to them
         centerSetMapOnAll(null);
@@ -110,68 +187,90 @@ function initMap() {
         // Pan to area that was clicked on on map
         map.panTo(data);
         addToFirebase(data);
+        firebaseIt();
     });
-
-    // Create a heatmap.
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-        data: [],
-        map: map,
-        radius: 16
-    });
-
-    initFirebase.bind(undefined, heatmap);
-    initFirebase();
+}
     var i = 0;
+    var posArray = [];
 
-    fbRef.ref('clicks').on('value', function(snapshot){
+function firebaseIt() {
+    fbRef.ref('clicks').once('value', function (snapshot) {
+        console.log("HI", centerPoint);
         var obj = snapshot.val();
         realvalue = 0;
-        for(var key in obj){
-            if(obj.hasOwnProperty(key)) {
-                //console.log(obj[key].lat, obj[key].lng);
-                //var point = new google.maps.LatLng(obj[key].lat, obj[key].lng);
-                //heatmap.getData().push(point);
+        posArray = [];
+        var timer = 0;
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
                 var databaseObj = {
-                    lat: obj[key].lat,
-                    lng: obj[key].lng
+                    lat: Number(obj[key].lat),
+                    lng: Number(obj[key].lng)
                 }
                 // if map is loaded for first time, calculate distance from original center point
                 if (initLoad === true) {
-                    var calculateDistance = DistanceBetweenTwoPoints(centerPoint,databaseObj);
+                    var calculateDistance = DistanceBetweenTwoPoints(centerPoint, databaseObj);
                 } else { // if user clicked, then calculate user clicked point
                     //console.log("data ", data);
-                    var calculateDistance = DistanceBetweenTwoPoints(data,databaseObj);
+                    var calculateDistance = DistanceBetweenTwoPoints(data, databaseObj);
                 }
 
-                if(calculateDistance < 0.1 && key != 'user') {
+                if (calculateDistance < 0.06 && key != 'user') {
                     realvalue++;
                     //console.log("distance is " + calculateDistance);
+                    /*
                     var marker = new google.maps.Marker({
-                        position: { lat: Number(obj[key].lat),
-                            lng: Number(obj[key].lng) },
-                        label:obj[key].name,
+                        position: {
+                            lat: Number(obj[key].lat),
+                            lng: Number(obj[key].lng)
+                        },
+                        label: obj[key].name,
                         animation: google.maps.Animation.DROP,
                         map: map
-                    });
+                    });*/
                     markers.push(marker);
+                    posArray.push(databaseObj);
+                    addMarkerWithTimeout(databaseObj, timer *50);
+                    timer++;
+                    //console.log("timer ",databaseObj);
                 }
-
-                //console.log(marker);
-                var p = $("<p>",{
-                    text: i++ + ' ' + obj[key].lat + ' ' + obj[key].lng + ' ' + obj[key].zindex + ' ' + obj[key].name
-                });
-                $("#display").append(p);
             }
         }
         if (initLoad === false) {
             // Clear markers on map and clear reference to them
             centerSetMapOnAll(null);
             cmarkers = [];
-            setCenterPointOnMap(data,map,realvalue);
+            setCenterPointOnMap(data, map, realvalue);
         }
     });
+}
+console.log("position markers",posArray);
+/**
+ *
+ */
+function dropMarkers() {
+    for (var i = 0; i < posArray.length; i++) {
+        console.log(i);
+        addMarkerWithTimeout(posArray[i], i * 200);
+    }
 
 }
+
+/**
+ *
+ * @param position
+ * @param timeout
+ */
+function addMarkerWithTimeout(position, timeout) {
+    window.setTimeout(function() {
+        markers.push(new google.maps.Marker({
+            position: position,
+            map: map,
+            animation: google.maps.Animation.DROP
+        }));
+    }, timeout);
+    //console.log("inside ", position);
+}
+
 /**
  *
  * @param latlng
@@ -203,7 +302,6 @@ function setCenterPointOnMap(latlng,map,text) {
         this.getPanes().markerLayer.id='markerLayer';
     };
     myoverlay.setMap(map);
-
     cmarkers.push(marker);
 }
 /**
@@ -225,53 +323,6 @@ function centerSetMapOnAll(map) {
     for (var i = 0; i < cmarkers.length; i++) {
         cmarkers[i].setMap(map);
     }
-}
-/**
- * Set up a Firebase with deletion on clicks older than expirySeconds
- * @param {!google.maps.visualization.HeatmapLayer} heatmap The heatmap to
- * which points are added from Firebase.
- */
-function initFirebase(heatmap) {
-    console.log("init");
-    // 10 minutes before current time.
-    var startTime = new Date().getTime() - (60 * 10 * 1000);
-
-    // Reference to the clicks in Firebase.
-    //var clicks = fbRef.ref('clicks');
-    var clicks = fbRef.ref('places'); //
-
-    // Listener for when a click is added.
-    clicks.orderByChild('timestamp').startAt(startTime).on('child_added',
-        function(snapshot) {
-
-            // Get that click from firebase.
-            var newPosition = snapshot.val();
-            var point = new google.maps.LatLng(newPosition.lat, newPosition.lng);
-            var elapsed = new Date().getTime() - newPosition.timestamp;
-
-            // Add the point to  the heatmap.
-            heatmap.getData().push(point);
-
-            // Requests entries older than expiry time (10 minutes).
-            var expirySeconds = Math.max(60 * 10 * 1000 - elapsed, 0);
-            // Set client timeout to remove the point after a certain time.
-            window.setTimeout(function() {
-                // Delete the old point from the database.
-                snapshot.ref().remove();
-            }, expirySeconds);
-        }
-    );
-
-    // Remove old data from the heatmap when a point is removed from firebase.
-    clicks.on('child_removed', function(snapshot, prevChildKey) {
-        var heatmapData = heatmap.getData();
-        var i = 0;
-        while (snapshot.val().lat != heatmapData.getAt(i).lat()
-        || snapshot.val().lng != heatmapData.getAt(i).lng()) {
-            i++;
-        }
-        heatmapData.removeAt(i);
-    });
 }
 
 /**

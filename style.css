@@ -5,12 +5,11 @@
     -webkit-transform-origin: center;
 }
 
-/* Animaitons */
-keyframes pulse{
+@keyframes pulse{
 to {
     transform: scale(0.90);
     -webkit-transform: scale(0.90);
-}
+    }
 }
 
 @-webkit-keyframes pulse{
