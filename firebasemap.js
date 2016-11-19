@@ -56,12 +56,16 @@ function makeInfoBox(controlDiv, map) {
     controlUI.appendChild(controlText);
 }
 
+var markers = [];
+var cmarkers = [];
+var initLoad = true;
+
 function initMap() {
     var centerPoint = {lat:33.667011, lng: -117.764183};
 
     var map = new google.maps.Map(document.getElementById('map'), {
         center: centerPoint,
-        zoom: 12,
+        zoom: 11,
         styles: [{
             featureType: 'poi',
             stylers: [{ visibility: 'off' }]  // Turn off points of interest.
@@ -72,6 +76,13 @@ function initMap() {
         disableDoubleClickZoom: true
     });
 
+    var marker = new google.maps.Marker({
+        position: centerPoint,
+        label: 'A',
+        map: map
+    });
+    cmarkers.push(marker);
+
     // Create the DIV to hold the control and call the makeInfoBox() constructor
     // passing in this DIV.
     var infoBoxDiv = document.createElement('div');
@@ -80,9 +91,19 @@ function initMap() {
 
     // Listen for clicks and add the location of the click to firebase.
     map.addListener('click', function(e) {
+        initLoad = false;
         data.lat = e.latLng.lat();
         data.lng = e.latLng.lng();
-        console.log(DistanceBetweenTwoPoints(centerPoint,data));
+        var calculateDistance = DistanceBetweenTwoPoints(centerPoint,data);
+        console.log("distance between center and clicked is " + calculateDistance);
+        // Clear markers on map and clear reference to them
+        centerSetMapOnAll(null);
+        cmarkers = [];
+        setMapOnAll(null);
+        markers = [];
+        // Pan to area that was clicked on on map
+        setCenterPointOnMap(data,map);
+        map.panTo(data);
         addToFirebase(data);
     });
 
@@ -103,13 +124,29 @@ function initMap() {
                 //console.log(obj[key].lat, obj[key].lng);
                 //var point = new google.maps.LatLng(obj[key].lat, obj[key].lng);
                 //heatmap.getData().push(point);
+                var databaseObj = {
+                    lat: obj[key].lat,
+                    lng: obj[key].lng
+                }
+                // if map is loaded for first time, calculate distance from original center point
+                if (initLoad === true) {
+                    var calculateDistance = DistanceBetweenTwoPoints(centerPoint,databaseObj);
+                } else { // if user clicked, then calculate user clicked point
+                    //console.log("data ", data);
+                    var calculateDistance = DistanceBetweenTwoPoints(data,databaseObj);
+                }
 
-                var marker = new google.maps.Marker({
-                    position: { lat: Number(obj[key].lat),
-                        lng: Number(obj[key].lng) },
-                    label: obj[key].name,
-                    map: map
-                });
+                if(calculateDistance < 0.1) {
+                    //console.log("distance is " + calculateDistance);
+                    var marker = new google.maps.Marker({
+                        position: { lat: Number(obj[key].lat),
+                            lng: Number(obj[key].lng) },
+                        label: obj[key].name,
+                        map: map
+                    });
+                    markers.push(marker);
+                }
+
                 //console.log(marker);
                 var p = $("<p>",{
                     text: i++ + ' ' + obj[key].lat + ' ' + obj[key].lng + ' ' + obj[key].zindex + ' ' + obj[key].name
@@ -121,6 +158,29 @@ function initMap() {
 
 }
 
+// Place a center marker on the center point of the map
+function setCenterPointOnMap(latlng,map) {
+
+    var marker = new google.maps.Marker({
+        position: latlng,
+        label: 'A',
+        map: map
+    });
+    cmarkers.push(marker);
+}
+
+// clears the markers on the map through the array
+function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+    }
+}
+// clear center markers on amp
+function centerSetMapOnAll(map) {
+    for (var i = 0; i < cmarkers.length; i++) {
+        cmarkers[i].setMap(map);
+    }
+}
 /**
  * Set up a Firebase with deletion on clicks older than expirySeconds
  * @param {!google.maps.visualization.HeatmapLayer} heatmap The heatmap to
@@ -177,7 +237,7 @@ function initFirebase(heatmap) {
 function addToFirebase(data) {
     data.startedAt = firebase.database.ServerValue.TIMESTAMP;
     console.log("clicked!", data);
-    fbRef.ref('clicks').push(data);
+    fbRef.ref('clicks/user').set(data);
 }
 
 function ajaxCall() {
@@ -198,7 +258,7 @@ function ajaxCall() {
                         name: data[i].name,
                         zindex: data[i].zindex
                     };
-                    fbRef.ref('clicks').push(obj);
+                    fbRef.ref('clicks/'+data[i].name).set(obj);
                 }
 
             }
