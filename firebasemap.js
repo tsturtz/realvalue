@@ -33,7 +33,11 @@ var data = {
     lat: null,
     lng: null
 };
-
+/**
+ *
+ * @param controlDiv
+ * @param map
+ */
 function makeInfoBox(controlDiv, map) {
     // Set CSS for the control border.
     var controlUI = document.createElement('div');
@@ -52,17 +56,19 @@ function makeInfoBox(controlDiv, map) {
     controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
     controlText.style.fontSize = '100%';
     controlText.style.padding = '6px';
-    controlText.textContent = 'The map shows all clicks made in the last 10 minutes.';
+    controlText.textContent = 'The map shows all markers around the center of your last click.';
     controlUI.appendChild(controlText);
 }
 
 var markers = [];
 var cmarkers = [];
 var initLoad = true;
-
+var realvalue = 0;
+/**
+ *
+ */
 function initMap() {
     var centerPoint = {lat:33.667011, lng: -117.764183};
-
     var map = new google.maps.Map(document.getElementById('map'), {
         center: centerPoint,
         zoom: 11,
@@ -95,14 +101,13 @@ function initMap() {
         data.lat = e.latLng.lat();
         data.lng = e.latLng.lng();
         var calculateDistance = DistanceBetweenTwoPoints(centerPoint,data);
-        console.log("distance between center and clicked is " + calculateDistance);
+        //console.log("distance between center and clicked is " + calculateDistance);
         // Clear markers on map and clear reference to them
         centerSetMapOnAll(null);
         cmarkers = [];
         setMapOnAll(null);
         markers = [];
         // Pan to area that was clicked on on map
-        setCenterPointOnMap(data,map);
         map.panTo(data);
         addToFirebase(data);
     });
@@ -117,8 +122,10 @@ function initMap() {
     initFirebase.bind(undefined, heatmap);
     initFirebase();
     var i = 0;
+
     fbRef.ref('clicks').on('value', function(snapshot){
         var obj = snapshot.val();
+        realvalue = 0;
         for(var key in obj){
             if(obj.hasOwnProperty(key)) {
                 //console.log(obj[key].lat, obj[key].lng);
@@ -136,12 +143,14 @@ function initMap() {
                     var calculateDistance = DistanceBetweenTwoPoints(data,databaseObj);
                 }
 
-                if(calculateDistance < 0.1) {
+                if(calculateDistance < 0.1 && key != 'user') {
+                    realvalue++;
                     //console.log("distance is " + calculateDistance);
                     var marker = new google.maps.Marker({
                         position: { lat: Number(obj[key].lat),
                             lng: Number(obj[key].lng) },
-                        label: obj[key].name,
+                        label:obj[key].name,
+                        animation: google.maps.Animation.DROP,
                         map: map
                     });
                     markers.push(marker);
@@ -154,27 +163,63 @@ function initMap() {
                 $("#display").append(p);
             }
         }
+        if (initLoad === false) {
+            // Clear markers on map and clear reference to them
+            centerSetMapOnAll(null);
+            cmarkers = [];
+            setCenterPointOnMap(data,map,realvalue);
+        }
     });
 
 }
-
+/**
+ *
+ * @param latlng
+ * @param map
+ * @param text
+ */
 // Place a center marker on the center point of the map
-function setCenterPointOnMap(latlng,map) {
+function setCenterPointOnMap(latlng,map,text) {
 
     var marker = new google.maps.Marker({
         position: latlng,
-        label: 'A',
+        icon: {
+            url:'assets/images/Map-Marker.png',
+            scaledSize: new google.maps.Size(150, 150)
+        },
+        label: {
+            text: 'RealValue: ' + text,
+            color: 'darkblue'
+        },
+        title: 'RealValue: ' + text,
+        labelClass: "labels", // the CSS class for the label
+        optimized: false,
         map: map
     });
+
+    // I create an OverlayView, and set it to add the "markerLayer" class to the markerLayer DIV
+    var myoverlay = new google.maps.OverlayView();
+    myoverlay.draw = function () {
+        this.getPanes().markerLayer.id='markerLayer';
+    };
+    myoverlay.setMap(map);
+
     cmarkers.push(marker);
 }
-
+/**
+ *
+ * @param map
+ */
 // clears the markers on the map through the array
 function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
     }
 }
+/**
+ *
+ * @param map
+ */
 // clear center markers on amp
 function centerSetMapOnAll(map) {
     for (var i = 0; i < cmarkers.length; i++) {
@@ -236,10 +281,12 @@ function initFirebase(heatmap) {
  */
 function addToFirebase(data) {
     data.startedAt = firebase.database.ServerValue.TIMESTAMP;
-    console.log("clicked!", data);
+    //console.log("clicked!", data);
     fbRef.ref('clicks/user').set(data);
 }
-
+/**
+ *
+ */
 function ajaxCall() {
     console.log("calling AJAX");
     $.ajax({
@@ -265,7 +312,13 @@ function ajaxCall() {
         }
     });
 }
-
+/**
+ *
+ * @param obj
+ * @param obj2
+ * @returns {number}
+ * @constructor
+ */
 function DistanceBetweenTwoPoints(obj, obj2) {
 
     var a = obj.lat - obj2.lat;
