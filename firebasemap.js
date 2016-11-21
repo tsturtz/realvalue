@@ -39,14 +39,36 @@ var data = {
  * @param map
  */
 function makeInfoBox(controlDiv, map, text) {
+
     // Set CSS for the control border.
     var controlUI = document.createElement('div');
+    var controlText = document.createElement('div');
+
+    // Set custom info for controlUI
+    if(text) {
+        switch(text) {
+            case "RealValue":
+                controlUI.style.border = '2px solid orange';
+                controlUI.style.marginRight = '10px';
+
+                controlText.textContent = text;
+                break;
+            case "Traffic":
+                controlUI.style.border = '2px solid orange';
+                controlUI.style.marginRight = '10px';
+
+                controlText.textContent = text;
+                break;
+            default:
+                controlUI.style.border = '2px solid red';
+                controlText.textContent = 'Average traffic time from center point: '+text;
+                break;
+        }
+    } else {
+        controlText.textContent = 'The map shows all markers around the center of your last click.';
+    }
     controlUI.style.boxShadow = 'rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px';
     controlUI.style.backgroundColor = '#fff';
-    controlUI.style.border = '2px solid #fff';
-    if(text){
-        controlUI.style.border = '2px solid red';
-    }
     controlUI.style.borderRadius = '2px';
     controlUI.style.marginBottom = '22px';
     controlUI.style.marginTop = '10px';
@@ -54,17 +76,10 @@ function makeInfoBox(controlDiv, map, text) {
     controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior.
-    var controlText = document.createElement('div');
     controlText.style.color = 'rgb(25,25,25)';
     controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
     controlText.style.fontSize = '100%';
     controlText.style.padding = '6px';
-    controlText.textContent = 'The map shows all markers around the center of your last click.';
-    //console.log(text);
-    // Set Custom text for Popup Control Text
-    if(text) {
-        controlText.textContent = 'Average traffic time from center point: '+text;
-    }
     controlUI.appendChild(controlText);
 }
 
@@ -86,7 +101,9 @@ var styleArray = [
     {
         featureType: 'poi',
         elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
+        stylers: [{
+            visibility: 'off'
+        }]
     },
     {
         featureType: 'poi.park',
@@ -141,7 +158,7 @@ var styleArray = [
     {
         featureType: 'water',
         elementType: 'geometry',
-        stylers: [{color: '#17263c'}]
+        stylers: [{color: '#5b759a'}]
     },
     {
         featureType: 'water',
@@ -178,6 +195,17 @@ function initMap() {
     var infoBoxDiv = document.createElement('div');
     makeInfoBox(infoBoxDiv, map);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(infoBoxDiv);
+
+    // Create the DIV to hold RealValue
+    var infoBoxDivSelector = document.createElement('div');
+    infoBoxDivSelector.setAttribute("class","iReavlValue");
+    makeInfoBox(infoBoxDivSelector, map, "RealValue");
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(infoBoxDivSelector);
+    // Create the DIV to hold Traffic
+    var infoBoxDivSelector = document.createElement('div');
+    infoBoxDivSelector.setAttribute("class","iTraffic");
+    makeInfoBox(infoBoxDivSelector, map, "Traffic");
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(infoBoxDivSelector);
 
     // Listen for clicks and add the location of the click to firebase.
     map.addListener('click', function (e) {
@@ -513,6 +541,7 @@ function deleteMarkers(markersArrayP) {
 
 $(document).ready(function(){
     //console.log("ready");
+
     $("#map").on('click','.bottomDiv',function(){
         //console.log("clicked");
         map.fitBounds(globalbound.extend(data));

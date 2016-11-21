@@ -6,7 +6,7 @@
     z-index: 1;
 }
 
-#markerLayer img[src='assets/images/Map-Marker.png'] {
+#markerLayer img[src='assets/images/Map-Marker.png']{
     opacity: .9;
     animation: pulse .5s infinite alternate;
     -webkit-animation: pulse .5s infinite alternate;
