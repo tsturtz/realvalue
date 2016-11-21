@@ -46,20 +46,9 @@ function initMap() {
     service.radarSearch(request, callback);
 }
 
-/**
- * Google map callback function
- * @param results
- * @param status
- */
-
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-
-            /**
-             * add places to database
-             * @type {{name: *, address: *}}
-             */
 
             var placeLoc = {
                 lat: results[i].geometry.location.lat(),
@@ -72,23 +61,12 @@ function callback(results, status) {
                 fb.ref(placeType + '/' + results[i].place_id).set(placeLoc);
             })(results[i]);
 
-            /**
-             * Add markers
-             */
-
             var place = results[i];
             createMarker(place, placeLoc);
             console.log(results[i]);
-            //initMap2(place);
         }
     }
 }
-
-/**
- * Create markers and set marker content based on the lat/lon 'center' location in map init
- * @param place
- * @param location
- */
 
 function createMarker(place, location) {
     //var placeLoc = place.geometry.location;
@@ -102,55 +80,50 @@ function createMarker(place, location) {
         infowindow.open(map, this);
     });
 }
+
+
+
+
+
+////////// NON-FUNCTIONING DETAILS SEARCH BASED ON DB ENTRIES //////////
+
+/*
 fb.ref(placeType).on('value', function(snapshot) {
     for (x in snapshot.val()) {
         //console.log('each key in DB ', x);
-        initMap2(x);
-        function initMap2(x) {
+        (function(key) {
+            initMap2(key);
+            function initMap2(key) {
                 service.getDetails({
-                    placeId: x
-                }, function(place) {
+                    placeId: key
+                }, function (place) {
                     console.log(
-                        'NAME: ' + place.name + '\n',
-                        'ADDRESS: ' + place.formatted_address + '\n',
-                        'PHONE: ' + place.formatted_phone_number + '\n',
-                        'ICON: ' + place.icon + '\n',
-                        'RATING: ' + place.rating + '\n',
-                        'URL: ' + place.url + '\n',
-                        'ZIP CODE: ' + place.address_components[6].short_name + '\n',
-                        'LAT: ' + place.geometry.location.lat() + '\n',
-                        'LNG: ' + place.geometry.location.lng()
+                        place
                     );
                 });
             }
-        }
+        })(x);
+    }
 });
-
-/*function initMap2() {
-    service.getDetails({
-        placeId: x
-    }, function(place) {
-        console.log(
-            'NAME: ' + place.name + '\n',
-            'ADDRESS: ' + place.formatted_address + '\n',
-            'PHONE: ' + place.formatted_phone_number + '\n',
-            'ICON: ' + place.icon + '\n',
-            'RATING: ' + place.rating + '\n',
-            'URL: ' + place.url + '\n',
-            'ZIP CODE: ' + place.address_components[6].short_name + '\n',
-            'LAT: ' + place.geometry.location.lat() + '\n',
-            'LNG: ' + place.geometry.location.lng()
-        );
-    });
-}*/
-
-//random place id: "ChIJl_N4tlno3IARWDJLc0k1zX0"
+*/
 
 
 
 
 
 
-// note: custom markers - https://developers.google.com/maps/documentation/javascript/custom-markers
+// NOTE: random place id: "ChIJl_N4tlno3IARWDJLc0k1zX0"
 
-// note: add time stamp - {obj}.startedAt = firebase.database.ServerValue.TIMESTAMP;
+// NOTE: custom markers - https://developers.google.com/maps/documentation/javascript/custom-markers
+
+// NOTE: add time stamp - {obj}.startedAt = firebase.database.ServerValue.TIMESTAMP;
+
+/*
+'NAME: ' + place.name + '\n',
+'ADDRESS: ' + place.formatted_address + '\n',
+'PHONE: ' + place.formatted_phone_number + '\n',
+'RATING: ' + place.rating + '\n',
+'ZIP CODE: ' + place.address_components[6].short_name + '\n',
+'LAT: ' + place.geometry.location.lat() + '\n',
+'LNG: ' + place.geometry.location.lng()
+ */
