@@ -87,25 +87,33 @@ function createMarker(place, location) {
 
 ////////// NON-FUNCTIONING DETAILS SEARCH BASED ON DB ENTRIES //////////
 
-/*
+
 fb.ref(placeType).on('value', function(snapshot) {
-    for (x in snapshot.val()) {
+    for (var x in snapshot.val()) {
         //console.log('each key in DB ', x);
-        (function(key) {
-            initMap2(key);
-            function initMap2(key) {
-                service.getDetails({
-                    placeId: key
-                }, function (place) {
-                    console.log(
-                        place
-                    );
-                });
-            }
-        })(x);
+        (function() {
+            var key = x;
+            console.log('The key is:', key);
+            service.getDetails({
+                placeId: key
+            }, function(place){
+                console.log(place);
+            });
+
+        })();
     }
 });
-*/
+
+function initMap2(key) {
+    service.getDetails({
+        placeId: key
+    }, function (place) {
+        console.log(
+            place
+        );
+    });
+}
+
 
 
 

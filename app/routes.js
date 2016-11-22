@@ -16,7 +16,4 @@ angular.module('realValue')
         })
         .otherwise({ redirectTo: 'views/map.html' });
 })
-
-.controller('mapController', function(){})
-.controller('aboutController', function(){})
 ;
