@@ -295,8 +295,8 @@ function firebaseIt() {
 }
 
 function calculateAverageZillowIndex(zillow, digit) {
-    var trafficLayer = new google.maps.TrafficLayer();
-    trafficLayer.setMap(map);
+    //var trafficLayer = new google.maps.TrafficLayer();
+    //trafficLayer.setMap(map);
     return Math.round( zillow.reduce(function (a,b) {return a+b;})/zillow.length, digit );
 }
 
@@ -449,7 +449,7 @@ function initGoogleDistanceMatrix() {
     // calculate the date for Departure time for Google Distance Matrix
     var days = .2; // Days you want to subtract
     var date = new Date();
-    date.setDate(date.getDate() + (1 + 7 - date.getDay()) % 7);
+    date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
     date.setHours(15);
     //var last = new Date(date.getTime() + (days * 24 * 60 * 60 * 1000));
     var last = new Date(date.getTime());
