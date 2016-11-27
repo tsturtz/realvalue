@@ -9,43 +9,50 @@
 
     <title>Real Value</title>
 
-    <!--RealValue Styles-->
+    <!--Angular Material Style Sheets-->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--RealValue Style Sheets-->
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <!--AngularJS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <!-- Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-    <!--Angular Routes-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
-    <!--Angular Material-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
-
-    <!--Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
     <!--Jquery -->
-
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
     <!--RealValue App-->
-
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
+    <script src="app/controllers/mapCtrl.js"></script>
+    <script src="app/controllers/aboutCtrl.js"></script>
 
-    <!-- Map Js -->
+    <!------------------------DEV------------------------>
+
+    <!--Map Js -->
     <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
     <script src="firebasemap.js"></script>
     <script src="walkscore.js"></script>
 
+    <!-- Init Google Map -->
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc
-        &libraries=visualization&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc&libraries=visualization&callback=initMap">
     </script>
 
 </head>
-<body ng-controller="mapController as mc">
+<body>
 
 <ul id="temp-nav">
     <li><a href="#map">Home</a></li>
@@ -53,7 +60,13 @@
 </ul>
 
 <div ng-view></div>
+
+<!--
+Commented out for Angular Setup
+
 <div id="map"></div>
 <div id="output"></div>
+-->
+
 </body>
 </html>
