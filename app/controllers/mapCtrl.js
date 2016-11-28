@@ -1,3 +1,5 @@
 angular.module('realValue')
 
-    .controller('mapController', function(){});
+    .controller('mapController', function(){
+
+    });
