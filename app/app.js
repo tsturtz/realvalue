@@ -7,7 +7,7 @@
  * @config Configure URL View Routes
  */
 
-angular.module('realValue', ['ngMaterial'])
+angular.module('realValue', ['ngMaterial','uiGmapgoogle-maps'])
 
     .config(function ($mdAriaProvider) {
         $mdAriaProvider.disableWarnings();

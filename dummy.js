@@ -1,62 +1,80 @@
 /**
  * Created by danh on 11/22/16.
  */
-/*var dummy = [
-    {
-        id:92856,
-        lat:,
-        lng:
-    },
-    {
-        id:92859,
-        lat:,
-        lng:
-    },
-    {
-        id:92863,
-        lat:,
-        lng:
-    },
-    {
-        id:92865,
-        lat:,
-        lng:
-    },
-    {
-        id:92867,
-        lat:,
-        lng:
-    },
-    {
-        id:92689,
-        lat:,
-        lng:
-    },
-    {
-        id:92857,
-        lat:,
-        lng:
-    },
-    {
-        id:92862,
-        lat:,
-        lng:
-    },
-    {
-        id:92864,
-        lat:,
-        lng:
-    },
-    {
-        id:92866,
-        lat:33.78404,
-        lng:-117.844161
-    },
-    {
-        id:92868,
-        lat:'',
-        lng:''
-    }
-];
+function dummydata() {
 
-    */
+    var dummy = [
+        {
+            id:92856,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92859,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92863,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92865,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92867,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92689,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92857,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92862,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92864,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92866,
+            lat:33.78404,
+            lng:-117.844161
+        },
+        {
+            id:92868,
+            lat:33.78404,
+            lng:-117.844161
+        }
+    ];
+
+    for(var i=0;i<dummy.length;i++) {
+
+        var dummyObj = {
+            lat: dummy[i].lat,
+            lng: dummy[i].lng+(.05*i)
+        }
+
+        addMarkerWithTimeout(dummyObj,500); // function that adds markers
+
+        console.log("dummy",dummyObj);
+    }
+
+}
+
+function randomNumber() {
+
+}

@@ -93,6 +93,7 @@ function makeInfoBox(controlDiv, map, text) {
     controlUI.appendChild(controlText);
 }
 
+var walkobj;
 var markers = [];
 var cmarkers = [];
 var initLoad = true;
@@ -515,8 +516,19 @@ function initMap() {
         firebaseIt();
         // Run the Distance Matrix API to show traffic estimate data
         initGoogleDistanceMatrix();
-        walkscore(data);
-        weather(data);
+        // runs walk score and returns a promise (legacy)
+        walkscore(data).then(
+                function(response) {
+                    //console.log("walk success:",response);
+                    walkobj = response;
+                    weather(data);
+        },
+                function(response){
+                    console.log("walk error:",response);
+                });
+        dummydata();
+
+
     });
 }
     var i = 0;
@@ -570,11 +582,7 @@ function firebaseIt() {
                 }
             }
         }
-        if (initLoad === false) {
-            // Clear markers on map and clear reference to them
-            //console.log("Sum", zIndexSum);
-            //console.log("total", realvalue);
-            // Calculate the average zillow index
+        if (initLoad === false) { // do not run this block of code unless it's not the first time
             zIndexAvg = calculateAverageZillowIndex(zIndexArr,2);
             centerSetMapOnAll(null);
             cmarkers = [];
@@ -614,10 +622,11 @@ function addMarkerWithTimeout(position, timeout) {
 // Place a center marker on the center point of the map
 function setCenterPointOnMap(latlng,map,text) {
 
+    console.log(walkobj);
     var marker = new google.maps.Marker({
         position: latlng,
         icon: {
-            url:'assets/images/Map-Marker.png',
+            url:'assets/img/Map-Marker.png',
             scaledSize: new google.maps.Size(200, 150)
         },
         label: {
