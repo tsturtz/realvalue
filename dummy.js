@@ -1,9 +1,8 @@
 /**
  * Created by danh on 11/22/16.
  */
-function randomGen() {
+function dummydata() {
 
-    console.log("HI");
     var dummy = [
         {
             id:92856,
@@ -61,5 +60,19 @@ function randomGen() {
             lng:-117.844161
         }
     ];
+
+    for(var i=0;i<dummy.length;i++) {
+
+        var dummyObj = {
+            lat: dummy[i].lat,
+            lng: dummy[i].lng
+        }
+
+        console.log("dummy",dummyObj);
+    }
+
+}
+
+function randomNumber() {
 
 }

@@ -513,11 +513,22 @@ function initMap() {
         // Add the click to firebase
         addToFirebase(data);
         // Initalize reading of firebase datase
-        walkobj = walkscore(data);
         firebaseIt();
         // Run the Distance Matrix API to show traffic estimate data
         initGoogleDistanceMatrix();
-        randomGen();
+        // runs walk score and returns a promise (legacy)
+        walkscore(data).then(
+                function(response) {
+                    //console.log("walk success:",response);
+                    walkobj = response;
+                    weather(data);
+        },
+                function(response){
+                    console.log("walk error:",response);
+                });
+        dummydata();
+
+
     });
 }
     var i = 0;
@@ -571,11 +582,7 @@ function firebaseIt() {
                 }
             }
         }
-        if (initLoad === false) {
-            // Clear markers on map and clear reference to them
-            //console.log("Sum", zIndexSum);
-            //console.log("total", realvalue);
-            // Calculate the average zillow index
+        if (initLoad === false) { // do not run this block of code unless it's not the first time
             zIndexAvg = calculateAverageZillowIndex(zIndexArr,2);
             centerSetMapOnAll(null);
             cmarkers = [];
@@ -615,7 +622,7 @@ function addMarkerWithTimeout(position, timeout) {
 // Place a center marker on the center point of the map
 function setCenterPointOnMap(latlng,map,text) {
 
-    console.log("walk ojb",walkobj);
+    console.log(walkobj);
     var marker = new google.maps.Marker({
         position: latlng,
         icon: {
