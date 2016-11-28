@@ -2,6 +2,8 @@
  * Created by danh on 11/23/16.
  */
 function walkscore(obj) {
+
+
     console.log("obj",obj);
 
     $.ajax({
@@ -9,7 +11,8 @@ function walkscore(obj) {
         async: true,
         data: {lat:obj.lat,lng:obj.lng},
         success: function (response) {
-            console.log(response);
+            walkobj = response;
+            console.log("walk ", walkobj);
         }
     });
 }

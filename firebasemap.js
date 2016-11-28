@@ -93,6 +93,7 @@ function makeInfoBox(controlDiv, map, text) {
     controlUI.appendChild(controlText);
 }
 
+var walkobj;
 var markers = [];
 var cmarkers = [];
 var initLoad = true;
@@ -512,10 +513,11 @@ function initMap() {
         // Add the click to firebase
         addToFirebase(data);
         // Initalize reading of firebase datase
+        walkobj = walkscore(data);
         firebaseIt();
         // Run the Distance Matrix API to show traffic estimate data
         initGoogleDistanceMatrix();
-        walkscore(data);
+        randomGen();
     });
 }
     var i = 0;
@@ -613,10 +615,11 @@ function addMarkerWithTimeout(position, timeout) {
 // Place a center marker on the center point of the map
 function setCenterPointOnMap(latlng,map,text) {
 
+    console.log("walk ojb",walkobj);
     var marker = new google.maps.Marker({
         position: latlng,
         icon: {
-            url:'assets/images/Map-Marker.png',
+            url:'assets/img/Map-Marker.png',
             scaledSize: new google.maps.Size(200, 150)
         },
         label: {

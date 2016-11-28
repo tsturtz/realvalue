@@ -9,5 +9,5 @@ angular.module("googleMap",['uiGmapgoogle-maps'])
         longitude: -117.73948073387146
     };
 
-    $scope.zoom = 11;
+    $scope.zoom = 10;
 });
