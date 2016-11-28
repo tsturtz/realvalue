@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="googleMap">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Google Map</title>
+    <style>
+        .buying-map .angular-google-map-container {
+            height: 560px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>-->
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,visualization&language=en&v=3.14&key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
+    <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
+    <script src="../angular-google-maps/dist/angular-google-maps.js"></script>
+
+    <script src="map.js"></script>
+
+</head>
+<body ng-controller="mapController" attach-to-window="true">
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <h1>angular-google-maps huge data demo</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <ui-gmap-google-map class="thumbnail buying-map" center="center"
+                                zoom="zoom" draggable="true" options="{ scrollwheel: false, streetViewControl: false }">
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>
+</body>
+</html>
