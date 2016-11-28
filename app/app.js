@@ -7,13 +7,18 @@
  * @config Configure URL View Routes
  */
 
-angular.module('realValue', ['ngMaterial', 'ngRoute'])
+angular.module('realValue', ['ngMaterial'])
 
     .config(function ($mdAriaProvider) {
         $mdAriaProvider.disableWarnings();
     })
 
     .config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal', {'default': '500'})
+            .accentPalette('indigo', {'default': '500'})
+            .warnPalette('red', {'default': 'A200'});
+            //.dark();
         $mdThemingProvider.definePalette('white', {
             '50': '#fff',
             '100': '#fff',
@@ -35,14 +40,9 @@ angular.module('realValue', ['ngMaterial', 'ngRoute'])
                 '200', '300', '400', 'A100'],
             'contrastLightColors': undefined    // could also specify this if default was 'dark'
         });
-        $mdThemingProvider.theme('default')
-            .primaryPalette('indigo', {'default': '400'})
-            .accentPalette('teal', {'default': '500'})
-            .warnPalette('red', {'default': 'A200'})
-            .dark();
-        $mdThemingProvider.theme('add')
-            .primaryPalette('white')
-    })
+    });
+
+/* disabled routing for now - make sure to add back the ngRoute dependency
 
     .config(function($routeProvider) {
         $routeProvider
@@ -60,3 +60,5 @@ angular.module('realValue', ['ngMaterial', 'ngRoute'])
             })
             .otherwise({ redirectTo: 'views/map.html' });
     });
+
+*/

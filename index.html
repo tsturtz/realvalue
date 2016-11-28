@@ -35,38 +35,82 @@
     <!--RealValue App-->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
-    <script src="app/controllers/mapCtrl.js"></script>
-    <script src="app/controllers/aboutCtrl.js"></script>
+    <script src="app/controllers/navCtrl.js"></script>
 
     <!------------------------DEV------------------------>
 
     <!--Map Js -->
+
+    <!--
     <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
     <script src="firebasemap.js"></script>
     <script src="walkscore.js"></script>
+    -->
 
     <!-- Init Google Map -->
+
+    <!--
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc&libraries=visualization&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc&libraries=visualization&callback=initMap">
     </script>
+    -->
 
 </head>
-<body>
+<body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
 
-<ul id="temp-nav">
-    <li><a href="#map">Home</a></li>
-    <li><a href="#about">About</a></li>
-</ul>
+<div id="main-container" ng-controller="navCtrl as nc">
 
-<div ng-view></div>
+    <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
+                md-is-open="true" md-whiteframe="4">
 
-<!--
-Commented out for Angular Setup
+        <div id="nav-wrapper" layout="column" layout-align="center center" flex="80">
+            <md-content>
+                Details Here
+            </md-content>
+        </div>
 
-<div id="map"></div>
-<div id="output"></div>
--->
+        <div id="nav-close">
+            <md-button class="md-raised" ng-click="nc.openRightMenu()">
+                Close
+            </md-button>
+        </div>
 
+    </md-sidenav>
+
+    <div layout="column" layout-fill layout-padding>
+
+        <div id="menu-btn" layout="row" layout-align="end start" layout-padding flex="70">
+            <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
+                <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
+            </md-button>
+        </div>
+
+        <div layout="column" flex>
+            <md-card class="btm-left-card" layout-align="center center">
+                <span>Info Here</span>
+            </md-card>
+        </div>
+
+    </div>
+
+    <!--
+    Commented out because routing is disabled
+
+    <ul id="temp-nav">
+        <li><a href="#map">Home</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+    <div ng-view></div>
+    -->
+
+    <!--
+    Commented out for Angular Setup
+
+    <div id="map"></div>
+    <div id="output"></div>
+    -->
+</div>
 </body>
 </html>
