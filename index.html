@@ -85,14 +85,15 @@
 
     <div layout="column" layout-fill layout-padding>
 
-        <div id="menu-btn" layout="row" layout-align="end start" layout-padding flex="70">
+        <div id="menu-btn" layout="row" layout-align="end start" layout-padding flex="75">
             <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
                 <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
             </md-button>
         </div>
 
         <div layout="column" flex>
-            <md-card class="btm-left-card" layout-align="center center">
+            <md-card class="btm-left-card" layout-align="start center">
+                <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
                 <span>Info Here</span>
             </md-card>
         </div>
