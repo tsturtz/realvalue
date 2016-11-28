@@ -8,6 +8,15 @@ html, body {
     padding: 0;
 }
 
+body {
+    background: url(assets/img/mapMock.JPG) no-repeat center;
+    background-size: cover;
+}
+
+#main-container {
+    height: 100%;
+}
+
 .bottomDiv {
     cursor: pointer;
 }
@@ -130,4 +139,23 @@ to {
     25%, 75% {
         opacity: 0;
     }
+}
+
+/*********
+layout
+*********/
+
+.btm-left-card {
+    width: 25vw;
+    height: 40vh;
+}
+
+#placeholder-logo {
+    width: 30vw;
+    background-color: teal;
+    color: black;
+}
+
+.md-backdrop {
+    height: 100vh;
 }
