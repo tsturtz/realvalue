@@ -14,13 +14,18 @@ angular.module('realValue')
         setTimeout(self.showAlert = function () {
             console.log('got something');
             alert = $mdDialog.alert()
-                .title('title here')
-                .content('content text')
-                .ok('Close');
+                .title('[logo] Welcome to RealValue')
+                .content('RealValue is an intuitive application built to display area values based on a number of statistics. Currently this service is only available in Los Angeles and Orange County, CA. You decide which statistics are important to you to update the map in real time. If you\'re looking to relocate or change jobs, RealValue can assist you to find an area that, to you, has real value.')
+                .ok('Continue');
             $mdDialog
                 .show(alert)
                 .finally(function() {
                     alert = undefined;
                 });
         },50);
+
+        // logo image path
+
+        self.imagePath = 'assets/img/RV-logo2.jpg';
+
     });

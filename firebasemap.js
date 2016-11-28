@@ -516,6 +516,7 @@ function initMap() {
         // Run the Distance Matrix API to show traffic estimate data
         initGoogleDistanceMatrix();
         walkscore(data);
+        weather(data);
     });
 }
     var i = 0;
