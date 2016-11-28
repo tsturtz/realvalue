@@ -15,7 +15,7 @@ angular.module('realValue')
             console.log('got something');
             alert = $mdDialog.alert()
                 .title('title text')
-                .content('content text')
+                .content('<P>HI</P>content text')
                 .ok('Close');
             $mdDialog
                 .show(alert)
