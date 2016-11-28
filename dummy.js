@@ -65,8 +65,10 @@ function dummydata() {
 
         var dummyObj = {
             lat: dummy[i].lat,
-            lng: dummy[i].lng
+            lng: dummy[i].lng+(.05*i)
         }
+
+        addMarkerWithTimeout(dummyObj,500); // function that adds markers
 
         console.log("dummy",dummyObj);
     }
