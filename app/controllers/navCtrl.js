@@ -14,7 +14,7 @@ angular.module('realValue')
         setTimeout(self.showAlert = function () {
             console.log('got something');
             alert = $mdDialog.alert()
-                .title('title text')
+                .title('title here')
                 .content('content text')
                 .ok('Close');
             $mdDialog
