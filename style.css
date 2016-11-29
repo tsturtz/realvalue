@@ -9,7 +9,7 @@ html, body {
 }
 
 body {
-    background: url(assets/img/mapMock.JPG) no-repeat center;
+    /*background: url(assets/img/mapMock.JPG) no-repeat center;*/
     background-size: cover;
 }
 
