@@ -32,14 +32,20 @@
     <!--Jquery -->
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
+    <!--Map Js -->
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,visualization&language=en&v=3.14&key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
+    <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
+    <script src="../angular-google-maps/dist/angular-google-maps.js"></script>
+
+
     <!--RealValue App-->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
+    <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
 
     <!------------------------DEV------------------------>
-
-    <!--Map Js -->
 
     <!--
     <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
@@ -60,9 +66,9 @@
 </head>
 <body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
 <div ng-controller="mapController">
-    <!--<ui-gmap-google-map class="thumbnail buying-map" center="center"-->
-                        <!--zoom="zoom" draggable="true" options="{ scrollwheel: false, streetViewControl: false }">-->
-    <!--</ui-gmap-google-map>-->
+    <ui-gmap-google-map class="thumbnail buying-map" center="center"&ndash;&gt;
+                        zoom="zoom" draggable="true" options="{ scrollwheel: false, streetViewControl: false }">
+    </ui-gmap-google-map>
 </div>
 <div id="main-container" ng-controller="navCtrl as nc">
 
