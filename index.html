@@ -66,7 +66,7 @@
 </head>
 <body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
 <div id="the-map" ng-controller="mapController">
-    <ui-gmap-google-map class="thumbnail buying-map" center="center"&ndash;&gt;
+    <ui-gmap-google-map class="thumbnail buying-map" center="center" &ndash;&gt;
                         zoom="zoom" draggable="true" options="{ scrollwheel: false, streetViewControl: false }">
     </ui-gmap-google-map>
 </div>
@@ -74,12 +74,33 @@
 
     <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
                 md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
+        <h4>Select what's important to you</h4>
+        <section id="check_boxes">
+            <div id="options" layout="column">
+                <md-input-container layout="column">
+                    <md-checkbox> restaurant</md-checkbox>
+                    <md-checkbox> airport</md-checkbox>
+                    <md-checkbox> library</md-checkbox>
+                    <md-checkbox> bar/nightclub</md-checkbox>
+                    <md-checkbox> cafe</md-checkbox>
+                    <md-checkbox> museum</md-checkbox>
+                    <md-checkbox> park</md-checkbox>
+                    <md-checkbox> police dept</md-checkbox>
+                    <md-checkbox> hospital/ doctor office</md-checkbox>
+                    <md-checkbox> school</md-checkbox>
+                    <md-checkbox> gas station</md-checkbox>
+                    <md-checkbox> university</md-checkbox>
+                    <md-checkbox> gym</md-checkbox>
+                    <md-checkbox> zoo</md-checkbox>
+                    <md-checkbox> crime</md-checkbox>
+                    <md-checkbox> housing/rental market</md-checkbox>
+                    <md-checkbox> traffic</md-checkbox>
+                    <md-checkbox> walk score</md-checkbox>
+                </md-input-container>
+            </div>
+        </section>
 
-        <div id="nav-wrapper" layout="column" layout-align="center center" flex="80">
-            <md-content>
-                Details Here
-            </md-content>
-        </div>
+        <span flex="10"></span>
 
         <div id="nav-close">
             <md-button class="md-raised" ng-click="nc.openRightMenu()">
@@ -91,7 +112,7 @@
 
     <div layout="column">
 
-        <div id="menu-btn"layout-padding>
+        <div id="menu-btn" layout-padding>
             <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
                 <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
             </md-button>
@@ -100,7 +121,12 @@
         <div id="card-btm-left" layout="column">
             <md-card class="btm-left-card">
                 <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
-                <span>Info Here</span>
+                <md-card-content layout="row">
+                    <md-input-container>
+                        <input type="text" placeholder="Enter city or zip">
+                    </md-input-container>
+                        <md-button>Submit</md-button>
+                </md-card-content>
             </md-card>
         </div>
 
