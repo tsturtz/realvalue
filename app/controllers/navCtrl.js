@@ -11,16 +11,21 @@ angular.module('realValue')
 
         // dialog
 
-        (self.showAlert = function () {
+        setTimeout(self.showAlert = function () {
             console.log('got something');
             alert = $mdDialog.alert()
-                .title('WELCOME!')
-                .content('RealValue is an intuitive application built to assist you in finding out what a home is really worth. Want to know what resturantes are nearby? Your in the right place. Need crime data and statistics for an area before you buy a new home? Then RealValue can assist you in obtaining that peace of mind. Let us be the first to welcome you to our RealValue community, your one stop shop for area information and statistics in the Orange county area.')
+                .title('[logo] Welcome to RealValue')
+                .content('RealValue is an intuitive application built to display area values based on a number of statistics. Currently this service is only available in Los Angeles and Orange County, CA. You decide which statistics are important to you to update the map in real time. If you\'re looking to relocate or change jobs, RealValue can assist you to find an area that, to you, has real value.')
                 .ok('Continue');
             $mdDialog
                 .show(alert)
                 .finally(function() {
                     alert = undefined;
                 });
-        })();
+        },50);
+
+        // logo image path
+
+        self.imagePath = 'assets/img/RV-logo2.jpg';
+
     });
