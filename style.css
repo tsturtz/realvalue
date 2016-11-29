@@ -8,14 +8,10 @@ html, body {
     padding: 0;
 }
 
-body {
-    /*background: url(assets/img/mapMock.JPG) no-repeat center;*/
+/*body {
+    background: url(assets/img/mapMock.JPG) no-repeat center;
     background-size: cover;
-}
-
-#main-container {
-    height: 100%;
-}
+}*/
 
 .bottomDiv {
     cursor: pointer;
@@ -150,16 +146,26 @@ layout
     height: 25vh;
 }
 
-#placeholder-logo {
-    width: 30vw;
-    background-color: teal;
-    color: black;
-}
-
 .md-backdrop {
     height: 100vh;
 }
 
 .buying-map .angular-google-map-container {
-    height: 560px;
+    height: 100vh;
+}
+
+#main-container {
+    padding-bottom: 0;
+}
+
+#menu-btn {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+}
+
+#card-btm-left {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
 }
