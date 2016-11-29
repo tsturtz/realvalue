@@ -65,7 +65,7 @@
 
 </head>
 <body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
-<div ng-controller="mapController">
+<div id="the-map" ng-controller="mapController">
     <ui-gmap-google-map class="thumbnail buying-map" center="center"&ndash;&gt;
                         zoom="zoom" draggable="true" options="{ scrollwheel: false, streetViewControl: false }">
     </ui-gmap-google-map>
@@ -73,7 +73,7 @@
 <div id="main-container" ng-controller="navCtrl as nc">
 
     <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
-                md-is-open="true" md-whiteframe="4">
+                md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
 
         <div id="nav-wrapper" layout="column" layout-align="center center" flex="80">
             <md-content>
@@ -89,16 +89,16 @@
 
     </md-sidenav>
 
-    <div layout="column" layout-fill layout-padding>
+    <div layout="column">
 
-        <div id="menu-btn" layout="row" layout-align="end start" layout-padding flex="75">
+        <div id="menu-btn"layout-padding>
             <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
                 <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
             </md-button>
         </div>
 
-        <div layout="column" flex>
-            <md-card class="btm-left-card" layout-align="start center">
+        <div id="card-btm-left" layout="column">
+            <md-card class="btm-left-card">
                 <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
                 <span>Info Here</span>
             </md-card>
