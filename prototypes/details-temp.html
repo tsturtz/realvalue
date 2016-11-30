@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!--RealValue Style Sheets-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
 
     <!-- Angular.js Libraries -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -36,14 +36,14 @@
     <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,visualization&language=en&v=3.14&key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js" type="text/javascript"></script>
     <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
-    <script src="../angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="../../angular-google-maps/dist/angular-google-maps.js"></script>
 
 
     <!--RealValue App-->
-    <script src="app/app.js"></script>
-    <script src="app/routes.js"></script>
-    <script src="app/controllers/mapCtrl.js"></script>
-    <script src="app/controllers/navCtrl.js"></script>
+    <script src="../app/app.js"></script>
+    <script src="../app/routes.js"></script>
+    <script src="../app/controllers/mapCtrl.js"></script>
+    <script src="../app/controllers/proto2Ctrl.js"></script>
 
     <!------------------------DEV------------------------>
 
@@ -64,13 +64,9 @@
     -->
 
 </head>
-<body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
-<div id="the-map" ng-controller="mapController">
-    <ui-gmap-google-map class="thumbnail buying-map" center="center" &ndash;&gt;
-                        zoom="zoom" draggable="true" options="{ scrollwheel: false, streetViewControl: false }">
-    </ui-gmap-google-map>
-</div>
-<div id="main-container" ng-controller="navCtrl as nc">
+<body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer" class="zip-zoom">
+
+<div id="main-container" ng-controller="proto2Ctrl as pc">
 
     <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
                 md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
@@ -103,60 +99,44 @@
         <span flex="10"></span>
 
         <div id="nav-close">
-            <md-button class="md-raised" ng-click="nc.openRightMenu()">
+            <md-button class="md-raised" ng-click="pc.openRightMenu()">
                 Close
             </md-button>
         </div>
 
     </md-sidenav>
 
+    <md-button href="zoom-temp.html" class="md-raised md-primary">
+        BACK
+    </md-button>
+
+    <md-button class="md-raised md-primary place-details-temp-button" ng-click="pc.showAdvanced()">
+        CLICK TO SEE PLACE DETAILS
+    </md-button>
+
     <div layout="column">
 
-        <!------------------------- TEMP -------------------------->
-
-        <md-button href="prototypes/zoom-temp.html" class="md-raised md-primary" id="temp">
-            NEXT
-        </md-button>
-
-        <!------------------------- TEMP -------------------------->
-
         <div id="menu-btn" layout-padding>
-            <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
+            <md-button class="md-primary md-raised md-fab" ng-click="pc.openRightMenu()">
                 <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
             </md-button>
         </div>
 
         <div id="card-btm-left" layout="column">
             <md-card class="btm-left-card">
-                <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
+                <img ng-src="{{pc.imagePath}}" class="md-card-image" alt="RealValue">
                 <md-card-content layout="row">
                     <md-input-container>
                         <input type="text" placeholder="Enter city or zip">
                     </md-input-container>
-                        <md-button>Submit</md-button>
+                    <md-button>Submit</md-button>
                 </md-card-content>
             </md-card>
         </div>
 
     </div>
 
-    <!--
-    Commented out because routing is disabled
-
-    <ul id="temp-nav">
-        <li><a href="#map">Home</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
-
-    <div ng-view></div>
-    -->
-
-    <!--
-    Commented out for Angular Setup
-
-    <div id="map"></div>
-    <div id="output"></div>
-    -->
 </div>
+
 </body>
 </html>
