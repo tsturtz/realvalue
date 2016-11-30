@@ -1,8 +1,8 @@
 /**
  * Created by danh on 11/22/16.
  */
-function dummydata() {
-
+function dummydata(data) {
+    //console.log(data);
     var dummy = [
         {
             id:92856,
@@ -61,20 +61,19 @@ function dummydata() {
         }
     ];
 
-    for(var i=0;i<dummy.length;i++) {
-
+    for(var i=0;i<20;i++) {
+        var lat=data.lat+randomNumber()*i;
+        var lng=data.lng+randomNumber()*i;
         var dummyObj = {
-            lat: dummy[i].lat,
-            lng: dummy[i].lng+(.05*i)
+            lat:lat ,
+            lng:lng
         }
-
         addMarkerWithTimeout(dummyObj,500); // function that adds markers
-
-        console.log("dummy",dummyObj);
+        //console.log("dummy",dummyObj);
     }
 
 }
 
 function randomNumber() {
-
+    return Math.random()*0.05;
 }
