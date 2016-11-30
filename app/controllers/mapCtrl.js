@@ -8,4 +8,5 @@ angular.module('realValue')
         };
 
         $scope.zoom = 10;
+
     });
