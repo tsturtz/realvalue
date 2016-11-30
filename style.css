@@ -154,8 +154,9 @@ layout
     height: 100vh;
 }
 
-#main-container {
-    padding-bottom: 0;
+.zip-zoom {
+    background: url(assets/img/zoom-map.jpg) no-repeat center;
+    background-size: cover;
 }
 
 #menu-btn {
@@ -168,4 +169,16 @@ layout
     position: fixed;
     bottom: 25px;
     left: 25px;
+}
+
+#temp {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.place-details-temp-button {
+    position: absolute;
+    top: 500px;
+    left: 500px;
 }
