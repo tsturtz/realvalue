@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/tsturtz/c11_realvalue#readme",
   "dependencies": {
-    "leaflet": "git:https://github.com/tombatossals/angular-leaflet-directive.git"
+    "leaflet": "git://github.com/tombatossals/angular-leaflet-directive.git"
   }
 }
