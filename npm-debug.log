@@ -1,0 +1,100 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/7.2.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@3.10.9
+3 info using node@v7.2.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchOtherPackageData leaflet@git:https://github.com/tombatossals/angular-leaflet-directive.git
+20 silly cache add args [ 'leaflet@git:https://github.com/tombatossals/angular-leaflet-directive.git',
+20 silly cache add   null ]
+21 verbose cache add spec leaflet@git:https://github.com/tombatossals/angular-leaflet-directive.git
+22 silly cache add parsed spec Result {
+22 silly cache add   raw: 'leaflet@git:https://github.com/tombatossals/angular-leaflet-directive.git',
+22 silly cache add   scope: null,
+22 silly cache add   escapedName: 'leaflet',
+22 silly cache add   name: 'leaflet',
+22 silly cache add   rawSpec: 'git:https://github.com/tombatossals/angular-leaflet-directive.git',
+22 silly cache add   spec: 'git:https://github.com/tombatossals/angular-leaflet-directive.git',
+22 silly cache add   type: 'git' }
+23 verbose addRemoteGit caching git:https://github.com/tombatossals/angular-leaflet-directive.git
+24 silly tryClone cloning git:https://github.com/tombatossals/angular-leaflet-directive.git via git:https://github.com/tombatossals/angular-leaflet-directive.git
+25 verbose tryClone git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c not in flight; caching
+26 verbose correctMkdir /Users/danh/.npm/_git-remotes correctMkdir not in flight; initializing
+27 info git [ 'clone',
+27 info git   '--template=/Users/danh/.npm/_git-remotes/_templates',
+27 info git   '--mirror',
+27 info git   'git:https://github.com/tombatossals/angular-leaflet-directive.git',
+27 info git   '/Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c' ]
+28 error git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c: Cloning into bare repository '/Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c'...
+28 error git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c: fatal: I don't handle protocol 'git:https'
+29 silly fetchPackageMetaData Error: Command failed: git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c
+29 silly fetchPackageMetaData Cloning into bare repository '/Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c'...
+29 silly fetchPackageMetaData fatal: I don't handle protocol 'git:https'
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:211:12)
+29 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+29 silly fetchPackageMetaData     at ChildProcess.emit (events.js:191:7)
+29 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:885:16)
+29 silly fetchPackageMetaData     at Socket.<anonymous> (internal/child_process.js:334:11)
+29 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+29 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+29 silly fetchPackageMetaData     at Pipe._handle.close [as _onclose] (net.js:501:12)
+29 silly fetchPackageMetaData  error for leaflet@git:https://github.com/tombatossals/angular-leaflet-directive.git { Error: Command failed: git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c
+29 silly fetchPackageMetaData Cloning into bare repository '/Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c'...
+29 silly fetchPackageMetaData fatal: I don't handle protocol 'git:https'
+29 silly fetchPackageMetaData
+29 silly fetchPackageMetaData     at ChildProcess.exithandler (child_process.js:211:12)
+29 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+29 silly fetchPackageMetaData     at ChildProcess.emit (events.js:191:7)
+29 silly fetchPackageMetaData     at maybeClose (internal/child_process.js:885:16)
+29 silly fetchPackageMetaData     at Socket.<anonymous> (internal/child_process.js:334:11)
+29 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+29 silly fetchPackageMetaData     at Socket.emit (events.js:188:7)
+29 silly fetchPackageMetaData     at Pipe._handle.close [as _onclose] (net.js:501:12)
+29 silly fetchPackageMetaData   killed: false,
+29 silly fetchPackageMetaData   code: 128,
+29 silly fetchPackageMetaData   signal: null,
+29 silly fetchPackageMetaData   cmd: 'git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c' }
+30 silly rollbackFailedOptional Starting
+31 silly rollbackFailedOptional Finishing
+32 silly runTopLevelLifecycles Finishing
+33 silly install printInstalled
+34 verbose stack Error: Command failed: git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c
+34 verbose stack Cloning into bare repository '/Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c'...
+34 verbose stack fatal: I don't handle protocol 'git:https'
+34 verbose stack
+34 verbose stack     at ChildProcess.exithandler (child_process.js:211:12)
+34 verbose stack     at emitTwo (events.js:106:13)
+34 verbose stack     at ChildProcess.emit (events.js:191:7)
+34 verbose stack     at maybeClose (internal/child_process.js:885:16)
+34 verbose stack     at Socket.<anonymous> (internal/child_process.js:334:11)
+34 verbose stack     at emitOne (events.js:96:13)
+34 verbose stack     at Socket.emit (events.js:188:7)
+34 verbose stack     at Pipe._handle.close [as _onclose] (net.js:501:12)
+35 verbose cwd /Users/danh/lfz/c11_realvalue
+36 error Darwin 14.5.0
+37 error argv "/usr/local/Cellar/node/7.2.0/bin/node" "/usr/local/bin/npm" "install"
+38 error node v7.2.0
+39 error npm  v3.10.9
+40 error code 128
+41 error Command failed: git clone --template=/Users/danh/.npm/_git-remotes/_templates --mirror git:https://github.com/tombatossals/angular-leaflet-directive.git /Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c
+41 error Cloning into bare repository '/Users/danh/.npm/_git-remotes/git-https-github-com-tombatossals-angular-leaflet-directive-git-777bf22c'...
+41 error fatal: I don't handle protocol 'git:https'
+42 error If you need help, you may report this error at:
+42 error     <https://github.com/npm/npm/issues>
+43 verbose exit [ 1, true ]
