@@ -18,6 +18,7 @@ var zip_92618 = {
         "type": "Feature",
         "properties": {
             "name": "92618",
+            "density": 50,
             "amenity": "Zip Code",
             "popupContent": "Here is where the z-index will be shown!",
             "fillOpacity": 0,
@@ -577,6 +578,7 @@ var zip_92866 = {
         "properties": {
             "name": "92866",
             "amenity": "Zip Code",
+            "density": 1000,
             "popupContent": "Here is where the z-index will be shown!",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
