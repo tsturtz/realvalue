@@ -9,17 +9,17 @@ angular.module('realValue')
             },
             tiles: tiles,
             geojson : {
-                data: [zip_92866,zip_92618],
+                data: [zip_92866,zip_92618,zip_92604,zip_92620],
                 style: style,
                 onEachFeature: function (feature, layer) {
-                    layer.bindPopup("Z-Index: " +feature.properties.popupContent);
+                    layer.bindPopup(feature.properties.popupContent);
                 }
             }
         });
 
         function style(feature) {
             return {
-                fillColor: getColor(feature.properties.density),
+                fillColor: getColor(feature.properties.population),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
@@ -29,13 +29,13 @@ angular.module('realValue')
         }
 
         function getColor(d) {
-            return d > 1000 ? '#800026' :
-                d > 500  ? '#BD0026' :
-                d > 200  ? '#E31A1C' :
-                d > 100  ? '#FC4E2A' :
-                d > 50   ? '#FD8D3C' :
-                d > 20   ? '#FEB24C' :
-                d > 10   ? '#FED976' :
+            return d > 70000 ? '#800026' :
+                d > 60000  ? '#BD0026' :
+                d > 50000  ? '#E31A1C' :
+                d > 40000  ? '#FC4E2A' :
+                d > 30000   ? '#FD8D3C' :
+                d > 20000   ? '#FEB24C' :
+                d > 10000   ? '#FED976' :
                            '#FFEDA0';
         }
 
@@ -50,8 +50,6 @@ angular.module('realValue')
                 $scope.ip = res.ip;
             });
         };
-
-        $scope.searchIP("");
 
         //console.log(tiles);
         $scope.updateGeojson = function() {
