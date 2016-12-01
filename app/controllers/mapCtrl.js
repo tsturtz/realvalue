@@ -38,11 +38,14 @@ angular.module('realValue')
                  lng: -117.73948073387146,
                  zoom: 10
             },
-            bounds: {},
-            layers: {},
-            tiles: tiles,
+            tiles: {
+                url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                options: {
+                    attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                }
+            },
             geojson : {
-                data: [zip_92866,zip_92618,zip_92604,zip_92620],
+                data: [zip_92866,zip_92618,zip_92604,zip_92620,zip_91331],
                 style: style,
                 onEachFeature: function (feature, layer) {
                     // fixed issue with referencing layer inside our reset Highlight function
@@ -51,7 +54,7 @@ angular.module('realValue')
 
                     leafletData.getMap().then(function(map) {
                         label = new L.Label();
-                        label.setContent(feature.properties.name)
+                        label.setContent(feature.properties.name);
                         label.setLatLng(layer.getBounds().getCenter());
                         map.showLabel(label);
                     });
