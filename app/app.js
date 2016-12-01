@@ -7,7 +7,7 @@
  * @config Configure URL View Routes
  */
 
-angular.module('realValue', ['ngMaterial',"leaflet-directive"])
+angular.module('realValue', ['ngMaterial','leaflet-directive'])
 
     .config(function ($mdAriaProvider) {
         $mdAriaProvider.disableWarnings();

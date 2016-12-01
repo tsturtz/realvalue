@@ -17,6 +17,9 @@ var zip_92618 = {
     "features": [{
         "type": "Feature",
         "properties": {
+            "name": "92618",
+            "amenity": "Zip Code",
+            "popupContent": "Here is where the z-index will be shown!",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
             "strokeOpacity": 0.5
@@ -572,6 +575,9 @@ var zip_92866 = {
     "features": [{
         "type": "Feature",
         "properties": {
+            "name": "92866",
+            "amenity": "Zip Code",
+            "popupContent": "Here is where the z-index will be shown!",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
             "strokeOpacity": 0.5
