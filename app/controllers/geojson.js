@@ -12,7 +12,7 @@ var tiles = {
     }
 };
 
-var zip_92620 = geojson = {
+var zip_92620 = {
     "type": "FeatureCollection",
     "features": [{
         "type": "Feature",
