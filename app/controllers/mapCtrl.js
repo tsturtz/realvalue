@@ -5,7 +5,8 @@ angular.module('realValue')
         console.log("init map");
 
 
-
+        // fixed issue when map is shown after the map container has been resized by css
+        // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
             map.invalidateSize(false);
@@ -47,6 +48,15 @@ angular.module('realValue')
                     // fixed issue with referencing layer inside our reset Highlight function
                     console.log("layer",layer);
                     layer.bindPopup(feature.properties.popupContent);
+
+                    leafletData.getMap().then(function(map) {
+                        label = new L.Label();
+                        label.setContent(feature.properties.name)
+                        label.setLatLng(layer.getBounds().getCenter());
+                        map.showLabel(label);
+                    });
+
+
                     layer.on({
                         mouseover: highlightFeature,
                         mouseout: resetHighlight,
