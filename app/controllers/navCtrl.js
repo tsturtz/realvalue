@@ -27,7 +27,7 @@ angular.module('realValue')
             });
         };
 
-        self.showAdvanced();
+        //self.showAdvanced();
 
         // dialog controller
 
