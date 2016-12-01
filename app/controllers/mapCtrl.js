@@ -4,6 +4,14 @@ angular.module('realValue')
         //console.log("style", style);
         console.log("init map");
 
+
+
+        setTimeout(function(){ leafletData.getMap().then(function(map) {
+            console.log("resize");
+            map.invalidateSize(false);
+        });
+        }, 400);
+
         $scope.$on("leafletDirectiveMap.geojsonMouseover", function(ev, leafletEvent) {
             countryMouseover(leafletEvent);
             console.log(leafletEvent);
@@ -25,9 +33,9 @@ angular.module('realValue')
 
         angular.extend($scope, {
             center: {
-                lat: 33.63622083463071,
-                lng: -117.73948073387146,
-                zoom: 10
+                 lat: 33.63622083463071,
+                 lng: -117.73948073387146,
+                 zoom: 10
             },
             bounds: {},
             layers: {},
@@ -123,10 +131,8 @@ angular.module('realValue')
         //console.log(tiles);
         $scope.updateGeojson = function() {
             console.log("HI");
-        }
+        };
 
-        $scope.$on('leafletDirectiveMap.click', function(event){
-            $scope.eventDetected = "Click";
-        });
+
 
     }]);
