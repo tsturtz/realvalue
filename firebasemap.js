@@ -94,6 +94,7 @@ function makeInfoBox(controlDiv, map, text) {
 }
 
 var walkobj;
+var temp;
 var markers = [];
 var cmarkers = [];
 var initLoad = true;
@@ -518,18 +519,17 @@ function initMap() {
         // Run the Distance Matrix API to show traffic estimate data
         initGoogleDistanceMatrix();
         // runs walk score and returns a promise (legacy)
-        /*
+
         walkscore(data).then(
                 function(response) {
-                    //console.log("walk success:",response);
                     walkobj = response;
-                    weather(data);
-        },
-                function(response){
-                    console.log("walk error:",response);
                 });
-        */
+
         dummydata(data);
+        weather(data).then(
+            function(response) {
+                temp = response;
+            });
         geocode(data).then(
             function(response){
                 loc=response.address_components;
@@ -643,6 +643,8 @@ function addMarkerWithTimeout(position, timeout) {
  */
 // Place a center marker on the center point of the map
 function setCenterPointOnMap(latlng,map,text) {
+    //console.log(walkobj);
+    //console.log(temp);
     var loc_string="";
     for(var i=0;i<loc.length;i++){
         loc_string+=loc[i].long_name+",";
@@ -655,7 +657,10 @@ function setCenterPointOnMap(latlng,map,text) {
             scaledSize: new google.maps.Size(1500, 150)
         },
         label: {
-            text: 'RealValue: ' + text + '\u0009 Location: ' + loc_string,
+            text: '---RealValue: ' + text +
+                  '---Location: ' + loc_string+
+                  '---Tempature: '+temp+
+                  '---Walkscore: '+walkobj.walkscore,
             color: 'darkblue'
         },
         title: 'RealValue: ' + text,

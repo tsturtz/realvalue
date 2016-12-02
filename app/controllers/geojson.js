@@ -11,7 +11,6 @@ var tiles = {
             mapid: 'feelcreative.llm8dpdk'
     }
 };
-
 var zip_91331 = {
     "type": "FeatureCollection",
     "features": [{
@@ -20,7 +19,7 @@ var zip_91331 = {
             "name": "91331",
             "density": 11713,
             "population": 103689,
-            "popupContent": "Name: 92604<BR>Z-Index: 283000",
+            "popupContent": "Name: 91331<BR>Z-Index: 283000<BR>City:Pacoima, CA<BR>",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
             "strokeOpacity": 0.5
@@ -333,7 +332,6 @@ var zip_91331 = {
     }]
 };
 
-
 var zip_92620 = {
     "type": "FeatureCollection",
     "features": [{
@@ -342,7 +340,7 @@ var zip_92620 = {
             "name": "92620",
             "density": 5466,
             "population": 38486,
-            "popupContent": "Name: 92604<BR>Z-Index: 69700",
+            "popupContent": "Name: 92620<BR>Z-Index: 69700",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
             "strokeOpacity": 0.5
