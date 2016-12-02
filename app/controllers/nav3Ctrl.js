@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller('proto2Ctrl', function($mdSidenav, $mdDialog){
+    .controller('nav3Ctrl', function($mdSidenav, $mdDialog){
         var self = this;
 
         // right sidenav
@@ -11,7 +11,7 @@ angular.module('realValue')
 
         // logo image path
 
-        self.imagePath = '../assets/img/RV-logo2.jpg';
+        self.imagePath = './assets/img/RV-logo2.jpg';
 
         // places dialog
 
