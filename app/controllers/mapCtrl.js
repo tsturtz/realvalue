@@ -14,9 +14,9 @@ angular.module('realValue')
 
         angular.extend($scope, {
             center: {
-                 lat: 33.63622083463071,
-                 lng: -117.73948073387146,
-                 zoom: 10
+                 lat: 33.8247936182649,
+                 lng: -118.03985595703125,
+                 zoom: 8
             },
             tiles: {
                 url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
@@ -26,7 +26,7 @@ angular.module('realValue')
             },
             geojson : {
                 data: [county_los_angeles,county_orange],
-                style: style,
+                style: county_style,
                 onEachFeature: function (feature, layer) {
                     // fixed issue with referencing layer inside our reset Highlight function
                     //console.log("layer",layer);
@@ -98,6 +98,17 @@ angular.module('realValue')
             };
         }
 
+        function county_style(feature) {
+            return {
+                fillColor: getCountyColor(feature.properties.population),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+
         function getColor(d) {
             return d > 85000 ? '#800026' :
                 d > 75000  ? '#BD0026' :
@@ -107,6 +118,17 @@ angular.module('realValue')
                 d > 35000   ? '#FEB24C' :
                 d > 25000   ? '#FED976' :
                            '#FFEDA0';
+        }
+
+        function getCountyColor(d) {
+            return d > 8000000 ? '#800026' :
+                d > 5000000  ? '#BD0026' :
+                d > 3000000  ? '#E31A1C' :
+                d > 1000000  ? '#FC4E2A' :
+                d > 500000   ? '#FD8D3C' :
+                d > 300000   ? '#FEB24C' :
+                d > 100000   ? '#FED976' :
+                              '#FFEDA0';
         }
 
         $scope.searchIP = function(ip) {
@@ -133,7 +155,6 @@ angular.module('realValue')
                 console.log(map.getZoom());
 
                 if (map.getZoom() > 8) {
-                    console.log("close");
 
                     angular.extend($scope, {
                         center: {
