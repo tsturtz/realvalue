@@ -12,6 +12,10 @@ angular.module('realValue')
         });
         }, 400);
 
+        function stylefunction() {
+
+        }
+
         angular.extend($scope, {
             center: {
                  lat: 33.8247936182649,
@@ -131,23 +135,6 @@ angular.module('realValue')
                               '#FFEDA0';
         }
 
-        $scope.searchIP = function(ip) {
-            var url = "http://freegeoip.net/json/" + ip;
-            $http.get(url).success(function(res) {
-                $scope.center = {
-                    lat: res.latitude,
-                    lng: res.longitude,
-                    zoom: 10
-                };
-                $scope.ip = res.ip;
-            });
-        };
-
-        //console.log(tiles);
-        $scope.updateGeojson = function() {
-            console.log("HI");
-        };
-
         leafletData.getMap().then(function (map) {
 
             map.on('zoomend', function (event) {
@@ -162,10 +149,13 @@ angular.module('realValue')
                             lng: -117.73948073387146,
                             zoom: 10
                         },
-                        tiles: {
-                            url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                            options: {
-                                attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                        markers: {
+                            osloMarker: {
+                                lat: 33.6362,
+                                lng: -117.7394,
+                                message: "I want to travel here!",
+                                focus: true,
+                                draggable: false
                             }
                         },
                         geojson : {
@@ -173,16 +163,15 @@ angular.module('realValue')
                             style: style,
                             onEachFeature: function (feature, layer) {
                                 // fixed issue with referencing layer inside our reset Highlight function
-                                //console.log("layer",layer);
                                 layer.bindPopup(feature.properties.popupContent);
 
                                 leafletData.getMap().then(function(map) {
                                     label = new L.Label();
                                     label.setContent(feature.properties.name);
                                     label.setLatLng(layer.getBounds().getCenter());
+                                    console.log(feature.properties.name + " " + layer.getBounds().getCenter());
                                     map.showLabel(label);
                                 });
-
 
                                 layer.on({
                                     mouseover: highlightFeature,
