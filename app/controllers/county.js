@@ -922,7 +922,7 @@ var county_orange = {
 };
 
 
-var county_los_angles = {
+var county_los_angeles = {
     "type": "FeatureCollection",
     "features": [{
     "type": "Feature",

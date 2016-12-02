@@ -25,11 +25,11 @@ angular.module('realValue')
                 }
             },
             geojson : {
-                data: [zip_92866,zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                data: [county_los_angeles,county_orange],
                 style: style,
                 onEachFeature: function (feature, layer) {
                     // fixed issue with referencing layer inside our reset Highlight function
-                    console.log("layer",layer);
+                    //console.log("layer",layer);
                     layer.bindPopup(feature.properties.popupContent);
 
                     leafletData.getMap().then(function(map) {
@@ -126,6 +126,55 @@ angular.module('realValue')
             console.log("HI");
         };
 
+        leafletData.getMap().then(function (map) {
 
+            map.on('zoomend', function (event) {
+
+                console.log(map.getZoom());
+
+                if (map.getZoom() > 8) {
+                    console.log("close");
+
+                    angular.extend($scope, {
+                        center: {
+                            lat: 33.63622083463071,
+                            lng: -117.73948073387146,
+                            zoom: 10
+                        },
+                        tiles: {
+                            url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                            options: {
+                                attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                            }
+                        },
+                        geojson : {
+                            data: [zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                            style: style,
+                            onEachFeature: function (feature, layer) {
+                                // fixed issue with referencing layer inside our reset Highlight function
+                                //console.log("layer",layer);
+                                layer.bindPopup(feature.properties.popupContent);
+
+                                leafletData.getMap().then(function(map) {
+                                    label = new L.Label();
+                                    label.setContent(feature.properties.name);
+                                    label.setLatLng(layer.getBounds().getCenter());
+                                    map.showLabel(label);
+                                });
+
+
+                                layer.on({
+                                    mouseover: highlightFeature,
+                                    mouseout: resetHighlight,
+                                    click: zoomToFeature
+                                });
+                            }
+                        }
+                    });
+
+                }
+
+            });
+        });
 
     }]);
