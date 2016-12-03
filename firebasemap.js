@@ -502,7 +502,7 @@ function initMap() {
         initLoad = false;
         data.lat = e.latLng.lat();
         data.lng = e.latLng.lng();
-        //console.log("clicked", data);
+        console.log("clicked", data);
         var calculateDistance = DistanceBetweenTwoPoints(centerPoint, data);
         //console.log("distance between center and clicked is " + calculateDistance);
         // Clear markers on map and clear reference to them

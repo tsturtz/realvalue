@@ -45,6 +45,7 @@
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
     <script src="app/controllers/geojson.js"></script>
+    <script src="app/controllers/county.js"></script>
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
 
@@ -70,7 +71,7 @@
 <!--<div id='map2'></div>-->
 
 <div id="map" ng-controller="mapController">
-    <leaflet tiles='tiles' lf-center="center" geojson="geojson" width="100%" height="100vh"></leaflet>
+    <leaflet tiles='tiles' markers="markers" lf-center="center" geojson="geojson" width="100%" height="100vh"></leaflet>
 </div>
 
 <div id="main-container" ng-controller="navCtrl as nc">

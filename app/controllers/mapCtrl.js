@@ -4,7 +4,6 @@ angular.module('realValue')
         //console.log("style", style);
         console.log("init map");
 
-
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
         setTimeout(function(){ leafletData.getMap().then(function(map) {
@@ -13,30 +12,15 @@ angular.module('realValue')
         });
         }, 400);
 
-        $scope.$on("leafletDirectiveMap.geojsonMouseover", function(ev, leafletEvent) {
-            countryMouseover(leafletEvent);
-            console.log(leafletEvent);
-        });
+        function stylefunction() {
 
-        $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-            console.log(leafletEvent);
-        });
-
-        function countryMouseover(leafletEvent) {
-            var layer = leafletEvent.target;
-            layer.setStyle({
-                weight: 2,
-                color: '#666',
-                fillColor: 'white'
-            });
-            //layer.bringToFront();
         }
 
         angular.extend($scope, {
             center: {
-                 lat: 33.63622083463071,
-                 lng: -117.73948073387146,
-                 zoom: 10
+                 lat: 33.8247936182649,
+                 lng: -118.03985595703125,
+                 zoom: 8
             },
             tiles: {
                 url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
@@ -45,11 +29,11 @@ angular.module('realValue')
                 }
             },
             geojson : {
-                data: [zip_92866,zip_92618,zip_92604,zip_92620,zip_91331],
-                style: style,
+                data: [county_los_angeles,county_orange],
+                style: county_style,
                 onEachFeature: function (feature, layer) {
                     // fixed issue with referencing layer inside our reset Highlight function
-                    console.log("layer",layer);
+                    //console.log("layer",layer);
                     layer.bindPopup(feature.properties.popupContent);
 
                     leafletData.getMap().then(function(map) {
@@ -99,9 +83,9 @@ angular.module('realValue')
 
         function zoomToFeature(e) {
             leafletData.getMap().then(function(map) {
-                console.log(e);
-                console.log(map);
-                //map.fitBounds(e.target.getBounds());
+                //console.log(e);
+                //console.log(map);
+                map.fitBounds(e.target.getBounds());
             });
             // Modified for Angular
             // map.fitBounds(e.target.getBounds());
@@ -110,6 +94,17 @@ angular.module('realValue')
         function style(feature) {
             return {
                 fillColor: getColor(feature.properties.population),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: '3',
+                fillOpacity: 0.7
+            };
+        }
+
+        function county_style(feature) {
+            return {
+                fillColor: getCountyColor(feature.properties.population),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
@@ -129,23 +124,67 @@ angular.module('realValue')
                            '#FFEDA0';
         }
 
-        $scope.searchIP = function(ip) {
-            var url = "http://freegeoip.net/json/" + ip;
-            $http.get(url).success(function(res) {
-                $scope.center = {
-                    lat: res.latitude,
-                    lng: res.longitude,
-                    zoom: 10
-                };
-                $scope.ip = res.ip;
+        function getCountyColor(d) {
+            return d > 8000000 ? '#800026' :
+                d > 5000000  ? '#BD0026' :
+                d > 3000000  ? '#E31A1C' :
+                d > 1000000  ? '#FC4E2A' :
+                d > 500000   ? '#FD8D3C' :
+                d > 300000   ? '#FEB24C' :
+                d > 100000   ? '#FED976' :
+                              '#FFEDA0';
+        }
+
+        leafletData.getMap().then(function (map) {
+
+            map.on('zoomend', function (event) {
+
+                console.log(map.getZoom());
+
+                if (map.getZoom() > 8) {
+
+                    angular.extend($scope, {
+                        center: {
+                            lat: 33.63622083463071,
+                            lng: -117.73948073387146,
+                            zoom: 10
+                        },
+                        markers: {
+                            osloMarker: {
+                                lat: 33.6362,
+                                lng: -117.7394,
+                                message: "I want to travel here!",
+                                focus: true,
+                                draggable: false
+                            }
+                        },
+                        geojson : {
+                            data: [zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                            style: style,
+                            onEachFeature: function (feature, layer) {
+                                // fixed issue with referencing layer inside our reset Highlight function
+                                layer.bindPopup(feature.properties.popupContent);
+
+                                leafletData.getMap().then(function(map) {
+                                    label = new L.Label();
+                                    label.setContent(feature.properties.name);
+                                    label.setLatLng(layer.getBounds().getCenter());
+                                    console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                                    map.showLabel(label);
+                                });
+
+                                layer.on({
+                                    mouseover: highlightFeature,
+                                    mouseout: resetHighlight,
+                                    click: zoomToFeature
+                                });
+                            }
+                        }
+                    });
+
+                }
+
             });
-        };
-
-        //console.log(tiles);
-        $scope.updateGeojson = function() {
-            console.log("HI");
-        };
-
-
+        });
 
     }]);
