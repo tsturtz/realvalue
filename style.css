@@ -1,6 +1,6 @@
 #map {
-    width: 80%;
-    height: 80%;
+    width: 100vw;
+    height: 100vh;
 }
 html, body {
     height: 100%;
@@ -8,14 +8,10 @@ html, body {
     padding: 0;
 }
 
-body {
+/*body {
     background: url(assets/img/mapMock.JPG) no-repeat center;
     background-size: cover;
-}
-
-#main-container {
-    height: 100%;
-}
+}*/
 
 .bottomDiv {
     cursor: pointer;
@@ -25,7 +21,7 @@ body {
     z-index: 1;
 }
 
-#markerLayer img[src='assets/images/Map-Marker.png']{
+#markerLayer img[src='assets/img/Map-Marker.png']{
     opacity: .9;
     animation: pulse .5s infinite alternate;
     -webkit-animation: pulse .5s infinite alternate;
@@ -146,16 +142,48 @@ layout
 *********/
 
 .btm-left-card {
-    width: 25vw;
-    height: 40vh;
-}
-
-#placeholder-logo {
-    width: 30vw;
-    background-color: teal;
-    color: black;
+    width: 15vw;
+    height: 25vh;
 }
 
 .md-backdrop {
     height: 100vh;
+}
+
+.buying-map .angular-google-map-container {
+    height: 100vh;
+}
+
+.zip-zoom {
+    background: url(assets/img/zoom-map.jpg) no-repeat center;
+    background-size: cover;
+}
+
+#menu-btn {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+}
+
+#card-btm-left {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+}
+
+#temp {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.place-details-temp-button {
+    position: absolute;
+    top: 500px;
+    left: 500px;
+}
+
+.leaflet-label {
+    font-weight: bold;
+    font-size: 1.5em;
 }
