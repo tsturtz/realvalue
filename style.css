@@ -1,0 +1,195 @@
+#map {
+    width: 100vw;
+    height: 100vh;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*body {
+    background: url(assets/img/mapMock.JPG) no-repeat center;
+    background-size: cover;
+}*/
+
+.bottomDiv {
+    cursor: pointer;
+}
+
+#markerLayer img {
+    z-index: 1;
+}
+
+#markerLayer img[src='assets/img/Map-Marker.png']{
+    opacity: .9;
+    animation: pulse .5s infinite alternate;
+    -webkit-animation: pulse .5s infinite alternate;
+    transform-origin: center;
+    -webkit-transform-origin: center;
+}
+
+@keyframes pulse{
+to {
+    transform: scale(0.90);
+    -webkit-transform: scale(0.90);
+    }
+}
+
+@-webkit-keyframes pulse{
+    to {
+        transform: scale(0.90);
+        -webkit-transform: scale(0.90);
+    }
+}
+
+@-webkit-keyframes wobble {
+    from {
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    15% {
+        -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+        transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    }
+
+    30% {
+        -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+        transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    }
+
+    45% {
+        -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+        transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    }
+
+    60% {
+        -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+        transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    }
+
+    75% {
+        -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+        transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+
+    to {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes wobble {
+    from {
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    15% {
+        -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+        transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    }
+
+    30% {
+        -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+        transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    }
+
+    45% {
+        -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+        transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    }
+
+    60% {
+        -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+        transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    }
+
+    75% {
+        -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+        transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+
+    to {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@-webkit-keyframes flicker {
+    from, 50%, to {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}
+
+@keyframes flicker {
+    from, 50%, to {
+        opacity: 1;
+    }
+
+    25%, 75% {
+        opacity: 0;
+    }
+}
+
+/*********
+layout
+*********/
+
+.btm-left-card {
+    width: 15vw;
+    height: 25vh;
+}
+
+.md-backdrop {
+    height: 100vh;
+}
+
+.buying-map .angular-google-map-container {
+    height: 100vh;
+}
+
+.zip-zoom {
+    background: url(assets/img/zoom-map.jpg) no-repeat center;
+    background-size: cover;
+}
+
+#menu-btn {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+}
+
+#card-btm-left {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+}
+
+#temp1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#temp2 {
+    position: absolute;
+    top: 0;
+    left: 100px;
+}
+
+.place-details-temp-button {
+    position: absolute;
+    top: 500px;
+    left: 500px;
+}
+
+.leaflet-label {
+    font-weight: bold;
+    font-size: 1.5em;
+}

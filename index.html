@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="realValue">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="RealValue">
+    <meta name="keywords" content="Value,Map,Orange County">
+    <meta name="author" content="WTD">
+
+    <title>Real Value</title>
+
+    <!--Angular Material Style Sheets-->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--RealValue Style Sheets-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    <!-- Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+
+    <!--Jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
+    <!--Map Js -->
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
+    <link rel="stylesheet" href="node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css" />
+    <script src="node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+
+
+    <!--RealValue App-->
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+    <script src="app/controllers/geojson.js"></script>
+    <script src="app/controllers/county.js"></script>
+    <script src="app/controllers/mapCtrl.js"></script>
+    <script src="app/controllers/map2Ctrl.js"></script>
+    <script src="app/controllers/navCtrl.js"></script>
+
+    <!--
+    <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+    <script src="firebasemap.js"></script>
+    <script src="weather.js"></script>
+    <script src="walkscore.js"></script>
+    -->
+
+    <!-- Init Google Map -->
+
+    <!--
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc&libraries=visualization&callback=initMap">
+    </script>
+    -->
+
+</head>
+<body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
+
+<!--<div id='map2'></div>-->
+
+<div id="map" ng-controller="mapController">
+    <leaflet tiles='tiles' markers="markers" lf-center="center" geojson="geojson" width="100%" height="100vh"></leaflet>
+</div>
+
+<div id="main-container" ng-controller="navCtrl as nc">
+
+    <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
+                md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
+        <h4>Select what's important to you</h4>
+        <section id="check_boxes">
+            <div id="options" layout="column">
+                <md-input-container layout="column">
+                    <md-checkbox> restaurant</md-checkbox>
+                    <md-checkbox> airport</md-checkbox>
+                    <md-checkbox> library</md-checkbox>
+                    <md-checkbox> bar/nightclub</md-checkbox>
+                    <md-checkbox> cafe</md-checkbox>
+                    <md-checkbox> museum</md-checkbox>
+                    <md-checkbox> park</md-checkbox>
+                    <md-checkbox> police dept</md-checkbox>
+                    <md-checkbox> hospital/ doctor office</md-checkbox>
+                    <md-checkbox> school</md-checkbox>
+                    <md-checkbox> gas station</md-checkbox>
+                    <md-checkbox> university</md-checkbox>
+                    <md-checkbox> gym</md-checkbox>
+                    <md-checkbox> zoo</md-checkbox>
+                    <md-checkbox> crime</md-checkbox>
+                    <md-checkbox> housing/rental market</md-checkbox>
+                    <md-checkbox> traffic</md-checkbox>
+                    <md-checkbox> walk score</md-checkbox>
+                </md-input-container>
+            </div>
+        </section>
+
+        <span flex="10"></span>
+
+        <div id="nav-close">
+            <md-button class="md-raised" ng-click="nc.openRightMenu()">
+                Close
+            </md-button>
+        </div>
+
+    </md-sidenav>
+
+    <div layout="column">
+
+        <!------------------------- TEMP -------------------------->
+
+        <md-button href="zoom-temp.html" class="md-raised md-primary" id="temp1">
+            NEXT
+        </md-button>
+
+        <!------------------------- TEMP -------------------------->
+
+        <div id="menu-btn" layout-padding>
+            <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
+                <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
+            </md-button>
+        </div>
+
+        <div id="card-btm-left" layout="column">
+            <md-card class="btm-left-card">
+                <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
+                <md-card-content layout="row">
+                    <md-input-container>
+                        <input type="text" placeholder="Enter city or zip">
+                    </md-input-container>
+                        <md-button>Submit</md-button>
+                </md-card-content>
+            </md-card>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
