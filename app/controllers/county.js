@@ -929,8 +929,8 @@ var county_los_angeles = {
     "features": [{
     "type": "Feature",
     "properties": {
-        "population": 10000000,
-        "popupContent": "Name: Los Angeles<BR>Z-Index: 704100",
+        "population": 10,
+        "popupContent": "Name: Los Angeles<BR>Z-Index: 704100 WHATEVER!!",
         "fillOpacity": 0,
         "strokeColor": "#FF0000",
         "strokeOpacity": 0.5
