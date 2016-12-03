@@ -93,12 +93,15 @@ function makeInfoBox(controlDiv, map, text) {
     controlUI.appendChild(controlText);
 }
 
+var walkobj;
+var temp;
 var markers = [];
 var cmarkers = [];
 var initLoad = true;
 var realvalue = 0;
 var map;
 var centerPoint = {lat: 33.63622083463071, lng: -117.73948073387146};
+var loc;
 var styleArray = [
     {
         "featureType": "administrative",
@@ -499,7 +502,7 @@ function initMap() {
         initLoad = false;
         data.lat = e.latLng.lat();
         data.lng = e.latLng.lng();
-        //console.log("clicked", data);
+        console.log("clicked", data);
         var calculateDistance = DistanceBetweenTwoPoints(centerPoint, data);
         //console.log("distance between center and clicked is " + calculateDistance);
         // Clear markers on map and clear reference to them
@@ -512,10 +515,28 @@ function initMap() {
         // Add the click to firebase
         addToFirebase(data);
         // Initalize reading of firebase datase
-        firebaseIt();
+
         // Run the Distance Matrix API to show traffic estimate data
         initGoogleDistanceMatrix();
-        walkscore(data);
+        // runs walk score and returns a promise (legacy)
+
+        walkscore(data).then(
+                function(response) {
+                    walkobj = response;
+                });
+
+        dummydata(data);
+        weather(data).then(
+            function(response) {
+                temp = response;
+            });
+        geocode(data).then(
+            function(response){
+                loc=response.address_components;
+                firebaseIt();
+            }
+        )
+
     });
 }
     var i = 0;
@@ -569,11 +590,7 @@ function firebaseIt() {
                 }
             }
         }
-        if (initLoad === false) {
-            // Clear markers on map and clear reference to them
-            //console.log("Sum", zIndexSum);
-            //console.log("total", realvalue);
-            // Calculate the average zillow index
+        if (initLoad === false) { // do not run this block of code unless it's not the first time
             zIndexAvg = calculateAverageZillowIndex(zIndexArr,2);
             centerSetMapOnAll(null);
             cmarkers = [];
@@ -593,9 +610,23 @@ function calculateAverageZillowIndex(zillow, digit) {
  * @param position
  * @param timeout
  */
+function random_color(){
+    var letter=['A','B','C','D','E','F',1,2,3,4,5,6,7,8,9,0];
+    var result="";
+    result=result+letter[Math.floor(Math.random()*15)]+ letter[Math.floor(Math.random()*15)]+letter[Math.floor(Math.random()*15)]+
+        letter[Math.floor(Math.random()*15)]+letter[Math.floor(Math.random()*15)]+letter[Math.floor(Math.random()*15)];
+
+    return result;
+}
 function addMarkerWithTimeout(position, timeout) {
+    var pinColor =random_color();
+    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
     window.setTimeout(function() {
         markers.push(new google.maps.Marker({
+            icon:pinImage,
             position: position,
             map: map,
             animation: google.maps.Animation.DROP
@@ -612,15 +643,24 @@ function addMarkerWithTimeout(position, timeout) {
  */
 // Place a center marker on the center point of the map
 function setCenterPointOnMap(latlng,map,text) {
-
+    //console.log(walkobj);
+    //console.log(temp);
+    var loc_string="";
+    for(var i=0;i<loc.length;i++){
+        loc_string+=loc[i].long_name+",";
+    }
+    console.log(loc_string);
     var marker = new google.maps.Marker({
         position: latlng,
         icon: {
-            url:'assets/images/Map-Marker.png',
-            scaledSize: new google.maps.Size(200, 150)
+            url:'assets/img/Map-Marker.png',
+            scaledSize: new google.maps.Size(1500, 150)
         },
         label: {
-            text: 'RealValue: ' + text,
+            text: '---RealValue: ' + text +
+                  '---Location: ' + loc_string+
+                  '---Tempature: '+temp+
+                  '---Walkscore: '+walkobj.walkscore,
             color: 'darkblue'
         },
         title: 'RealValue: ' + text,
@@ -741,7 +781,7 @@ function initGoogleDistanceMatrix() {
     date.setHours(15);
     //var last = new Date(date.getTime() + (days * 24 * 60 * 60 * 1000));
     var last = new Date(date.getTime());
-    console.log("date: " + last);
+    //console.log("date: " + last);
 
     var service = new google.maps.DistanceMatrixService;
     var directionsService = new google.maps.DirectionsService();
