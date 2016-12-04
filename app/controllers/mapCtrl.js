@@ -159,7 +159,9 @@ angular.module('realValue')
                             }
                         },
                         geojson : {
-                            data: [zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                            data: [zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
+                                zip_91024,zip_91030, zip_91040, zip_91042, zip_91101, zip_91003,
+                                zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
                             style: style,
                             onEachFeature: function (feature, layer) {
                                 // fixed issue with referencing layer inside our reset Highlight function
