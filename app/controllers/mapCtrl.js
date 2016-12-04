@@ -160,7 +160,12 @@ angular.module('realValue')
                         },
                         geojson : {
                             data: [zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
-                                zip_91024,zip_91030, zip_91040, zip_91042, zip_91101, zip_91003,
+                                zip_93510, zip_91024,zip_91030, zip_91040, zip_91042, zip_91101, zip_91003, zip_91105,
+                                zip_91105,zip_93534, zip_91104, zip_93532, zip_91107, zip_93536, zip_91106,
+                                zip_93535, zip_91108, zip_93543, zip_93544, zip_93551, zip_93550, zip_93553,
+                                zip_93552, zip_93563, zip_91202, zip_91201, zip_93591, zip_91204, zip_91203,
+                                zip_91206, zip_91205, zip_91208, zip_91207, zip_91210, zip_91214, zip_91302,
+                                zip_91301,
                                 zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
                             style: style,
                             onEachFeature: function (feature, layer) {
