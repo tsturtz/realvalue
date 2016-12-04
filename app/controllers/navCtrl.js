@@ -11,7 +11,7 @@ angular.module('realValue')
 
         // logo image path
 
-        self.imagePath = 'assets/img/RV-logo2.jpg';
+        self.imagePath = './assets/img/RV-logo2.jpg';
 
         // welcome dialog
 
