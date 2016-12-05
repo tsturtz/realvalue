@@ -1,8 +1,16 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', function($scope, $http, leafletData,leafletMapEvents) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService', function($scope, $http, leafletData, leafletMapEvents, checkboxService) {
         //console.log("style", style);
         console.log("init map");
+
+        /************************************************/
+        // Trying to get data from checkboxService, from the other controller where the checkboxes are -T
+        self.checkboxService = checkboxService.list;
+        setTimeout(function() {
+            console.log('passed in object array after 10 seconds: ', checkboxService.checkboxObj.list);
+        }, 10000);
+        /*************************************************/
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
@@ -35,6 +43,15 @@ angular.module('realValue')
                     // fixed issue with referencing layer inside our reset Highlight function
                     //console.log("layer",layer);
                     layer.bindPopup(feature.properties.popupContent);
+
+                    /************************************************/
+                    // Trying to add variable to score property -T
+                    console.log('score property before: ', layer.feature.properties.score);
+                    setTimeout( function() {
+                        layer.feature.properties.score = checkboxService.checkboxObj.list[0];
+                        console.log('score property after 15 seconds: ', layer.feature.properties.score);
+                    }, 15000);
+                    /************************************************/
 
                     leafletData.getMap().then(function(map) {
                         label = new L.Label();
@@ -77,7 +94,7 @@ angular.module('realValue')
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                dashArray: '3',
+                dashArray: '3'
             });
         }
 
@@ -93,7 +110,7 @@ angular.module('realValue')
 
         function style(feature) {
             return {
-                fillColor: getColor(feature.properties.population),
+                fillColor: getColor(feature.properties.score),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
@@ -104,7 +121,7 @@ angular.module('realValue')
 
         function county_style(feature) {
             return {
-                fillColor: getCountyColor(feature.properties.population),
+                fillColor: getCountyColor(feature.properties.score),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
@@ -114,25 +131,35 @@ angular.module('realValue')
         }
 
         function getColor(d) {
-            return d > 85000 ? '#800026' :
-                d > 75000  ? '#BD0026' :
-                d > 65000  ? '#E31A1C' :
-                d > 55000  ? '#FC4E2A' :
-                d > 45000   ? '#FD8D3C' :
-                d > 35000   ? '#FEB24C' :
-                d > 25000   ? '#FED976' :
-                           '#FFEDA0';
+            /*return d > 85000 ? '#FF403D' :
+                d > 75000  ? '#DA4C47' :
+                d > 65000  ? '#B65852' :
+                d > 55000  ? '#91655D' :
+                d > 45000   ? '#6D7167' :
+                d > 35000   ? '#487E72' :
+                d > 25000   ? '#248A7D' :
+                           '#009788';*/
+            return d > 100 ? '#FF403D' :
+                d > 90  ? '#DA4C47' :
+                d > 80  ? '#B65852' :
+                d > 70  ? '#91655D' :
+                d > 60   ? '#6D7167' :
+                d > 50   ? '#487E72' :
+                d > 40   ? '#248A7D' :
+                d > 30   ? '#248A7D' :
+                d > 20   ? '#248A7D' :
+                            '#009788';
         }
 
         function getCountyColor(d) {
-            return d > 8000000 ? '#800026' :
-                d > 5000000  ? '#BD0026' :
-                d > 3000000  ? '#E31A1C' :
-                d > 1000000  ? '#FC4E2A' :
-                d > 500000   ? '#FD8D3C' :
-                d > 300000   ? '#FEB24C' :
-                d > 100000   ? '#FED976' :
-                              '#FFEDA0';
+            return d > 8000000 ? '#009788' :
+                d > 5000000  ? '#248A7D' :
+                d > 3000000  ? '#487E72' :
+                d > 1000000  ? '#6D7167' :
+                d > 500000   ? '#91655D' :
+                d > 300000   ? '#B65852' :
+                d > 100000   ? '#DA4C47' :
+                              '#FF403D';
         }
 
         leafletData.getMap().then(function (map) {

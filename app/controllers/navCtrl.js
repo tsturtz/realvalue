@@ -1,7 +1,34 @@
 angular.module('realValue')
 
-    .controller('navCtrl', function($mdSidenav, $mdDialog){
+    .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService){
         var self = this;
+
+        self.updateData = function (data) {
+            checkboxService.updateSelections(data);
+        };
+
+        // checkboxes
+
+        self.checkboxes = [
+            {type: 'airport', checked: true, weight: 10},
+            {type: 'bar/nightclub', checked: true, weight: 10},
+            {type: 'cafe', checked: true, weight: 10},
+            {type: 'crime', checked: true, weight: 10},
+            {type: 'gas station', checked: true, weight: 10},
+            {type: 'gym', checked: true, weight: 10},
+            {type: 'hospital', checked: true, weight: 10},
+            {type: 'housing/rental market', checked: true, weight: 10},
+            {type: 'library', checked: true, weight: 10},
+            {type: 'museum', checked: true, weight: 10},
+            {type: 'park', checked: true, weight: 10},
+            {type: 'police dept.', checked: true, weight: 10},
+            {type: 'restaurant', checked: true, weight: 10},
+            {type: 'school', checked: true, weight: 10},
+            {type: 'traffic', checked: true, weight: 10},
+            {type: 'university', checked: true, weight: 10},
+            {type: 'walk score', checked: true, weight: 10},
+            {type: 'zoo', checked: true, weight: 10}
+        ];
 
         // right sidenav
 
@@ -40,19 +67,3 @@ angular.module('realValue')
         }
 
     });
-
-
-/*//old dialog
-
- setTimeout(self.showAlert = function () {
- console.log('got something');
- alert = $mdDialog.alert()
- .title('[logo] Welcome to RealValue')
- .content('RealValue is an intuitive application built to display area values based on a number of statistics. Currently this service is only available in Los Angeles and Orange County, CA. You decide which statistics are important to you to update the map in real time. If you\'re looking to relocate or change jobs, RealValue can assist you to find an area that, to you, has real value.')
- .ok('Continue');
- $mdDialog
- .show(alert)
- .finally(function() {
- alert = undefined;
- });
- },50);*/

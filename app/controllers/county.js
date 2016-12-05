@@ -7,7 +7,8 @@ var county_orange = {
             "popupContent": "Name: Orange County<BR>Z-Index: 704100",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
