@@ -101,7 +101,17 @@ angular.module('realValue')
                         zip_92845, zip_92861, zip_92865, zip_92867, zip_92866, zip_92869, zip_92868,
                         zip_92870, zip_92887, zip_92886, zip_92530, zip_92602, zip_92604, zip_92603,
                         zip_92606, zip_92612, zip_92610, zip_90621, zip_92614, zip_90620, zip_90623,
-                        zip_92617, zip_90630,
+                        zip_92617, zip_90630, zip_92618, zip_90680, zip_90720, zip_90740, zip_90742,
+                        zip_90743, zip_92618, zip_92620, zip_92624, zip_92625, zip_92626, zip_92626,
+                        zip_92629, zip_92630, zip_92637, zip_92646, zip_92647, zip_92648, zip_92649,
+                        zip_92651, zip_92653, zip_92655, zip_92656, zip_92657, zip_92660, zip_92661,
+                        zip_92662, zip_92663, zip_92672, zip_92673, zip_92675, zip_92676, zip_92677,
+                        zip_92678, zip_92679, zip_92683, zip_92688, zip_92691, zip_92692, zip_92694,
+                        zip_92701, zip_92703, zip_92704, zip_92705, zip_92706, zip_92707, zip_92708,
+                        zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,
+                        zip_90011, zip_90014, zip_90013, zip_90016, zip_90015, zip_90018, zip_90017,
+                        zip_90020, zip_90019, zip_90022, zip_90021, zip_90024, zip_90023, zip_90024,
+
                         zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
                     style: style,
                     onEachFeature: function (feature, layer) {
