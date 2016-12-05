@@ -138,11 +138,9 @@ angular.module('realValue')
         leafletData.getMap().then(function (map) {
 
             map.on('zoomend', function (event) {
-
+                console.log(restaurants);
                 console.log(map.getZoom());
-
                 if (map.getZoom() > 8) {
-
                     angular.extend($scope, {
                         center: {
                             lat: 33.63622083463071,
@@ -156,7 +154,17 @@ angular.module('realValue')
                                 message: "I want to travel here!",
                                 focus: true,
                                 draggable: false
-                            }
+                            },
+                            r1:restaurants["Restaurant1"],
+                            r2:restaurants["Restaurant2"],
+                            r3:restaurants["Restaurant3"],
+                            r4:restaurants["Restaurant4"],
+                            r5:restaurants["Restaurant5"],
+                            r6:restaurants["Restaurant6"],
+                            r7:restaurants["Restaurant7"],
+                            r8:restaurants["Restaurant8"],
+                            r9:restaurants["Restaurant9"],
+                            r10:restaurants["Restaurant10"]
                         },
                         geojson : {
                             data: [zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
