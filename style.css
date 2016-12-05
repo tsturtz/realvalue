@@ -171,10 +171,16 @@ layout
     left: 25px;
 }
 
-#temp {
+#temp1 {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+#temp2 {
+    position: absolute;
+    top: 0;
+    left: 100px;
 }
 
 .place-details-temp-button {
