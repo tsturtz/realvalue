@@ -193,3 +193,7 @@ layout
     font-weight: bold;
     font-size: 1.5em;
 }
+
+#check_boxes {
+    margin-right: 50px;
+}
