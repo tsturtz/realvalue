@@ -1,11 +1,20 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', function($scope, $http, leafletData,leafletMapEvents) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService', function($scope, $http, leafletData, leafletMapEvents, checkboxService) {
         //console.log("style", style);
         var mc = this;
 
         self.name = "Map Obj";
         console.log("init map");
+/*
+        /!************************************************!/
+        // Trying to get data from checkboxService, from the other controller where the checkboxes are -T
+        self.checkboxService = checkboxService.list;
+        setTimeout(function() {
+            console.log('passed in object array after 10 seconds: ', checkboxService.checkboxObj.list);
+        }, 10000);
+        /!*************************************************!/
+*/
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
@@ -143,7 +152,7 @@ angular.module('realValue')
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                dashArray: '3',
+                dashArray: '3'
             });
         }
 
@@ -159,7 +168,7 @@ angular.module('realValue')
 
         function style(feature) {
             return {
-                fillColor: getColor(feature.properties.population),
+                fillColor: getColor(feature.properties.score),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
@@ -170,7 +179,7 @@ angular.module('realValue')
 
         function county_style(feature) {
             return {
-                fillColor: getCountyColor(feature.properties.population),
+                fillColor: getCountyColor(feature.properties.score),
                 weight: 2,
                 opacity: 1,
                 color: 'white',
@@ -180,25 +189,61 @@ angular.module('realValue')
         }
 
         function getColor(d) {
-            return d > 85000 ? '#800026' :
-                d > 75000  ? '#BD0026' :
-                d > 65000  ? '#E31A1C' :
-                d > 55000  ? '#FC4E2A' :
-                d > 45000   ? '#FD8D3C' :
-                d > 35000   ? '#FEB24C' :
-                d > 25000   ? '#FED976' :
-                           '#FFEDA0';
+/*            return d > 85000 ? '#FF403D' :
+                d > 75000  ? '#DA4C47' :
+                d > 65000  ? '#B65852' :
+                d > 55000  ? '#91655D' :
+                d > 45000   ? '#6D7167' :
+                d > 35000   ? '#487E72' :
+                d > 25000   ? '#248A7D' :
+                           '#009788';*/
+            return d > 8000000 ? '#009787' :
+                d > 17  ? '#029D73' :
+                d > 16  ? '#04A35D' :
+                d > 15  ? '#07A946' :
+                d > 14   ? '#09AF2E' :
+                d > 13   ? '#0CB515' :
+                d > 12   ? '#24BB0F' :
+                d > 11   ? '#45C113' :
+                d > 10   ? '#67C716' :
+                d > 9   ? '#8ACE1A' :
+                d > 8   ? '#AFD41D' :
+                d > 7   ? '#D4DA21' :
+                d > 6   ? '#E0C725' :
+                d > 5   ? '#E6AC2A' :
+                d > 4   ? '#EC922E' :
+                d > 3   ? '#F27733' :
+                d > 2   ? '#F85B38' :
+                    '#FF403D';
         }
 
         function getCountyColor(d) {
-            return d > 8000000 ? '#800026' :
-                d > 5000000  ? '#BD0026' :
-                d > 3000000  ? '#E31A1C' :
-                d > 1000000  ? '#FC4E2A' :
-                d > 500000   ? '#FD8D3C' :
-                d > 300000   ? '#FEB24C' :
-                d > 100000   ? '#FED976' :
-                              '#FFEDA0';
+/*            return d > 8000000 ? '#009788' :
+                d > 5000000  ? '#248A7D' :
+                d > 3000000  ? '#487E72' :
+                d > 1000000  ? '#6D7167' :
+                d > 500000   ? '#91655D' :
+                d > 300000   ? '#B65852' :
+                d > 100000   ? '#DA4C47' :
+                              '#FF403D';*/
+            return d > 8000000 ? '#009787' :
+                d > 17  ? '#029D73' :
+                d > 16  ? '#04A35D' :
+                d > 15  ? '#07A946' :
+                d > 14   ? '#09AF2E' :
+                d > 13   ? '#0CB515' :
+                d > 12   ? '#24BB0F' :
+                d > 11   ? '#45C113' :
+                d > 10   ? '#67C716' :
+                d > 9   ? '#8ACE1A' :
+                d > 8   ? '#AFD41D' :
+                d > 7   ? '#D4DA21' :
+                d > 6   ? '#E0C725' :
+                d > 5   ? '#E6AC2A' :
+                d > 4   ? '#EC922E' :
+                d > 3   ? '#F27733' :
+                d > 2   ? '#F85B38' :
+                '#FF403D';
         }
 
         leafletData.getMap().then(function (map) {
