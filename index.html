@@ -83,7 +83,7 @@
     <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
                 md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
         <h4>Select what's important to you</h4>
-        <section id="check_boxes">
+        <section id="check_boxes" layout="row" layout-align="start start">
             <div id="options" layout="column">
                 <md-input-container layout="column">
                     <md-checkbox ng-repeat="checkbox in nc.checkboxes" ng-model="checkbox.checked" ng-change="nc.updateData(this.checkbox)">{{checkbox.type}}</md-checkbox>
