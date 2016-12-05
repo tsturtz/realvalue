@@ -173,7 +173,8 @@ angular.module('realValue')
                                 zip_91405, zip_91411, zip_91423, zip_91436, zip_91501, zip_91502, zip_91505,
                                 zip_91504, zip_91506, zip_91602, zip_91601, zip_91604, zip_91606, zip_91605,
                                 zip_91607, zip_91706, zip_91702, zip_91711, zip_91722, zip_91724, zip_91724,
-                                zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                                zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672,
+                                zip_92804,zip_92868,zip_92866],
                             style: style,
                             onEachFeature: function (feature, layer) {
                                 // fixed issue with referencing layer inside our reset Highlight function
