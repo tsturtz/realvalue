@@ -10324,7 +10324,7 @@ var zip_92618 = {
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
             "strokeOpacity": 0.5,
-            "score": null
+            "score": 18
         },
         "geometry": {
             "type": "Polygon",

@@ -178,4 +178,4 @@ var dummy_restaurant_details={
         "website" : "http://www.google.com.au/"
     },
     "status" : "OK"
-}
+};
