@@ -374,6 +374,7 @@ function find_restaurants(){
         var restaurant={
             "Place ID":dummy_place_id(),
             "Place Type":"Restaurant",
+            "Message":"Restaurant"+(i+1),
             "lat":random_lat_lng[1],
             "lng":random_lat_lng[0]
         };
@@ -503,4 +504,4 @@ var dummy_restaurant_details={
         "website" : "http://www.google.com.au/"
     },
     "status" : "OK"
-}
+};
