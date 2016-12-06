@@ -3,8 +3,8 @@ angular.module('realValue')
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService,$mdDialog) {
         //console.log("style", style);
         var mc = this;
-
         self.name = "Map Obj";
+
         console.log("init map");
 /*
         /!************************************************!/
@@ -101,6 +101,34 @@ angular.module('realValue')
             });
         };
 
+        this.city_zoom = function() {
+            console.log("extend zip");
+            angular.extend($scope, {
+                geojson : {
+                    data: [cities],
+                    style: style,
+                    onEachFeature: function (feature, layer) {
+                        // fixed issue with referencing layer inside our reset Highlight function
+                        //layer.bindPopup(feature.properties.popupContent);
+
+                        leafletData.getMap().then(function(map) {
+                            label = new L.Label();
+                            label.setContent(feature.properties.name);
+                            label.setLatLng(layer.getBounds().getCenter());
+                            console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                            //map.showLabel(label);
+                        });
+
+                        layer.on({
+                            mouseover: highlightFeature,
+                            mouseout: resetHighlight,
+                            click: zoomToFeature
+                        });
+                    }
+                }
+            });
+        };
+
         this.zipcode_zoom = function() {
             console.log("extend zip");
             angular.extend($scope, {
@@ -114,7 +142,7 @@ angular.module('realValue')
                         lat: 33.6362,
                         lng: -117.7394,
                         message: "I want to travel here!",
-                        focus: true,
+                        focus: false,
                         draggable: false
                     }
                 },
@@ -146,17 +174,7 @@ angular.module('realValue')
                         zip_92678, zip_92679, zip_92683, zip_92688, zip_92691, zip_92692, zip_92694,
                         zip_92701, zip_92703, zip_92704, zip_92705, zip_92706, zip_92707, zip_92708,
                         zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,
-                        zip_90011, zip_90014, zip_90013, zip_90016, zip_90015, zip_90018, zip_90017,
-                        zip_90020, zip_90019, zip_90022, zip_90021, zip_90024, zip_90023, zip_90024,
-                        zip_90026, zip_90025, zip_90028, zip_90027, zip_92821, zip_90029, zip_90032,
-                        zip_90031, zip_90034, zip_90033, zip_90036, zip_90035, zip_90038, zip_90037,
-                        zip_90040, zip_90039, zip_90042, zip_90041, zip_90044, zip_90043, zip_90046,
-                        zip_90045, zip_90048, zip_90047, zip_90049, zip_90056, zip_90058, zip_90057,
-                        zip_90059, zip_90062, zip_90061, zip_90064, zip_90063, zip_90066, zip_90065,
-                        zip_90068, zip_90067, zip_90069, zip_90071, zip_90077, zip_90089, zip_90095,
-                        zip_90094, zip_90201, zip_90211, zip_90210, zip_90212, zip_90221, zip_90220,
-                        zip_90222, zip_90230, zip_90232, zip_90241, zip_90240, zip_90245, zip_90242,
-                        zip_90248, zip_90247, zip_90250, zip_90249, zip_90254, zip_90260, zip_90255,
+                        zip_90011,
                         zip_90301, zip_90303, zip_90302, zip_90305, zip_90304, zip_90402, zip_90401,
                         zip_90404, zip_90403, zip_93243, zip_90405, zip_90501, zip_90503, zip_90502,
                         zip_90505, zip_90504, zip_90601, zip_90603, zip_90602, zip_90605, zip_90604,
@@ -181,6 +199,31 @@ angular.module('realValue')
                             click: zoomToFeature
                         });
                     }
+                }
+            });
+        };
+
+        this.markers_zoom = function() {
+            console.log("extend zip");
+            angular.extend($scope, {
+                markers: {
+                    osloMarker: {
+                        lat: 33.6362,
+                        lng: -117.7394,
+                        message: "I want to travel here!",
+                        focus: false,
+                        draggable: false
+                    },
+                    r1: restaurants["Restaurant1"],
+                    r2: restaurants["Restaurant2"],
+                    r3: restaurants["Restaurant3"],
+                    r4: restaurants["Restaurant4"],
+                    r5: restaurants["Restaurant5"],
+                    r6: restaurants["Restaurant6"],
+                    r7: restaurants["Restaurant7"],
+                    r8: restaurants["Restaurant8"],
+                    r9: restaurants["Restaurant9"],
+                    r10: restaurants["Restaurant10"]
                 }
             });
         };
@@ -308,73 +351,23 @@ angular.module('realValue')
         leafletData.getMap().then(function (map) {
 
             map.on('zoomend', function (event) {
-
                 console.log(map.getZoom());
-                if (map.getZoom() > 8) {
-                    angular.extend($scope, {
-                        center: {
-                            lat: 33.63622083463071,
-                            lng: -117.73948073387146,
-                            zoom: 10
-                        },
-                        markers: {
-                            osloMarker: {
-                                lat: 33.6362,
-                                lng: -117.7394,
-                                message: "I want to travel here!",
-                                focus: true,
-                                draggable: false
-                            },
-                            r1:restaurants["Restaurant1"],
-                            r2:restaurants["Restaurant2"],
-                            r3:restaurants["Restaurant3"],
-                            r4:restaurants["Restaurant4"],
-                            r5:restaurants["Restaurant5"],
-                            r6:restaurants["Restaurant6"],
-                            r7:restaurants["Restaurant7"],
-                            r8:restaurants["Restaurant8"],
-                            r9:restaurants["Restaurant9"],
-                            r10:restaurants["Restaurant10"]
-                        },
-                        geojson : {
-                            data: [zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
-                                zip_93510, zip_91024,zip_91030, zip_91040, zip_91042, zip_91101, zip_91003, zip_91105,
-                                zip_91105,zip_93534, zip_91104, zip_93532, zip_91107, zip_93536, zip_91106,
-                                zip_93535, zip_91108, zip_93543, zip_93544, zip_93551, zip_93550, zip_93553,
-                                zip_93552, zip_93563, zip_91202, zip_91201, zip_93591, zip_91204, zip_91203,
-                                zip_91206, zip_91205, zip_91208, zip_91207, zip_91210, zip_91214, zip_91302,
-                                zip_91301, zip_91304, zip_91303, zip_91306, zip_91307, zip_91311, zip_91316,
-                                zip_91321, zip_91325, zip_91324, zip_91326, zip_91331, zip_91330, zip_91335,
-                                zip_91340, zip_91343, zip_91342, zip_91345, zip_91344, zip_91350, zip_91352,
-                                zip_91351, zip_91354, zip_91356, zip_91355, zip_91361, zip_91364, zip_91367,
-                                zip_91381, zip_91384, zip_91387, zip_91390, zip_91402, zip_91401, zip_91406,
-                                zip_91405, zip_91411, zip_91423, zip_91436, zip_91501, zip_91502, zip_91505,
-                                zip_91504, zip_91506, zip_91602, zip_91601, zip_91604, zip_91606, zip_91605,
-                                zip_91607, zip_91706, zip_91702, zip_91711, zip_91722, zip_91724, zip_91724,
-                                zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672,
-                                zip_92804,zip_92868,zip_92866],
-                            style: style,
-                            onEachFeature: function (feature, layer) {
-                                // fixed issue with referencing layer inside our reset Highlight function
-                                layer.bindPopup(feature.properties.popupContent);
 
-                                leafletData.getMap().then(function(map) {
-                                    label = new L.Label();
-                                    label.setContent(feature.properties.name);
-                                    label.setLatLng(layer.getBounds().getCenter());
-                                    console.log(feature.properties.name + " " + layer.getBounds().getCenter());
-                                    map.showLabel(label);
-                                });
+                if (map.getZoom() <= 8) {
+                    mc.county_zoom();
+                }
 
-                                layer.on({
-                                    mouseover: highlightFeature,
-                                    mouseout: resetHighlight,
-                                    click: zoomToFeature
-                                });
-                            }
-                        }
-                    });
+                if (map.getZoom() > 8 && map.getZoom() <=10 ) {
+                    mc.city_zoom();
+                    //mc.city_geojson();
+                }
 
+                if (map.getZoom() > 10 && map.getZoom() <=12 ) {
+                    mc.zipcode_zoom();
+                }
+
+                if (map.getZoom() > 12) {
+                    mc.markers_zoom();
                 }
 
             });
