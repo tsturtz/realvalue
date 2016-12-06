@@ -23,7 +23,8 @@ var zip_92704 = {
             "popupContent": "Name: 92704<BR>Z-Index: 332600",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -895,7 +896,8 @@ var zip_92672 = {
             "popupContent": "Name: 92672<BR>Z-Index: 704100",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -1435,7 +1437,8 @@ var zip_90265 = {
             "popupContent": "Name: 90265<BR>Z-Index: 1000001",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -5625,7 +5628,8 @@ var zip_93536 = {
             "popupContent": "Name: 93536<BR>Z-Index: 216000",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -7550,7 +7554,8 @@ var zip_92782 = {
             "popupContent": "Name: 92782<BR>Z-Index: 621200",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -8209,7 +8214,8 @@ var zip_92602 = {
             "popupContent": "Name: 92602<BR>Z-Index: 710800",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -9064,7 +9070,8 @@ var zip_91331 = {
             "popupContent": "Name: 91331<BR>Z-Index: 283000<BR>City:Pacoima, CA<BR>",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -9385,7 +9392,8 @@ var zip_92620 = {
             "popupContent": "Name: 92620<BR>Z-Index: 69700",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -9887,7 +9895,8 @@ var zip_92604 = {
             "popupContent": "Name: 92604<BR>Z-Index: 582100",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
@@ -10314,7 +10323,8 @@ var zip_92618 = {
             "popupContent": "Name: 92618<BR>Z-Index: 516400",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": 18
         },
         "geometry": {
             "type": "Polygon",
@@ -10874,7 +10884,8 @@ var zip_92866 = {
             "popupContent": "Name: 92866<BR>Z-Index: 540000",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "strokeOpacity": 0.5,
+            "score": null
         },
         "geometry": {
             "type": "Polygon",
