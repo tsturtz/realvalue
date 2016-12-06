@@ -12,9 +12,11 @@ angular.module('realValue', ['ngMaterial','leaflet-directive'])
     .config(function ($mdAriaProvider) {
         $mdAriaProvider.disableWarnings();
     })
+
     .config(function($logProvider){
         $logProvider.debugEnabled(false);
     })
+
     .config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('teal', {'default': '500'})

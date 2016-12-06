@@ -6,7 +6,7 @@ echo "<a href='uszip.php?zip=92866'>Click Here</a><BR>";
 if(isset($_GET['zip'])) {
     $zip = $_GET['zip'];
     $url = "http://www.unitedstateszipcodes.org/".$zip."/";
-    $usps = file_get_contents($url);
+    $usps = file_get_contents($url) or die("cannot read file");
     //echo $usps;
 
     $pos = strpos($usps,'geojson');
