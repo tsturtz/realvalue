@@ -60,7 +60,7 @@ angular.module('realValue')
 
         // welcome dialog
 
-        self.showAdvanced = function() {
+        self.welcomeDialog = function() {
             $mdDialog.show({
                 controller: dialogCtrl,
                 controllerAs: 'dc',
@@ -72,7 +72,7 @@ angular.module('realValue')
             });
         };
 
-        self.showAdvanced();
+        self.welcomeDialog();
 
         // dialog controller
 
@@ -83,5 +83,7 @@ angular.module('realValue')
                 $mdDialog.cancel();
             };
         }
+
+
 
     });
