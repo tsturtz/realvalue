@@ -374,7 +374,6 @@ function find_restaurants(){
         var restaurant={
             "Place ID":dummy_place_id(),
             "Place Type":"Restaurant",
-            "Message":"Restaurant"+(i+1),
             "lat":random_lat_lng[1],
             "lng":random_lat_lng[0]
         };

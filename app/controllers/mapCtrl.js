@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService', function($scope, $http, leafletData, leafletMapEvents, checkboxService) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService,$mdDialog) {
         //console.log("style", style);
         console.log("init map");
 /*
@@ -16,8 +16,17 @@ angular.module('realValue')
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
         $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-            // Args will contain the marker name and other relevant information
-            console.log("Leaflet Click");
+
+            console.log("model",args);
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Restaurant Detail')
+                    .textContent("Address:"+dummy_restaurant_details["result"]["formatted_address"]+"Phone Number:"+dummy_restaurant_details["result"]["formatted_phone_number"])
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Got it!')
+                    .targetEvent(e)
+            );
         });
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
