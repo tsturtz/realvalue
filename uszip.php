@@ -3,6 +3,8 @@ header("Access-Control-Allow-Origin: *");
 
 echo "<a href='uszip.php?zip=92866'>Click Here</a><BR>";
 
+echo "<BR><a href='$url' target='_blank'>" . $url . "</a>";
+
 if(isset($_GET['zip'])) {
     $zip = $_GET['zip'];
     $url = "http://www.unitedstateszipcodes.org/".$zip."/";
@@ -28,6 +30,4 @@ if(isset($_GET['zip'])) {
     echo "</table>";
 
 }
-
-echo "<BR><a href='$url' target='_blank'>" . $url . "</a>";
 ?>
