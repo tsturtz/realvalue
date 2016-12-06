@@ -351,10 +351,11 @@ function total(num_obj){
             sum+=num_obj[loc];
         }
     }
-    console.log("------sum-------")
+    console.log("------sum-------");
     console.log(sum);
     return sum;
 }
+
 function dummy_place_id(){
     var alpha="abcdefghijklmnopqrstuvwxyz0123456789";
     var result="";
@@ -379,7 +380,7 @@ function find_restaurants(){
         };
         result["Restaurant"+(i+1)]=restaurant;
     }
-    console.log("----Restaurant----")
+    console.log("----Restaurant----");
     console.log(result);
     return result;
 }
@@ -427,16 +428,16 @@ var dummy_restaurant_details={
         "geometry" : {
             "location" : {
                 "lat" :  33.77579,
-                "lng" : -117.853125,
+                "lng" : -117.853125
             },
             "viewport" : {
                 "northeast" : {
                     "lat" : 33.77579,
-                    "lng" : -117.853125,
+                    "lng" : -117.853125
                 },
                 "southwest" : {
                     "lat" : 33.77579,
-                    "lng" : -117.853125,
+                    "lng" : -117.853125
                 }
             }
         },
@@ -504,3 +505,4 @@ var dummy_restaurant_details={
     },
     "status" : "OK"
 };
+console.log('place details: ', dummy_restaurant_details);

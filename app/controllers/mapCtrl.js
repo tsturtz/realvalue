@@ -21,7 +21,31 @@ angular.module('realValue')
         $scope.$on('leafletDirectiveMarker.click', function(e, args) {
 
             console.log("model",args);
-            $mdDialog.show(
+
+            // places dialog
+            $mdDialog.show({
+                controller: detailsCtrl,
+                templateUrl: './app/dialogs/details.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                escapeToClose: true,
+                fullscreen: true,
+                targetEvent: e
+            });
+
+            // TODO MAKE X AND 'CLOSE' OR 'CONTINUE' BUTTONS CLOSE THE DIALOG
+
+            // dialog controller
+
+            function detailsCtrl($mdDialog) {
+                var detailsSelf = this;
+
+                detailsSelf.cancel = function () {
+                    $mdDialog.cancel();
+                };
+            }
+//old regular dialog box
+/*            $mdDialog.show(
                 $mdDialog.alert()
                     .clickOutsideToClose(true)
                     .title('Restaurant Detail')
@@ -29,7 +53,7 @@ angular.module('realValue')
                     .ariaLabel('Alert Dialog Demo')
                     .ok('Got it!')
                     .targetEvent(e)
-            );
+            );*/
         });
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
