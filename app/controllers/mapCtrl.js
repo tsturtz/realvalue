@@ -3,8 +3,8 @@ angular.module('realValue')
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService,$mdDialog) {
         //console.log("style", style);
         var mc = this;
-
         self.name = "Map Obj";
+
         console.log("init map");
 /*
         /!************************************************!/
@@ -101,6 +101,34 @@ angular.module('realValue')
             });
         };
 
+        this.city_zoom = function() {
+            console.log("extend zip");
+            angular.extend($scope, {
+                geojson : {
+                    data: [cities],
+                    style: style,
+                    onEachFeature: function (feature, layer) {
+                        // fixed issue with referencing layer inside our reset Highlight function
+                        //layer.bindPopup(feature.properties.popupContent);
+
+                        leafletData.getMap().then(function(map) {
+                            label = new L.Label();
+                            label.setContent(feature.properties.name);
+                            label.setLatLng(layer.getBounds().getCenter());
+                            console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                            //map.showLabel(label);
+                        });
+
+                        layer.on({
+                            mouseover: highlightFeature,
+                            mouseout: resetHighlight,
+                            click: zoomToFeature
+                        });
+                    }
+                }
+            });
+        };
+
         this.zipcode_zoom = function() {
             console.log("extend zip");
             angular.extend($scope, {
@@ -146,17 +174,7 @@ angular.module('realValue')
                         zip_92678, zip_92679, zip_92683, zip_92688, zip_92691, zip_92692, zip_92694,
                         zip_92701, zip_92703, zip_92704, zip_92705, zip_92706, zip_92707, zip_92708,
                         zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,
-                        zip_90011, zip_90014, zip_90013, zip_90016, zip_90015, zip_90018, zip_90017,
-                        zip_90020, zip_90019, zip_90022, zip_90021, zip_90024, zip_90023, zip_90024,
-                        zip_90026, zip_90025, zip_90028, zip_90027, zip_92821, zip_90029, zip_90032,
-                        zip_90031, zip_90034, zip_90033, zip_90036, zip_90035, zip_90038, zip_90037,
-                        zip_90040, zip_90039, zip_90042, zip_90041, zip_90044, zip_90043, zip_90046,
-                        zip_90045, zip_90048, zip_90047, zip_90049, zip_90056, zip_90058, zip_90057,
-                        zip_90059, zip_90062, zip_90061, zip_90064, zip_90063, zip_90066, zip_90065,
-                        zip_90068, zip_90067, zip_90069, zip_90071, zip_90077, zip_90089, zip_90095,
-                        zip_90094, zip_90201, zip_90211, zip_90210, zip_90212, zip_90221, zip_90220,
-                        zip_90222, zip_90230, zip_90232, zip_90241, zip_90240, zip_90245, zip_90242,
-                        zip_90248, zip_90247, zip_90250, zip_90249, zip_90254, zip_90260, zip_90255,
+                        zip_90011,
                         zip_90301, zip_90303, zip_90302, zip_90305, zip_90304, zip_90402, zip_90401,
                         zip_90404, zip_90403, zip_93243, zip_90405, zip_90501, zip_90503, zip_90502,
                         zip_90505, zip_90504, zip_90601, zip_90603, zip_90602, zip_90605, zip_90604,
@@ -339,7 +357,12 @@ angular.module('realValue')
                     mc.county_zoom();
                 }
 
-                if (map.getZoom() > 8 && map.getZoom() <=11 ) {
+                if (map.getZoom() > 8 && map.getZoom() <=10 ) {
+                    mc.city_zoom();
+                    //mc.city_geojson();
+                }
+
+                if (map.getZoom() > 10 && map.getZoom() <=12 ) {
                     mc.zipcode_zoom();
                 }
 
