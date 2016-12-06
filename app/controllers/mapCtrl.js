@@ -111,7 +111,19 @@ angular.module('realValue')
                         zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,
                         zip_90011, zip_90014, zip_90013, zip_90016, zip_90015, zip_90018, zip_90017,
                         zip_90020, zip_90019, zip_90022, zip_90021, zip_90024, zip_90023, zip_90024,
-
+                        zip_90026, zip_90025, zip_90028, zip_90027, zip_92821, zip_90029, zip_90032,
+                        zip_90031, zip_90034, zip_90033, zip_90036, zip_90035, zip_90038, zip_90037,
+                        zip_90040, zip_90039, zip_90042, zip_90041, zip_90044, zip_90043, zip_90046,
+                        zip_90045, zip_90048, zip_90047, zip_90049, zip_90056, zip_90058, zip_90057,
+                        zip_90059, zip_90062, zip_90061, zip_90064, zip_90063, zip_90066, zip_90065,
+                        zip_90068, zip_90067, zip_90069, zip_90071, zip_90077, zip_90089, zip_90095,
+                        zip_90094, zip_90201, zip_90211, zip_90210, zip_90212, zip_90221, zip_90220,
+                        zip_90222, zip_90230, zip_90232, zip_90241, zip_90240, zip_90245, zip_90242,
+                        zip_90248, zip_90247, zip_90250, zip_90249, zip_90254, zip_90260, zip_90255,
+                        zip_90301, zip_90303, zip_90302, zip_90305, zip_90304, zip_90402, zip_90401,
+                        zip_90404, zip_90403, zip_93243, zip_90405, zip_90501, zip_90503, zip_90502,
+                        zip_90505, zip_90504, zip_90601, zip_90603, zip_90602, zip_90605, zip_90604,
+                        zip_90606, zip_90631, zip_90638,
                         zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
                     style: style,
                     onEachFeature: function (feature, layer) {
@@ -168,7 +180,7 @@ angular.module('realValue')
 
         function zoomToFeature(e) {
             leafletData.getMap().then(function(map) {
-                //console.log(e);
+                console.log(e);
                 //console.log(map);
                 map.fitBounds(e.target.getBounds());
             });
