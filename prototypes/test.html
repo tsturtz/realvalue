@@ -2,15 +2,15 @@
 <html ng-app="demoapp">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./node_modules/angular/angular.min.js"></script>
-    <script src="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
-    <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="../node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
     <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-    <link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
-    <script src="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
-    <script src="app/controllers/geojson.js"></script>
+    <link rel="stylesheet" href="../node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
+    <script src="../Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+    <script src="../app/controllers/geojson.js"></script>
     <script>
         var app = angular.module("demoapp", ["leaflet-directive"]);
         app.controller('MarkersAddRemoveController', [ '$scope', 'leafletData', function($scope,leafletData) {
