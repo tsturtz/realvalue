@@ -147,7 +147,7 @@ angular.module('realValue')
                     }
                 },
                 geojson : {
-                    data: [zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
+                    data: [/*zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
                         zip_93510, zip_91024,zip_91030, zip_91040, zip_91042, zip_91101, zip_91003, zip_91105,
                         zip_91105,zip_93534, zip_91104, zip_93532, zip_91107, zip_93536, zip_91106,
                         zip_93535, zip_91108, zip_93543, zip_93544, zip_93551, zip_93550, zip_93553,
@@ -173,8 +173,8 @@ angular.module('realValue')
                         zip_92662, zip_92663, zip_92672, zip_92673, zip_92675, zip_92676, zip_92677,
                         zip_92678, zip_92679, zip_92683, zip_92688, zip_92691, zip_92692, zip_92694,
                         zip_92701, zip_92703, zip_92704, zip_92705, zip_92706, zip_92707, zip_92708,
-                        zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,
-                        zip_90011,
+                        zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,*/
+                        miles_geojson, zip_91331,
                         zip_90301, zip_90303, zip_90302, zip_90305, zip_90304, zip_90402, zip_90401,
                         zip_90404, zip_90403, zip_93243, zip_90405, zip_90501, zip_90503, zip_90502,
                         zip_90505, zip_90504, zip_90601, zip_90603, zip_90602, zip_90605, zip_90604,
