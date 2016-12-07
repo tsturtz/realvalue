@@ -6,9 +6,6 @@ var county_orange = {
             "population": 3114000,
             "name": "Orange County",
             "Z-Index": 704100,
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5,
             "score": 18
         },
         "geometry": {
@@ -934,9 +931,6 @@ var county_los_angeles = {
         "population": 10,
         "name": "Los Angeles County",
         "Z-Index": 704100,
-        "fillOpacity": 0,
-        "strokeColor": "#FF0000",
-        "strokeOpacity": 0.5,
         "score": 18
     },
     "geometry": {

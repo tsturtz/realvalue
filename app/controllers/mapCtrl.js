@@ -101,6 +101,17 @@ angular.module('realValue')
         this.city_zoom = function() {
             console.log("extend zip");
             angular.extend($scope, {
+                center: {
+                    lat: 34.075406,
+                    lng: -117.901087,
+                    zoom: 9
+                },
+                tiles: {
+                    url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    options: {
+                        attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                    }
+                },
                 geojson : {
                     data: [cities],
                     style: style,
@@ -126,6 +137,8 @@ angular.module('realValue')
             });
         };
 
+        this.city_zoom();
+
         this.zipcode_zoom = function() {
             console.log("extend zip");
             angular.extend($scope, {
@@ -144,39 +157,12 @@ angular.module('realValue')
                     }
                 },
                 geojson : {
-                    data: [/*zip_91001,zip_91006,zip_91107,zip_91011,zip_91010,zip_91016,zip_91020,
-                        zip_93510, zip_91024,zip_91030, zip_91040, zip_91042, zip_91101, zip_91003, zip_91105,
-                        zip_91105,zip_93534, zip_91104, zip_93532, zip_91107, zip_93536, zip_91106,
-                        zip_93535, zip_91108, zip_93543, zip_93544, zip_93551, zip_93550, zip_93553,
-                        zip_93552, zip_93563, zip_91202, zip_91201, zip_93591, zip_91204, zip_91203,
-                        zip_91206, zip_91205, zip_91208, zip_91207, zip_91210, zip_91214, zip_91302,
-                        zip_91301, zip_91304, zip_91303, zip_91306, zip_91307, zip_91311, zip_91316,
-                        zip_91321, zip_91325, zip_91324, zip_91326, zip_91331, zip_91330, zip_91335,
-                        zip_91340, zip_91343, zip_91342, zip_91345, zip_91344, zip_91350, zip_91352,
-                        zip_91351, zip_91354, zip_91356, zip_91355, zip_91361, zip_91364, zip_91367,
-                        zip_91381, zip_91384, zip_91387, zip_91390, zip_91402, zip_91401, zip_91406,
-                        zip_91405, zip_91411, zip_91423, zip_91436, zip_91501, zip_91502, zip_91505,
-                        zip_91504, zip_91506, zip_91602, zip_91601, zip_91604, zip_91606, zip_91605,
-                        zip_91607, zip_91706, zip_91702, zip_91711, zip_91722, zip_91724, zip_91724,
-                        zip_92806, zip_92805, zip_92808, zip_92807, zip_92823, zip_92832, zip_92831,
-                        zip_92833, zip_92832, zip_92835, zip_92840, zip_92841, zip_92844, zip_92843,
-                        zip_92845, zip_92861, zip_92865, zip_92867, zip_92866, zip_92869, zip_92868,
-                        zip_92870, zip_92887, zip_92886, zip_92530, zip_92602, zip_92604, zip_92603,
-                        zip_92606, zip_92612, zip_92610, zip_90621, zip_92614, zip_90620, zip_90623,
-                        zip_92617, zip_90630, zip_92618, zip_90680, zip_90720, zip_90740, zip_90742,
-                        zip_90743, zip_92618, zip_92620, zip_92624, zip_92625, zip_92626, zip_92626,
-                        zip_92629, zip_92630, zip_92637, zip_92646, zip_92647, zip_92648, zip_92649,
-                        zip_92651, zip_92653, zip_92655, zip_92656, zip_92657, zip_92660, zip_92661,
-                        zip_92662, zip_92663, zip_92672, zip_92673, zip_92675, zip_92676, zip_92677,
-                        zip_92678, zip_92679, zip_92683, zip_92688, zip_92691, zip_92692, zip_92694,
-                        zip_92701, zip_92703, zip_92704, zip_92705, zip_92706, zip_92707, zip_92708,
-                        zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,*/
-                        miles_geojson, zip_91331,
-                        zip_90301, zip_90303, zip_90302, zip_90305, zip_90304, zip_90402, zip_90401,
-                        zip_90404, zip_90403, zip_93243, zip_90405, zip_90501, zip_90503, zip_90502,
-                        zip_90505, zip_90504, zip_90601, zip_90603, zip_90602, zip_90605, zip_90604,
-                        zip_90606, zip_90631, zip_90638,
-                        zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                    data: [ tammy_geojson,
+                            mike_geojson,
+                            miles_geojson,
+                            zip_91331,
+                            jason_geojson,
+                            zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
                     style: style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
@@ -224,8 +210,6 @@ angular.module('realValue')
                 }
             });
         };
-
-        this.county_zoom();
 
         function highlightFeature(e) {
             var layer = e.target;
@@ -385,12 +369,12 @@ angular.module('realValue')
                     mc.county_zoom();
                 }
 
-                if (map.getZoom() > 8 && map.getZoom() <=10 ) {
+                if (map.getZoom() > 8 && map.getZoom() <=9 ) {
                     mc.city_zoom();
                     //mc.city_geojson();
                 }
 
-                if (map.getZoom() > 10 && map.getZoom() <=12 ) {
+                if (map.getZoom() > 9 && map.getZoom() <=12 ) {
                     mc.zipcode_zoom();
                 }
 
