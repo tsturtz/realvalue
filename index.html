@@ -43,13 +43,19 @@
     <!--RealValue App-->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
+    <script src="app/services/checkboxService.js"></script>
     <script src="prototypes/mike_local.js"></script>
     <script src="prototypes/jrs/tammy.js"></script>
+    <script src="prototypes/simple-geojson/miles-join-geojson.js"></script>
+    <script src="prototypes/jrs/jason.js"></script>
+    <script src="prototypes/jrs/test.js"></script>
     <script src="app/controllers/geojson.js"></script>
     <script src="app/controllers/county.js"></script>
+    <script src="prototypes/cities.js"></script>
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/map2Ctrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
+    <script src="dummy.js"></script>
 
     <!--
     <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
@@ -72,36 +78,19 @@
 
 <!--<div id='map2'></div>-->
 
-<div id="map" ng-controller="mapController">
-    <leaflet tiles='tiles' markers="markers" lf-center="center" geojson="geojson" width="100%" height="100vh"></leaflet>
+<div id="map" ng-controller="mapController as mc">
+    <leaflet tiles='tiles' markers="markers" lf-center="center" geojson="geojson" hello="hello" width="100%" height="100vh"></leaflet>
 </div>
 
 <div id="main-container" ng-controller="navCtrl as nc">
 
-    <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
+    <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
                 md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
         <h4>Select what's important to you</h4>
-        <section id="check_boxes">
+        <section id="check_boxes" layout="row" layout-align="start start">
             <div id="options" layout="column">
                 <md-input-container layout="column">
-                    <md-checkbox> restaurant</md-checkbox>
-                    <md-checkbox> airport</md-checkbox>
-                    <md-checkbox> library</md-checkbox>
-                    <md-checkbox> bar/nightclub</md-checkbox>
-                    <md-checkbox> cafe</md-checkbox>
-                    <md-checkbox> museum</md-checkbox>
-                    <md-checkbox> park</md-checkbox>
-                    <md-checkbox> police dept</md-checkbox>
-                    <md-checkbox> hospital/ doctor office</md-checkbox>
-                    <md-checkbox> school</md-checkbox>
-                    <md-checkbox> gas station</md-checkbox>
-                    <md-checkbox> university</md-checkbox>
-                    <md-checkbox> gym</md-checkbox>
-                    <md-checkbox> zoo</md-checkbox>
-                    <md-checkbox> crime</md-checkbox>
-                    <md-checkbox> housing/rental market</md-checkbox>
-                    <md-checkbox> traffic</md-checkbox>
-                    <md-checkbox> walk score</md-checkbox>
+                    <md-checkbox ng-repeat="checkbox in nc.checkboxes" ng-model="checkbox.checked" ng-change="nc.updateData(this.checkbox)">{{checkbox.type}}</md-checkbox>
                 </md-input-container>
             </div>
         </section>
@@ -113,6 +102,8 @@
                 Close
             </md-button>
         </div>
+
+        <span flex="10"></span>
 
     </md-sidenav>
 

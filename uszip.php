@@ -3,10 +3,12 @@ header("Access-Control-Allow-Origin: *");
 
 echo "<a href='uszip.php?zip=92866'>Click Here</a><BR>";
 
+echo "<BR><a href='$url' target='_blank'>" . $url . "</a>";
+
 if(isset($_GET['zip'])) {
     $zip = $_GET['zip'];
     $url = "http://www.unitedstateszipcodes.org/".$zip."/";
-    $usps = file_get_contents($url);
+    $usps = file_get_contents($url) or die("cannot read file");
     //echo $usps;
 
     $pos = strpos($usps,'geojson');
@@ -28,6 +30,4 @@ if(isset($_GET['zip'])) {
     echo "</table>";
 
 }
-
-echo "<BR><a href='$url' target='_blank'>" . $url . "</a>";
 ?>

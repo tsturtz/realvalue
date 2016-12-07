@@ -1,19 +1,16 @@
 var zip_90011 = {
-    "type": "FeatureCollection",
-    "features": [{
-    "type": "Feature",
-    "properties": {
-        "name": "90011",
-        "density": 24240,
-        "population": 103892,
-        "popupContent": "Name: 90011<BR>Z-Index: 269300",
-        "fillOpacity": 0,
-        "strokeColor": "#FF0000",
-        "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+    type: "Feature",
+    properties: {
+        name: "90011",
+        density: 24240,
+        population: 103892,
+        popupContent: "Name: 90011<BR>Z-Index: 269300"
     },
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [
+    geometry: {
+        type: "Polygon",
+        coordinates: [
             [
                 [-118.265185, 33.989227],
                 [-118.266356, 33.989223],
@@ -222,20 +219,16 @@ var zip_90011 = {
     }
 }]
 };
-
 var zip_90014 = {
-    "type": "FeatureCollection",
-    "features": [{
-    "type": "Feature",
-    "properties": {
-        "name": "90014",
-        "fillOpacity": 0,
-        "strokeColor": "#FF0000",
-        "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+    type: "Feature",
+    properties: {
+        name: "90014"
     },
-    "geometry": {
-        "type": "Polygon",
-        "coordinates": [
+    geometry: {
+        type: "Polygon",
+        coordinates: [
             [
                 [-118.256061, 34.042328],
                 [-118.256593, 34.042676],
@@ -287,20 +280,16 @@ var zip_90014 = {
     }
 }]
 };
-
 var zip_90013 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90013",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90013"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.243594, 34.041237],
                     [-118.244361, 34.041714],
@@ -413,20 +402,16 @@ var zip_90013 = {
         }
     }]
 };
-
 var zip_90016 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90016",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90016"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.355562, 34.018316],
                     [-118.356862, 34.01832],
@@ -766,20 +751,16 @@ var zip_90016 = {
         }
     }]
 };
-
 var zip_90015 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90015",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90015"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.264144, 34.046781],
                     [-118.262824, 34.046187],
@@ -960,20 +941,16 @@ var zip_90015 = {
         }
     }]
 };
-
 var zip_90018 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90018",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90018"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.30027, 34.036328],
                     [-118.300266, 34.035448],
@@ -1126,20 +1103,16 @@ var zip_90018 = {
         }
     }]
 };
-
 var zip_90017 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90017",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90017"
         },
-        "geometry": {
-            "type": "MultiPolygon",
-            "coordinates": [
+        geometry: {
+            type: "MultiPolygon",
+            coordinates: [
                 [
                     [
                         [-118.267932, 34.060871],
@@ -1278,20 +1251,16 @@ var zip_90017 = {
         }
     }]
 };
-
 var zip_90020 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90020",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90020"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.322886, 34.068946],
                     [-118.321432, 34.068948],
@@ -1458,20 +1427,16 @@ var zip_90020 = {
         }
     }]
 };
-
 var zip_90019 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90019",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90019"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.35453, 34.054497],
                     [-118.354102, 34.055641],
@@ -1780,20 +1745,16 @@ var zip_90019 = {
         }
     }]
 };
-
 var zip_90022 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90022",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90022"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.173891, 34.018907],
                     [-118.173893, 34.019462],
@@ -2211,20 +2172,16 @@ var zip_90022 = {
         }
     }]
 };
-
 var zip_90021 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90021",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90021"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.244361, 34.041714],
                     [-118.243594, 34.041237],
@@ -2379,20 +2336,16 @@ var zip_90021 = {
         }
     }]
 };
-
 var zip_90024 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90024",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90024"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.450013, 34.071008],
                     [-118.449013, 34.069008],
@@ -2804,20 +2757,16 @@ var zip_90024 = {
         }
     }]
 };
-
 var zip_90023 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90023",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90023"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.219926, 34.014956],
                     [-118.222087, 34.014946],
@@ -3229,20 +3178,16 @@ var zip_90023 = {
         }
     }]
 };
-
 var zip_90026 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90026",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90026"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.284403, 34.07715],
                     [-118.284408, 34.077653],
@@ -3713,20 +3658,16 @@ var zip_90026 = {
         }
     }]
 };
-
 var zip_90025 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90025",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90025"
         },
-        "geometry": {
-            "type": "MultiPolygon",
-            "coordinates": [
+        geometry: {
+            type: "MultiPolygon",
+            coordinates: [
                 [
                     [
                         [-118.441883, 34.035564],
@@ -4083,20 +4024,16 @@ var zip_90025 = {
         }
     }]
 };
-
 var zip_90028 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90028",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90028"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.319375, 34.105255],
                     [-118.319195, 34.105255],
@@ -4314,20 +4251,16 @@ var zip_90028 = {
         }
     }]
 };
-
 var zip_90027 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90027",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90027"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.278535, 34.153205],
                     [-118.278462, 34.153205],
@@ -4700,20 +4633,16 @@ var zip_90027 = {
         }
     }]
 };
-
 var zip_92821 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "92821",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "92821"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-117.92434, 33.930167],
                     [-117.924442, 33.930167],
@@ -5353,20 +5282,16 @@ var zip_92821 = {
         }
     }]
 };
-
 var zip_90029 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90029",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90029"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.280568, 34.095794],
                     [-118.279752, 34.09579],
@@ -5488,20 +5413,16 @@ var zip_90029 = {
         }
     }]
 };
-
 var zip_90032 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90032",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90032"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.162182, 34.09867],
                     [-118.161373, 34.098669],
@@ -5864,20 +5785,16 @@ var zip_90032 = {
         }
     }]
 };
-
 var zip_90031 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90031",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90031"
         },
-        "geometry": {
-            "type": "MultiPolygon",
-            "coordinates": [
+        geometry: {
+            type: "MultiPolygon",
+            coordinates: [
                 [
                     [
                         [-118.242327, 34.095055],
@@ -6259,20 +6176,16 @@ var zip_90031 = {
         }
     }]
 };
-
 var zip_90034 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90034",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90034"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.377399, 34.04274],
                     [-118.376395, 34.042551],
@@ -6590,20 +6503,16 @@ var zip_90034 = {
         }
     }]
 };
-
 var zip_90033 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90033",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90033"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.210159, 34.06374],
                     [-118.208884, 34.064604],
@@ -6873,20 +6782,16 @@ var zip_90033 = {
         }
     }]
 };
-
 var zip_90036 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90036",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90036"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.363685, 34.058463],
                     [-118.363559, 34.058731],
@@ -7038,20 +6943,16 @@ var zip_90036 = {
         }
     }]
 };
-
 var zip_90035 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90035",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90035"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.388806, 34.057088],
                     [-118.388267, 34.05709],
@@ -7318,20 +7219,16 @@ var zip_90035 = {
         }
     }]
 };
-
 var zip_90038 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90038",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90038"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.344048, 34.092569],
                     [-118.344048, 34.093648],
@@ -7488,20 +7385,16 @@ var zip_90038 = {
         }
     }]
 };
-
 var zip_90037 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90037",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90037"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.30019, 33.992342],
                     [-118.300186, 33.993227],
@@ -7648,20 +7541,16 @@ var zip_90037 = {
         }
     }]
 };
-
 var zip_90040 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90040",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90040"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.180046, 34.005624],
                     [-118.179586, 34.006558],
@@ -8141,20 +8030,16 @@ var zip_90040 = {
         }
     }]
 };
-
 var zip_90039 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90039",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90039"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.269021, 34.111542],
                     [-118.26897, 34.111588],
@@ -8639,20 +8524,16 @@ var zip_90039 = {
         }
     }]
 };
-
 var zip_90042 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90042",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90042"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.21358, 34.122759],
                     [-118.213822, 34.122806],
@@ -9203,20 +9084,16 @@ var zip_90042 = {
         }
     }]
 };
-
 var zip_90041 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90041",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90041"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.185212, 34.142833],
                     [-118.183971, 34.142246],
@@ -9782,20 +9659,16 @@ var zip_90041 = {
         }
     }]
 };
-
 var zip_90044 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90044",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90044"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.30027, 33.940646],
                     [-118.300268, 33.940958],
@@ -10184,20 +10057,16 @@ var zip_90044 = {
         }
     }]
 };
-
 var zip_90043 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90043",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90043"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.352692, 34.001422],
                     [-118.352619, 34.001487],
@@ -10499,20 +10368,16 @@ var zip_90043 = {
         }
     }]
 };
-
 var zip_90046 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90046",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90046"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.388636, 34.107415],
                     [-118.388828, 34.10736],
@@ -11665,20 +11530,16 @@ var zip_90046 = {
         }
     }]
 };
-
 var zip_90045 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90045",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90045"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.422658, 33.953771],
                     [-118.425287, 33.953944],
@@ -12195,20 +12056,16 @@ var zip_90045 = {
         }
     }]
 };
-
 var zip_90048 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90048",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90048"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.377403, 34.069709],
                     [-118.378462, 34.069705],
@@ -12429,20 +12286,16 @@ var zip_90048 = {
         }
     }]
 };
-
 var zip_90047 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90047",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90047"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.317725, 33.954531],
                     [-118.317726, 33.956345],
@@ -12846,20 +12699,16 @@ var zip_90047 = {
         }
     }]
 };
-
 var zip_90049 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90049",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90049"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.489972, 34.130662],
                     [-118.489949, 34.130631],
@@ -14186,22 +14035,16 @@ var zip_90049 = {
         }
     }]
 };
-
-
-
 var zip_90056 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90056",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90056"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.357888, 33.997112],
                     [-118.357696, 33.996815],
@@ -14396,20 +14239,16 @@ var zip_90056 = {
         }
     }]
 };
-
 var zip_90058 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90058",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90058"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.243172, 33.99382],
                     [-118.243166, 33.994644],
@@ -14926,20 +14765,16 @@ var zip_90058 = {
         }
     }]
 };
-
 var zip_90057 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90057",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90057"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.275848, 34.069081],
                     [-118.274979, 34.068705],
@@ -15051,20 +14886,16 @@ var zip_90057 = {
         }
     }]
 };
-
 var zip_90059 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90059",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90059"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.258676, 33.938811],
                     [-118.256533, 33.938755],
@@ -15367,20 +15198,16 @@ var zip_90059 = {
         }
     }]
 };
-
 var zip_90062 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90062",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90062"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.300168, 34.016424],
                     [-118.300169, 34.015514],
@@ -15495,20 +15322,16 @@ var zip_90062 = {
         }
     }]
 };
-
 var zip_90061 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90061",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90061"
         },
-        "geometry": {
-            "type": "MultiPolygon",
-            "coordinates": [
+        geometry: {
+            type: "MultiPolygon",
+            coordinates: [
                 [
                     [
                         [-118.2857, 33.916267],
@@ -15791,20 +15614,16 @@ var zip_90061 = {
         }
     }]
 };
-
 var zip_90064 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90064",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90064"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.452857, 34.027789],
                     [-118.4529, 34.02784],
@@ -16122,20 +15941,16 @@ var zip_90064 = {
         }
     }]
 };
-
 var zip_90063 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90063",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90063"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.184401, 34.061716],
                     [-118.183785, 34.06175],
@@ -16487,20 +16302,16 @@ var zip_90063 = {
         }
     }]
 };
-
 var zip_90066 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90066",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90066"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.452669, 34.011283],
                     [-118.451896, 34.011689],
@@ -16853,20 +16664,16 @@ var zip_90066 = {
         }
     }]
 };
-
 var zip_90065 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90065",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90065"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.225836, 34.136072],
                     [-118.225648, 34.136071],
@@ -17390,20 +17197,16 @@ var zip_90065 = {
         }
     }]
 };
-
 var zip_90068 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90068",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90068"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.348859, 34.131247],
                     [-118.348775, 34.131386],
@@ -18131,20 +17934,16 @@ var zip_90068 = {
         }
     }]
 };
-
 var zip_90067 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90067",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90067"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.41377, 34.056392],
                     [-118.413871, 34.056042],
@@ -18217,20 +18016,16 @@ var zip_90067 = {
         }
     }]
 };
-
 var zip_90069 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90069",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90069"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.379211, 34.103108],
                     [-118.378911, 34.103402],
@@ -18605,20 +18400,16 @@ var zip_90069 = {
         }
     }]
 };
-
 var zip_90071 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90071",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90071"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.25881, 34.052816],
                     [-118.258547, 34.053083],
@@ -18681,20 +18472,16 @@ var zip_90071 = {
         }
     }]
 };
-
 var zip_90077 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90077",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90077"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.448927, 34.131415],
                     [-118.448862, 34.131365],
@@ -19247,20 +19034,16 @@ var zip_90077 = {
         }
     }]
 };
-
 var zip_90089 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90089",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90089"
         },
-        "geometry": {
-            "type": "MultiPolygon",
-            "coordinates": [
+        geometry: {
+            type: "MultiPolygon",
+            coordinates: [
                 [
                     [
                         [-118.204591, 34.059425],
@@ -19346,20 +19129,16 @@ var zip_90089 = {
         }
     }]
 };
-
 var zip_90095 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90095",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90095"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.438939, 34.069588],
                     [-118.439012, 34.069278],
@@ -19482,20 +19261,16 @@ var zip_90095 = {
         }
     }]
 };
-
 var zip_90094 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90094",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90094"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.412824, 33.977609],
                     [-118.411676, 33.978111],
@@ -19616,20 +19391,16 @@ var zip_90094 = {
         }
     }]
 };
-
 var zip_90201 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90201",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90201"
         },
-        "geometry": {
-            "type": "MultiPolygon",
-            "coordinates": [
+        geometry: {
+            type: "MultiPolygon",
+            coordinates: [
                 [
                     [
                         [-118.171309, 33.997098],
@@ -20277,20 +20048,16 @@ var zip_90201 = {
         }
     }]
 };
-
 var zip_90211 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90211",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90211"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.37733, 34.062954],
                     [-118.377375, 34.062954],
@@ -20428,20 +20195,16 @@ var zip_90211 = {
         }
     }]
 };
-
 var zip_90210 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90210",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90210"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.401003, 34.068145],
                     [-118.400935, 34.068079],
@@ -21456,20 +21219,16 @@ var zip_90210 = {
         }
     }]
 };
-
 var zip_90212 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90212",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90212"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.396943, 34.067036],
                     [-118.396567, 34.06705],
@@ -21691,20 +21450,16 @@ var zip_90212 = {
         }
     }]
 };
-
 var zip_90221 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90221",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90221"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.219599, 33.893516],
                     [-118.219759, 33.894553],
@@ -22330,20 +22085,16 @@ var zip_90221 = {
         }
     }]
 };
-
 var zip_90220 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90220",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90220"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.265262, 33.886085],
                     [-118.265266, 33.886852],
@@ -22816,20 +22567,16 @@ var zip_90220 = {
         }
     }]
 };
-
 var zip_90222 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90222",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90222"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.246203, 33.919138],
                     [-118.246202, 33.919828],
@@ -23099,20 +22846,16 @@ var zip_90222 = {
         }
     }]
 };
-
 var zip_90230 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90230",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90230"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.409256, 33.987302],
                     [-118.409343, 33.987377],
@@ -23608,20 +23351,16 @@ var zip_90230 = {
         }
     }]
 };
-
 var zip_90232 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90232",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90232"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.406104, 34.010336],
                     [-118.406989, 34.00919],
@@ -24079,20 +23818,16 @@ var zip_90232 = {
         }
     }]
 };
-
 var zip_90241 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90241",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90241"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.154532, 33.955216],
                     [-118.154341, 33.955388],
@@ -24528,20 +24263,16 @@ var zip_90241 = {
         }
     }]
 };
-
 var zip_90240 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90240",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90240"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.144143, 33.960854],
                     [-118.14427, 33.960924],
@@ -24848,20 +24579,16 @@ var zip_90240 = {
         }
     }]
 };
-
 var zip_90245 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90245",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90245"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.422222, 33.918874],
                     [-118.422222, 33.919957],
@@ -25067,20 +24794,16 @@ var zip_90245 = {
         }
     }]
 };
-
 var zip_90242 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90242",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90242"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.128726, 33.909765],
                     [-118.129719, 33.90977],
@@ -25517,20 +25240,16 @@ var zip_90242 = {
         }
     }]
 };
-
 var zip_90248 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90248",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90248"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.282727, 33.909162],
                     [-118.28274, 33.904621],
@@ -26181,20 +25900,16 @@ var zip_90248 = {
         }
     }]
 };
-
 var zip_90247 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90247",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90247"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.300385, 33.903777],
                     [-118.300384, 33.904505],
@@ -26491,20 +26206,16 @@ var zip_90247 = {
         }
     }]
 };
-
 var zip_90250 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90250",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90250"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.343863, 33.93081],
                     [-118.343858, 33.93076],
@@ -27082,20 +26793,16 @@ var zip_90250 = {
         }
     }]
 };
-
 var zip_90249 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90249",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90249"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.300385, 33.903777],
                     [-118.300384, 33.902863],
@@ -27350,20 +27057,16 @@ var zip_90249 = {
         }
     }]
 };
-
 var zip_90254 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90254",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90254"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.407013, 33.877383],
                     [-118.40697, 33.877296],
@@ -27484,20 +27187,16 @@ var zip_90254 = {
         }
     }]
 };
-
 var zip_90260 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90260",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90260"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.360456, 33.897376],
                     [-118.360448, 33.897725],
@@ -27817,20 +27516,16 @@ var zip_90260 = {
         }
     }]
 };
-
 var zip_90255 = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "properties": {
-            "name": "90255",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+    type: "FeatureCollection",
+    features: [{
+        type: "Feature",
+        properties: {
+            name: "90255"
         },
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
+        geometry: {
+            type: "Polygon",
+            coordinates: [
                 [
                     [-118.235913, 33.980398],
                     [-118.235942, 33.98051],
