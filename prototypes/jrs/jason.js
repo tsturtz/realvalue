@@ -1,4 +1,4 @@
-{
+var x = {
     "type": "FeatureCollection",
     "features": [{
         "type": "Feature",
@@ -24645,4 +24645,4 @@
             ]
         }
     }]
-}
+};

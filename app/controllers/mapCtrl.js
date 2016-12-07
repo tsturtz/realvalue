@@ -157,7 +157,7 @@ angular.module('realValue')
                     }
                 },
                 geojson : {
-                    data: [
+                    data: [ tammy_geojson,
                             mike_geojson,
                             miles_geojson,
                             zip_91331,

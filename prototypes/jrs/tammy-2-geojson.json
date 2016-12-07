@@ -1,4 +1,4 @@
-var zip_92662 = {
+{
     "type": "FeatureCollection",
         "features": [
         {
@@ -88196,16 +88196,4 @@ var zip_92662 = {
             }
         }
     ]
-};
-
-
-
-
-
-
-
-
-
-
-
-
+}
