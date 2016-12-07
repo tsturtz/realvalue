@@ -5,6 +5,17 @@ angular.module('realValue')
         var mc = this;
         var city;
         self.name = "Map Obj";
+
+        weikuan_init().then(
+            function(response) {
+                Weikuan_Combined_Firebase = response;
+                console.log("weikuan", Weikuan_Combined_Firebase);
+                mc.city_zoom();
+                console.log(roughSizeOfObject(Weikuan_Combined_Firebase));
+                console.log(roughSizeOfObject(tammy_geojson));
+                console.log(roughSizeOfObject(mike_geojson));
+            });
+
         console.log("init map");
 /*
         /!************************************************!/
@@ -78,13 +89,13 @@ angular.module('realValue')
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
                         //console.log("layer",layer);
-                        layer.bindPopup(feature.properties.popupContent);
+                        //layer.bindPopup(feature.properties.popupContent);
 
                         leafletData.getMap().then(function(map) {
                             label = new L.Label();
                             label.setContent(feature.properties.name);
                             label.setLatLng(layer.getBounds().getCenter());
-                            map.showLabel(label);
+                            //map.showLabel(label);
                         });
 
 
@@ -100,6 +111,7 @@ angular.module('realValue')
 
         this.city_zoom = function() {
             console.log("extend zip");
+            console.log("cities",cities);
             angular.extend($scope, {
                 center: {
                     lat: 34.075406,
@@ -140,7 +152,33 @@ angular.module('realValue')
             });
         };
 
-        this.city_zoom();
+        mc.city_zoom();
+
+
+
+        function roughSizeOfObject( object ) {
+            var objectList = [];
+            var recurse = function( value ) {
+                var bytes = 0;
+
+                if ( typeof value === 'boolean' ) {
+                    bytes = 4;
+                } else if ( typeof value === 'string' ) {
+                    bytes = value.length * 2;
+                } else if ( typeof value === 'number' ) {
+                    bytes = 8;
+                } else if (typeof value === 'object'
+                    && objectList.indexOf( value ) === -1) {
+                    objectList[ objectList.length ] = value;
+                    for( i in value ) {
+                        bytes+= 8; // assumed existence overhead
+                        bytes+= recurse( value[i] )
+                    }
+                }
+                return bytes;
+            }
+            return recurse( object );
+        }
 
         this.zipcode_zoom = function() {
             console.log("extend zip");
