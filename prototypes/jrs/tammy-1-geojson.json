@@ -1,15 +1,12 @@
-var zip_92806 = {
+{
     "type": "FeatureCollection",
     "features": [{
         "type": "Feature",
         "properties": {
-            "name": '92806',
+            "name": "92806",
             "density":4810,
             "population":37173,
-            "popupContent": "Name: 92806<BR>Z-Index: 416100",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "popupContent": "Name: 92806<BR>Z-Index: 416100"
         },
         "geometry": {
             "type": "Polygon",
@@ -606,13 +603,10 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92805',
+            "name": "92805",
             "density":11167,
             "population":70401,
-            "popupContent": "Name: 92805<BR>Z-Index: 349300",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "popupContent": "Name: 92805<BR>Z-Index: 349300"
         },
         "geometry": {
             "type": "Polygon",
@@ -1175,13 +1169,10 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92808',
+            "name": "92808",
             "density":3943,
             "population":20039,
-            "popupContent": "Name: 92808<BR>Z-Index: 603900",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "popupContent": "Name: 92808<BR>Z-Index: 603900"
         },
         "geometry": {
             "type": "Polygon",
@@ -1606,7 +1597,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92807',
+            "name": "92807",
             "density":2276,
             "population":36171,
             "popupContent": "Name: 92807<BR>Z-Index: 551300",
@@ -2722,7 +2713,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92823',
+            "name": "92823",
             "density":332,
             "population":3613,
             "popupContent": "Name: 92823<BR>Z-Index: 645000",
@@ -3233,7 +3224,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92831',
+            "name": "92831",
             "density":5724,
             "population":34204,
             "popupContent": "Name: 92831<BR>Z-Index: 465,900",
@@ -3969,7 +3960,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92833',
+            "name": "92833",
             "density":7087,
             "population":51767,
             "popupContent": "Name: 92833<BR>Z-Index: 444100",
@@ -4535,7 +4526,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92832',
+            "name": "92832",
             "density":8796,
             "population":24752,
             "popupContent": "Name: 92832<BR>Z-Index: 391400",
@@ -4980,7 +4971,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92835',
+            "name": "92835",
             "density":3985,
             "population":24010,
             "popupContent": "Name: 92835<BR>Z-Index: 646200",
@@ -5846,7 +5837,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92840',
+            "name": "92840",
             "density":10397,
             "population":54083,
             "popupContent": "Name: 92840<BR>Z-Index: 368200",
@@ -6364,7 +6355,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92841',
+            "name": "92841",
             "density":7330,
             "population":32845,
             "popupContent": "Name: 92841<BR>Z-Index: 387700",
@@ -6900,7 +6891,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92844',
+            "name": "92844",
             "density":11433,
             "population":24307,
             "popupContent": "Name: 92844<BR>Z-Index: 358600",
@@ -7302,7 +7293,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92843',
+            "name": "92843",
             "density":11574,
             "population":45214,
             "popupContent": "Name: 92843<BR>Z-Index: 367300",
@@ -7960,7 +7951,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92845',
+            "name": "92845",
             "density":7463,
             "population":16333,
             "popupContent": "Name: 92845<BR>Z-Index: 472100",
@@ -8304,7 +8295,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92861',
+            "name": "92861",
             "density":2719,
             "population":5781,
             "popupContent": "Name: 92861<BR>Z-Index: 942500",
@@ -8808,7 +8799,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92865',
+            "name": "92865",
             "density":5384,
             "population":19704,
             "popupContent": "Name: 92865<BR>Z-Index: 441200",
@@ -9122,7 +9113,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92867',
+            "name": "92867",
             "density":5608,
             "population":44515,
             "popupContent": "Name: 92867<BR>Z-Index: 569300",
@@ -10327,7 +10318,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92866',
+            "name": "92866",
             "density":7705,
             "population":14885,
             "popupContent": "Name: 92866<BR>Z-Index: 540000",
@@ -10598,7 +10589,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92869',
+            "name": "92869",
             "density":4001,
             "population":37184,
             "popupContent": "Name: 92869<BR>Z-Index: 556700",
@@ -11526,7 +11517,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92868',
+            "name": "92868",
             "density":7857,
             "population":25404,
             "popupContent": "Name: 92868<BR>Z-Index: 358100",
@@ -11998,7 +11989,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92870',
+            "name": "92870",
             "density":7661,
             "population":52033,
             "popupContent": "Name: 92870<BR>Z-Index: 493000",
@@ -13004,7 +12995,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92887',
+            "name": "92887",
             "density":2226,
             "population":20006,
             "popupContent": "Name: 92887<BR>Z-Index: 689200",
@@ -13651,7 +13642,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92886',
+            "name": "92886",
             "density":3162,
             "population":46564,
             "popupContent": "Name: 92886<BR>Z-Index: 663000",
@@ -14676,7 +14667,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92530',
+            "name": "92530",
             "density":932,
             "population":50216,
             "popupContent": "Name: 92530<BR>Z-Index: 181100",
@@ -15931,7 +15922,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92602',
+            "name": "92602",
             "density":2190,
             "population":22871,
             "popupContent": "Name: 92602<BR>Z-Index: 710800",
@@ -16781,7 +16772,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92604',
+            "name": "92604",
             "density":7960,
             "population":26853,
             "popupContent": "Name: 92604<BR>Z-Index: 582100",
@@ -17203,7 +17194,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92603',
+            "name": "92603",
             "density":1523,
             "population":20184,
             "popupContent": "Name: 92603<BR>Z-Index: 965800",
@@ -18121,7 +18112,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92606',
+            "name": "92606",
             "density":4434,
             "population":21495,
             "popupContent": "Name: 92606<BR>Z-Index: 632600",
@@ -18657,7 +18648,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92612',
+            "name": "92612",
             "density":4526,
             "population":27522,
             "popupContent": "Name: 92612<BR>Z-Index: 568100",
@@ -19258,7 +19249,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92610',
+            "name": "92610",
             "density":1147,
             "population":11248,
             "popupContent": "Name: 92610<BR>Z-Index: 580800",
@@ -19659,7 +19650,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '90621',
+            "name": "90621",
             "density":8487,
             "population":35153,
             "popupContent": "Name: 90621<BR>Z-Index: 394900",
@@ -20110,7 +20101,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92614',
+            "name": "92614",
             "density":5599,
             "population":24748,
             "popupContent": "Name: 92614<BR>Z-Index: 596600",
@@ -20569,7 +20560,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '90620',
+            "name": "90620",
             "density":7058,
             "population":45113,
             "popupContent": "Name: 90620<BR>Z-Index: 393600",
@@ -21318,7 +21309,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '90623',
+            "name": "90623",
             "density":8582,
             "population":15554,
             "popupContent": "Name: 90623<BR>Z-Index: 572100",
@@ -21786,7 +21777,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92617',
+            "name": "92617",
             "density":5841,
             "population":14044,
             "popupContent": "Name: 92617<BR>Z-Index: 419400",
@@ -22095,7 +22086,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '90630',
+            "name": "90630",
             "density":7835,
             "population":47993,
             "popupContent": "Name: 90630<BR>Z-Index: 494900",
@@ -22893,7 +22884,7 @@ var zip_92806 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": '92618',
+            "name": "92618",
             "density":773,
             "population":16366,
             "popupContent": "Name: 92618<BR>Z-Index: 516400",
@@ -23453,7 +23444,7 @@ var zip_92806 = {
             "popupContent": "Name: 90680<BR>Z-Index: 288600",
             "fillOpacity": 0,
             "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5,
+            "strokeOpacity": 0.5
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -77526,9 +77517,6 @@ var zip_92806 = {
         }, {
             "type": "Feature",
             "properties": {
-                "fillOpacity": 0,
-                "strokeColor": "#FF0000",
-                "strokeOpacity": 0.5,
                 "population": 34797,
                 "density": 16354,
                 "popupContent": "Name: 92660<BR>Z-Index: 1000,001",
@@ -81541,4 +81529,4 @@ var zip_92806 = {
             }
         }
     ]
-};
+}
