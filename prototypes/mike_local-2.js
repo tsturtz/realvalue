@@ -2186,12 +2186,7 @@ var zip_91321 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91325 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91325",
         "type": "Feature",
         "properties": {
@@ -2456,11 +2451,7 @@ var zip_91325 = {
                 ]
             ]
         }
-    }]
-};
-var zip_91324 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91324",
         "type": "Feature",
         "properties": {
@@ -2719,11 +2710,7 @@ var zip_91324 = {
                 ]
             ]
         }
-    }]
-};
-var zip_91326 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91326",
         "type": "Feature",
         "properties": {
@@ -3092,12 +3079,7 @@ var zip_91326 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91331 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91331",
         "type": "Feature",
         "properties": {
@@ -3410,12 +3392,7 @@ var zip_91331 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91330 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91330",
         "type": "Feature",
         "properties": {
@@ -3469,12 +3446,7 @@ var zip_91330 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91335 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91335",
         "type": "Feature",
         "properties": {
@@ -3632,12 +3604,7 @@ var zip_91335 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91340 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91340",
         "type": "Feature",
         "properties": {
@@ -3905,12 +3872,7 @@ var zip_91340 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91343 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91343",
         "type": "Feature",
         "properties": {
@@ -4166,12 +4128,7 @@ var zip_91343 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91342 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91342",
         "type": "Feature",
         "properties": {
@@ -6404,12 +6361,7 @@ var zip_91342 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91345 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91345",
         "type": "Feature",
         "properties": {
@@ -6599,12 +6551,7 @@ var zip_91345 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91344 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91344",
         "type": "Feature",
         "properties": {
@@ -7513,12 +7460,7 @@ var zip_91344 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91350 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
             "name":"91350",
@@ -9005,12 +8947,7 @@ var zip_91350 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91352 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91352",
         "type": "Feature",
         "properties": {
@@ -9498,12 +9435,7 @@ var zip_91352 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91351 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91351",
         "type": "Feature",
         "properties": {
@@ -10319,12 +10251,7 @@ var zip_91351 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91354 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91354",
         "type": "Feature",
         "properties": {
@@ -11071,12 +10998,7 @@ var zip_91354 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91356 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91356",
         "type": "Feature",
         "properties": {
@@ -11552,13 +11474,7 @@ var zip_91356 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_91355 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91355",
         "type": "Feature",
         "properties": {
@@ -12772,12 +12688,7 @@ var zip_91355 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91361 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91361",
         "type": "Feature",
         "properties": {
@@ -14371,12 +14282,7 @@ var zip_91361 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91364 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91364",
         "type": "Feature",
         "properties": {
@@ -14795,12 +14701,7 @@ var zip_91364 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91367 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91367",
         "type": "Feature",
         "properties": {
@@ -15142,12 +15043,7 @@ var zip_91367 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91381 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91381",
         "type": "Feature",
         "properties": {
@@ -16755,12 +16651,7 @@ var zip_91381 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91384 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91384",
         "type": "Feature",
         "properties": {
@@ -19314,12 +19205,7 @@ var zip_91384 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91387 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91387",
         "type": "Feature",
         "properties": {
@@ -21570,12 +21456,7 @@ var zip_91387 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91390 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91390",
         "type": "Feature",
         "properties": {
@@ -26048,13 +25929,7 @@ var zip_91390 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_91402 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91402",
         "type": "Feature",
         "properties": {
@@ -26280,12 +26155,7 @@ var zip_91402 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91401 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91401",
         "type": "Feature",
         "properties": {
@@ -26441,12 +26311,7 @@ var zip_91401 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91403 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91403",
         "type": "Feature",
         "properties": {
@@ -27100,13 +26965,7 @@ var zip_91403 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_91406 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91406",
         "type": "Feature",
         "properties": {
@@ -27431,12 +27290,7 @@ var zip_91406 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91405 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91405",
         "type": "Feature",
         "properties": {
@@ -27584,12 +27438,7 @@ var zip_91405 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91411 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91411",
         "type": "Feature",
         "properties": {
@@ -27778,12 +27627,7 @@ var zip_91411 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91423 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91423",
         "type": "Feature",
         "properties": {
@@ -28414,12 +28258,7 @@ var zip_91423 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91436 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91436",
         "type": "Feature",
         "properties": {
@@ -29197,12 +29036,7 @@ var zip_91436 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91501 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91501",
         "type": "Feature",
         "properties": {
@@ -29507,12 +29341,7 @@ var zip_91501 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91502 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91502",
         "type": "Feature",
         "properties": {
@@ -29710,11 +29539,7 @@ var zip_91502 = {
                 ]
             ]
         }
-    }]
-};
-var zip_91505 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91505",
         "type": "Feature",
         "properties": {
@@ -30069,12 +29894,7 @@ var zip_91505 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91504 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91504",
         "type": "Feature",
         "properties": {
@@ -30461,12 +30281,7 @@ var zip_91504 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91506 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91506",
         "type": "Feature",
         "properties": {
@@ -30718,12 +30533,7 @@ var zip_91506 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91602 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91602",
         "type": "Feature",
         "properties": {
@@ -30915,12 +30725,7 @@ var zip_91602 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91601 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91601",
         "type": "Feature",
         "properties": {
@@ -31148,12 +30953,7 @@ var zip_91601 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91604 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91604",
         "type": "Feature",
         "properties": {
@@ -32000,12 +31800,7 @@ var zip_91604 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91606 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91606",
         "type": "Feature",
         "properties": {
@@ -32204,12 +31999,7 @@ var zip_91606 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91605 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91605",
         "type": "Feature",
         "properties": {
@@ -32450,12 +32240,7 @@ var zip_91605 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91607 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91607",
         "type": "Feature",
         "properties": {
@@ -32669,12 +32454,7 @@ var zip_91607 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91706 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91706",
         "type": "Feature",
         "properties": {
@@ -33498,12 +33278,7 @@ var zip_91706 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91702 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91702",
         "type": "Feature",
         "properties": {
@@ -37239,12 +37014,7 @@ var zip_91702 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91711 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91711",
         "type": "Feature",
         "properties": {
@@ -37853,12 +37623,7 @@ var zip_91711 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91722 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91722",
         "type": "Feature",
         "properties": {
@@ -38447,12 +38212,7 @@ var zip_91722 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91724 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91724",
         "type": "Feature",
         "properties": {
@@ -39415,12 +39175,7 @@ var zip_91724 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91723 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91723",
         "type": "Feature",
         "properties": {
@@ -39651,12 +39406,7 @@ var zip_91723 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91732 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91732",
         "type": "Feature",
         "properties": {
@@ -40091,12 +39841,7 @@ var zip_91732 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91731 = {
-    "type": "FeatureCollection",
-        "features": [{
+    }, {
         "name":"91731",
         "type": "Feature",
         "properties": {
@@ -40699,12 +40444,7 @@ var zip_91731 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91733 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91733",
         "type": "Feature",
         "properties": {
@@ -41042,12 +40782,7 @@ var zip_91733 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91740 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91740",
         "type": "Feature",
         "properties": {
@@ -41458,12 +41193,7 @@ var zip_91740 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91741 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91741",
         "type": "Feature",
         "properties": {
@@ -41960,12 +41690,7 @@ var zip_91741 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91745 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91745",
         "type": "Feature",
         "properties": {
@@ -42334,12 +42059,7 @@ var zip_91745 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91744 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91744",
         "type": "Feature",
         "properties": {
@@ -43047,12 +42767,7 @@ var zip_91744 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91746 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91746",
         "type": "Feature",
         "properties": {
@@ -43595,12 +43310,7 @@ var zip_91746 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91748 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91746",
         "type": "Feature",
         "properties": {
@@ -44134,12 +43844,7 @@ var zip_91748 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91750 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91750",
         "type": "Feature",
         "properties": {
@@ -45590,12 +45295,7 @@ var zip_91750 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91755 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91755",
         "type": "Feature",
         "properties": {
@@ -46019,12 +45719,7 @@ var zip_91755 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91754 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name": "91754",
         "type": "Feature",
         "properties": {
@@ -46482,12 +46177,7 @@ var zip_91754 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91759 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91759",
         "type": "Feature",
         "properties": {
@@ -47263,12 +46953,7 @@ var zip_91759 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91765 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91765",
         "type": "Feature",
         "properties": {
@@ -47871,12 +47556,7 @@ var zip_91765 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91767 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91767",
         "type": "Feature",
         "properties": {
@@ -48374,12 +48054,7 @@ var zip_91767 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91766 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91766",
         "type": "Feature",
         "properties": {
@@ -48889,12 +48564,7 @@ var zip_91766 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91768 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91768",
         "type": "Feature",
         "properties": {
@@ -49586,12 +49256,7 @@ var zip_91768 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91770 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91770",
         "type": "Feature",
         "properties": {
@@ -50350,12 +50015,7 @@ var zip_91770 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91733 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91773",
         "type": "Feature",
         "properties": {
@@ -51505,12 +51165,7 @@ var zip_91733 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91776 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91776",
         "type": "Feature",
         "properties": {
@@ -51954,12 +51609,7 @@ var zip_91776 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91755 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91775",
         "type": "Feature",
         "properties": {
@@ -52451,12 +52101,7 @@ var zip_91755 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91780 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":'91780',
         "type": "Feature",
         "properties": {
@@ -52915,12 +52560,7 @@ var zip_91780 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91790 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91790",
         "type": "Feature",
         "properties": {
@@ -53608,12 +53248,7 @@ var zip_91790 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91789 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91789",
         "type": "Feature",
         "properties": {
@@ -54775,12 +54410,7 @@ var zip_91789 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91792 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91792",
         "type": "Feature",
         "properties": {
@@ -55374,12 +55004,7 @@ var zip_91792 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91791 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91791",
         "type": "Feature",
         "properties": {
@@ -56001,12 +55626,7 @@ var zip_91791 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91081 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91081",
         "type": "Feature",
         "properties": {
@@ -56467,12 +56087,7 @@ var zip_91081 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91803 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91803",
         "type": "Feature",
         "properties": {
@@ -56879,12 +56494,7 @@ var zip_91803 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91008 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"91008",
         "type": "Feature",
         "properties": {
@@ -57169,12 +56779,7 @@ var zip_91008 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_92397 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"92397",
         "type": "Feature",
         "properties": {
@@ -58052,12 +57657,7 @@ var zip_92397 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90002 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90002",
         "type": "Feature",
         "properties": {
@@ -58296,12 +57896,7 @@ var zip_90002 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90001 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90001",
         "type": "Feature",
         "properties": {
@@ -58544,12 +58139,7 @@ var zip_90001 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90004 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90004",
         "type": "Feature",
         "properties": {
@@ -58776,12 +58366,7 @@ var zip_90004 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90003 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name": "90004",
         "type": "Feature",
         "properties": {
@@ -59005,12 +58590,7 @@ var zip_90003 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90006 = {
-    "type": "FeatureCollection",
-        "features": [{
+    }, {
         "name":"90006",
         "type": "Feature",
         "properties": {
@@ -59138,12 +58718,7 @@ var zip_90006 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90005 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90005",
         "type": "Feature",
         "properties": {
@@ -59466,12 +59041,7 @@ var zip_90005 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90008 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90008",
         "type": "Feature",
         "properties": {
@@ -59825,13 +59395,7 @@ var zip_90008 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_90007 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90007",
         "type": "Feature",
         "properties": {
@@ -60081,12 +59645,7 @@ var zip_90007 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90010 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":"90010",
         "type": "Feature",
         "properties": {
@@ -60301,12 +59860,7 @@ var zip_90010 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90012 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "name":'90012',
         "type": "Feature",
         "properties": {
