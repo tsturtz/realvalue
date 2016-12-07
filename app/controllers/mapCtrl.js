@@ -1,11 +1,33 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog, $q) {
         var mc = this;
 
         self.name = "Map Obj";
 
-        weikuan_init().then(
+        var config = {
+            apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
+            authDomain: "realvalue-ebd58.firebaseapp.com",
+            databaseURL: "https://realvalue-ebd58.firebaseio.com",
+            storageBucket: "realvalue-ebd58.appspot.com",
+            messagingSenderId: "73443138678"
+        };
+        firebase.initializeApp(config);
+        var fbRef=firebase.database();
+        var Weikuan_Combined_Firebase;
+
+        this.weikuan_init = function() {
+
+            var deferred = $q.defer();
+
+            fbRef.ref("combine").once('value',function(snapshot){
+                deferred.resolve(snapshot.val());
+            });
+
+            return deferred.promise;
+        };
+
+        this.weikuan_init().then(
             function(response) {
                 Weikuan_Combined_Firebase = response;
                 console.log("weikuan", Weikuan_Combined_Firebase);
