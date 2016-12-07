@@ -27,12 +27,12 @@ angular.module('realValue')
 
         /**
          * Init google map so we can make place ID calls
-         * CURRENTLY BREAKS MAP
+         * TODO: DONT THINK WE NEED THIS ANYMORE
          */
 
-        this.initMap = function (key) {
+        /*this.initMap = function (key) {
 
-            var service = new google.maps.places.PlacesService();
+            var service = new google.maps.places.PlacesService($('#data-here').get(0));
 
             console.log(key);
             if (key === undefined) {
@@ -46,12 +46,12 @@ angular.module('realValue')
                 console.log('actual place details call with dummy place ID: ', place);
             });
 
-        };
+        };*/
 
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
-        $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+        $scope.$on('leafletDirectiveMarker.click', function(ev, args) {
 
             console.log("model",args);
 
@@ -64,35 +64,46 @@ angular.module('realValue')
                 clickOutsideToClose: true,
                 escapeToClose: true,
                 fullscreen: true,
-                targetEvent: e
+                targetEvent: null, // weird angular material bug - this should be 'ev' but for some reason it throws an error. setting targetEvent to null is a hack-fix. refer to https://github.com/angular/material/issues/5363
+                onComplete: afterShowAnimation
             });
 
-            // dialog controller
+            // focus after dialog
+            function afterShowAnimation(scope, element, options) {
+                console.log('after focus')
+            }
 
+            // dialog controller
             function detailsCtrl($mdDialog) {
                 this.cancel = function () {
-                    $mdDialog.cancel();
+                    $mdDialog.hide();
                 };
                 this.getPlaceDetails = function () {
-                    initMap('ChIJ-QhzqPnn3IARnTugjgz1gZU');
+                    callPlace(args.model['Place ID']); // passed in place ID from event args
                 };
                 this.getPlaceDetails();
             }
 
-            function initMap() {
-                //service = new google.maps.places.PlacesService();
+            // google places API call
+            function callPlace(key) {
 
-                service = new google.maps.places
-                    .PlacesService(document.getElementById('map'));
+                var service = new google.maps.places.PlacesService($('#data-here').get(0));
 
-                service.getDetails({
-                    placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
-                }, function(place){
-                    console.log(place);
-                });
+                console.log('passed in key: ', key);
+
+                if (key) {
+                    service.getDetails({
+                        placeId: key // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                    }, function(place){
+                        console.log('%c :) real place ID call: ', 'background: green; color: white; display: block;', place);
+                    });
+                } else {
+                    console.warn('you didn\'t pass in a place id');
+                }
             }
 
         });
+
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
             map.invalidateSize(false);

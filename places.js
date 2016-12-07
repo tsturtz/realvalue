@@ -66,7 +66,7 @@ setTimeout(function() {
 
             (function(places) {
                 fb.ref(placeType + '/' + results[i].place_id).set(placeLoc);
-            })(results[i]);
+            })(results[i]); //todo: add place details to FB
 
             var place = results[i];
             createMarker(place, placeLoc);
