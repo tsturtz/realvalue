@@ -3,8 +3,8 @@ angular.module('realValue')
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog) {
         //console.log("style", style);
         var mc = this;
+        var city;
         self.name = "Map Obj";
-
         console.log("init map");
 /*
         /!************************************************!/
@@ -230,6 +230,37 @@ angular.module('realValue')
         }
 
         function zoomToFeature(e) {
+            var area_click_on=e.target.feature.properties.name;
+
+            if(area_click_on==="Los Angeles County"){
+                mc.information=county_los_angeles.features[0].properties;
+            }
+            else if(area_click_on==="Orange County"){
+                mc.information=county_orange.features[0].properties;
+            }
+            else{
+
+                if(Weikuan_Combined_Firebase.hasOwnProperty(area_click_on)){
+                    var temp={};
+                    for(var key in Weikuan_Combined_Firebase[area_click_on]){
+                        if(key!=="zip_codes"){
+                            temp[key]=Weikuan_Combined_Firebase[area_click_on][key];
+                        }
+                    }
+                    mc.information=temp;
+                    city=area_click_on;
+                }
+                else{
+                    if(Weikuan_Combined_Firebase[city].hasOwnProperty("zip_codes")){
+                        console.log(Weikuan_Combined_Firebase[city]["zip_codes"][area_click_on]);
+
+                        mc.information=Weikuan_Combined_Firebase[city]["zip_codes"][area_click_on];
+                    }
+                }
+
+
+
+            }
             leafletData.getMap().then(function(map) {
                 //console.log(e);
                 //console.log("event",e.target.feature.properties.name);
