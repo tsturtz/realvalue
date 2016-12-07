@@ -5,9 +5,6 @@ var county_orange = {
         "properties": {
             "population": 3114000,
             "popupContent": "Name: Orange County<BR>Z-Index: 704100",
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5,
             "score": 18
         },
         "geometry": {
@@ -931,10 +928,7 @@ var county_los_angeles = {
     "type": "Feature",
     "properties": {
         "population": 10,
-        "popupContent": "Name: Los Angeles<BR>Z-Index: 704100 WHATEVER!!",
-        "fillOpacity": 0,
-        "strokeColor": "#FF0000",
-        "strokeOpacity": 0.5,
+        "popupContent": "Name: Los Angeles<BR>Z-Index: 704100",
         "score": 18
     },
     "geometry": {
