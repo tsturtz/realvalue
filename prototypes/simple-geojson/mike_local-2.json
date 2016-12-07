@@ -1,4 +1,4 @@
-var zip_91321 = {
+{
     "type": "FeatureCollection",
     "features": [{
         "type": "Feature",
@@ -2187,12 +2187,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91325",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91325"
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -2452,12 +2449,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91324",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91324"
         },
         "geometry": {
             "type": "Polygon",
@@ -2711,12 +2705,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91326",
         "type": "Feature",
         "properties": {
-            
-            
-            
+          "name":"91326"
         },
         "geometry": {
             "type": "Polygon",
@@ -3393,12 +3384,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91330",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91330"
         },
         "geometry": {
             "type": "Polygon",
@@ -3447,12 +3435,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91335",
         "type": "Feature",
         "properties": {
-            
-            
-            
+          "name":"91335"
         },
         "geometry": {
             "type": "Polygon",
@@ -3605,12 +3590,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91340",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91340"
         },
         "geometry": {
             "type": "Polygon",
@@ -3873,12 +3855,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91343",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91340"
         },
         "geometry": {
             "type": "Polygon",
@@ -4129,12 +4108,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91342",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91342"
         },
         "geometry": {
             "type": "Polygon",
@@ -6362,12 +6338,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91345",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91345"
         },
         "geometry": {
             "type": "Polygon",
@@ -6552,12 +6525,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91344",
         "type": "Feature",
         "properties": {
-            
-            
-            
+        "name":"91344"
         },
         "geometry": {
             "type": "Polygon",
@@ -7463,10 +7433,7 @@ var zip_91321 = {
     }, {
         "type": "Feature",
         "properties": {
-            "name":"91350",
-            
-            
-            
+            "name":"91350"
         },
         "geometry": {
             "type": "Polygon",
@@ -8948,12 +8915,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91352",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91352"
         },
         "geometry": {
             "type": "Polygon",
@@ -9436,12 +9400,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91351",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91351"
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -10252,12 +10213,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91354",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91354"
         },
         "geometry": {
             "type": "Polygon",
@@ -10999,12 +10957,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91356",
         "type": "Feature",
         "properties": {
-            
-            
-            
+            "name":"91356"
         },
         "geometry": {
             "type": "Polygon",
@@ -11475,12 +11430,9 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":"91355",
         "type": "Feature",
         "properties": {
-            
-            
-            
+          "name":"91355"
         },
         "geometry": {
             "type": "Polygon",
@@ -52102,7 +52054,7 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":'91780',
+        "name":"91780",
         "type": "Feature",
         "properties": {
             
@@ -59861,7 +59813,7 @@ var zip_91321 = {
             ]
         }
     }, {
-        "name":'90012',
+        "name":"90012",
         "type": "Feature",
         "properties": {
             
@@ -60167,4 +60119,4 @@ var zip_91321 = {
             ]
         }
     }]
-};
+}

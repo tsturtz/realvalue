@@ -1,12 +1,9 @@
-/**
- * Created by Justo on 12/2/16.
- */
-var zip_91001 = {
+{
     "type": "FeatureCollection",
     "features":[{
     "type": "Feature",
     "properties": {
-        "name": '91001',
+        "name": "91001",
         "density": 4368,
         "population": 36126,
         "popupContent": "Name: 91001<BR>Z-Index: 550,000"
@@ -1783,7 +1780,7 @@ var zip_91001 = {
 }, {
     "type": "Feature",
     "properties": {
-        "name":'91007'
+        "name":"91007"
     },
     "geometry": {
         "type": "Polygon",
@@ -2064,7 +2061,7 @@ var zip_91001 = {
 }, {
         "type": "Feature",
         "properties": {
-            "name":'91011'
+            "name":"91011"
         },
         "geometry": {
             "type": "Polygon",
@@ -48643,4 +48640,4 @@ var zip_91001 = {
             ]
         }
     }]
-};
+}

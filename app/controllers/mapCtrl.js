@@ -172,10 +172,6 @@ angular.module('realValue')
                         zip_92701, zip_92703, zip_92704, zip_92705, zip_92706, zip_92707, zip_92708,
                         zip_92780, zip_92782, zip_92801, zip_92802, zip_92803, zip_92804,*/
                         miles_geojson, zip_91331,
-                        zip_90301, zip_90303, zip_90302, zip_90305, zip_90304, zip_90402, zip_90401,
-                        zip_90404, zip_90403, zip_93243, zip_90405, zip_90501, zip_90503, zip_90502,
-                        zip_90505, zip_90504, zip_90601, zip_90603, zip_90602, zip_90605, zip_90604,
-                        zip_90606, zip_90631, zip_90638,
                         zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
                     style: style,
                     onEachFeature: function (feature, layer) {
