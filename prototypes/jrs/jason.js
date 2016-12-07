@@ -1,12 +1,9 @@
-var zip_90301 = {
+var x = {
     "type": "FeatureCollection",
     "features": [{
         "type": "Feature",
         "properties": {
-            'name': '90301',
-        "fillOpacity": 0,
-        "strokeColor": "#FF0000",
-        "strokeOpacity": 0.5
+            "name": "90301"
     },
         "geometry": {
     "type": "Polygon",
@@ -233,17 +230,10 @@ var zip_90301 = {
         ]
     ]
 }
-}]
-};
-var zip_90303 = {
-    "type": "FeatureCollection",
-    "features": [{
+}, {
         "type": "Feature",
         "properties": {
-            'name': '90303',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90303"
         },
         "geometry": {
             "type": "Polygon",
@@ -587,17 +577,13 @@ var zip_90303 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90302 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90302',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90302",
+            
+            
+            
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -807,17 +793,10 @@ var zip_90302 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90305 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90305',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90305"
         },
         "geometry": {
             "type": "Polygon",
@@ -1066,17 +1045,10 @@ var zip_90305 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90304 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90304',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90304" 
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -1330,17 +1302,10 @@ var zip_90304 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90402 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90402',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90402"
         },
         "geometry": {
             "type": "Polygon",
@@ -1707,17 +1672,10 @@ var zip_90402 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90401 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90401',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90401" 
         },
         "geometry": {
             "type": "Polygon",
@@ -1869,17 +1827,10 @@ var zip_90401 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90404 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90404',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90404" 
         },
         "geometry": {
             "type": "Polygon",
@@ -2171,17 +2122,10 @@ var zip_90404 = {
             ]
 
         }
-    }]
-};
-var zip_90403 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90403',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90403" 
         },
         "geometry": {
             "type": "Polygon",
@@ -2483,17 +2427,10 @@ var zip_90403 = {
                 ]
             ]
         }
-    }]
-};
-var zip_93243 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '93243',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "93243" 
         },
         "geometry": {
             "type": "Polygon",
@@ -5356,17 +5293,10 @@ var zip_93243 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90405 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'naem': '90405',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "naem": "90405" 
         },
         "geometry": {
             "type": "Polygon",
@@ -5649,17 +5579,10 @@ var zip_90405 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90501 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90501',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90501"
         },
         "geometry": {
             "type": "Polygon",
@@ -6026,17 +5949,10 @@ var zip_90501 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90503 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90503',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90503" 
         },
         "geometry": {
             "type": "Polygon",
@@ -6352,17 +6268,10 @@ var zip_90503 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90502 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90502',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90502" 
         },
         "geometry": {
             "type": "Polygon",
@@ -6587,17 +6496,10 @@ var zip_90502 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90505 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90505',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90505" 
         },
         "geometry": {
             "type": "Polygon",
@@ -6984,17 +6886,10 @@ var zip_90505 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90504 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90504',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90504" 
         },
         "geometry": {
             "type": "Polygon",
@@ -7292,17 +7187,10 @@ var zip_90504 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90601 = {
-    "type": "FeatureCollection",
-        "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90601',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90601" 
         },
         "geometry": {
             "type": "Polygon",
@@ -7995,17 +7883,10 @@ var zip_90601 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90603 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90603',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90603" 
         },
         "geometry": {
             "type": "Polygon",
@@ -8490,17 +8371,10 @@ var zip_90603 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90602 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90602',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90602" 
         },
         "geometry": {
             "type": "Polygon",
@@ -8968,17 +8842,10 @@ var zip_90602 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90605 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90605',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90605" 
         },
         "geometry": {
             "type": "Polygon",
@@ -9753,17 +9620,10 @@ var zip_90605 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90604 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90604',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90604" 
         },
         "geometry": {
             "type": "Polygon",
@@ -10128,17 +9988,10 @@ var zip_90604 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90606 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90606',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90606" 
         },
         "geometry": {
             "type": "Polygon",
@@ -10534,17 +10387,10 @@ var zip_90606 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90631 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90631',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90631" 
         },
         "geometry": {
             "type": "Polygon",
@@ -11249,17 +11095,10 @@ var zip_90631 = {
                 ]
             ]
         }
-    }]
-};
-var zip_90638 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'naem': '90638',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "naem": "90638" 
         },
         "geometry": {
             "type": "Polygon",
@@ -11791,18 +11630,10 @@ var zip_90638 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90650 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90650',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90650" 
         },
         "geometry": {
             "type": "Polygon",
@@ -12279,18 +12110,10 @@ var zip_90650 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90640 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90640',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90640" 
         },
         "geometry": {
             "type": "Polygon",
@@ -12947,18 +12770,10 @@ var zip_90640 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90660 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90660',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90660" 
         },
         "geometry": {
             "type": "Polygon",
@@ -13435,18 +13250,10 @@ var zip_90660 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90670 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90670',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90670" 
         },
         "geometry": {
             "type": "Polygon",
@@ -14257,18 +14064,10 @@ var zip_90670 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90701 = {
-    "type": "FeatureCollection",
-        "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90701',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90701" 
         },
         "geometry": {
             "type": "Polygon",
@@ -14500,18 +14299,10 @@ var zip_90701 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90704 = {
-    "type": "FeatureCollection",
-        "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90704',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90704" 
         },
         "geometry": {
             "type": "Polygon",
@@ -14672,18 +14463,10 @@ var zip_90704 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90703 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90703',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90703" 
         },
         "geometry": {
             "type": "Polygon",
@@ -15430,18 +15213,10 @@ var zip_90703 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90706 = {
-    "type": "FeatureCollection",
-        "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90706',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90706" 
         },
         "geometry": {
             "type": "Polygon",
@@ -15775,18 +15550,10 @@ var zip_90706 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90710 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90710',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90710" 
         },
         "geometry": {
             "type": "Polygon",
@@ -16066,18 +15833,10 @@ var zip_90710 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90713 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90713',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90713" 
         },
         "geometry": {
             "type": "Polygon",
@@ -16342,18 +16101,10 @@ var zip_90713 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90712 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90712',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90712" 
         },
         "geometry": {
             "type": "Polygon",
@@ -16633,18 +16384,10 @@ var zip_90712 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90715 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90715',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90715" 
         },
         "geometry": {
             "type": "Polygon",
@@ -16926,18 +16669,10 @@ var zip_90715 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90717 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90717',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90717" 
         },
         "geometry": {
             "type": "Polygon",
@@ -17220,18 +16955,10 @@ var zip_90717 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90716 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90716',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90716" 
         },
         "geometry": {
             "type": "Polygon",
@@ -17432,18 +17159,10 @@ var zip_90716 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90731 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90731',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90731" 
         },
         "geometry": {
             "type": "Polygon",
@@ -18086,18 +17805,10 @@ var zip_90731 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90723 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90723',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90723" 
         },
         "geometry": {
             "type": "Polygon",
@@ -18653,18 +18364,10 @@ var zip_90723 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90732 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90732',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90732" 
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -19211,18 +18914,10 @@ var zip_90732 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90745 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90745',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90745" 
         },
         "geometry": {
             "type": "Polygon",
@@ -19594,18 +19289,10 @@ var zip_90745 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90744 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90744',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90744" 
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -20182,18 +19869,10 @@ var zip_90744 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90747 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90747',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90747" 
         },
         "geometry": {
             "type": "Polygon",
@@ -20240,18 +19919,10 @@ var zip_90747 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90746 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90746',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90746" 
         },
         "geometry": {
             "type": "Polygon",
@@ -20791,18 +20462,10 @@ var zip_90746 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90755 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90755',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90755" 
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -21150,18 +20813,10 @@ var zip_90755 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90803 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90803',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90803" 
         },
         "geometry": {
             "type": "Polygon",
@@ -21453,18 +21108,10 @@ var zip_90803 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90802 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90802',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90802" 
         },
         "geometry": {
             "type": "Polygon",
@@ -21708,18 +21355,10 @@ var zip_90802 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90805 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90805',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90805" 
         },
         "geometry": {
             "type": "Polygon",
@@ -22215,18 +21854,10 @@ var zip_90805 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90804 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90804',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90804" 
         },
         "geometry": {
             "type": "Polygon",
@@ -22496,18 +22127,10 @@ var zip_90804 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90807 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90807',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90807" 
         },
         "geometry": {
             "type": "Polygon",
@@ -22900,18 +22523,10 @@ var zip_90807 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90806 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90806',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90806" 
         },
         "geometry": {
             "type": "MultiPolygon",
@@ -23287,18 +22902,10 @@ var zip_90806 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90808 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90808',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90808" 
         },
         "geometry": {
             "type": "Polygon",
@@ -23725,18 +23332,10 @@ var zip_90808 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90813 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90813',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90813" 
         },
         "geometry": {
             "type": "Polygon",
@@ -24067,18 +23666,10 @@ var zip_90813 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90810 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90810',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90810" 
         },
         "geometry": {
             "type": "Polygon",
@@ -24400,18 +23991,10 @@ var zip_90810 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90815 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90815',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90815" 
         },
         "geometry": {
             "type": "Polygon",
@@ -24875,18 +24458,10 @@ var zip_90815 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90814 = {
-    "type": "FeatureCollection",
-    "features": [{
+    }, {
         "type": "Feature",
         "properties": {
-            'name': '90814',
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
+            "name": "90814" 
         },
         "geometry": {
             "type": "Polygon",
@@ -25071,4 +24646,3 @@ var zip_90814 = {
         }
     }]
 };
-
