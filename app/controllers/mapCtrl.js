@@ -112,6 +112,9 @@ angular.module('realValue')
                         attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
                     }
                 },
+                layers: {
+                    overlays: {}
+                },
                 geojson : {
                     data: [cities],
                     style: style,
@@ -147,22 +150,14 @@ angular.module('realValue')
                     lng: -117.73948073387146,
                     zoom: 10
                 },
-                markers: {
-                    osloMarker: {
-                        lat: 33.6362,
-                        lng: -117.7394,
-                        message: "I want to travel here!",
-                        focus: false,
-                        draggable: false
-                    }
-                },
                 geojson : {
                     data: [ tammy_geojson,
                             mike_geojson,
                             miles_geojson,
                             zip_91331,
                             jason_geojson,
-                            zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672],
+                            // zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672
+                            ],
                     style: style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
@@ -187,16 +182,10 @@ angular.module('realValue')
         };
 
         this.markers_zoom = function() {
-            console.log("extend zip");
+            console.log("extend marker");
+            /*
             angular.extend($scope, {
                 markers: {
-                    osloMarker: {
-                        lat: 33.6362,
-                        lng: -117.7394,
-                        message: "I want to travel here!",
-                        focus: false,
-                        draggable: false
-                    },
                     r1: restaurants["Restaurant1"],
                     r2: restaurants["Restaurant2"],
                     r3: restaurants["Restaurant3"],
@@ -209,6 +198,7 @@ angular.module('realValue')
                     r10: restaurants["Restaurant10"]
                 }
             });
+            */
         };
 
         function highlightFeature(e) {
@@ -242,8 +232,70 @@ angular.module('realValue')
         function zoomToFeature(e) {
             leafletData.getMap().then(function(map) {
                 //console.log(e);
+                //console.log("event",e.target.feature.properties.name);
+                var zipCodeClicked = e.target.feature.properties.name;
+                //debugger;
                 //console.log(map);
-                map.fitBounds(e.target.getBounds());
+
+                $http.get("./app/controllers/all_places.json?1").success(function(data, status) {
+                    //console.log("data",data);
+                    gjLayer = L.geoJson(tammy_geojson);
+                    //console.log("layer",gjLayer);
+                    var matched_data = {
+                        "type": "FeatureCollection",
+                        "features": []
+                    };
+
+                    var res_markers = {};
+
+                    for(var i = 0;i<data.features.length;i++) {
+                        //console.log(data.features[i].geometry.coordinates);
+                        var res = leafletPip.pointInLayer(
+                            [data.features[i].geometry.coordinates[0], data.features[i].geometry.coordinates[1]], gjLayer);
+                        if (res.length) {
+                            //console.log("name", res[0].feature.properties.name);
+                            if (zipCodeClicked === res[0].feature.properties.name) {
+                                //console.log("name", res[0].feature.properties.name);
+                                matched_data.features.push(data.features[i]);
+
+                                res_markers["id" + i] = {
+                                    "Place ID":dummy_place_id(),
+                                    "Place Type":"Restaurant",
+                                    "lat":data.features[i].geometry.coordinates[1],
+                                    "lng":data.features[i].geometry.coordinates[0]
+                                }
+                            }
+                        } else {
+                            console.log("false");
+                        }
+                    }
+                    //console.log("markers", res_markers);
+                    //console.log("matched",matched_data);
+                    //console.log("data",data);
+
+                    angular.extend($scope, {
+                        markers: res_markers
+                    });
+
+                    /*
+                    angular.extend($scope.layers.overlays, {
+                        cities: {
+                            name:'All Places (Awesome Markers)',
+                            type: 'geoJSONAwesomeMarker',
+                            data: data,
+                            visible: true,
+                            icon: {
+                                icon: 'heart',
+                                markerColor: 'green',
+                                prefix: 'fa'
+                            }
+                        }
+                    });
+                    */
+
+                    map.fitBounds(e.target.getBounds(),{padding: [150, 150]});
+                });
+
             });
             // Modified for Angular
             // map.fitBounds(e.target.getBounds());
@@ -348,6 +400,7 @@ angular.module('realValue')
                 }
 
                 if (map.getZoom() > 12) {
+                    mc.zipcode_zoom();
                     mc.markers_zoom();
                 }
 
