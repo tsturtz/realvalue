@@ -51,7 +51,7 @@ angular.module('realValue')
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
-        $scope.$on('leafletDirectiveMarker.click', function(ev, args) {
+        $scope.$on('leafletDirectiveMarker.click', function(e, args) {
 
             console.log("model",args);
 
@@ -64,7 +64,7 @@ angular.module('realValue')
                 clickOutsideToClose: true,
                 escapeToClose: true,
                 fullscreen: true,
-                targetEvent: null, // weird angular material bug - this should be 'ev' but for some reason it throws an error. setting targetEvent to null is a hack-fix. refer to https://github.com/angular/material/issues/5363
+                targetEvent: null, // weird angular material bug - this should be 'e' but for some reason it throws an error. setting targetEvent to null is a fix. refer to https://github.com/angular/material/issues/5363
                 onComplete: afterShowAnimation
             });
 
@@ -95,6 +95,7 @@ angular.module('realValue')
                     service.getDetails({
                         placeId: key // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
                     }, function(place){
+
                         console.log('%c :) real place ID call: ', 'background: green; color: white; display: block;', place);
                     });
                 } else {
