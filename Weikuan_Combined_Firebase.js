@@ -10,5 +10,5 @@ var fbRef=firebase.database();
 var Weikuan_Combined_Firebase;
 fbRef.ref("combine").on('value',function(snapshot){
    Weikuan_Combined_Firebase=snapshot.val();
+    console.log("Loaded");
 });
-
