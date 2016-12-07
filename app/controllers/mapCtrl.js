@@ -10,10 +10,10 @@ angular.module('realValue')
             function(response) {
                 Weikuan_Combined_Firebase = response;
                 console.log("weikuan", Weikuan_Combined_Firebase);
-                mc.city_zoom();
                 console.log(roughSizeOfObject(Weikuan_Combined_Firebase));
                 console.log(roughSizeOfObject(tammy_geojson));
                 console.log(roughSizeOfObject(mike_geojson));
+
             });
 
         console.log("init map");
