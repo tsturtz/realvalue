@@ -28,9 +28,6 @@ var zip_91331 = {
             "density": 11713,
             "population": 103689,
             "popupContent": "Name: 91331<BR>Z-Index: 283000<BR>City:Pacoima, CA<BR>Real-Value: "+total(numbers_91331),
-            "fillOpacity": 0,
-            "strokeColor": "#FF0000",
-            "strokeOpacity": 0.5
         },
         "geometry": {
             "type": "Polygon",
