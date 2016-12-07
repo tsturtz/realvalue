@@ -6,15 +6,48 @@ angular.module('realValue')
         self.name = "Map Obj";
 
         console.log("init map");
-/*
-        /!************************************************!/
-        // Trying to get data from checkboxService, from the other controller where the checkboxes are -T
-        self.checkboxService = checkboxService.list;
-        setTimeout(function() {
-            console.log('passed in object array after 10 seconds: ', checkboxService.checkboxObj.list);
-        }, 10000);
-        /!*************************************************!/
-*/
+
+        /*******************************************************************************
+         * Google Place Details
+         ******************************************************************************/
+
+        /**
+         * Google Places Firebase config
+         */
+
+        var config = {
+            apiKey: "AIzaSyD7lWychYO044cw2lPl6chSaBTt85kId5E",
+            authDomain: "datamap-3c35f.firebaseapp.com",
+            databaseURL: "https://datamap-3c35f.firebaseio.com",
+            storageBucket: "datamap-3c35f.appspot.com",
+            messagingSenderId: "582541890710"
+        };
+        firebase.initializeApp(config);
+        var fb = firebase.database();
+
+        /**
+         * Init google map so we can make place ID calls
+         * CURRENTLY BREAKS MAP
+         */
+
+        this.initMap = function (key) {
+
+            var service = new google.maps.places.PlacesService();
+
+            console.log(key);
+            if (key === undefined) {
+                key = 'ChIJl_N4tlno3IARWDJLc0k1zX0';
+            }
+            console.log(key);
+
+            service.getDetails({
+                placeId: key
+            }, function(place){
+                console.log('actual place details call with dummy place ID: ', place);
+            });
+
+        };
+
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
@@ -40,17 +73,25 @@ angular.module('realValue')
                 this.cancel = function () {
                     $mdDialog.cancel();
                 };
+                this.getPlaceDetails = function () {
+                    initMap('ChIJ-QhzqPnn3IARnTugjgz1gZU');
+                };
+                this.getPlaceDetails();
             }
-//old regular dialog box
-/*            $mdDialog.show(
-                $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('Restaurant Detail')
-                    .textContent("Address:"+dummy_restaurant_details["result"]["formatted_address"]+"Phone Number:"+dummy_restaurant_details["result"]["formatted_phone_number"])
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('Got it!')
-                    .targetEvent(e)
-            );*/
+
+            function initMap() {
+                //service = new google.maps.places.PlacesService();
+
+                service = new google.maps.places
+                    .PlacesService(document.getElementById('map'));
+
+                service.getDetails({
+                    placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                }, function(place){
+                    console.log(place);
+                });
+            }
+
         });
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
@@ -296,7 +337,7 @@ angular.module('realValue')
                 d > 35000   ? '#487E72' :
                 d > 25000   ? '#248A7D' :
                            '#009788';*/
-            return d > 8000000 ? '#009787' :
+            return d > 8000000 ? '#009787' : //green
                 d > 17  ? '#029D73' :
                 d > 16  ? '#04A35D' :
                 d > 15  ? '#07A946' :
@@ -313,7 +354,7 @@ angular.module('realValue')
                 d > 4   ? '#EC922E' :
                 d > 3   ? '#F27733' :
                 d > 2   ? '#F85B38' :
-                    '#FF403D';
+                    '#FF403D'; //red
         }
 
         function getCountyColor(d) {
@@ -325,7 +366,7 @@ angular.module('realValue')
                 d > 300000   ? '#B65852' :
                 d > 100000   ? '#DA4C47' :
                               '#FF403D';*/
-            return d > 8000000 ? '#009787' :
+            return d > 8000000 ? '#009787' : //green
                 d > 17  ? '#029D73' :
                 d > 16  ? '#04A35D' :
                 d > 15  ? '#07A946' :
@@ -342,7 +383,7 @@ angular.module('realValue')
                 d > 4   ? '#EC922E' :
                 d > 3   ? '#F27733' :
                 d > 2   ? '#F85B38' :
-                '#FF403D';
+                '#FF403D'; //red
         }
 
         leafletData.getMap().then(function (map) {

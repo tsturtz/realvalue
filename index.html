@@ -57,6 +57,9 @@
     <script src="app/controllers/navCtrl.js"></script>
     <script src="dummy.js"></script>
 
+    <!--Google Maps Call for Place Details-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places" async defer></script>
+
     <!--
     <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
@@ -86,6 +89,11 @@
 
     <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
                 md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
+
+        <div id="data-here">
+
+        </div>
+
         <h4>Select what's important to you</h4>
         <section id="check_boxes" layout="row" layout-align="start start">
             <div id="options" layout="column">
