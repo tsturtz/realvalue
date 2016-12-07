@@ -8,7 +8,15 @@ var config = {
 firebase.initializeApp(config);
 var fbRef=firebase.database();
 var Weikuan_Combined_Firebase;
-fbRef.ref("combine").on('value',function(snapshot){
-   Weikuan_Combined_Firebase=snapshot.val();
-    console.log("Loaded");
-});
+
+function weikuan_init() {
+
+    var deferred = Q.defer();
+
+    fbRef.ref("combine").once('value',function(snapshot){
+        deferred.resolve(snapshot.val());
+    });
+
+    return deferred.promise;
+}
+

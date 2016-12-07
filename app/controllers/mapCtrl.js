@@ -1,20 +1,61 @@
 angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog) {
-        //console.log("style", style);
         var mc = this;
 
         self.name = "Map Obj";
+
+        weikuan_init().then(
+            function(response) {
+                Weikuan_Combined_Firebase = response;
+                console.log("weikuan", Weikuan_Combined_Firebase);
+                console.log(roughSizeOfObject(Weikuan_Combined_Firebase));
+                mc.mergeData();
+            });
+
         console.log("init map");
-/*
-        /!************************************************!/
-        // Trying to get data from checkboxService, from the other controller where the checkboxes are -T
-        self.checkboxService = checkboxService.list;
-        setTimeout(function() {
-            console.log('passed in object array after 10 seconds: ', checkboxService.checkboxObj.list);
-        }, 10000);
-        /!*************************************************!/
-*/
+
+        this.mergeData = function() {
+            console.log("merging data");
+
+            var zip_city;
+            var lookup_zip;
+            var jobs_openings;
+            for(var i=0;i<tammy_geojson.features.length;i++){
+                //console.log(miles_geojson.features[i].properties.name);
+                lookup_zip = tammy_geojson.features[i].properties.name;
+                zip_city = find_city_based_on_zip_code_oc(lookup_zip);
+                //console.log(miles_geojson.features[i]);
+                console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
+                if(zip_city != '' ){
+                    jobs_openings = Weikuan_Combined_Firebase[zip_city]["Number of job openings"];
+                    console.log("job openings ", jobs_openings);
+                    tammy_geojson.features[i].properties.score = jobs_openings;
+                    console.log(Weikuan_Combined_Firebase[zip_city]);
+
+                    for (var props in Weikuan_Combined_Firebase[zip_city]) {
+                        console.log(props);
+                        tammy_geojson.features[i].properties[props] = Weikuan_Combined_Firebase[zip_city][props];
+                    }
+                }
+            }
+
+            var zip_city;
+            var lookup_zip;
+            var jobs_openings;
+            for(var i=0;i<miles_geojson.features.length;i++){
+                //console.log(miles_geojson.features[i].properties.name);
+                lookup_zip = miles_geojson.features[i].properties.name;
+                zip_city = find_city_based_on_zip_code(lookup_zip);
+                //console.log(miles_geojson.features[i]);
+                console.log("miles match zip: " + lookup_zip + " with " + zip_city);
+                if(zip_city != '' ){
+                    jobs_openings = Weikuan_Combined_Firebase[zip_city]["Number of job openings"];
+                    console.log("job openings ", jobs_openings);
+                    miles_geojson.features[i].properties.score = jobs_openings;
+                }
+            }
+        };
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
@@ -41,16 +82,6 @@ angular.module('realValue')
                     $mdDialog.cancel();
                 };
             }
-//old regular dialog box
-/*            $mdDialog.show(
-                $mdDialog.alert()
-                    .clickOutsideToClose(true)
-                    .title('Restaurant Detail')
-                    .textContent("Address:"+dummy_restaurant_details["result"]["formatted_address"]+"Phone Number:"+dummy_restaurant_details["result"]["formatted_phone_number"])
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('Got it!')
-                    .targetEvent(e)
-            );*/
         });
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
@@ -78,13 +109,13 @@ angular.module('realValue')
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
                         //console.log("layer",layer);
-                        layer.bindPopup(feature.properties.popupContent);
+                        //layer.bindPopup(feature.properties.popupContent);
 
                         leafletData.getMap().then(function(map) {
                             label = new L.Label();
                             label.setContent(feature.properties.name);
                             label.setLatLng(layer.getBounds().getCenter());
-                            map.showLabel(label);
+                            //map.showLabel(label);
                         });
 
 
@@ -100,6 +131,7 @@ angular.module('realValue')
 
         this.city_zoom = function() {
             console.log("extend zip");
+            console.log("cities",cities);
             angular.extend($scope, {
                 center: {
                     lat: 34.075406,
@@ -140,7 +172,33 @@ angular.module('realValue')
             });
         };
 
-        this.city_zoom();
+        mc.city_zoom();
+
+
+
+        function roughSizeOfObject( object ) {
+            var objectList = [];
+            var recurse = function( value ) {
+                var bytes = 0;
+
+                if ( typeof value === 'boolean' ) {
+                    bytes = 4;
+                } else if ( typeof value === 'string' ) {
+                    bytes = value.length * 2;
+                } else if ( typeof value === 'number' ) {
+                    bytes = 8;
+                } else if (typeof value === 'object'
+                    && objectList.indexOf( value ) === -1) {
+                    objectList[ objectList.length ] = value;
+                    for( i in value ) {
+                        bytes+= 8; // assumed existence overhead
+                        bytes+= recurse( value[i] )
+                    }
+                }
+                return bytes;
+            }
+            return recurse( object );
+        }
 
         this.zipcode_zoom = function() {
             console.log("extend zip");
@@ -228,6 +286,27 @@ angular.module('realValue')
                 dashArray: '3'
             });
         }
+        function find_city_based_on_zip_code_oc(zip) {
+            var zips = {
+                "Anaheim": {"zip_codes": ["92804", "92805", "92801", "92806", "92807", "92802", "92808", "92803", "92825", "92817", "92814", "92816", "92809", "92815", "92812", "92899", "92850"]},
+                "Brea": {"zip_codes": ["92821", "92823", "92822"]},
+                "Irvine": {"zip_codes": ["92620", "92618", "92612", "92602", "92614", "92604", "92606", "92603", "92617", "92623", "92650", "92616", "92619", "92697"]},
+                "Santa Ana": {"zip_codes": ["92704", "92707", "92703", "92701", "92706", "92711", "92735", "92702", "92712"]},
+                "Orange": {"zip_codes": ["92867", "92869", "92868", "92865", "92866", "92863", "92859", "92856", "92857", "92864", "92862"]},
+                "Tustin": {"zip_codes": ["92780", "92782", "92781"]}
+            };
+            var result=[];
+            for(var city in zips){
+                for(var i=0;i<zips[city]["zip_codes"].length;i++){
+                    if(zips[city]["zip_codes"][i]===zip){
+                        result.push(city+", CA");
+                    }
+                }
+
+            }
+            return result;
+        }
+
         function find_city_based_on_zip_code(zip) {
             var zips = {
                 "Acampo": {"zip_codes": ["95220", "95258"]},
@@ -694,11 +773,11 @@ angular.module('realValue')
                 "Yuba City": {"zip_codes": ["95991", "95993", "95992"]},
                 "Yucca Valley": {"zip_codes": ["92284", "92286"]}
             };
-            var result=[];
-            for(var city in zips){
-                for(var i=0;i<zips[city]["zip_codes"].length;i++){
-                    if(zips[city]["zip_codes"][i]===zip){
-                        result.push(city+", CA");
+            var result = [];
+            for (var city in zips) {
+                for (var i = 0; i < zips[city]["zip_codes"].length; i++) {
+                    if (zips[city]["zip_codes"][i] === zip) {
+                        result.push(city + ", CA");
                     }
                 }
 
@@ -706,8 +785,7 @@ angular.module('realValue')
             return result;
         }
 
-
-        function zoomToFeature(e) {
+            function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
             console.log(area_click_on);
             if(area_click_on==="Los Angeles County"){
