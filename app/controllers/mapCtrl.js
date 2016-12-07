@@ -31,6 +31,12 @@ angular.module('realValue')
                     jobs_openings = Weikuan_Combined_Firebase[zip_city]["Number of job openings"];
                     console.log("job openings ", jobs_openings);
                     tammy_geojson.features[i].properties.score = jobs_openings;
+                    console.log(Weikuan_Combined_Firebase[zip_city]);
+
+                    for (var props in Weikuan_Combined_Firebase[zip_city]) {
+                        console.log(props);
+                        tammy_geojson.features[i].properties[props] = Weikuan_Combined_Firebase[zip_city][props];
+                    }
                 }
             }
 
