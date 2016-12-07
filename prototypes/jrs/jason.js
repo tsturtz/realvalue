@@ -1,4 +1,4 @@
-var jason_geojson = {
+{
     "type": "FeatureCollection",
     "features": [{
         "type": "Feature",
@@ -24645,5 +24645,4 @@ var jason_geojson = {
             ]
         }
     }]
-};
-
+}
