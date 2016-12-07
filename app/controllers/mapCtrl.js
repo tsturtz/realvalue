@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService,$mdDialog) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog) {
         //console.log("style", style);
         var mc = this;
         self.name = "Map Obj";
@@ -25,6 +25,7 @@ angular.module('realValue')
             // places dialog
             $mdDialog.show({
                 controller: detailsCtrl,
+                controllerAs: 'dc',
                 templateUrl: './app/dialogs/details.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true,
@@ -33,14 +34,10 @@ angular.module('realValue')
                 targetEvent: e
             });
 
-            // TODO MAKE X AND 'CLOSE' OR 'CONTINUE' BUTTONS CLOSE THE DIALOG
-
             // dialog controller
 
             function detailsCtrl($mdDialog) {
-                var detailsSelf = this;
-
-                detailsSelf.cancel = function () {
+                this.cancel = function () {
                     $mdDialog.cancel();
                 };
             }
