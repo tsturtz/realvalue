@@ -121,6 +121,7 @@ angular.module('realValue')
                 lookup_zip = losangeles_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code(lookup_zip);
                 //console.log(zip_city.length);
+                console.log("la match zip: " + lookup_zip + " with " + zip_city);
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
@@ -357,11 +358,12 @@ angular.module('realValue')
                     style: style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
-                        console.log("features", feature.properties);
+                        //console.log("features", feature.properties);
                         if(feature.properties.hasOwnProperty("score")){
-                            console.log("Score exist!");
+                            //console.log("Score exist!");
                             layer.bindPopup(feature.properties.name + '<BR>Jobs: ' + feature.properties.jobs +
-                                '<BR>Crimes: ' + feature.properties.crimes);
+                                '<BR>Crimes: ' + feature.properties.crimes +
+                                '<BR>Score: ' + feature.properties.score);
                         }
 
 
@@ -559,7 +561,7 @@ angular.module('realValue')
                     });
                     */
 
-                    map.fitBounds(e.target.getBounds(),{padding: [150, 150]});
+                    map.fitBounds(e.target.getBounds(),{padding: [200, 200]});
                 });
 
             });
@@ -600,23 +602,24 @@ angular.module('realValue')
                            '#009788';*/
 
             return d > 8000000 ? '#009787' : //green
-                d > 1700  ? '#029D73' :
-                d > 1600  ? '#04A35D' :
-                d > 1500  ? '#07A946' :
-                d > 1400   ? '#09AF2E' :
-                d > 1300   ? '#0CB515' :
-                d > 1200   ? '#24BB0F' :
-                d > 1100   ? '#45C113' :
-                d > 1000   ? '#67C716' :
-                d > 900   ? '#8ACE1A' :
-                d > 800   ? '#AFD41D' :
-                d > 700   ? '#D4DA21' :
-                d > 600   ? '#E0C725' :
-                d > 500   ? '#E6AC2A' :
-                d > 400   ? '#EC922E' :
-                d > 300   ? '#F27733' :
-                d > 200   ? '#F85B38' :
-                    '#FF403D'; //red
+                d > 100000  ? '#029D73' :
+                d > 90000  ? '#04A35D' :
+                d > 80500  ? '#07A946' :
+                d > 70400   ? '#09AF2E' :
+                d > 60300   ? '#0CB515' :
+                d > 50200   ? '#24BB0F' :
+                d > 40000   ? '#45C113' :
+                d > 30800   ? '#67C716' :
+                d > 20600   ? '#8ACE1A' :
+                d > 10400   ? '#AFD41D' :
+                d > 9200   ? '#D4DA21' :
+                d > 5000   ? '#E0C725' :
+                d > 2000   ? '#E6AC2A' :
+                d > 1000   ? '#EC922E' :
+                d > 500   ? '#F27733' :
+                d > 100   ? '#F85B38' :
+                d > 1    ? '#FF403D' :
+                '#000'; //red
         }
 
         function getCountyColor(d) {
