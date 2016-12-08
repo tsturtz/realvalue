@@ -75,7 +75,7 @@ angular.module('realValue')
                             if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
                                 && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
-                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Homicide_sum"];
                                 console.log("crime totals ", crimes);
                                 tammy_geojson.features[i].properties.crimes = crimes;
                             } else {
@@ -85,7 +85,7 @@ angular.module('realValue')
                             //console.log("job openings ", jobs_openings);
 
                             tammy_geojson.features[i].properties.jobs = jobs_openings;
-                            tammy_geojson.features[i].properties.score = jobs_openings + crimes;
+                            tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
                         }
                     }
 
@@ -95,7 +95,7 @@ angular.module('realValue')
 
                         if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
                             && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
-                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Homicide_sum"];
                             //console.log("crime totals ", crimes);
                             tammy_geojson.features[i].properties.crimes = crimes;
                         } else {
@@ -105,7 +105,7 @@ angular.module('realValue')
                         jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
                         tammy_geojson.features[i].properties.jobs = jobs_openings;
-                        tammy_geojson.features[i].properties.score = jobs_openings + crimes;
+                        tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
 
                     }
 
@@ -121,7 +121,7 @@ angular.module('realValue')
                 lookup_zip = losangeles_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code(lookup_zip);
                 //console.log(zip_city.length);
-                console.log("la match zip: " + lookup_zip + " with " + zip_city);
+                //console.log("la match zip: " + lookup_zip + " with " + zip_city);
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
@@ -131,7 +131,7 @@ angular.module('realValue')
                             if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
                                 && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
                                 && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
-                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Homicide_sum"];
                                 console.log("crime totals ", crimes);
                                 losangeles_geojson.features[i].properties.crimes = crimes;
                             } else {
@@ -141,7 +141,7 @@ angular.module('realValue')
                             //console.log("job openings ", jobs_openings);
 
                             losangeles_geojson.features[i].properties.jobs = jobs_openings;
-                            losangeles_geojson.features[i].properties.score = jobs_openings + crimes;
+                            losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);;
                         }
                     }
 
@@ -151,7 +151,7 @@ angular.module('realValue')
                     if(zip_city[0] != undefined ){
                         if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
                             && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
-                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Homicide_sum"];
                             //console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
                         } else {
@@ -161,7 +161,7 @@ angular.module('realValue')
                         jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
-                        losangeles_geojson.features[i].properties.score = jobs_openings + crimes;
+                        losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);;
 
                     }
                 }

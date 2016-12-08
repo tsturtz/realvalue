@@ -2,6 +2,9 @@ angular.module('realValue')
 
     .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService){
         var self = this;
+        var score;
+        var crimes;
+        var jobs;
 
         self.types = ['jobs', 'airport', 'bar', 'cafe', 'crime', 'gas', 'gym', 'hospital', 'housing', 'library', 'museum', 'park', 'police', 'restaurant', 'school', 'traffic', 'university', 'walkScore', 'zoo'];
 
@@ -13,36 +16,80 @@ angular.module('realValue')
                 console.log(self.types.indexOf(data.type));
                 self.types.splice(self.itemPosition,1);
                 console.log(self.types);
+                this.applyUpdate("-");
             } else if (data.checked === true) {
                 console.log(self.types);
                 self.types.push(data.type);
                 console.log(self.types);
+                this.deApplyUpdate("+");
             }
             self.totalChecked = self.types.length;
             console.log(self.totalChecked);
             county_los_angeles.features[0].properties.score = self.totalChecked;
             county_orange.features[0].properties.score = self.totalChecked;
+        };
 
-            //losangeles_geojson.features[0].properties.score = self.totalChecked;
-            //tammy_geojson.features[0].properties.score = self.totalChecked;
-            if(self.types.indexOf("crime") === -1) {
+        self.applyUpdate = function(operator) {
+
+            if(self.evalCheck("crime")) {
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     if(self.hasProperty(tammy_geojson.features[i].properties,"crimes")) {
                         //console.log(tammy_geojson.features[i] + "has property");
                         console.log("crimes check");
-                        tammy_geojson.features[i].properties.score = tammy_geojson.features[i].properties.score - tammy_geojson.features[i].properties.crimes;
+                        crimes = tammy_geojson.features[i].properties.crimes;
+                        score = tammy_geojson.features[i].properties.score;
+                        tammy_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(jobs)*5000,operator);
                     }
                 }
             }
 
-            if(self.types.indexOf("jobs") === -1) {
+            if(self.evalCheck("crime")) {
+                for(var i = 0; i<tammy_geojson.features.length;i++) {
+                    if(self.hasProperty(losangeles_geojson.features[i].properties,"crimes")) {
+                        //console.log(losangeles_geojson.features[i] + "has property");
+                        console.log("crimes check");
+                        crimes = losangeles_geojson.features[i].properties.crimes;
+                        score = losangeles_geojson.features[i].properties.score;
+                        losangeles_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(crimes)*5000,operator);
+                    }
+                }
+            }
+
+            if(self.evalCheck("jobs")) {
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     if(self.hasProperty(tammy_geojson.features[i].properties,"jobs")) {
                         //console.log(tammy_geojson.features[i] + "has property");
                         console.log("jobs check");
-                        tammy_geojson.features[i].properties.score = tammy_geojson.features[i].properties.score - tammy_geojson.features[i].properties.jobs;
+                        score = tammy_geojson.features[i].properties.score;
+                        jobs = tammy_geojson.features[i].properties.jobs;
+                        tammy_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(jobs),operator);
                     }
                 }
+            }
+
+            if(self.evalCheck("jobs")) {
+                for(var i = 0; i<losangeles_geojson.features.length;i++) {
+                    if(self.hasProperty(losangeles_geojson.features[i].properties,"jobs")) {
+                        //console.log(losangeles_geojson.features[i] + "has property");
+                        console.log("jobs check");
+                        score = losangeles_geojson.features[i].properties.score;
+                        jobs = losangeles_geojson.features[i].properties.jobs;
+                        losangeles_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(jobs),operator);
+                    }
+                }
+            }
+        };
+
+        self.evalCheck = function(attr) {
+            return (self.types.indexOf(attr) === -1);
+        }
+
+        self.doMath = function(param1, param2, operator) {
+            switch(operator) {
+                case "+":
+                    return param1 + param2;
+                case "-":
+                    return param1 - param2;
             }
         };
 
