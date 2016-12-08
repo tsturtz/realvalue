@@ -26,7 +26,7 @@ angular.module('realValue')
             });
 
             return deferred.promise;
-        }
+        };
 
         this.weikuan_init().then(
             function(response) {
@@ -38,6 +38,19 @@ angular.module('realValue')
             });
 
         console.log("init map");
+
+        /**
+         * Google Places Firebase config
+         */
+
+/*        placesFirebaseService.getFirebasePlacesData()
+            .then(
+                function (snapshot) {
+                    console.log('after successful data call: ', snapshot);
+                },
+                function (snapshot) {
+                    console.warn('fail: ', snapshot);
+                });*/
 
         this.mergeData = function() {
             console.log("merging data");
@@ -58,7 +71,7 @@ angular.module('realValue')
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if(zip_city[j] != '' ){
                             jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
-                            crimes = Weikuan_Combined_Firebase[zip_city[j]]["crime"]["2014"]["LTtotal_sum"];
+//                            crimes = Weikuan_Combined_Firebase[zip_city[j]]["crime"]["2014"]["LTtotal_sum"];
                             console.log("job openings ", jobs_openings);
                             tammy_geojson.features[i].properties.score = jobs_openings;
                         }
@@ -139,17 +152,46 @@ angular.module('realValue')
                 clickOutsideToClose: true,
                 escapeToClose: true,
                 fullscreen: true,
-                targetEvent: e
+                targetEvent: null, // weird angular material bug - this should be 'e' but for some reason it throws an error. setting targetEvent to null is a fix. refer to https://github.com/angular/material/issues/5363
+                onComplete: afterShowAnimation
             });
 
-            // dialog controller
+            // focus after dialog
+            function afterShowAnimation(scope, element, options) {
+                console.log('after focus')
+            }
 
+            // dialog controller
             function detailsCtrl($mdDialog) {
                 this.cancel = function () {
-                    $mdDialog.cancel();
+                    $mdDialog.hide();
                 };
+                this.getPlaceDetails = function () {
+                    callPlace(args.model['Place ID']); // passed in place ID from event args
+                };
+                this.getPlaceDetails();
+            }
+
+            // google places API call
+            function callPlace(key) {
+
+                var service = new google.maps.places.PlacesService($('#data-here').get(0));
+
+                console.log('passed in key: ', key);
+
+                if (key) {
+                    service.getDetails({
+                        placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                    }, function(place){
+
+                        console.log('%c :) real place ID call: ', 'background: green; color: white; display: block;', place);
+                    });
+                } else {
+                    console.warn('you didn\'t pass in a place id');
+                }
             }
         });
+
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
             map.invalidateSize(false);
@@ -263,7 +305,7 @@ angular.module('realValue')
                     }
                 }
                 return bytes;
-            }
+            };
             return recurse( object );
         }
 
@@ -518,7 +560,8 @@ angular.module('realValue')
                 d > 35000   ? '#487E72' :
                 d > 25000   ? '#248A7D' :
                            '#009788';*/
-            return d > 8000000 ? '#009787' :
+
+            return d > 8000000 ? '#009787' : //green
                 d > 1700  ? '#029D73' :
                 d > 1600  ? '#04A35D' :
                 d > 1500  ? '#07A946' :
@@ -535,7 +578,7 @@ angular.module('realValue')
                 d > 400   ? '#EC922E' :
                 d > 300   ? '#F27733' :
                 d > 200   ? '#F85B38' :
-                    '#FF403D';
+                    '#FF403D'; //red
         }
 
         function getCountyColor(d) {
@@ -547,7 +590,7 @@ angular.module('realValue')
                 d > 300000   ? '#B65852' :
                 d > 100000   ? '#DA4C47' :
                               '#FF403D';*/
-            return d > 8000000 ? '#009787' :
+            return d > 8000000 ? '#009787' : //green
                 d > 17  ? '#029D73' :
                 d > 16  ? '#04A35D' :
                 d > 15  ? '#07A946' :
@@ -564,7 +607,7 @@ angular.module('realValue')
                 d > 4   ? '#EC922E' :
                 d > 3   ? '#F27733' :
                 d > 2   ? '#F85B38' :
-                '#FF403D';
+                '#FF403D'; //red
         }
 
         leafletData.getMap().then(function (map) {

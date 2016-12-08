@@ -12,7 +12,7 @@ var placeType = 'restaurant'; // Change this var depending on the type of place 
  * @type {{apiKey: string, authDomain: string, databaseURL: string, storageBucket: string, messagingSenderId: string}}
  */
 
-var config = {
+/*var config = {
     apiKey: "AIzaSyD7lWychYO044cw2lPl6chSaBTt85kId5E",
     authDomain: "datamap-3c35f.firebaseapp.com",
     databaseURL: "https://datamap-3c35f.firebaseio.com",
@@ -20,31 +20,76 @@ var config = {
     messagingSenderId: "582541890710"
 };
 firebase.initializeApp(config);
-var fb = firebase.database();
+var fb = firebase.database();*/
+
+var config = {
+    apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
+    authDomain: "realvalue-ebd58.firebaseapp.com",
+    databaseURL: "https://realvalue-ebd58.firebaseio.com",
+    storageBucket: "realvalue-ebd58.appspot.com",
+    messagingSenderId: "73443138678"
+};
+firebase.initializeApp(config);
+var fb=firebase.database();
 
 /**
- * Init google map
+ * Init google map so we can make place ID calls
  */
 
-function initMap() {
-    var lfz = new google.maps.LatLng(33.633998,-117.733383);
+/*function initMap(key) {
+    //service = new google.maps.places.PlacesService();
 
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: lfz,
-        zoom: 15,
-        styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
+    var service = new google.maps.places.PlacesService(document.getElementById('map'));
+
+    console.log(key);
+    if (key === undefined) {
+        key = 'ChIJl_N4tlno3IARWDJLc0k1zX0';
+    }
+    console.log(key);
+
+    service.getDetails({
+        placeId: key
+    }, function(place){
+        console.log(place);
     });
 
-    var request = {
-        location: lfz,
-        radius: '3000',
-        type: [placeType]
-    };
+}*/
 
-    infowindow = new google.maps.InfoWindow();
+/*//test
+setTimeout(function() {
+    initMap('ChIJ-QhzqPnn3IARnTugjgz1gZU');
+},4000);*/
+
+// learningfuze lat/lon: 33.636173, -117.739471
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 33.636173, lng: -117.739471},
+        zoom: 15,
+        styles: [{
+            stylers: [{ visibility: 'simplified' }]
+        }, {
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+        }]
+    });
+
+    infoWindow = new google.maps.InfoWindow();
     service = new google.maps.places.PlacesService(map);
+
+    // The idle event is a debounced event, so we can query & listen without
+    // throwing too many requests at the server.
+    map.addListener('idle', performSearch);
+}
+
+function performSearch() {
+    var request = {
+        bounds: map.getBounds(),
+        keyword: 'best view'
+    };
     service.radarSearch(request, callback);
 }
+
 
 function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -57,9 +102,9 @@ function callback(results, status) {
 
             console.log(placeType, results[i].place_id, placeLoc);
 
-            (function(places) {
+/*            (function(places) {
                 fb.ref(placeType + '/' + results[i].place_id).set(placeLoc);
-            })(results[i]);
+            })(results[i]);*/
 
             var place = results[i];
             createMarker(place, placeLoc);
@@ -88,7 +133,7 @@ function createMarker(place, location) {
 ////////// NON-FUNCTIONING DETAILS SEARCH BASED ON DB ENTRIES //////////
 
 
-fb.ref(placeType).on('value', function(snapshot) {
+/*fb.ref(placeType).on('value', function(snapshot) {
     for (var x in snapshot.val()) {
         //console.log('each key in DB ', x);
         (function() {
@@ -102,9 +147,9 @@ fb.ref(placeType).on('value', function(snapshot) {
 
         })();
     }
-});
+});*/
 
-function initMap2(key) {
+/*function initMap2(key) {
     service.getDetails({
         placeId: key
     }, function (place) {
@@ -112,7 +157,7 @@ function initMap2(key) {
             place
         );
     });
-}
+}*/
 
 
 

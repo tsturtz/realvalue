@@ -56,11 +56,13 @@
     <script src="app/controllers/county.js"></script>
     <script src="prototypes/cities.js"></script>
     <script src="prototypes/zip_lookup.js"></script>
-    <script src="Weikuan_Combined_Firebase.js"></script>
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/map2Ctrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
     <script src="dummy.js"></script>
+
+    <!--Google Maps Call for Place Details-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places" async defer></script>
 
     <!--
     <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
@@ -90,6 +92,8 @@
 
     <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
                 md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
+        <div id="data-here">
+        </div>
         <section ng-if="mc.information!==undefined">
             <div>
                 <ul>
