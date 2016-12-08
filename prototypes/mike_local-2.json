@@ -1,13 +1,13 @@
-var zip_91316 = {
-    type: "FeatureCollection",
-    features: [{
-        type: "Feature",
-        properties: {
-            name:"91316"
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "name":"91316"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.527292, 34.183884],
                     [-118.527292, 34.184354],
@@ -471,16 +471,16 @@ var zip_91316 = {
             ]
         }
     }, {
-        name:"91321",
-        type: "Feature",
-        properties: {
+        "name":"91321",
+        "type": "Feature",
+        "properties": {
             
             
             
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.484005, 34.396208],
                     [-118.484322, 34.397227],
@@ -2660,13 +2660,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91325"
+        "type": "Feature",
+        "properties": {
+            "name":"91325"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.531719, 34.244565],
@@ -2922,13 +2922,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91324"
+        "type": "Feature",
+        "properties": {
+            "name":"91324"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.544838, 34.257264],
                     [-118.541302, 34.257265],
@@ -3178,13 +3178,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91326"
+        "type": "Feature",
+        "properties": {
+            "name":"91326"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.591967, 34.286854],
                     [-118.591636, 34.287704],
@@ -3544,13 +3544,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91331"
+        "type": "Feature",
+        "properties": {
+            "name":"91331"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.397495, 34.273477],
                     [-118.397704, 34.273323],
@@ -3854,13 +3854,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91330"
+        "type": "Feature",
+        "properties": {
+            "name":"91330"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.524791, 34.240743],
                     [-118.52682, 34.240826],
@@ -3905,13 +3905,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91335"
+        "type": "Feature",
+        "properties": {
+            "name":"91335"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.55792, 34.219146],
                     [-118.557921, 34.219529],
@@ -4060,13 +4060,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91340"
+        "type": "Feature",
+        "properties": {
+            "name":"91340"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.445183, 34.294139],
                     [-118.445004, 34.293994],
@@ -4325,13 +4325,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91343"
+        "type": "Feature",
+        "properties": {
+            "name":"91343"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.459766, 34.224705],
                     [-118.459784, 34.224605],
@@ -4578,13 +4578,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91342"
+        "type": "Feature",
+        "properties": {
+            "name":"91342"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.408143, 34.286821],
                     [-118.408542, 34.28653],
@@ -6808,13 +6808,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91345"
+        "type": "Feature",
+        "properties": {
+            "name":"91345"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.442819, 34.263735],
                     [-118.442951, 34.263519],
@@ -6995,13 +6995,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91345"
+        "type": "Feature",
+        "properties": {
+            "name":"91345"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.472905, 34.257328],
                     [-118.47329, 34.257331],
@@ -7901,13 +7901,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91350"
+        "type": "Feature",
+        "properties": {
+            "name":"91350"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.534758, 34.456845],
                     [-118.534705, 34.457004],
@@ -9385,13 +9385,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91352"
+        "type": "Feature",
+        "properties": {
+            "name":"91352"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.384552, 34.224878],
                     [-118.385396, 34.224261],
@@ -9870,13 +9870,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91351"
+        "type": "Feature",
+        "properties": {
+            "name":"91351"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.50626, 34.420963],
@@ -10683,13 +10683,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91354"
+        "type": "Feature",
+        "properties": {
+            "name":"91354"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.541575, 34.481471],
                     [-118.541566, 34.481314],
@@ -11427,13 +11427,13 @@ var zip_91316 = {
             ]
         }
     }, {
-        type: "Feature",
-        properties: {
-            name:"91356"
+        "type": "Feature",
+        "properties": {
+            "name":"91356"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.527286, 34.18023],
                     [-118.527282, 34.177838],
@@ -11899,23 +11899,14 @@ var zip_91316 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_91355 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91355",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91355"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.584094, 34.42268],
                     [-118.584209, 34.422583],
@@ -13119,22 +13110,17 @@ var zip_91355 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91361 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91361",
-        type: "Feature",
-        properties: {
+    }, {
+        "name":"91361",
+        "type": "Feature",
+        "properties": {
 
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.970568, 34.140036],
                     [-118.970393, 34.140064],
@@ -14718,22 +14704,14 @@ var zip_91361 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91364 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91364",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91364"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.610505, 34.144375],
                     [-118.610506, 34.14481],
@@ -15142,22 +15120,14 @@ var zip_91364 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91367 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91367",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91367"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.640143, 34.159629],
                     [-118.640247, 34.15975],
@@ -15489,22 +15459,14 @@ var zip_91367 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91381 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91381",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91381"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.692422, 34.406126],
                     [-118.690562, 34.406329],
@@ -17102,22 +17064,14 @@ var zip_91381 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91384 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91384",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91384"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.719361, 34.459872],
                     [-118.719396, 34.459941],
@@ -19661,22 +19615,14 @@ var zip_91384 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91387 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91387",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91387"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.394856, 34.457146],
                     [-118.392426, 34.459479],
@@ -21917,22 +21863,14 @@ var zip_91387 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91390 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91390",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91390"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.360027, 34.466675],
                     [-118.360024, 34.467173],
@@ -26395,23 +26333,14 @@ var zip_91390 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_91402 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91402",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91402"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.459766, 34.224705],
                     [-118.459758, 34.224814],
@@ -26627,22 +26556,14 @@ var zip_91402 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91401 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91401",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91402"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.438893, 34.190303],
                     [-118.437802, 34.190304],
@@ -26788,22 +26709,14 @@ var zip_91401 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91403 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91403",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91403"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.473892, 34.143652],
                     [-118.473835, 34.143834],
@@ -27447,23 +27360,14 @@ var zip_91403 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_91406 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91406",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91406"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.517405, 34.208402],
                     [-118.515355, 34.208405],
@@ -27778,22 +27682,14 @@ var zip_91406 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91405 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91405",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91405"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.425794, 34.190308],
                     [-118.426757, 34.190308],
@@ -27931,22 +27827,14 @@ var zip_91405 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91411 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91411",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91411"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.474024, 34.186645],
                     [-118.474048, 34.186863],
@@ -28125,22 +28013,14 @@ var zip_91411 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91423 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91423",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91423"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.449347, 34.148183],
                     [-118.449133, 34.149078],
@@ -28761,22 +28641,14 @@ var zip_91423 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91436 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91436",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91436"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.504977, 34.147476],
                     [-118.504225, 34.14763],
@@ -29544,22 +29416,14 @@ var zip_91436 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91501 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91501",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91501"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.309241, 34.185379],
                     [-118.309491, 34.185572],
@@ -29854,22 +29718,14 @@ var zip_91501 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91502 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91502",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91502"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.309241, 34.185379],
                     [-118.309007, 34.185204],
@@ -30057,21 +29913,14 @@ var zip_91502 = {
                 ]
             ]
         }
-    }]
-};
-var zip_91505 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91505",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91505"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.348687, 34.206646],
@@ -30416,22 +30265,14 @@ var zip_91505 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91504 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91504",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91504"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.348583, 34.208461],
                     [-118.348564, 34.209357],
@@ -30808,22 +30649,14 @@ var zip_91504 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91506 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91506",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91506"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.32061, 34.182046],
                     [-118.320316, 34.181418],
@@ -31065,22 +30898,14 @@ var zip_91506 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91602 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91602",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91602"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.370229, 34.15765],
                     [-118.369083, 34.157649],
@@ -31262,22 +31087,14 @@ var zip_91602 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91601 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91601",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91601"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.380733, 34.160108],
                     [-118.380664, 34.159789],
@@ -31495,22 +31312,14 @@ var zip_91601 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91604 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91604",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91604"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.420333, 34.146018],
                     [-118.421252, 34.14617],
@@ -32347,22 +32156,14 @@ var zip_91604 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91606 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91606",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91606"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.403066, 34.19394],
                     [-118.402564, 34.19394],
@@ -32551,22 +32352,14 @@ var zip_91606 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91605 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91605",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91605"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.417303, 34.221111],
                     [-118.417303, 34.22166],
@@ -32797,22 +32590,14 @@ var zip_91605 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91607 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91607",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91607"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.388222, 34.177595],
@@ -33016,22 +32801,14 @@ var zip_91607 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91706 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91706",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91706"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.938189, 34.114893],
                     [-117.938188, 34.114404],
@@ -33845,22 +33622,14 @@ var zip_91706 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91702 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91702",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91702"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.880995, 34.165006],
                     [-117.880861, 34.165006],
@@ -37586,22 +37355,14 @@ var zip_91702 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91711 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91711",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91711"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-117.741341, 34.108536],
@@ -38200,22 +37961,14 @@ var zip_91711 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91722 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91722",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91722"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.88145, 34.112272],
                     [-117.881451, 34.111678],
@@ -38794,22 +38547,14 @@ var zip_91722 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91724 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91724",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91724"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.872646, 34.099435],
                     [-117.872648, 34.099583],
@@ -39762,22 +39507,14 @@ var zip_91724 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91723 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91723",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91723"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.900648, 34.07544],
                     [-117.901665, 34.075448],
@@ -39998,22 +39735,14 @@ var zip_91723 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91732 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91732",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91732"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.02057, 34.093423],
                     [-118.020471, 34.093758],
@@ -40438,22 +40167,14 @@ var zip_91732 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91731 = {
-    type: "FeatureCollection",
-        features: [{
-        name:"91731",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91731"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.056761, 34.085103],
@@ -41046,22 +40767,14 @@ var zip_91731 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91733 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91733",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91733"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.082955, 34.020587],
                     [-118.082757, 34.020807],
@@ -41389,22 +41102,14 @@ var zip_91733 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91740 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91740",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91740"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.840563, 34.128878],
                     [-117.84046, 34.128879],
@@ -41805,22 +41510,14 @@ var zip_91740 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91741 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91741",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91741"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.88999, 34.136927],
                     [-117.889975, 34.137516],
@@ -42307,22 +42004,14 @@ var zip_91741 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91745 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91745",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91745"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.985218, 34.02429],
                     [-117.984942, 34.024182],
@@ -42681,22 +42370,14 @@ var zip_91745 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91744 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91744",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91744"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.898402, 34.004611],
                     [-117.901827, 34.005169],
@@ -43394,22 +43075,14 @@ var zip_91744 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91746 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91746",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91746"
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.025869, 34.029792],
@@ -43942,22 +43615,14 @@ var zip_91746 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91748 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91746",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91746"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.909265, 33.94606],
                     [-117.909501, 33.94606],
@@ -44481,22 +44146,14 @@ var zip_91748 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91750 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91750",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91750"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.776676, 34.140098],
                     [-117.776626, 34.140924],
@@ -45937,22 +45594,14 @@ var zip_91750 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91755 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91755",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91755"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.129658, 34.038555],
                     [-118.129531, 34.038701],
@@ -46366,22 +46015,14 @@ var zip_91755 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91754 = {
-    type: "FeatureCollection",
-    features: [{
-        name: "91754",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name": "91754"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.161309, 34.06229],
                     [-118.160854, 34.06229],
@@ -46829,22 +46470,14 @@ var zip_91754 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91759 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91759",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91759"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.702646, 34.165059],
                     [-117.709912, 34.16516],
@@ -47610,22 +47243,14 @@ var zip_91759 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91765 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91765",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91765"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.823368, 34.010831],
                     [-117.823421, 34.011076],
@@ -48218,22 +47843,14 @@ var zip_91765 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91767 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91767",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91767"
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.750351, 34.063496],
                     [-117.750374, 34.064163],
@@ -48721,22 +48338,16 @@ var zip_91767 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91766 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91766",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91766"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.767655, 34.05838],
                     [-117.766874, 34.058392],
@@ -49236,22 +48847,16 @@ var zip_91766 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91768 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91768",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91768"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.767655, 34.05838],
                     [-117.767882, 34.058376],
@@ -49933,22 +49538,16 @@ var zip_91768 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91770 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91770",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91770"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.107291, 34.066222],
                     [-118.107323, 34.06631],
@@ -50697,22 +50296,16 @@ var zip_91770 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91733 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91773",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91773"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.841644, 34.095794],
                     [-117.841904, 34.095797],
@@ -51852,22 +51445,16 @@ var zip_91733 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91776 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91776",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91776"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.097048, 34.103106],
                     [-118.096408, 34.103177],
@@ -52301,22 +51888,16 @@ var zip_91776 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91755 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91775",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91775"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.077214, 34.103573],
                     [-118.077214, 34.103491],
@@ -52798,22 +52379,16 @@ var zip_91755 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91780 = {
-    type: "FeatureCollection",
-    features: [{
-        name:'91780',
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91780"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.073616, 34.103504],
                     [-118.074162, 34.103446],
@@ -53262,22 +52837,16 @@ var zip_91780 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91790 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91790",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91790"
 
 
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-117.944888, 34.090189],
@@ -53955,22 +53524,16 @@ var zip_91790 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91789 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91789",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91789"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.883596, 34.014875],
                     [-117.883719, 34.01529],
@@ -55122,22 +54685,16 @@ var zip_91789 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91792 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91792",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91792"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.889301, 34.008438],
                     [-117.888496, 34.008397],
@@ -55721,22 +55278,16 @@ var zip_91792 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91791 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91791",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91791"
 
 
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-117.921263, 34.086562],
@@ -56348,22 +55899,16 @@ var zip_91791 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91081 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91081",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91081"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.126799, 34.078834],
                     [-118.126893, 34.078836],
@@ -56814,22 +56359,16 @@ var zip_91081 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91803 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91803",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91803"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.126799, 34.078834],
                     [-118.126705, 34.078832],
@@ -57226,22 +56765,16 @@ var zip_91803 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_91008 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"91008",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"91008"
 
 
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-117.956394, 34.154506],
@@ -57516,22 +57049,16 @@ var zip_91008 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_92397 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"92397",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"92397"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-117.605354, 34.382987],
                     [-117.60501, 34.382978],
@@ -58399,22 +57926,16 @@ var zip_92397 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90002 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90002",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90002"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.23737, 33.958521],
                     [-118.237377, 33.958902],
@@ -58643,22 +58164,16 @@ var zip_90002 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90001 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90001",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90001"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.237949, 33.96015],
                     [-118.238527, 33.960146],
@@ -58891,22 +58406,16 @@ var zip_90001 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90004 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90004",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90004"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.311601, 34.068958],
                     [-118.312331, 34.068957],
@@ -59123,22 +58632,16 @@ var zip_90004 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90003 = {
-    type: "FeatureCollection",
-    features: [{
-        name: "90004",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name": "90004"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.282698, 33.964166],
                     [-118.282698, 33.96431],
@@ -59352,22 +58855,16 @@ var zip_90003 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90006 = {
-    type: "FeatureCollection",
-        features: [{
-        name:"90006",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90006"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.303345, 34.039958],
                     [-118.304298, 34.039955],
@@ -59485,22 +58982,14 @@ var zip_90006 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90005 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90005",
-        type: "Feature",
-        properties: {
-
-
-
+    }, {
+        "name":"90005",
+        "type": "Feature",
+        "properties": {
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.302852, 34.062356],
@@ -59813,22 +59302,16 @@ var zip_90005 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90008 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90008",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90008"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.357942, 34.018324],
                     [-118.356862, 34.01832],
@@ -60172,23 +59655,16 @@ var zip_90008 = {
                 ]
             ]
         }
-    }]
-};
-
-
-var zip_90007 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90007",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90007"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.297703, 34.018171],
                     [-118.300165, 34.018177],
@@ -60428,22 +59904,16 @@ var zip_90007 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90010 = {
-    type: "FeatureCollection",
-    features: [{
-        name:"90010",
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90010"
 
 
         },
-        geometry: {
-            type: "MultiPolygon",
-            coordinates: [
+        "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
                 [
                     [
                         [-118.291638, 34.061793],
@@ -60648,22 +60118,16 @@ var zip_90010 = {
                 ]
             ]
         }
-    }]
-};
-
-var zip_90012 = {
-    type: "FeatureCollection",
-    features: [{
-        name:'90012',
-        type: "Feature",
-        properties: {
-
+    }, {
+        "type": "Feature",
+        "properties": {
+            "name":"90012"
 
 
         },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
                 [
                     [-118.228449, 34.053112],
                     [-118.228533, 34.052981],
@@ -60960,4 +60424,4 @@ var zip_90012 = {
             ]
         }
     }]
-};
+}
