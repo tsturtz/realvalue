@@ -71,24 +71,40 @@ angular.module('realValue')
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if(zip_city[j] != '' ){
                             jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
-//                            crimes = Weikuan_Combined_Firebase[zip_city[j]]["crime"]["2014"]["LTtotal_sum"];
-                            console.log("job openings ", jobs_openings);
-                            tammy_geojson.features[i].properties.score = jobs_openings;
+                            //console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
+                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty["zip_codes"]
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                                //console.log("crime totals ", crimes);
+                                tammy_geojson.features[i].properties.crimes = crimes;
+                            } else {
+                                crimes = 0;
+                            }
+                            //console.log("job openings ", jobs_openings);
+
+                            tammy_geojson.features[i].properties.jobs = jobs_openings;
+                            tammy_geojson.features[i].properties.score = jobs_openings + crimes;
                         }
                     }
 
                 } else {
 
                     if(zip_city[0] != undefined) {
-                        //console.log('zip city ', zip_city[0]);
+
+                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                            //console.log("crime totals ", crimes);
+                            tammy_geojson.features[i].properties.crimes = crimes;
+                        } else {
+                            crimes = 0;
+                        }
+
                         jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
                         tammy_geojson.features[i].properties.score = jobs_openings;
+                        tammy_geojson.features[i].properties.score = jobs_openings + crimes;
 
-                        //console.log('zip city', zip_city);
-                        if(zip_city[0] === "Santa Ana, CA") {
-                            console.log(zip_city[0] + " job openings" + jobs_openings);
-                        }
                         //console.log(Weikuan_Combined_Firebase[zip_city]);
 
                         // for (var props in Weikuan_Combined_Firebase[zip_city]) {
@@ -326,13 +342,18 @@ angular.module('realValue')
                     style: style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
-                        //layer.bindPopup(feature.properties.popupContent);
+                        console.log("features", feature.properties);
+                        if(feature.properties.hasOwnProperty("score")){
+                            console.log("Score exist!");
+                            layer.bindPopup(feature.properties.name + '<BR>Score: ' + feature.properties.score);
+                        }
+
 
                         leafletData.getMap().then(function(map) {
                             label = new L.Label();
                             label.setContent(feature.properties.name);
                             label.setLatLng(layer.getBounds().getCenter());
-                            console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                            //console.log(feature.properties.name + " " + layer.getBounds().getCenter());
                             //map.showLabel(label);
                         });
 
@@ -421,6 +442,7 @@ angular.module('realValue')
 
             function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
+            console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);
             if(area_click_on==="Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
