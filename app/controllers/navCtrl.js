@@ -2,36 +2,93 @@ angular.module('realValue')
 
     .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService){
         var self = this;
+        var score;
+        var attribute;
+        var jobs;
+        var weight;
 
-        self.types = ['airport', 'bar', 'cafe', 'crime', 'gas', 'gym', 'hospital', 'housing', 'library', 'museum', 'park', 'police', 'restaurant', 'school', 'traffic', 'university', 'walkScore', 'zoo'];
+        self.types = ['jobs', 'airport', 'bar', 'cafe', 'crimes', 'gas', 'gym', 'hospital', 'housing', 'library', 'museum', 'park', 'police', 'restaurant', 'school', 'traffic', 'university', 'walkScore', 'zoo'];
 
         self.updateData = function (data) {
             //checkboxService.updateSelections(data);
             self.itemPosition = self.types.indexOf(data.type);
             if (data.checked === false) {
+                this.applyUpdate(self.types[self.itemPosition], "-", 1);
                 console.log(self.types);
                 console.log(self.types.indexOf(data.type));
                 self.types.splice(self.itemPosition,1);
                 console.log(self.types);
+                console.log(self.itemPosition);
             } else if (data.checked === true) {
                 console.log(self.types);
                 self.types.push(data.type);
                 console.log(self.types);
+                this.applyUpdate(self.types[self.types.indexOf(data.type)], "+", 1);
             }
             self.totalChecked = self.types.length;
             console.log(self.totalChecked);
             county_los_angeles.features[0].properties.score = self.totalChecked;
             county_orange.features[0].properties.score = self.totalChecked;
-            zip_92618.features[0].properties.score = self.totalChecked;
         };
+
+        self.applyUpdate = function(attr, operator, checked) {
+            if(attr === "crimes") {
+                weight = 50;
+            } else {
+                weight = 1;
+            }
+            console.log(attr);
+            if(checked === 1) {
+                for(var i = 0; i<tammy_geojson.features.length;i++) {
+                    if(self.hasProperty(tammy_geojson.features[i].properties,attr)) {
+                        console.log(tammy_geojson.features[i] + "has property");
+                        attribute = tammy_geojson.features[i].properties[attr];
+                        score = tammy_geojson.features[i].properties.score;
+                        tammy_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
+                    }
+                }
+            }
+
+            if(checked === 1) {
+                for(var i = 0; i<losangeles_geojson.features.length;i++) {
+                    if(self.hasProperty(losangeles_geojson.features[i].properties,attr)) {
+                        //console.log(losangeles_geojson.features[i] + "has property");
+                        console.log(losangeles_geojson.features[i].properties.crimes);
+                        attribute = losangeles_geojson.features[i].properties[attr];
+                        score = losangeles_geojson.features[i].properties.score;
+                        losangeles_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
+                    }
+                }
+            }
+        };
+
+        self.doMath = function(param1, param2, operator) {
+            switch(operator) {
+                case "+":
+                    //console.log(param1 + param2);
+                    return param1 + param2;
+                case "-":
+                    //console.log(param1 + param2);
+                    return param1 - param2;
+            }
+        };
+
+        self.hasProperty = function(obj, str) {
+            if(obj.hasOwnProperty(str)) {
+               return true;
+            } else {
+                return false;
+            }
+        }
 
         // checkboxes
 
         self.checkboxes = [
+            {type: 'jobs', checked: true, weight: 10},
             {type: 'airport', checked: true, weight: 10},
             {type: 'bar', checked: true, weight: 10},
             {type: 'cafe', checked: true, weight: 10},
-            {type: 'crime', checked: true, weight: 10},
+            {type: 'crimes', checked: true, weight: 10},
             {type: 'gas', checked: true, weight: 10},
             {type: 'gym', checked: true, weight: 10},
             {type: 'hospital', checked: true, weight: 10},

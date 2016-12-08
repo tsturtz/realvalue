@@ -70,37 +70,48 @@ angular.module('realValue')
                 lookup_zip = tammy_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code_oc(lookup_zip);
                 //console.log(miles_geojson.features[i]);
-                console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
+                //console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
 
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if(zip_city[j] != '' ){
                             jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
-//                            crimes = Weikuan_Combined_Firebase[zip_city[j]]["crime"]["2014"]["LTtotal_sum"];
-                            console.log("job openings ", jobs_openings);
-                            tammy_geojson.features[i].properties.score = jobs_openings;
+                            //console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
+                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
+                            && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
+                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
+                                console.log("crime totals ", crimes);
+                                tammy_geojson.features[i].properties.crimes = crimes;
+                            } else {
+                                crimes = 0;
+                                //console.log("no crimes");
+                            }
+                            //console.log("job openings ", jobs_openings);
+
+                            tammy_geojson.features[i].properties.jobs = jobs_openings;
+                            tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
                         }
                     }
 
                 } else {
 
                     if(zip_city[0] != undefined) {
-                        //console.log('zip city ', zip_city[0]);
+
+                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
+                            console.log("crime totals ", crimes);
+                            tammy_geojson.features[i].properties.crimes = crimes;
+                        } else {
+                            crimes = 0;
+                        }
+
                         jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
-                        tammy_geojson.features[i].properties.score = jobs_openings;
-
-                        //console.log('zip city', zip_city);
-                        if(zip_city[0] === "Santa Ana, CA") {
-                            console.log(zip_city[0] + " job openings" + jobs_openings);
-                        }
-                        //console.log(Weikuan_Combined_Firebase[zip_city]);
-
-                        // for (var props in Weikuan_Combined_Firebase[zip_city]) {
-                        //     //console.log(props);
-                        //     tammy_geojson.features[i].properties[props] = Weikuan_Combined_Firebase[zip_city][props];
-                        // }
+                        tammy_geojson.features[i].properties.jobs = jobs_openings;
+                        tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
 
                     }
 
@@ -116,27 +127,48 @@ angular.module('realValue')
                 lookup_zip = losangeles_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code(lookup_zip);
                 //console.log(zip_city.length);
+                //console.log("la match zip: " + lookup_zip + " with " + zip_city);
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if(zip_city[j] != '' ){
                             jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
+                            console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
+                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
+                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
+                                console.log("crime totals ", crimes);
+                                losangeles_geojson.features[i].properties.crimes = crimes;
+                            } else {
+                                crimes = 0;
+                                //console.log("no crimes");
+                            }
                             //console.log("job openings ", jobs_openings);
-                            losangeles_geojson.features[i].properties.score = jobs_openings;
+
+                            losangeles_geojson.features[i].properties.jobs = jobs_openings;
+                            losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);;
                         }
                     }
 
                 } else {
                     //console.log(miles_geojson.features[i]);
                     ///console.log("miles match zip: " + lookup_zip + " with " + zip_city);
-                    if(zip_city != '' ){
-                        //console.log("job openings ", jobs_openings);
-                        losangeles_geojson.features[i].properties.score = jobs_openings;
+                    if(zip_city[0] != undefined ){
+                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
+                            console.log("crime totals ", crimes);
+                            losangeles_geojson.features[i].properties.crimes = crimes;
+                        } else {
+                            crimes = 0;
+                        }
 
-                        // for (var props in Weikuan_Combined_Firebase[zip_city]) {
-                        //     //console.log(props);
-                        //     losangeles_geojson.features[i].properties[props] = Weikuan_Combined_Firebase[zip_city][props];
-                        // }
+                        jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
+                        //console.log("job openings ", jobs_openings);
+                        losangeles_geojson.features[i].properties.jobs = jobs_openings;
+                        losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);;
+
                     }
                 }
 
@@ -368,13 +400,20 @@ angular.module('realValue')
                     style: style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
-                        //layer.bindPopup(feature.properties.popupContent);
+                        //console.log("features", feature.properties);
+                        if(feature.properties.hasOwnProperty("score")){
+                            //console.log("Score exist!");
+                            layer.bindPopup(feature.properties.name + '<BR>Jobs: ' + feature.properties.jobs +
+                                '<BR>Crimes: ' + feature.properties.crimes +
+                                '<BR>Score: ' + feature.properties.score);
+                        }
+
 
                         leafletData.getMap().then(function(map) {
                             label = new L.Label();
                             label.setContent(feature.properties.name);
                             label.setLatLng(layer.getBounds().getCenter());
-                            console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                            //console.log(feature.properties.name + " " + layer.getBounds().getCenter());
                             //map.showLabel(label);
                         });
 
@@ -463,6 +502,7 @@ angular.module('realValue')
 
             function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
+            console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);
             if(area_click_on==="Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
@@ -563,7 +603,7 @@ angular.module('realValue')
                     });
                     */
 
-                    map.fitBounds(e.target.getBounds(),{padding: [150, 150]});
+                    map.fitBounds(e.target.getBounds(),{padding: [200, 200]});
                 });
 
             });
@@ -604,23 +644,24 @@ angular.module('realValue')
                            '#009788';*/
 
             return d > 8000000 ? '#009787' : //green
-                d > 1700  ? '#029D73' :
-                d > 1600  ? '#04A35D' :
-                d > 1500  ? '#07A946' :
-                d > 1400   ? '#09AF2E' :
-                d > 1300   ? '#0CB515' :
-                d > 1200   ? '#24BB0F' :
-                d > 1100   ? '#45C113' :
-                d > 1000   ? '#67C716' :
-                d > 900   ? '#8ACE1A' :
-                d > 800   ? '#AFD41D' :
-                d > 700   ? '#D4DA21' :
-                d > 600   ? '#E0C725' :
-                d > 500   ? '#E6AC2A' :
-                d > 400   ? '#EC922E' :
-                d > 300   ? '#F27733' :
-                d > 200   ? '#F85B38' :
-                    '#FF403D'; //red
+                d > 100000  ? '#029D73' :
+                d > 90000  ? '#04A35D' :
+                d > 80500  ? '#07A946' :
+                d > 70400   ? '#09AF2E' :
+                d > 60300   ? '#0CB515' :
+                d > 50200   ? '#24BB0F' :
+                d > 40000   ? '#45C113' :
+                d > 30800   ? '#67C716' :
+                d > 20600   ? '#8ACE1A' :
+                d > 10400   ? '#AFD41D' :
+                d > 9200   ? '#D4DA21' :
+                d > 5000   ? '#E0C725' :
+                d > 2000   ? '#E6AC2A' :
+                d > 1000   ? '#EC922E' :
+                d > 500   ? '#F27733' :
+                d > 100   ? '#F85B38' :
+                d > 1    ? '#FF403D' :
+                '#000'; //red
         }
 
         function getCountyColor(d) {
