@@ -64,7 +64,7 @@ angular.module('realValue')
                 lookup_zip = tammy_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code_oc(lookup_zip);
                 //console.log(miles_geojson.features[i]);
-                console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
+                //console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
 
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
@@ -72,13 +72,15 @@ angular.module('realValue')
                         if(zip_city[j] != '' ){
                             jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
                             //console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
-                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty["zip_codes"]
-                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
+                            && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                                 crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
-                                //console.log("crime totals ", crimes);
+                                console.log("crime totals ", crimes);
                                 tammy_geojson.features[i].properties.crimes = crimes;
                             } else {
                                 crimes = 0;
+                                //console.log("no crimes");
                             }
                             //console.log("job openings ", jobs_openings);
 
@@ -102,15 +104,8 @@ angular.module('realValue')
 
                         jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
-                        tammy_geojson.features[i].properties.score = jobs_openings;
+                        tammy_geojson.features[i].properties.jobs = jobs_openings;
                         tammy_geojson.features[i].properties.score = jobs_openings + crimes;
-
-                        //console.log(Weikuan_Combined_Firebase[zip_city]);
-
-                        // for (var props in Weikuan_Combined_Firebase[zip_city]) {
-                        //     //console.log(props);
-                        //     tammy_geojson.features[i].properties[props] = Weikuan_Combined_Firebase[zip_city][props];
-                        // }
 
                     }
 
@@ -131,22 +126,42 @@ angular.module('realValue')
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if(zip_city[j] != '' ){
                             jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
+                            //console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
+                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
+                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
+                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                                console.log("crime totals ", crimes);
+                                losangeles_geojson.features[i].properties.crimes = crimes;
+                            } else {
+                                crimes = 0;
+                                //console.log("no crimes");
+                            }
                             //console.log("job openings ", jobs_openings);
-                            losangeles_geojson.features[i].properties.score = jobs_openings;
+
+                            losangeles_geojson.features[i].properties.jobs = jobs_openings;
+                            losangeles_geojson.features[i].properties.score = jobs_openings + crimes;
                         }
                     }
 
                 } else {
                     //console.log(miles_geojson.features[i]);
                     ///console.log("miles match zip: " + lookup_zip + " with " + zip_city);
-                    if(zip_city != '' ){
-                        //console.log("job openings ", jobs_openings);
-                        losangeles_geojson.features[i].properties.score = jobs_openings;
+                    if(zip_city[0] != undefined ){
+                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["LTtotal_sum"];
+                            //console.log("crime totals ", crimes);
+                            losangeles_geojson.features[i].properties.crimes = crimes;
+                        } else {
+                            crimes = 0;
+                        }
 
-                        // for (var props in Weikuan_Combined_Firebase[zip_city]) {
-                        //     //console.log(props);
-                        //     losangeles_geojson.features[i].properties[props] = Weikuan_Combined_Firebase[zip_city][props];
-                        // }
+                        jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
+                        //console.log("job openings ", jobs_openings);
+                        losangeles_geojson.features[i].properties.jobs = jobs_openings;
+                        losangeles_geojson.features[i].properties.score = jobs_openings + crimes;
+
                     }
                 }
 
@@ -345,7 +360,8 @@ angular.module('realValue')
                         console.log("features", feature.properties);
                         if(feature.properties.hasOwnProperty("score")){
                             console.log("Score exist!");
-                            layer.bindPopup(feature.properties.name + '<BR>Score: ' + feature.properties.score);
+                            layer.bindPopup(feature.properties.name + '<BR>Jobs: ' + feature.properties.jobs +
+                                '<BR>Crimes: ' + feature.properties.crimes);
                         }
 
 
