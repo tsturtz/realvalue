@@ -12,7 +12,7 @@ var placeType = 'restaurant'; // Change this var depending on the type of place 
  * @type {{apiKey: string, authDomain: string, databaseURL: string, storageBucket: string, messagingSenderId: string}}
  */
 
-var config = {
+/*var config = {
     apiKey: "AIzaSyD7lWychYO044cw2lPl6chSaBTt85kId5E",
     authDomain: "datamap-3c35f.firebaseapp.com",
     databaseURL: "https://datamap-3c35f.firebaseio.com",
@@ -20,13 +20,23 @@ var config = {
     messagingSenderId: "582541890710"
 };
 firebase.initializeApp(config);
-var fb = firebase.database();
+var fb = firebase.database();*/
+
+var config = {
+    apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
+    authDomain: "realvalue-ebd58.firebaseapp.com",
+    databaseURL: "https://realvalue-ebd58.firebaseio.com",
+    storageBucket: "realvalue-ebd58.appspot.com",
+    messagingSenderId: "73443138678"
+};
+firebase.initializeApp(config);
+var fb=firebase.database();
 
 /**
  * Init google map so we can make place ID calls
  */
 
-function initMap(key) {
+/*function initMap(key) {
     //service = new google.maps.places.PlacesService();
 
     var service = new google.maps.places.PlacesService(document.getElementById('map'));
@@ -43,17 +53,45 @@ function initMap(key) {
         console.log(place);
     });
 
-}
+}*/
 
-//test
+/*//test
 setTimeout(function() {
     initMap('ChIJ-QhzqPnn3IARnTugjgz1gZU');
-},4000);
+},4000);*/
+
+// learningfuze lat/lon: 33.636173, -117.739471
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 33.636173, lng: -117.739471},
+        zoom: 15,
+        styles: [{
+            stylers: [{ visibility: 'simplified' }]
+        }, {
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+        }]
+    });
+
+    infoWindow = new google.maps.InfoWindow();
+    service = new google.maps.places.PlacesService(map);
+
+    // The idle event is a debounced event, so we can query & listen without
+    // throwing too many requests at the server.
+    map.addListener('idle', performSearch);
+}
+
+function performSearch() {
+    var request = {
+        bounds: map.getBounds(),
+        keyword: 'best view'
+    };
+    service.radarSearch(request, callback);
+}
 
 
-
-
-/*function callback(results, status) {
+function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
 
@@ -64,18 +102,18 @@ setTimeout(function() {
 
             console.log(placeType, results[i].place_id, placeLoc);
 
-            (function(places) {
+/*            (function(places) {
                 fb.ref(placeType + '/' + results[i].place_id).set(placeLoc);
-            })(results[i]); //todo: add place details to FB
+            })(results[i]);*/
 
             var place = results[i];
             createMarker(place, placeLoc);
             console.log(results[i]);
         }
     }
-}*/
+}
 
-/*function createMarker(place, location) {
+function createMarker(place, location) {
     //var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
         map: map,
@@ -86,7 +124,7 @@ setTimeout(function() {
         infowindow.setContent('PLACE TYPE: ' + placeType + '<br>' + 'PLACE ID: ' + place.place_id + '<br>' + 'LAT: ' + location.lat + '<br>' + 'LNG: ' + location.lng);
         infowindow.open(map, this);
     });
-}*/
+}
 
 
 

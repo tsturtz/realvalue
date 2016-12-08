@@ -14,7 +14,6 @@ angular.module('realValue')
         };
         firebase.initializeApp(config);
         var fbRef=firebase.database();
-        var Weikuan_Combined_Firebase;
 
         this.weikuan_init = function() {
 
@@ -27,56 +26,30 @@ angular.module('realValue')
             return deferred.promise;
         };
 
-        this.weikuan_init().then(
-            function(response) {
-                Weikuan_Combined_Firebase = response;
-                console.log("weikuan", Weikuan_Combined_Firebase);
-                console.log(roughSizeOfObject(Weikuan_Combined_Firebase));
-                mc.mergeData();
-            });
+        this.weikuan_init()
+            .then(
+                function(response) {
+                    var Weikuan_Combined_Firebase;
+                    Weikuan_Combined_Firebase = response;
+                    console.log("weikuan", Weikuan_Combined_Firebase);
+                    console.log(roughSizeOfObject(Weikuan_Combined_Firebase));
+                    mc.mergeData();
+                });
 
         console.log("init map");
-
-        /*******************************************************************************
-         * Google Place Details
-         ******************************************************************************/
 
         /**
          * Google Places Firebase config
          */
 
-        var config = {
-            apiKey: "AIzaSyD7lWychYO044cw2lPl6chSaBTt85kId5E",
-            authDomain: "datamap-3c35f.firebaseapp.com",
-            databaseURL: "https://datamap-3c35f.firebaseio.com",
-            storageBucket: "datamap-3c35f.appspot.com",
-            messagingSenderId: "582541890710"
-        };
-        firebase.initializeApp(config);
-        var fb = firebase.database();
-
-        /**
-         * Init google map so we can make place ID calls
-         * TODO: DONT THINK WE NEED THIS ANYMORE
-         */
-
-        /*this.initMap = function (key) {
-
-            var service = new google.maps.places.PlacesService($('#data-here').get(0));
-
-            console.log(key);
-            if (key === undefined) {
-                key = 'ChIJl_N4tlno3IARWDJLc0k1zX0';
-            }
-            console.log(key);
-
-            service.getDetails({
-                placeId: key
-            }, function(place){
-                console.log('actual place details call with dummy place ID: ', place);
-            });
-
-        };*/
+/*        placesFirebaseService.getFirebasePlacesData()
+            .then(
+                function (snapshot) {
+                    console.log('after successful data call: ', snapshot);
+                },
+                function (snapshot) {
+                    console.warn('fail: ', snapshot);
+                });*/
 
         this.mergeData = function() {
             console.log("merging data");
