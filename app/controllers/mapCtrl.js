@@ -173,38 +173,75 @@ angular.module('realValue')
 
             // focus after dialog
             function afterShowAnimation(scope, element, options) {
-                console.log('after focus')
+                console.log('after focus');
             }
 
             // dialog controller
             function detailsCtrl($mdDialog) {
+                var deets = this;
+
                 this.cancel = function () {
+                    console.log('the x');
                     $mdDialog.hide();
                 };
                 this.getPlaceDetails = function () {
-                    callPlace(args.model['Place ID']); // passed in place ID from event args
+                    // google places API call
+                    this.callPlace = function(key) {
+
+                        this.service = new google.maps.places.PlacesService($('#data-here').get(0));
+
+                        console.log('passed in key: ', key);
+
+                        if (key) {
+                            this.service.getDetails({
+                                placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                            }, function(place){
+                                console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
+                                deets.placeObj = {
+                                    address : place.formatted_address,
+                                    phone : place.formatted_phone_number
+                                };
+                                /*deets.placeAddress = place.formatted_address;
+                                deets.placePhone = place.formatted_phone_number;
+                                deets.placeIcon = place.icon;
+                                deets.place = place.icon;*/
+                                console.log('service', mc.service);
+                            });
+                        } else {
+                            console.warn('you didn\'t pass in a place id');
+                        }
+                    };
+                    this.callPlace(args.model['Place ID']); // passed in place ID from event args
                 };
                 this.getPlaceDetails();
+
+
             }
 
-            // google places API call
-            function callPlace(key) {
 
-                var service = new google.maps.places.PlacesService($('#data-here').get(0));
-                console.log('passed in key: ', key);
 
-                if (key) {
-                    service.getDetails({
-                        placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
-                    }, function(place){
-
-                        console.log('%c :) real place ID call: ', 'background: green; color: white; display: block;', place);
-                    });
-                } else {
-                    console.warn('you didn\'t pass in a place id');
-                }
-            }
         });
+
+/*        // google places API call
+        this.callPlace = function(key) {
+
+            this.service = new google.maps.places.PlacesService($('#data-here').get(0));
+
+            console.log('passed in key: ', key);
+
+            if (key) {
+                this.service.getDetails({
+                    placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                }, function(place){
+                    console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
+                    console.log('mc controller', mc);
+                    //console.log('dc controller', dc);
+                    console.log('service', mc.service);
+                });
+            } else {
+                console.warn('you didn\'t pass in a place id');
+            }
+        };*/
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
