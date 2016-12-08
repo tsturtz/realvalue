@@ -5,7 +5,7 @@ angular.module('realValue')
         var score;
         var attribute;
         var jobs;
-        var weight = 1;
+        var weight;
 
         self.types = ['jobs', 'airport', 'bar', 'cafe', 'crimes', 'gas', 'gym', 'hospital', 'housing', 'library', 'museum', 'park', 'police', 'restaurant', 'school', 'traffic', 'university', 'walkScore', 'zoo'];
 
@@ -33,7 +33,9 @@ angular.module('realValue')
 
         self.applyUpdate = function(attr, operator, checked) {
             if(attr === "crimes") {
-                weight = 5000;
+                weight = 50;
+            } else {
+                weight = 1;
             }
             console.log(attr);
             if(checked === 1) {
@@ -48,9 +50,10 @@ angular.module('realValue')
             }
 
             if(checked === 1) {
-                for(var i = 0; i<tammy_geojson.features.length;i++) {
+                for(var i = 0; i<losangeles_geojson.features.length;i++) {
                     if(self.hasProperty(losangeles_geojson.features[i].properties,attr)) {
-                        console.log(losangeles_geojson.features[i] + "has property");
+                        //console.log(losangeles_geojson.features[i] + "has property");
+                        console.log(losangeles_geojson.features[i].properties.crimes);
                         attribute = losangeles_geojson.features[i].properties[attr];
                         score = losangeles_geojson.features[i].properties.score;
                         losangeles_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
