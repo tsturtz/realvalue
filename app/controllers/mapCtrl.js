@@ -18,7 +18,7 @@ angular.module('realValue')
         var fbRef=firebase.database();
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
             crime_and_job_data_analysis=snapshot.val();
-        })
+        });
         this.weikuan_init = function() {
 
             var deferred = $q.defer();
@@ -226,8 +226,6 @@ angular.module('realValue')
                                     photos : place.photos, // all photos array
                                     reviews : place.reviews // all reviews array
                                 };
-
-                                console.log(place.photos[0].getUrl);
                             });
                         } else {
                             console.warn('you didn\'t pass in a place id');
@@ -236,34 +234,8 @@ angular.module('realValue')
                     this.callPlace(args.model['Place ID']); // passed in place ID from event args
                 };
                 this.getPlaceDetails();
-
-
             }
-
-
-
         });
-
-/*        // google places API call
-        this.callPlace = function(key) {
-
-            this.service = new google.maps.places.PlacesService($('#data-here').get(0));
-
-            console.log('passed in key: ', key);
-
-            if (key) {
-                this.service.getDetails({
-                    placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
-                }, function(place){
-                    console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
-                    console.log('mc controller', mc);
-                    //console.log('dc controller', dc);
-                    console.log('service', mc.service);
-                });
-            } else {
-                console.warn('you didn\'t pass in a place id');
-            }
-        };*/
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
@@ -355,8 +327,6 @@ angular.module('realValue')
         };
 
         mc.city_zoom();
-
-
 
         function roughSizeOfObject( object ) {
             var objectList = [];
@@ -481,7 +451,6 @@ angular.module('realValue')
                         result.push(city+", CA");
                     }
                 }
-
             }
             return result;
         }
@@ -494,7 +463,6 @@ angular.module('realValue')
                         result.push(city + ", CA");
                     }
                 }
-
             }
             return result;
         }
@@ -536,8 +504,6 @@ angular.module('realValue')
                         mc.information={name:area_click_on};
                     }
                 }
-
-
             }
             leafletData.getMap().then(function(map) {
                 //console.log(e);
