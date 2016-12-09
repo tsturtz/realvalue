@@ -1,5 +1,5 @@
 var Weikuan_Combined_Firebase;
-
+var crime_and_job_data_analysis;
 angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog, $q) {
@@ -16,7 +16,9 @@ angular.module('realValue')
         };
         firebase.initializeApp(config);
         var fbRef=firebase.database();
-
+        fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
+            crime_and_job_data_analysis=snapshot.val();
+        })
         this.weikuan_init = function() {
 
             var deferred = $q.defer();
