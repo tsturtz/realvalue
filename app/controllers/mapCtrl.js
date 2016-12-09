@@ -16,6 +16,11 @@ angular.module('realValue')
         };
         firebase.initializeApp(config);
         var fbRef=firebase.database();
+
+        fbRef.ref('/').on('value', function (snapshot) {
+            console.warn(snapshot.val());
+        });
+
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
             crime_and_job_data_analysis=snapshot.val();
         });

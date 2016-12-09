@@ -3,19 +3,57 @@ var service;
 var infowindow;
 var placeType = 'restaurant'; // Change this var depending on the type of place currently being searched.
 
-// Initialize Firebase
-var config = {
+// TAYLOR DB
+/*var config = {
     apiKey: "AIzaSyD7lWychYO044cw2lPl6chSaBTt85kId5E",
     authDomain: "datamap-3c35f.firebaseapp.com",
     databaseURL: "https://datamap-3c35f.firebaseio.com",
     storageBucket: "datamap-3c35f.appspot.com",
     messagingSenderId: "582541890710"
 };
+firebase.initializeApp(config);*/
+
+// WEIKUAN DB
+var config = {
+    apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
+    authDomain: "realvalue-ebd58.firebaseapp.com",
+    databaseURL: "https://realvalue-ebd58.firebaseio.com",
+    storageBucket: "realvalue-ebd58.appspot.com",
+    messagingSenderId: "73443138678"
+};
 firebase.initializeApp(config);
+
 var fbTaylorData = firebase.database();
 
 function initMap() {
+
+    var randomCoordinates = [
+        [33.69360712, -117.8646765], //0
+        [33.65845119, -117.83055649], //1
+        [33.73149015, -117.80291069], //2
+        [33.68602744, -117.82148793], //3
+        [33.61667703, -117.81383995], //4
+        [33.74195359, -117.79039542], //5
+        [33.74248384, -117.80720502], //6
+        [33.67280461, -117.78111769], //7
+        [33.67549506, -117.81963118], //8
+        [33.67986298, -117.87819591], //9
+        [33.6265905, -117.81118723], //10
+        [33.73977809, -117.82802054], //11
+        [33.68413254, -117.77894694], //12
+        [33.72817102, -117.73608815], //13
+        [33.68882716, -117.87778805], //14
+        [33.62982505, -117.76796177], //15
+        [33.70605582, -117.76352739], //16
+        [33.65759277, -117.74964536], //17
+        [33.66705384, -117.74520216], //18
+        [33.66210126, -117.83252] //19
+        ];
+
     var lfz = new google.maps.LatLng(33.633998, -117.733383);
+
+    // increment first index, leave second index 0 and 1
+    //var randomCoord = new google.maps.LatLng(randomCoordinates[18][0],randomCoordinates[18][1]);
 
     map = new google.maps.Map(document.getElementById('map'), {
         center: lfz,
@@ -60,18 +98,15 @@ function callback(results, status) {
 
             console.log('number of results: ', results.length);
 
-            var placeObj = {
+            var placeObj =
+            {
                 "type": "Feature",
                 "properties": {
                     "type": placeType,
                     "placeId": place.place_id
                 },
                 "geometry": {
-                    "coordinates": [
-                        [
-                            [results[i].geometry.location.lat(), results[i].geometry.location.lng()]
-                        ]
-                    ]
+                    "coordinates": [results[i].geometry.location.lat(), results[i].geometry.location.lng()]
                 }
             };
 
@@ -82,9 +117,9 @@ function callback(results, status) {
                 lng: results[i].geometry.location.lng()
             };
 
-            (function (places) {
-                fbTaylorData.ref('/features/' + i).set(placeObj);
-            })(results[i]);
+            /*(function (places) {
+                fbTaylorData.ref('/features/' + placeType + '/' + placeObj.properties.placeId).set(placeObj);
+            })(results[i]);*/
 
             createMarker(place, placeLoc);
             //console.log(place);
