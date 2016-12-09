@@ -83,7 +83,7 @@ function callback(results, status) {
             };
 
             (function (places) {
-                fbTaylorData.ref('/features/').set(placeObj);
+                fbTaylorData.ref('/features/' + i).set(placeObj);
             })(results[i]);
 
             createMarker(place, placeLoc);
