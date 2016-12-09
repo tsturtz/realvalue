@@ -7,12 +7,6 @@ angular.module('realValue')
 
         self.name = "Map Obj";
 
-        mc.someArr = ['apple','orange'];
-
-        mc.method = function () {
-            console.log('hi');
-        };
-
         var config = {
             apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
             authDomain: "realvalue-ebd58.firebaseapp.com",
@@ -204,7 +198,6 @@ angular.module('realValue')
                 var deets = this;
 
                 this.cancel = function () {
-                    console.log('the x');
                     $mdDialog.hide();
                 };
                 this.getPlaceDetails = function () {
@@ -221,14 +214,18 @@ angular.module('realValue')
                             }, function(place){
                                 console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
                                 deets.placeObj = {
+                                    type : place.types[0],
+                                    icon : place.icon,
+                                    name : place.name,
                                     address : place.formatted_address,
-                                    phone : place.formatted_phone_number
+                                    phone : place.formatted_phone_number,
+                                    openNow : place.opening_hours.open_now, // boolean
+                                    hours : place.opening_hours.weekday_text, // all days array
+                                    photos : place.photos, // all photos array
+                                    reviews : place.reviews // all reviews array
                                 };
-                                /*deets.placeAddress = place.formatted_address;
-                                deets.placePhone = place.formatted_phone_number;
-                                deets.placeIcon = place.icon;
-                                deets.place = place.icon;*/
-                                console.log('service', mc.service);
+
+                                console.log(place.photos[0].getUrl);
                             });
                         } else {
                             console.warn('you didn\'t pass in a place id');

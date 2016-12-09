@@ -197,3 +197,7 @@ layout
 #check_boxes {
     margin-right: 50px;
 }
+
+.highlight {
+    background-color: lavender;
+}

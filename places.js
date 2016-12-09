@@ -65,13 +65,7 @@ setTimeout(function() {
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 33.636173, lng: -117.739471},
-        zoom: 15,
-        styles: [{
-            stylers: [{ visibility: 'simplified' }]
-        }, {
-            elementType: 'labels',
-            stylers: [{ visibility: 'off' }]
-        }]
+        zoom: 10
     });
 
     infoWindow = new google.maps.InfoWindow();
