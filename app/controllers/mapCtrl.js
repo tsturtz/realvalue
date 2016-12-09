@@ -74,16 +74,20 @@ angular.module('realValue')
                     }
 
                 } else {
-
-                    if(zip_city[0] != '') {
-                        console.log(zip_city[0]);
-                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
-                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                        console.log("out", zip_city);
+                    if(zip_city[0] != undefined) {
+                        console.log("in", zip_city[0], "zip codes", lookup_zip);
+                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty("zip_codes")
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
+                            //console.log("zip property", Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip));
+                            //console.log("crime property", Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime"));
                             crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
                             console.log("crime totals ", crimes);
                             tammy_geojson.features[i].properties.crimes = crimes;
                         } else {
                             crimes = 0;
+                            //console.log("in", zip_city[0], "zip codes", lookup_zip);
                         }
 
                         jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
@@ -132,8 +136,9 @@ angular.module('realValue')
                     //console.log(miles_geojson.features[i]);
                     ///console.log("miles match zip: " + lookup_zip + " with " + zip_city);
                     if(zip_city[0] != undefined ){
-                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
-                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty("zip_codes")
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
+                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
                             console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
@@ -370,9 +375,7 @@ angular.module('realValue')
                 },
                 geojson : {
                     data: [ tammy_geojson,
-                            zip_91331,
                             losangeles_geojson
-                            // zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672
                             ],
                     style: style,
                     onEachFeature: function (feature, layer) {
@@ -622,22 +625,22 @@ angular.module('realValue')
 
             return d > 8000000 ? '#009787' : //green
                 d > 100000  ? '#029D73' :
-                d > 90000  ? '#04A35D' :
-                d > 80500  ? '#07A946' :
-                d > 70400   ? '#09AF2E' :
-                d > 60300   ? '#0CB515' :
-                d > 50200   ? '#24BB0F' :
-                d > 40000   ? '#45C113' :
-                d > 30800   ? '#67C716' :
-                d > 20600   ? '#8ACE1A' :
-                d > 10400   ? '#AFD41D' :
-                d > 9200   ? '#D4DA21' :
-                d > 5000   ? '#E0C725' :
-                d > 2000   ? '#E6AC2A' :
-                d > 1000   ? '#EC922E' :
-                d > 500   ? '#F27733' :
-                d > 100   ? '#F85B38' :
-                d > 1    ? '#FF403D' :
+                d > 60000  ? '#04A35D' :
+                d > 50000  ? '#07A946' :
+                d > 40000   ? '#09AF2E' :
+                d > 30000   ? '#0CB515' :
+                d > 20000   ? '#24BB0F' :
+                d > 10000   ? '#45C113' :
+                d > 5000   ? '#67C716' :
+                d > 1000   ? '#8ACE1A' :
+                d > 100   ? '#AFD41D' :
+                d > 0   ? '#D4DA21' :
+                d > -10   ? '#E0C725' :
+                d > -100      ? '#E6AC2A' :
+                d > -1000   ? '#EC922E' :
+                d > -5000   ? '#F27733' :
+                d > -10000   ? '#F85B38' :
+                d > -25000    ? '#FF403D' :
                 '#000'; //red
         }
 
