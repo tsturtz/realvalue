@@ -135,6 +135,11 @@ angular.module('realValue')
             });
         };
 
+        self.submit = function() {
+
+            console.log(mc);
+        };
+
         self.welcomeDialog();
 
         // dialog controller

@@ -50,7 +50,7 @@ angular.module('realValue')
                 //console.log(tammy_geojson.features[i].properties.name);
                 lookup_zip = tammy_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code_oc(lookup_zip);
-                console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
+                //console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
@@ -74,9 +74,9 @@ angular.module('realValue')
                     }
 
                 } else {
-                        console.log("out", zip_city);
+                        //console.log("out", zip_city);
                     if(zip_city[0] != undefined) {
-                        console.log("in", zip_city[0], "zip codes", lookup_zip);
+                        //console.log("in", zip_city[0], "zip codes", lookup_zip);
                         if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
@@ -109,7 +109,7 @@ angular.module('realValue')
                 lookup_zip = losangeles_geojson.features[i].properties.name;
                 zip_city = find_city_based_on_zip_code(lookup_zip);
                 //console.log(zip_city.length);
-                //console.log("la match zip: " + lookup_zip + " with " + zip_city);
+                console.log("la match zip: " + lookup_zip + " with " + zip_city);
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
@@ -629,11 +629,11 @@ angular.module('realValue')
                 d > 50000  ? '#07A946' :
                 d > 40000   ? '#09AF2E' :
                 d > 30000   ? '#0CB515' :
-                d > 20000   ? '#24BB0F' :
-                d > 10000   ? '#45C113' :
-                d > 5000   ? '#67C716' :
-                d > 1000   ? '#8ACE1A' :
-                d > 100   ? '#AFD41D' :
+                d > 10000   ? '#24BB0F' :
+                d > 5000   ? '#45C113' :
+                d > 1000   ? '#67C716' :
+                d > 100   ? '#8ACE1A' :
+                d > 10   ? '#AFD41D' :
                 d > 0   ? '#D4DA21' :
                 d > -10   ? '#E0C725' :
                 d > -100      ? '#E6AC2A' :
