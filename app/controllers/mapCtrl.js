@@ -504,12 +504,39 @@ angular.module('realValue')
                 }
                 else {
                     var city=find_city_based_on_zip_code(area_click_on);
+                    var crime_and_job={};
                     console.log(city);
                     if(city.length!==0){
                         mc.information={};
                         for(var i=0;i<city.length;i++){
                             if(Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
-                                mc.information[city[i]]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on];
+                                try{
+                                    crime_and_job["2005 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2005"]["Violent_sum"];
+                                    crime_and_job["2006 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2006"]["Violent_sum"];
+                                    crime_and_job["2007 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2007"]["Violent_sum"];
+                                    crime_and_job["2008 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2008"]["Violent_sum"];
+                                    crime_and_job["2009 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2009"]["Violent_sum"];
+                                    crime_and_job["2010 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2010"]["Violent_sum"];
+                                    crime_and_job["2011 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2011"]["Violent_sum"];
+                                    crime_and_job["2012 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2012"]["Violent_sum"];
+                                    crime_and_job["2013 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2013"]["Violent_sum"];
+                                    crime_and_job["2014 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                        ["crime"]["2014"]["Violent_sum"];
+                                    crime_and_job["Total_Jobs"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]["total jobs"];
+                                    mc.information=crime_and_job;
+                                }
+                                catch(err){
+                                    console.info(err);
+                                }
                             else{
                                 mc.information[city[i]]=Weikuan_Combined_Firebase[city[i]]["zip_codes"];
                             }
