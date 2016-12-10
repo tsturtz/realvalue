@@ -149,9 +149,9 @@
                     <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
                     <md-card-content layout="row">
                         <md-input-container>
-                            <input type="text" placeholder="Enter city or zip">
+                            <input type="text" placeholder="Enter city or zip" ng-model="nc.zip">
                         </md-input-container>
-                        <md-button>Submit</md-button>
+                        <md-button ng-click="nc.submit()">Submit</md-button>
                     </md-card-content>
                 </md-card>
             </div>

@@ -250,9 +250,7 @@ angular.module('realValue')
                 },
                 geojson : {
                     data: [ tammy_geojson,
-                            zip_91331,
                             losangeles_geojson
-                            // zip_92618,zip_92604,zip_92620,zip_91331,zip_92602,zip_92782,zip_93536,zip_90265,zip_92672
                             ],
                     style: style,
                     onEachFeature: function (feature, layer) {
@@ -331,9 +329,9 @@ angular.module('realValue')
                 dashArray: '3'
             });
         }
-        
 
-        
+
+
 
             function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
@@ -507,22 +505,22 @@ angular.module('realValue')
 
             return d > 8000000 ? '#009787' : //green
                 d > 100000  ? '#029D73' :
-                d > 90000  ? '#04A35D' :
-                d > 80500  ? '#07A946' :
-                d > 70400   ? '#09AF2E' :
-                d > 60300   ? '#0CB515' :
-                d > 50200   ? '#24BB0F' :
-                d > 40000   ? '#45C113' :
-                d > 30800   ? '#67C716' :
-                d > 20600   ? '#8ACE1A' :
-                d > 10400   ? '#AFD41D' :
-                d > 9200   ? '#D4DA21' :
-                d > 5000   ? '#E0C725' :
-                d > 2000   ? '#E6AC2A' :
-                d > 1000   ? '#EC922E' :
-                d > 500   ? '#F27733' :
-                d > 100   ? '#F85B38' :
-                d > 1    ? '#FF403D' :
+                d > 60000  ? '#04A35D' :
+                d > 50000  ? '#07A946' :
+                d > 40000   ? '#09AF2E' :
+                d > 30000   ? '#0CB515' :
+                d > 10000   ? '#24BB0F' :
+                d > 5000   ? '#45C113' :
+                d > 1000   ? '#67C716' :
+                d > 100   ? '#8ACE1A' :
+                d > 10   ? '#AFD41D' :
+                d > 0   ? '#D4DA21' :
+                d > -10   ? '#E0C725' :
+                d > -100      ? '#E6AC2A' :
+                d > -1000   ? '#EC922E' :
+                d > -5000   ? '#F27733' :
+                d > -10000   ? '#F85B38' :
+                d > -25000    ? '#FF403D' :
                 '#000'; //red
         }
 

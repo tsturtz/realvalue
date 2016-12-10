@@ -1,39 +1,43 @@
 angular.module('realValue')
 
-    .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService,dataService){
+    .controller("navCtrl", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var self = this;
         var score;
         var attribute;
         var jobs;
         var weight;
+        var temp_attr;
 
         self.types = ['jobs', 'airport', 'bar', 'cafe', 'crimes', 'gas', 'gym', 'hospital', 'housing', 'library', 'museum', 'park', 'police', 'restaurant', 'school', 'traffic', 'university', 'walkScore', 'zoo'];
 
         self.updateData = function (data) {
             //checkboxService.updateSelections(data);
             self.itemPosition = self.types.indexOf(data.type);
+            console.log("pos ", self.itemPosition);
             if (data.checked === false) {
-                this.applyUpdate(self.types[self.itemPosition], "-", 1);
-                console.log(self.types);
-                console.log(self.types.indexOf(data.type));
+                temp_attr = self.types[self.itemPosition];
+                this.applyUpdate(temp_attr, "-", 1);
+                //console.log(self.types);
+                //console.log(self.types.indexOf(data.type));
                 self.types.splice(self.itemPosition,1);
-                console.log(self.types);
-                console.log(self.itemPosition);
+                //console.log(self.types);
+                //console.log(self.itemPosition);
             } else if (data.checked === true) {
-                console.log(self.types);
+                //temp_attr = self.types[self.types.indexOf(data.type)];
+                //console.log(self.types);
                 self.types.push(data.type);
-                console.log(self.types);
-                this.applyUpdate(self.types[self.types.indexOf(data.type)], "+", 1);
+                //console.log(self.types);
+                this.applyUpdate(temp_attr, "+", 1);
             }
             self.totalChecked = self.types.length;
-            console.log(self.totalChecked);
+            //console.log(self.totalChecked);
             county_los_angeles.features[0].properties.score = self.totalChecked;
             county_orange.features[0].properties.score = self.totalChecked;
         };
 
         self.applyUpdate = function(attr, operator, checked) {
             if(attr === "crimes") {
-                weight = 50;
+                weight = -1;
             } else {
                 weight = 1;
             }
@@ -41,9 +45,10 @@ angular.module('realValue')
             if(checked === 1) {
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     if(self.hasProperty(tammy_geojson.features[i].properties,attr)) {
-                        console.log(tammy_geojson.features[i] + "has property");
+                        //console.log(tammy_geojson.features[i] + "has property");
                         attribute = tammy_geojson.features[i].properties[attr];
                         score = tammy_geojson.features[i].properties.score;
+                        jobs = tammy_geojson.features[i].properties.jobs;
                         tammy_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
                     }
                 }
@@ -53,9 +58,10 @@ angular.module('realValue')
                 for(var i = 0; i<losangeles_geojson.features.length;i++) {
                     if(self.hasProperty(losangeles_geojson.features[i].properties,attr)) {
                         //console.log(losangeles_geojson.features[i] + "has property");
-                        console.log(losangeles_geojson.features[i].properties.crimes);
+                        //console.log(losangeles_geojson.features[i].properties.crimes);
                         attribute = losangeles_geojson.features[i].properties[attr];
                         score = losangeles_geojson.features[i].properties.score;
+                        jobs = losangeles_geojson.features[i].properties.jobs;
                         losangeles_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
                     }
                 }
@@ -129,6 +135,12 @@ angular.module('realValue')
             });
         };
 
+
+        self.submit = function() {
+
+            console.log(mc);
+        };
+
         self.welcomeDialog();
 
         // dialog controller
@@ -143,4 +155,4 @@ angular.module('realValue')
 
 
 
-    });
+    }]);
