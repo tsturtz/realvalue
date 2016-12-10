@@ -271,7 +271,7 @@ angular.module('realValue')
                     }
                 },
                 geojson : {
-                    data: [county_los_angeles,county_orange],
+                    data: [service.county_los_angeles,county_orange],
                     style: county_style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
