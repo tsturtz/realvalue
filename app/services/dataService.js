@@ -54,14 +54,14 @@ angular.module('realValue')
                 var restaurants;
                 for (eachKey in snapshot.val().restaurant) {
                     restaurants = snapshot.val().restaurant[eachKey];
-                    console.log('each key in place: ', restaurants);
+                    //console.log('each key in place: ', restaurants);
                     self.placesGeojson.features.push(restaurants);
                 }
                 console.log('places geojson: ', self.placesGeojson);
             });
         };
 
-        //this.makePlacesGeojson();
+        this.makePlacesGeojson();
 
         this.weikuan_init = function () {
 
