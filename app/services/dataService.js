@@ -24,19 +24,8 @@ angular.module('realValue')
 
             }
             return result;
-        }
-        this.find_city_based_on_zip_code_oc=function(zip) {
-            var result=[];
-            for(var city in la_zips){
-                for(var i=0;i<la_zips[city]["zip_codes"].length;i++){
-                    if(la_zips[city]["zip_codes"][i]===zip){
-                        result.push(city+", CA");
-                    }
-                }
+        };
 
-            }
-            return result;
-        }
         this.weikuan_init = function() {
 
             var deferred = $q.defer();
@@ -51,7 +40,7 @@ angular.module('realValue')
         this.weikuan_init().then(
             function(response) {
                 self.firebase = response;
-                console.log("Firebase:",self.firebase);
+                //console.log("Firebase:",self.firebase);
                 self.mergeData();
                 //console.log("la size", roughSizeOfObject(losangeles_geojson));
             });
@@ -66,9 +55,9 @@ angular.module('realValue')
             for(var i=0;i<tammy_geojson.features.length;i++){
                 //console.log(miles_geojson.features[i].properties.name);
                 lookup_zip = tammy_geojson.features[i].properties.name;
-                zip_city = this.find_city_based_on_zip_code_oc(lookup_zip);
+                zip_city = this.find_city_based_on_zip_code(lookup_zip);
                 //console.log(miles_geojson.features[i]);
-                console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
+                //console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
 
                 if(zip_city.length > 1) {
                     for(var j=0;j<zip_city.length;j++) {

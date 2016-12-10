@@ -3,7 +3,7 @@ angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var mc = this;
-        console.log("-------------------------"+dataService.firebase);
+        //console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
 
         dataService.weikuan_init();
@@ -92,7 +92,7 @@ angular.module('realValue')
         });
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
-            console.log("resize");
+            //console.log("resize");
             map.invalidateSize(false);
         });
         }, 400);
@@ -139,7 +139,7 @@ angular.module('realValue')
 
         this.city_zoom = function() {
             console.log("extend zip");
-            console.log("cities",cities);
+            //console.log("cities",cities);
             angular.extend($scope, {
                 center: {
                     lat: 34.075406,
@@ -166,7 +166,7 @@ angular.module('realValue')
                             label = new L.Label();
                             label.setContent(feature.properties.name);
                             label.setLatLng(layer.getBounds().getCenter());
-                            console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                            //console.log(feature.properties.name + " " + layer.getBounds().getCenter());
                             //map.showLabel(label);
                         });
 
@@ -267,6 +267,53 @@ angular.module('realValue')
             });
             */
         };
+
+        this.submit_zoom = function(zip) {
+            console.log("zoomed on: ", zip);
+            if (zip != undefined) {
+                //console.log("zooming");
+                var city = dataService.find_city_based_on_zip_code(zip);
+                //console.log("zooming on ", city);
+
+                for(var i = 0; i<tammy_geojson.features.length;i++) {
+                    //searchObj(tammy_geojson.features[i]);
+                    //console.log(tammy_geojson.features[i]);
+                    if(tammy_geojson.features[i].properties.name === zip) {
+                        console.log("match!!!");
+                        console.log(tammy_geojson.features[i].properties);
+                    }
+                }
+
+                var center = {
+                    lat: 33.63622083463071,
+                    lng: -117.73948073387146,
+                    zoom: 12
+                };
+
+                if(city.length) {
+                    angular.extend($scope, {
+                        center: center
+                    });
+                }
+
+            }
+        };
+
+        function searchObj (obj, query) {
+
+            for (var key in obj) {
+                var value = obj[key];
+                if (typeof value === 'object') {
+                    searchObj(value, query);
+                }
+
+                if (value === query) {
+                    console.log('property=' + key + ' value=' + value);
+                }
+
+            }
+
+        }
 
         function highlightFeature(e) {
             var layer = e.target;
