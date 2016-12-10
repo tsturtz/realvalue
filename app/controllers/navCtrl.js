@@ -37,8 +37,10 @@ angular.module('realValue')
 
         self.applyUpdate = function(attr, operator, checked) {
             if(attr === "crimes") {
+                console.log("crime");
                 weight = -1;
             } else {
+                console.log("not crime");
                 weight = 1;
             }
             console.log(attr);
