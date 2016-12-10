@@ -378,7 +378,7 @@ angular.module('realValue')
                     };
 
                     var res_markers = {};
-
+                    console.log(dataService.placesGeojson);
                     for(var i = 0;i<data.features.length;i++) {
                         //console.log(data.features[i].geometry.coordinates);
                         var res = leafletPip.pointInLayer(
