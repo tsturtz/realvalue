@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService){
+    .controller("navCtrl", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var self = this;
         var score;
         var attribute;
@@ -155,4 +155,4 @@ angular.module('realValue')
 
 
 
-    });
+    }]);
