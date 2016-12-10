@@ -6,13 +6,6 @@ angular.module('realValue')
         console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
 
-        mc.someArr = ['apple','orange'];
-
-        mc.method = function () {
-            console.log('hi');
-        };
-
-
         dataService.weikuan_init();
 
         console.log("init map");
@@ -61,7 +54,6 @@ angular.module('realValue')
                 var deets = this;
 
                 this.cancel = function () {
-                    console.log('the x');
                     $mdDialog.hide();
                 };
                 this.getPlaceDetails = function () {
@@ -78,14 +70,16 @@ angular.module('realValue')
                             }, function(place){
                                 console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
                                 deets.placeObj = {
+                                    type : place.types[0],
+                                    icon : place.icon,
+                                    name : place.name,
                                     address : place.formatted_address,
-                                    phone : place.formatted_phone_number
+                                    phone : place.formatted_phone_number,
+                                    openNow : place.opening_hours.open_now, // boolean
+                                    hours : place.opening_hours.weekday_text, // all days array
+                                    photos : place.photos, // all photos array
+                                    reviews : place.reviews // all reviews array
                                 };
-                                /*deets.placeAddress = place.formatted_address;
-                                deets.placePhone = place.formatted_phone_number;
-                                deets.placeIcon = place.icon;
-                                deets.place = place.icon;*/
-                                console.log('service', mc.service);
                             });
                         } else {
                             console.warn('you didn\'t pass in a place id');
@@ -94,34 +88,8 @@ angular.module('realValue')
                     this.callPlace(args.model['Place ID']); // passed in place ID from event args
                 };
                 this.getPlaceDetails();
-
-
             }
-
-
-
         });
-
-/*        // google places API call
-        this.callPlace = function(key) {
-
-            this.service = new google.maps.places.PlacesService($('#data-here').get(0));
-
-            console.log('passed in key: ', key);
-
-            if (key) {
-                this.service.getDetails({
-                    placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
-                }, function(place){
-                    console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
-                    console.log('mc controller', mc);
-                    //console.log('dc controller', dc);
-                    console.log('service', mc.service);
-                });
-            } else {
-                console.warn('you didn\'t pass in a place id');
-            }
-        };*/
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             console.log("resize");
@@ -213,8 +181,6 @@ angular.module('realValue')
         };
 
         mc.city_zoom();
-
-
 
         function roughSizeOfObject( object ) {
             var objectList = [];
@@ -330,9 +296,6 @@ angular.module('realValue')
             });
         }
 
-
-
-
             function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
             console.log("zip obj ",e.target.feature.properties);
@@ -397,8 +360,6 @@ angular.module('realValue')
                         mc.information={name:area_click_on};
                     }
                 }
-
-
             }
             leafletData.getMap().then(function(map) {
                 //console.log(e);
