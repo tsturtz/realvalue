@@ -15,22 +15,13 @@ angular.module('realValue')
             console.log('%c ALL DATA ', 'font-size: 14px; background: purple; color: white; display: block;', snapshot.val());
         });
 
-        fbRef.ref("crime-and-job-data-analysis").on('value', function (snapshot) {
-            crime_and_job_data_analysis = snapshot.val();
-        });
-        this.find_city_based_on_zip_code = function (zip) {
-            var result = [];
-            for (var city in la_zips) {
-                for (var i = 0; i < la_zips[city]["zip_codes"].length; i++) {
-                    if (la_zips[city]["zip_codes"][i] === zip) {
-                        result.push(city + ", CA");
-                    }
-                }
+        fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
+            self.crime_and_job_data_analysis=snapshot.val();
+        })
 
-            }
-            return result;
-        };
-        this.find_city_based_on_zip_code_oc = function (zip) {
+        var defined_city = true;
+
+        this.find_city_based_on_zip_code=function(zip) {
             var result = [];
             for (var city in la_zips) {
                 for (var i = 0; i < la_zips[city]["zip_codes"].length; i++) {
@@ -63,7 +54,7 @@ angular.module('realValue')
 
         this.makePlacesGeojson();
 
-        this.weikuan_init = function () {
+        this.weikuan_init = function() {
 
             var deferred = $q.defer();
 
@@ -77,7 +68,7 @@ angular.module('realValue')
         this.weikuan_init().then(
             function (response) {
                 self.firebase = response;
-                console.log("Firebase:", self.firebase);
+                //console.log("Firebase:",self.firebase);
                 self.mergeData();
                 //console.log("la size", roughSizeOfObject(losangeles_geojson));
             });
@@ -92,7 +83,7 @@ angular.module('realValue')
             for (var i = 0; i < tammy_geojson.features.length; i++) {
                 //console.log(miles_geojson.features[i].properties.name);
                 lookup_zip = tammy_geojson.features[i].properties.name;
-                zip_city = this.find_city_based_on_zip_code_oc(lookup_zip);
+                zip_city = this.find_city_based_on_zip_code(lookup_zip);
                 //console.log(miles_geojson.features[i]);
                 //console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
 
@@ -108,6 +99,7 @@ angular.module('realValue')
                                 crimes = self.firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
                                 console.log("crime totals ", crimes);
                                 tammy_geojson.features[i].properties.crimes = crimes;
+                                console.log("tammy geojson ", tammy_geojson.features[i].properties.crimes);
                             } else {
                                 crimes = 0;
                                 //console.log("no crimes");
@@ -120,13 +112,14 @@ angular.module('realValue')
                     }
 
                 } else {
+                    //console.log("zip city", zip_city);
+                    if(zip_city[0] != undefined) {
 
-                    if (zip_city[0] != undefined) {
-
-                        if (self.firebase[zip_city[0]].hasOwnProperty["zip_codes"]
-                            && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                        if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
+                            && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
+                            && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            console.log("crime totals ", crimes);
+                            //console.log("crime totals ", crimes);
                             tammy_geojson.features[i].properties.crimes = crimes;
                         } else {
                             crimes = 0;
@@ -157,8 +150,8 @@ angular.module('realValue')
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if (zip_city[j] != '') {
                             jobs_openings = self.firebase[zip_city[j]]["Number of job openings"];
-                            console.log("data", self.firebase[zip_city[j]]);
-                            if (self.firebase[zip_city[j]].hasOwnProperty("zip_codes")
+                            //console.log("data", self.firebase[zip_city[j]]);
+                            if(self.firebase[zip_city[j]].hasOwnProperty("zip_codes")
                                 && self.firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
                                 && self.firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime")) {
                                 crimes = self.firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
@@ -178,12 +171,20 @@ angular.module('realValue')
 
                 } else {
                     //console.log(miles_geojson.features[i]);
-                    ///console.log("miles match zip: " + lookup_zip + " with " + zip_city);
-                    if (zip_city[0] != undefined) {
-                        if (self.firebase[zip_city[0]].hasOwnProperty["zip_codes"]
-                            && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
+                    //console.log("la match zip: " + lookup_zip + " with " + zip_city);
+                    //console.log(zip_city[0]);
+                    if(!self.firebase.hasOwnProperty(zip_city[0])) {
+                        console.error("Firebase has no data for " + zip_city[0]);
+                        defined_city = false;
+                    } else {
+                        defined_city = true;
+                    }
+                    if(zip_city[0] != undefined && defined_city){
+                        if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
+                            && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
+                            && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            console.log("crime totals ", crimes);
+                            //console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
                         } else {
                             crimes = 0;

@@ -341,15 +341,15 @@ function randomnumber(){
 }
 function total(num_obj){
     var sum=0;
-    console.log("----numbers91331-----");
-    console.log(num_obj);
+    //console.log("----numbers91331-----");
+    //console.log(num_obj);
     for(var loc in num_obj){
         if((loc!=="crime")&&(loc!=="traffic")){
             sum+=num_obj[loc];
         }
     }
-    console.log("------sum-------");
-    console.log(sum);
+    //console.log("------sum-------");
+    //console.log(sum);
     return sum;
 }
 
@@ -377,12 +377,12 @@ function find_restaurants(){
         };
         result["Restaurant"+(i+1)]=restaurant;
     }
-    console.log("----Restaurant----");
-    console.log(result);
+    //console.log("----Restaurant----");
+    //console.log(result);
     return result;
 }
 var restaurants=find_restaurants();
-console.log("Restaurants Object",restaurants);
+//console.log("Restaurants Object",restaurants);
 
 
 var dummy_restaurant_details={
@@ -502,4 +502,4 @@ var dummy_restaurant_details={
     },
     "status" : "OK"
 };
-console.log('place details: ', dummy_restaurant_details);
+//console.log('place details: ', dummy_restaurant_details);

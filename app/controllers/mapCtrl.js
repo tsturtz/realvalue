@@ -3,8 +3,38 @@ angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var mc = this;
-        console.log("-------------------------"+dataService.firebase);
+        //mc.gjLayer;
+        mc.gjLayer = L.geoJson(tammy_geojson, {
+            style: style
+        });
+        //console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
+
+        var markersData = [
+            {"loc":[41.575330,13.102411], "title":"aquamarine"},
+            {"loc":[41.575730,13.002411], "title":"black"},
+            {"loc":[41.807149,13.162994], "title":"blue"},
+            {"loc":[41.507149,13.172994], "title":"chocolate"},
+            {"loc":[41.847149,14.132994], "title":"coral"},
+            {"loc":[41.219190,13.062145], "title":"cyan"},
+            {"loc":[41.344190,13.242145], "title":"darkblue"},
+            {"loc":[41.679190,13.122145], "title":"darkred"},
+            {"loc":[41.329190,13.192145], "title":"darkgray"},
+            {"loc":[41.379290,13.122545], "title":"dodgerblue"},
+            {"loc":[41.409190,13.362145], "title":"gray"},
+            {"loc":[41.794008,12.583884], "title":"green"},
+            {"loc":[41.805008,12.982884], "title":"greenyellow"},
+            {"loc":[41.536175,13.273590], "title":"red"},
+            {"loc":[41.516175,13.373590], "title":"rosybrown"},
+            {"loc":[41.506175,13.173590], "title":"royalblue"},
+            {"loc":[41.836175,13.673590], "title":"salmon"},
+            {"loc":[41.796175,13.570590], "title":"seagreen"},
+            {"loc":[41.436175,13.573590], "title":"seashell"},
+            {"loc":[41.336175,13.973590], "title":"silver"},
+            {"loc":[41.236175,13.273590], "title":"skyblue"},
+            {"loc":[41.546175,13.473590], "title":"yellow"},
+            {"loc":[41.239190,13.032145], "title":"white"}
+        ];
 
         dataService.weikuan_init();
 
@@ -93,7 +123,7 @@ angular.module('realValue')
         });
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
-            console.log("resize");
+            //console.log("resize");
             map.invalidateSize(false);
         });
         }, 400);
@@ -120,14 +150,6 @@ angular.module('realValue')
                         //console.log("layer",layer);
                         //layer.bindPopup(feature.properties.popupContent);
 
-                        leafletData.getMap().then(function(map) {
-                            label = new L.Label();
-                            label.setContent(feature.properties.name);
-                            label.setLatLng(layer.getBounds().getCenter());
-                            //map.showLabel(label);
-                        });
-
-
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: resetHighlight,
@@ -139,8 +161,8 @@ angular.module('realValue')
         };
 
         this.city_zoom = function() {
-            console.log("extend zip");
-            console.log("cities",cities);
+            console.log("extend city");
+            //console.log("cities",cities);
             angular.extend($scope, {
                 center: {
                     lat: 34.075406,
@@ -153,8 +175,18 @@ angular.module('realValue')
                         attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
                     }
                 },
+                controls: {},
                 layers: {
-                    overlays: {}
+                    overlays: {
+                        search: {
+                            name: 'search',
+                            type: 'group',
+                            visible: true,
+                            layerParams: {
+                                showOnSelector: false
+                            }
+                        }
+                    }
                 },
                 geojson : {
                     data: [cities],
@@ -162,14 +194,6 @@ angular.module('realValue')
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
                         //layer.bindPopup(feature.properties.popupContent);
-
-                        leafletData.getMap().then(function(map) {
-                            label = new L.Label();
-                            label.setContent(feature.properties.name);
-                            label.setLatLng(layer.getBounds().getCenter());
-                            console.log(feature.properties.name + " " + layer.getBounds().getCenter());
-                            //map.showLabel(label);
-                        });
 
                         layer.on({
                             mouseover: highlightFeature,
@@ -269,6 +293,158 @@ angular.module('realValue')
             */
         };
 
+        this.submit_zoom = function(zip) {
+
+            losangeles_geojson.features.filter(function(data) {
+                //console.log("data", data);
+                $scope.geojson.data = data;
+            });
+
+            leafletData.getMap().then(function(map) {
+
+                // var featuresLayer = new L.GeoJSON(tammy_geojson, {
+                // });
+
+                //map.addLayer(mc.gjLayer);
+                //console.log(featuresLayer);
+                console.log(dataService.crime_and_job_data_analysis);
+                console.log(mc.gjLayer);
+                var searchControl = new L.Control.Search({
+                    layer: mc.gjLayer,
+                    propertyName: 'name',
+                    circleLocation: false,
+                    moveToLocation: function(latlng, title, map) {
+                        //map.fitBounds( latlng.layer.getBounds() );
+                        var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+                        map.setView(latlng, zoom); // access the zoom
+                    }
+                });
+
+                searchControl.on('search:locationfound', function(e) {
+
+                    e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
+                    if(e.layer._popup)
+                        e.layer.openPopup();
+
+                }).on('search:collapsed', function(e) {
+
+                    featuresLayer.eachLayer(function(layer) {	//restore feature color
+                        featuresLayer.resetStyle(layer);
+                    });
+                });
+
+                map.addControl( searchControl );
+            });
+
+            leafletData.getLayers().then(function(baselayers) {
+                console.log(baselayers);
+                angular.extend($scope.controls, {
+                    search: {
+                        layer: baselayers.overlays.search
+                    }
+                });
+            });
+
+            var calculated_center;
+            var match = false;
+            //console.log("zoomed on: ", zip);
+            if (zip != undefined) {
+                //console.log("zooming");
+                var city = dataService.find_city_based_on_zip_code(zip);
+                //console.log("zooming on ", city);
+
+                for(var i = 0; i<tammy_geojson.features.length;i++) {
+                    //searchObj(tammy_geojson.features[i]);
+                    //console.log(tammy_geojson.features[i]);
+                    if(tammy_geojson.features[i].properties.name === zip) {
+                        console.log("match!!!");
+                        //console.log(tammy_geojson.features[i]);
+                        calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
+                        //match = true;
+                    }
+                }
+
+                if(match) {
+                    console.log(calculated_center);
+                    var center = {
+                        lat: calculated_center.x,
+                        lng: calculated_center.y,
+                        zoom: 12
+                    };
+
+                    if(city.length) {
+                        angular.extend($scope, {
+                            center: center
+                        });
+                    }
+                }
+
+            }
+        };
+
+        this.findMinMaxNumber = function(arr) {
+            var l = arr.length;
+            var max = -Infinity;
+            var min = Infinity;
+            var i;
+            for (i = 0; l > i; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+
+            return {
+                min: min,
+                max: max
+            };
+        };
+
+        this.findCenterFromCoordinatesArray = function(array) {
+
+            var array_x = [];
+            var array_y = [];
+            for(var i=0;i<array.length;i++){
+                array_x.push(array[i][1]);
+                array_y.push(array[i][0]);
+            }
+            // console.log(array_x);
+            // console.log(array_y);
+            var maxmin_x = this.findMinMaxNumber(array_x);
+            var maxmin_y = this.findMinMaxNumber(array_y);
+
+            //console.log(maxmin_x);
+            //console.log(maxmin_y);
+            var center_x = maxmin_x.min + ((maxmin_x.max - maxmin_x.min) / 2);
+            var center_y = maxmin_y.min + ((maxmin_y.max - maxmin_y.min) / 2);
+
+            return {
+                x:center_x,
+                y:center_y
+            }
+            //console.log(center_x);
+            //console.log(center_y);
+        };
+
+
+        function searchObj (obj, query) {
+
+            for (var key in obj) {
+                var value = obj[key];
+                if (typeof value === 'object') {
+                    searchObj(value, query);
+                }
+
+                if (value === query) {
+                    console.log('property=' + key + ' value=' + value);
+                }
+
+            }
+
+        }
+
         function highlightFeature(e) {
             var layer = e.target;
 
@@ -297,9 +473,9 @@ angular.module('realValue')
             });
         }
 
-            function zoomToFeature(e) {
+        function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
-            console.log("zip obj ",e.target.feature.properties);
+            console.log("zip obj ",e);
             console.log("zip ", area_click_on);
             if(area_click_on==="Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
@@ -371,7 +547,7 @@ angular.module('realValue')
 
                 $http.get("./app/controllers/all_places.json?1").success(function(data, status) {
                     //console.log("data",data);
-                    gjLayer = L.geoJson(tammy_geojson);
+                    //mc.gjLayer = L.geoJson(tammy_geojson);
                     //console.log("layer",gjLayer);
                     var matched_data = {
                         "type": "FeatureCollection",
