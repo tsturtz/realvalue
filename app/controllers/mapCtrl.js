@@ -1,10 +1,9 @@
-var Weikuan_Combined_Firebase;
-var crime_and_job_data_analysis;
+
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService, $mdDialog, $q) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var mc = this;
-
+        console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
 
         mc.someArr = ['apple','orange'];
@@ -13,37 +12,8 @@ angular.module('realValue')
             console.log('hi');
         };
 
-        var config = {
-            apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
-            authDomain: "realvalue-ebd58.firebaseapp.com",
-            databaseURL: "https://realvalue-ebd58.firebaseio.com",
-            storageBucket: "realvalue-ebd58.appspot.com",
-            messagingSenderId: "73443138678"
-        };
-        firebase.initializeApp(config);
-        var fbRef=firebase.database();
-        fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
-            crime_and_job_data_analysis=snapshot.val();
-        })
-        this.weikuan_init = function() {
 
-            var deferred = $q.defer();
-
-            fbRef.ref("combine").once('value',function(snapshot){
-                deferred.resolve(snapshot.val());
-            });
-
-            return deferred.promise;
-        };
-
-        this.weikuan_init().then(
-            function(response) {
-                Weikuan_Combined_Firebase = response;
-                console.log("weikuan", Weikuan_Combined_Firebase);
-                console.log(roughSizeOfObject(Weikuan_Combined_Firebase));
-                mc.mergeData();
-                console.log("la size", roughSizeOfObject(losangeles_geojson));
-            });
+        dataService.weikuan_init();
 
         console.log("init map");
 
@@ -60,122 +30,7 @@ angular.module('realValue')
                     console.warn('fail: ', snapshot);
                 });*/
 
-        this.mergeData = function() {
-            console.log("merging data");
 
-            var zip_city;
-            var lookup_zip;
-            var jobs_openings;
-            var crimes;
-            for(var i=0;i<tammy_geojson.features.length;i++){
-                //console.log(miles_geojson.features[i].properties.name);
-                lookup_zip = tammy_geojson.features[i].properties.name;
-                zip_city = find_city_based_on_zip_code_oc(lookup_zip);
-                //console.log(miles_geojson.features[i]);
-                //console.log("tammy match zip: " + lookup_zip + " with " + zip_city);
-
-                if(zip_city.length > 1) {
-                    for(var j=0;j<zip_city.length;j++) {
-                        console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
-                        if(zip_city[j] != '' ){
-                            jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
-                            //console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
-                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
-                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
-                            && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
-                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                                console.log("crime totals ", crimes);
-                                tammy_geojson.features[i].properties.crimes = crimes;
-                            } else {
-                                crimes = 0;
-                                //console.log("no crimes");
-                            }
-                            //console.log("job openings ", jobs_openings);
-
-                            tammy_geojson.features[i].properties.jobs = jobs_openings;
-                            tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
-                        }
-                    }
-
-                } else {
-
-                    if(zip_city[0] != undefined) {
-
-                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
-                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
-                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            console.log("crime totals ", crimes);
-                            tammy_geojson.features[i].properties.crimes = crimes;
-                        } else {
-                            crimes = 0;
-                        }
-
-                        jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
-                        //console.log("job openings ", jobs_openings);
-                        tammy_geojson.features[i].properties.jobs = jobs_openings;
-                        tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
-
-                    }
-
-                }
-
-            }
-
-            var zip_city;
-            var lookup_zip;
-            var jobs_openings;
-            for(var i=0;i<losangeles_geojson.features.length;i++){
-                //console.log(miles_geojson.features[i].properties.name);
-                lookup_zip = losangeles_geojson.features[i].properties.name;
-                zip_city = find_city_based_on_zip_code(lookup_zip);
-                //console.log(zip_city.length);
-                //console.log("la match zip: " + lookup_zip + " with " + zip_city);
-                if(zip_city.length > 1) {
-                    for(var j=0;j<zip_city.length;j++) {
-                        console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
-                        if(zip_city[j] != '' ){
-                            jobs_openings = Weikuan_Combined_Firebase[zip_city[j]]["Number of job openings"];
-                            console.log("data", Weikuan_Combined_Firebase[zip_city[j]]);
-                            if(Weikuan_Combined_Firebase[zip_city[j]].hasOwnProperty("zip_codes")
-                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
-                                && Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
-                                crimes = Weikuan_Combined_Firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                                console.log("crime totals ", crimes);
-                                losangeles_geojson.features[i].properties.crimes = crimes;
-                            } else {
-                                crimes = 0;
-                                //console.log("no crimes");
-                            }
-                            //console.log("job openings ", jobs_openings);
-
-                            losangeles_geojson.features[i].properties.jobs = jobs_openings;
-                            losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);;
-                        }
-                    }
-
-                } else {
-                    //console.log(miles_geojson.features[i]);
-                    ///console.log("miles match zip: " + lookup_zip + " with " + zip_city);
-                    if(zip_city[0] != undefined ){
-                        if(Weikuan_Combined_Firebase[zip_city[0]].hasOwnProperty["zip_codes"]
-                            && Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crimes")) {
-                            crimes = Weikuan_Combined_Firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            console.log("crime totals ", crimes);
-                            losangeles_geojson.features[i].properties.crimes = crimes;
-                        } else {
-                            crimes = 0;
-                        }
-
-                        jobs_openings = Weikuan_Combined_Firebase[zip_city[0]]["Number of job openings"];
-                        //console.log("job openings ", jobs_openings);
-                        losangeles_geojson.features[i].properties.jobs = jobs_openings;
-                        losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);;
-
-                    }
-                }
-
-            }
-        };
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
@@ -476,31 +331,9 @@ angular.module('realValue')
                 dashArray: '3'
             });
         }
-        function find_city_based_on_zip_code_oc(zip) {
-            var result=[];
-            for(var city in la_zips){
-                for(var i=0;i<la_zips[city]["zip_codes"].length;i++){
-                    if(la_zips[city]["zip_codes"][i]===zip){
-                        result.push(city+", CA");
-                    }
-                }
+        
 
-            }
-            return result;
-        }
-
-        function find_city_based_on_zip_code(zip) {
-            var result = [];
-            for (var city in la_zips) {
-                for (var i = 0; i < la_zips[city]["zip_codes"].length; i++) {
-                    if (la_zips[city]["zip_codes"][i] === zip) {
-                        result.push(city + ", CA");
-                    }
-                }
-
-            }
-            return result;
-        }
+        
 
             function zoomToFeature(e) {
             var area_click_on=e.target.feature.properties.name;
@@ -513,52 +346,52 @@ angular.module('realValue')
                 mc.information=county_orange.features[0].properties;
             }
             else{
-                if(Weikuan_Combined_Firebase.hasOwnProperty(area_click_on)){
+                if(dataService.firebase.hasOwnProperty(area_click_on)){
                     var temp={};
-                    for(var key in Weikuan_Combined_Firebase[area_click_on]){
+                    for(var key in dataService.firebase[area_click_on]){
                         if(key!=="zip_codes"){
-                            temp[key]=Weikuan_Combined_Firebase[area_click_on][key];
+                            temp[key]=dataService.firebase[area_click_on][key];
                         }
                     }
                     mc.information=temp;
                 }
                 else {
-                    var city=find_city_based_on_zip_code(area_click_on);
+                    var city=dataService.find_city_based_on_zip_code(area_click_on);
                     var crime_and_job={};
                     console.log(city);
                     if(city.length!==0){
                         mc.information={};
                         for(var i=0;i<city.length;i++){
-                            if(Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
+                            if(dataService.firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
                                 try{
-                                    crime_and_job["2005 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2005 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2005"]["Violent_sum"];
-                                    crime_and_job["2006 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2006 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2006"]["Violent_sum"];
-                                    crime_and_job["2007 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2007 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2007"]["Violent_sum"];
-                                    crime_and_job["2008 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2008 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2008"]["Violent_sum"];
-                                    crime_and_job["2009 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2009 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2009"]["Violent_sum"];
-                                    crime_and_job["2010 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2010 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2010"]["Violent_sum"];
-                                    crime_and_job["2011 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2011 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2011"]["Violent_sum"];
-                                    crime_and_job["2012 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2012 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2012"]["Violent_sum"];
-                                    crime_and_job["2013 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2013 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2013"]["Violent_sum"];
-                                    crime_and_job["2014 Violent Sum"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2014 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2014"]["Violent_sum"];
-                                    crime_and_job["Total_Jobs"]=Weikuan_Combined_Firebase[city[i]]["zip_codes"][area_click_on]["total jobs"];
+                                    crime_and_job["Total_Jobs"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]["total jobs"];
                                     mc.information=crime_and_job;
                                 }
                                 catch(err){
                                     console.info(err);
                                 }
                             else{
-                                mc.information[city[i]]=Weikuan_Combined_Firebase[city[i]]["zip_codes"];
+                                mc.information[city[i]]=dataService.firebase[city[i]]["zip_codes"];
                             }
                         }
                     }

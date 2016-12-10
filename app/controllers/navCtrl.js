@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService){
+    .controller('navCtrl', function($mdSidenav, $mdDialog, checkboxService,dataService){
         var self = this;
         var score;
         var attribute;
