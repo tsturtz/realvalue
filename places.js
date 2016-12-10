@@ -1,3 +1,13 @@
+/********************************************************************
+ *
+ *
+ * RUNNING THIS GOOGLE PLACES RADAR SEARCHES EVERY 1 MINUTE (60000MS)
+ *
+ *
+ ********************************************************************/
+
+
+
 var map;
 var service;
 var infowindow;
@@ -50,81 +60,97 @@ function initMap() {
         [33.66210126, -117.83252] //19
         ];
 
-    var lfz = new google.maps.LatLng(33.633998, -117.733383);
+    //var lfz = new google.maps.LatLng(33.633998, -117.733383);
 
-    // increment first index, leave second index 0 and 1
-    //var randomCoord = new google.maps.LatLng(randomCoordinates[18][0],randomCoordinates[18][1]);
+    var coordIndex = 0;
 
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: lfz,
-        zoom: 15,
-        styles: [{
-            "featureType": "landscape",
-            "stylers": [{"hue": "#FFBB00"}, {"saturation": 43.400000000000006}, {"lightness": 37.599999999999994}, {"gamma": 1}]
-        }, {
-            "featureType": "road.highway",
-            "stylers": [{"hue": "#FFC200"}, {"saturation": -61.8}, {"lightness": 45.599999999999994}, {"gamma": 1}]
-        }, {
-            "featureType": "road.arterial",
-            "stylers": [{"hue": "#FF0300"}, {"saturation": -100}, {"lightness": 51.19999999999999}, {"gamma": 1}]
-        }, {
-            "featureType": "road.local",
-            "stylers": [{"hue": "#FF0300"}, {"saturation": -100}, {"lightness": 52}, {"gamma": 1}]
-        }, {
-            "featureType": "water",
-            "stylers": [{"hue": "#0078FF"}, {"saturation": -13.200000000000003}, {"lightness": 2.4000000000000057}, {"gamma": 1}]
-        }, {
-            "featureType": "poi",
-            "stylers": [{"hue": "#00FF6A"}, {"saturation": -1.0989010989011234}, {"lightness": 11.200000000000017}, {"gamma": 1}]
-        }]
-    });
+    var apiInterval = setInterval(function(){ callApi() }, 60000);
 
-    var request = {
-        location: lfz,
-        radius: '3500',
-        type: [placeType]
-    };
+    function callApi() {
+        coordIndex++;
 
-    infowindow = new google.maps.InfoWindow();
-    service = new google.maps.places.PlacesService(map);
-    service.radarSearch(request, callback);
-}
+        var randomCoord = new google.maps.LatLng(randomCoordinates[coordIndex][0],randomCoordinates[coordIndex][1]);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: randomCoord,
+            zoom: 15,
+            styles: [{
+                "featureType": "landscape",
+                "stylers": [{"hue": "#FFBB00"}, {"saturation": 43.400000000000006}, {"lightness": 37.599999999999994}, {"gamma": 1}]
+            }, {
+                "featureType": "road.highway",
+                "stylers": [{"hue": "#FFC200"}, {"saturation": -61.8}, {"lightness": 45.599999999999994}, {"gamma": 1}]
+            }, {
+                "featureType": "road.arterial",
+                "stylers": [{"hue": "#FF0300"}, {"saturation": -100}, {"lightness": 51.19999999999999}, {"gamma": 1}]
+            }, {
+                "featureType": "road.local",
+                "stylers": [{"hue": "#FF0300"}, {"saturation": -100}, {"lightness": 52}, {"gamma": 1}]
+            }, {
+                "featureType": "water",
+                "stylers": [{"hue": "#0078FF"}, {"saturation": -13.200000000000003}, {"lightness": 2.4000000000000057}, {"gamma": 1}]
+            }, {
+                "featureType": "poi",
+                "stylers": [{"hue": "#00FF6A"}, {"saturation": -1.0989010989011234}, {"lightness": 11.200000000000017}, {"gamma": 1}]
+            }]
+        });
+
+        var request = {
+            location: randomCoord,
+            radius: '3500',
+            type: [placeType]
+        };
+
+        infowindow = new google.maps.InfoWindow();
+        service = new google.maps.places.PlacesService(map);
+        service.radarSearch(request, callback);
+    }
 
 
-function callback(results, status) {
-    if (status == google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            var place = results[i];
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                var place = results[i];
 
-            console.log('number of results: ', results.length);
+                console.log('number of results: ', results.length);
 
-            var placeObj =
-            {
-                "type": "Feature",
-                "properties": {
-                    "type": placeType,
-                    "placeId": place.place_id
-                },
-                "geometry": {
-                    "coordinates": [results[i].geometry.location.lat(), results[i].geometry.location.lng()]
-                }
-            };
+                var placeObj =
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "type": placeType,
+                        "placeId": place.place_id
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                            results[i].geometry.location.lat(), results[i].geometry.location.lng()
+                        ]
+                    }
+                };
 
-            console.log('obj to be pushed to DB: ', placeObj);
+                console.log('obj to be pushed to DB: ', placeObj);
 
-            var placeLoc = {
-                lat: results[i].geometry.location.lat(),
-                lng: results[i].geometry.location.lng()
-            };
+                var placeLoc = {
+                    lat: results[i].geometry.location.lat(),
+                    lng: results[i].geometry.location.lng()
+                };
 
-            /*(function (places) {
-                fbTaylorData.ref('/features/' + placeType + '/' + placeObj.properties.placeId).set(placeObj);
-            })(results[i]);*/
+                (function (places) {
+                    fbTaylorData.ref('/features/' + placeType + '/' + placeObj.properties.placeId).set(placeObj);
+                })(results[i]);
 
-            createMarker(place, placeLoc);
-            //console.log(place);
+                createMarker(place, placeLoc);
+                //console.log(place);
+            }
+        }
+        console.log(coordIndex + ' -- ' + randomCoordinates.length);
+        if (coordIndex == randomCoordinates.length) {
+            clearInterval(apiInterval);
         }
     }
+
+
 }
 
 fbTaylorData.ref('/features/').on('value', function (snapshot) {
