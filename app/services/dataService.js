@@ -11,8 +11,9 @@ angular.module('realValue')
         firebase.initializeApp(config);
         var fbRef=firebase.database();
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
-            crime_and_job_data_analysis=snapshot.val();
+            self.crime_and_job_data_analysis=snapshot.val();
         })
+
         this.find_city_based_on_zip_code=function(zip) {
             var result = [];
             for (var city in la_zips) {
@@ -148,7 +149,7 @@ angular.module('realValue')
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            console.log("crime totals ", crimes);
+                            //console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
                         } else {
                             crimes = 0;
