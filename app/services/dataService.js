@@ -11,8 +11,11 @@ angular.module('realValue')
         firebase.initializeApp(config);
         var fbRef=firebase.database();
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
-            crime_and_job_data_analysis=snapshot.val();
+            self.crime_and_job_data_analysis=snapshot.val();
         })
+
+        var defined_city = true;
+
         this.find_city_based_on_zip_code=function(zip) {
             var result = [];
             for (var city in la_zips) {
@@ -142,13 +145,20 @@ angular.module('realValue')
 
                 } else {
                     //console.log(miles_geojson.features[i]);
-                    ///console.log("miles match zip: " + lookup_zip + " with " + zip_city);
-                    if(zip_city[0] != undefined ){
+                    //console.log("la match zip: " + lookup_zip + " with " + zip_city);
+                    //console.log(zip_city[0]);
+                    if(!self.firebase.hasOwnProperty(zip_city[0])) {
+                        console.error("Firebase has no data for " + zip_city[0]);
+                        defined_city = false;
+                    } else {
+                        defined_city = true;
+                    }
+                    if(zip_city[0] != undefined && defined_city){
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            console.log("crime totals ", crimes);
+                            //console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
                         } else {
                             crimes = 0;
