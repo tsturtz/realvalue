@@ -198,17 +198,18 @@ layout
     display: none;
 }
 
+/* ZOOM LEVELS */
+#zoom-levels {
+    position: absolute;
+    bottom: 140px;
+    left: 20px;
+}
+
 /* TOP TOOLBAR */
 #top-toolbar {
     position: absolute;
     top: 0;
     background-color: rgba(0,150,136,.8);
-}
-
-/* BOTTOM TOOLBAR */
-#bottom-toolbar {
-    position: absolute;
-    bottom: 0;
 }
 
 md-toolbar.ng-scope._md._md-toolbar-transitions {
