@@ -3,6 +3,10 @@ angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var mc = this;
+        //mc.gjLayer;
+        mc.gjLayer = L.geoJson(tammy_geojson, {
+            style: style
+        });
         //console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
 
@@ -62,11 +66,12 @@ angular.module('realValue')
 
                         this.service = new google.maps.places.PlacesService($('#data-here').get(0));
 
+                        //console.log('args', args.model);
                         console.log('passed in key: ', key);
 
                         if (key) {
                             this.service.getDetails({
-                                placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                                placeId: key // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
                             }, function(place){
                                 console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
                                 deets.placeObj = {
@@ -75,8 +80,8 @@ angular.module('realValue')
                                     name : place.name,
                                     address : place.formatted_address,
                                     phone : place.formatted_phone_number,
-                                    openNow : place.opening_hours.open_now, // boolean
-                                    hours : place.opening_hours.weekday_text, // all days array
+                                    openNow : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.open_now : ['Store hours unavailable'],
+                                    hours : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.weekday_text : false, // all days array
                                     photos : place.photos, // all photos array
                                     reviews : place.reviews // all reviews array
                                 };
@@ -119,14 +124,6 @@ angular.module('realValue')
                         //console.log("layer",layer);
                         //layer.bindPopup(feature.properties.popupContent);
 
-                        leafletData.getMap().then(function(map) {
-                            label = new L.Label();
-                            label.setContent(feature.properties.name);
-                            label.setLatLng(layer.getBounds().getCenter());
-                            //map.showLabel(label);
-                        });
-
-
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: resetHighlight,
@@ -138,7 +135,7 @@ angular.module('realValue')
         };
 
         this.city_zoom = function() {
-            console.log("extend zip");
+            console.log("extend city");
             //console.log("cities",cities);
             angular.extend($scope, {
                 center: {
@@ -152,8 +149,18 @@ angular.module('realValue')
                         attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
                     }
                 },
+                controls: {},
                 layers: {
-                    overlays: {}
+                    overlays: {
+                        search: {
+                            name: 'search',
+                            type: 'group',
+                            visible: true,
+                            layerParams: {
+                                showOnSelector: false
+                            }
+                        }
+                    }
                 },
                 geojson : {
                     data: [cities],
@@ -269,7 +276,60 @@ angular.module('realValue')
         };
 
         this.submit_zoom = function(zip) {
-            console.log("zoomed on: ", zip);
+
+            losangeles_geojson.features.filter(function(data) {
+                //console.log("data", data);
+                $scope.geojson.data = data;
+            });
+
+            leafletData.getMap().then(function(map) {
+
+                // var featuresLayer = new L.GeoJSON(tammy_geojson, {
+                // });
+
+                //map.addLayer(mc.gjLayer);
+                //console.log(featuresLayer);
+                console.log(dataService.crime_and_job_data_analysis);
+                console.log(mc.gjLayer);
+                var searchControl = new L.Control.Search({
+                    layer: mc.gjLayer,
+                    propertyName: 'name',
+                    circleLocation: false,
+                    moveToLocation: function(latlng, title, map) {
+                        //map.fitBounds( latlng.layer.getBounds() );
+                        var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+                        map.setView(latlng, zoom); // access the zoom
+                    }
+                });
+
+                searchControl.on('search:locationfound', function(e) {
+
+                    e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
+                    if(e.layer._popup)
+                        e.layer.openPopup();
+
+                }).on('search:collapsed', function(e) {
+
+                    featuresLayer.eachLayer(function(layer) {	//restore feature color
+                        featuresLayer.resetStyle(layer);
+                    });
+                });
+
+                map.addControl( searchControl );
+            });
+
+            leafletData.getLayers().then(function(baselayers) {
+                console.log(baselayers);
+                angular.extend($scope.controls, {
+                    search: {
+                        layer: baselayers.overlays.search
+                    }
+                });
+            });
+
+            var calculated_center;
+            var match = false;
+            //console.log("zoomed on: ", zip);
             if (zip != undefined) {
                 //console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
@@ -280,24 +340,76 @@ angular.module('realValue')
                     //console.log(tammy_geojson.features[i]);
                     if(tammy_geojson.features[i].properties.name === zip) {
                         console.log("match!!!");
-                        console.log(tammy_geojson.features[i].properties);
+                        //console.log(tammy_geojson.features[i]);
+                        calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
+                        //match = true;
                     }
                 }
 
-                var center = {
-                    lat: 33.63622083463071,
-                    lng: -117.73948073387146,
-                    zoom: 12
-                };
+                if(match) {
+                    console.log(calculated_center);
+                    var center = {
+                        lat: calculated_center.x,
+                        lng: calculated_center.y,
+                        zoom: 12
+                    };
 
-                if(city.length) {
-                    angular.extend($scope, {
-                        center: center
-                    });
+                    if(city.length) {
+                        angular.extend($scope, {
+                            center: center
+                        });
+                    }
                 }
 
             }
         };
+
+        this.findMinMaxNumber = function(arr) {
+            var l = arr.length;
+            var max = -Infinity;
+            var min = Infinity;
+            var i;
+            for (i = 0; l > i; i++) {
+                if (arr[i] > max) {
+                    max = arr[i];
+                }
+                if (arr[i] < min) {
+                    min = arr[i];
+                }
+            }
+
+            return {
+                min: min,
+                max: max
+            };
+        };
+
+        this.findCenterFromCoordinatesArray = function(array) {
+
+            var array_x = [];
+            var array_y = [];
+            for(var i=0;i<array.length;i++){
+                array_x.push(array[i][1]);
+                array_y.push(array[i][0]);
+            }
+            // console.log(array_x);
+            // console.log(array_y);
+            var maxmin_x = this.findMinMaxNumber(array_x);
+            var maxmin_y = this.findMinMaxNumber(array_y);
+
+            //console.log(maxmin_x);
+            //console.log(maxmin_y);
+            var center_x = maxmin_x.min + ((maxmin_x.max - maxmin_x.min) / 2);
+            var center_y = maxmin_y.min + ((maxmin_y.max - maxmin_y.min) / 2);
+
+            return {
+                x:center_x,
+                y:center_y
+            }
+            //console.log(center_x);
+            //console.log(center_y);
+        };
+
 
         function searchObj (obj, query) {
 
@@ -529,7 +641,7 @@ angular.module('realValue')
 
                 $http.get("./app/controllers/all_places.json?1").success(function(data, status) {
                     //console.log("data",data);
-                    gjLayer = L.geoJson(tammy_geojson);
+                    //mc.gjLayer = L.geoJson(tammy_geojson);
                     //console.log("layer",gjLayer);
                     var matched_data = {
                         "type": "FeatureCollection",
@@ -537,29 +649,31 @@ angular.module('realValue')
                     };
 
                     var res_markers = {};
-
-                    for(var i = 0;i<data.features.length;i++) {
-                        //console.log(data.features[i].geometry.coordinates);
-                        var res = leafletPip.pointInLayer(
-                            [data.features[i].geometry.coordinates[0], data.features[i].geometry.coordinates[1]], gjLayer);
-                        if (res.length) {
-                            //console.log("name", res[0].feature.properties.name);
-                            if (zipCodeClicked === res[0].feature.properties.name) {
+                    console.log('places geojson: ', dataService.placesGeojson);
+                    if (!isNaN(area_click_on)) {
+                        console.log(area_click_on, 'is a number');
+                        for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
+                            console.log(dataService.placesGeojson.features[i].geometry.coordinates);
+                            var res = leafletPip.pointInLayer(
+                                [dataService.placesGeojson.features[i].geometry.coordinates[1], dataService.placesGeojson.features[i].geometry.coordinates[0]], mc.gjLayer);
+                            if (res.length) {
                                 //console.log("name", res[0].feature.properties.name);
-                                matched_data.features.push(data.features[i]);
-
-                                res_markers["id" + i] = {
-                                    "Place ID":dummy_place_id(),
-                                    "Place Type":"Restaurant",
-                                    "lat":data.features[i].geometry.coordinates[1],
-                                    "lng":data.features[i].geometry.coordinates[0]
+                                if (zipCodeClicked === res[0].feature.properties.name) {
+                                    console.log("name", res[0].feature.properties.name);
+                                    matched_data.features.push(data.features[i]);
+                                    res_markers["id" + i] = {
+                                        "Place ID": dataService.placesGeojson.features[i].properties.placeId,
+                                        "Place Type": dataService.placesGeojson.features[i].properties.type,
+                                        "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
+                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1]
+                                    }
                                 }
+                            } else {
+                                console.log("false");
                             }
-                        } else {
-                            console.log("false");
                         }
                     }
-                    //console.log("markers", res_markers);
+                    console.log("markers", res_markers);
                     //console.log("matched",matched_data);
                     //console.log("data",data);
 

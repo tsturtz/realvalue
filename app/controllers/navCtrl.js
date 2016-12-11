@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller("navCtrl", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
+    .controller("navCtrl", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$mdSidenav', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $mdSidenav) {
         var self = this;
         var score;
         var attribute;
@@ -37,8 +37,10 @@ angular.module('realValue')
 
         self.applyUpdate = function(attr, operator, checked) {
             if(attr === "crimes") {
+                console.log("crime");
                 weight = -1;
             } else {
+                console.log("not crime");
                 weight = 1;
             }
             console.log(attr);
