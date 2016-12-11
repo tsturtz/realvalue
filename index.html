@@ -93,13 +93,14 @@
 <!--<div id='map2'></div>-->
 
 <div id="map" ng-controller="mapController as mc">
-    <leaflet tiles='tiles' controls="controls" markers="markers" layers="layers" lf-center="center" geojson="geojson" hello="hello"
+    <leaflet tiles='tiles' controls="controls" markers="markers" layers="layers" lf-center="center" geojson="geojson"
+             hello="hello"
              width="100%" height="100vh"></leaflet>
 
     <div id="main-container" ng-controller="navCtrl as nc">
 
         <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
-                    md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
+                    md-whiteframe="4" md-disable-backdrop="true">
             <section id="data-here">
             </section>
             <svg id="visualisation" width="250" height="250"></svg>
@@ -111,39 +112,37 @@
                 </div>
             </section>
 
+            <span flex></span>
 
-            <h4>Select what's important to you</h4>
-            <section id="check_boxes" layout="row" layout-align="start start">
-                <div id="options" layout="column">
-                    <md-input-container layout="column">
-                        <md-checkbox ng-repeat="checkbox in nc.checkboxes" ng-model="checkbox.checked"
-                                     ng-change="nc.updateData(this.checkbox)">{{checkbox.type}}
-                        </md-checkbox>
-                    </md-input-container>
-                </div>
-            </section>
-
-            <span flex="10"></span>
-
-            <div id="nav-close">
+            <div id="nav-close" flex>
                 <md-button class="md-raised" ng-click="nc.openRightMenu()">
                     Close
                 </md-button>
             </div>
 
-            <span flex="10"></span>
-
         </md-sidenav>
 
         <div layout="column">
 
-            <!------------------------- TEMP -------------------------->
-
-            <md-button href="zoom-temp.html" class="md-raised md-primary" id="temp1">
-                NEXT
-            </md-button>
-
-            <!------------------------- TEMP -------------------------->
+            <div id="check_boxes" layout="row" layout-align="start start">
+                <md-card class="check_boxes" md-whiteframe="4">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Select what's important to you</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                    <div id="options" layout="column">
+                        <md-input-container layout="column">
+                            <md-checkbox ng-model="checkbox.checked" ng-repeat="checkbox in nc.checkboxes"
+                                         ng-change="nc.updateData(this.checkbox)">
+                                {{checkbox.type}}
+                            </md-checkbox>
+                        </md-input-container>
+                    </div>
+                    </md-card-content>
+                </md-card>
+            </div>
 
             <div id="menu-btn" layout-padding>
                 <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
@@ -152,7 +151,7 @@
             </div>
 
             <div id="card-btm-left" layout="column">
-                <md-card class="btm-left-card">
+                <md-card class="btm-left-card" md-whiteframe="4">
                     <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
                     <md-card-content layout="row">
                         <md-input-container>
