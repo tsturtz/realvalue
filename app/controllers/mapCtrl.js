@@ -10,32 +10,6 @@ angular.module('realValue')
         //console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
 
-        var markersData = [
-            {"loc":[41.575330,13.102411], "title":"aquamarine"},
-            {"loc":[41.575730,13.002411], "title":"black"},
-            {"loc":[41.807149,13.162994], "title":"blue"},
-            {"loc":[41.507149,13.172994], "title":"chocolate"},
-            {"loc":[41.847149,14.132994], "title":"coral"},
-            {"loc":[41.219190,13.062145], "title":"cyan"},
-            {"loc":[41.344190,13.242145], "title":"darkblue"},
-            {"loc":[41.679190,13.122145], "title":"darkred"},
-            {"loc":[41.329190,13.192145], "title":"darkgray"},
-            {"loc":[41.379290,13.122545], "title":"dodgerblue"},
-            {"loc":[41.409190,13.362145], "title":"gray"},
-            {"loc":[41.794008,12.583884], "title":"green"},
-            {"loc":[41.805008,12.982884], "title":"greenyellow"},
-            {"loc":[41.536175,13.273590], "title":"red"},
-            {"loc":[41.516175,13.373590], "title":"rosybrown"},
-            {"loc":[41.506175,13.173590], "title":"royalblue"},
-            {"loc":[41.836175,13.673590], "title":"salmon"},
-            {"loc":[41.796175,13.570590], "title":"seagreen"},
-            {"loc":[41.436175,13.573590], "title":"seashell"},
-            {"loc":[41.336175,13.973590], "title":"silver"},
-            {"loc":[41.236175,13.273590], "title":"skyblue"},
-            {"loc":[41.546175,13.473590], "title":"yellow"},
-            {"loc":[41.239190,13.032145], "title":"white"}
-        ];
-
         dataService.weikuan_init();
 
         console.log("init map");
@@ -170,9 +144,11 @@ angular.module('realValue')
                     zoom: 9
                 },
                 tiles: {
-                    url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    //url: "http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}",
+                    url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
-                        attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                        //attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
                     }
                 },
                 controls: {},
@@ -194,6 +170,14 @@ angular.module('realValue')
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
                         //layer.bindPopup(feature.properties.popupContent);
+
+                        leafletData.getMap().then(function(map) {
+                            label = new L.Label();
+                            label.setContent(feature.properties.name);
+                            label.setLatLng(layer.getBounds().getCenter());
+                            //console.log(feature.properties.name + " " + layer.getBounds().getCenter());
+                            //map.showLabel(label);
+                        });
 
                         layer.on({
                             mouseover: highlightFeature,
@@ -294,7 +278,7 @@ angular.module('realValue')
         };
 
         this.submit_zoom = function(zip) {
-
+/*
             losangeles_geojson.features.filter(function(data) {
                 //console.log("data", data);
                 $scope.geojson.data = data;
@@ -343,7 +327,7 @@ angular.module('realValue')
                         layer: baselayers.overlays.search
                     }
                 });
-            });
+            });*/
 
             var calculated_center;
             var match = false;
@@ -360,7 +344,7 @@ angular.module('realValue')
                         console.log("match!!!");
                         //console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
-                        //match = true;
+                        match = true;
                     }
                 }
 
@@ -472,15 +456,82 @@ angular.module('realValue')
                 dashArray: '3'
             });
         }
+        function InitChart(barData) {
+            $("#visualisation").empty();
+            $("#check_boxes").hide();
+            var vis = d3.select('#visualisation'),
+                WIDTH = 250,
+                HEIGHT = 250,
+                MARGINS = {
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                    left: 60
+                },
+                xRange = d3.scale.ordinal().rangeRoundBands([MARGINS.left, WIDTH - MARGINS.right], 0.1).domain(barData.map(function (d) {
+                    return d.x;
+                })),
 
-        function zoomToFeature(e) {
-            var area_click_on = e.target.feature.properties.name;
-            console.log("zip obj ",e);
+                yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,
+                    d3.max(barData, function (d) {
+                        return d.y;
+                    })
+                ]),
+                xAxis = d3.svg.axis()
+                    .scale(xRange)
+                    .tickSize(1)
+                    .tickSubdivide(true),
+
+                yAxis = d3.svg.axis()
+                    .scale(yRange)
+                    .tickSize(5)
+                    .orient("left")
+                    .tickSubdivide(true);
+            vis.append('svg:g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0,' + 230 + ')')
+                .call(xAxis);
+
+            vis.append('svg:g')
+                .attr('class', 'y axis')
+                .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+                .call(yAxis);
+
+            vis.selectAll('rect')
+                .data(barData)
+                .enter()
+                .append('rect')
+                .attr('x', function (d) {
+                    return xRange(d.x);
+                })
+                .attr('y', function (d) {
+                    return yRange(d.y);
+                })
+                .attr('width', 10)
+                .attr('height', function (d) {
+                    return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
+                })
+                .attr('fill', 'grey')
+                .on('mouseover',function(d){
+                    d3.select(this)
+                        .attr('fill','blue');
+                })
+                .on('mouseout',function(d){
+                    d3.select(this)
+                        .attr('fill','grey');
+                });
+
+
+        }
+            function zoomToFeature(e) {
+
+            var area_click_on=e.target.feature.properties.name;
+            console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);
-            if(area_click_on === "Los Angeles County"){
+            if(area_click_on==="Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
             }
-            else if(area_click_on === "Orange County"){
+            else if(area_click_on==="Orange County"){
                 mc.information=county_orange.features[0].properties;
             }
             else{
@@ -498,7 +549,6 @@ angular.module('realValue')
                     var crime_and_job={};
                     console.log(city);
                     if(city.length!==0){
-                        mc.information={};
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
                                 try{
@@ -523,13 +573,59 @@ angular.module('realValue')
                                     crime_and_job["2014 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2014"]["Violent_sum"];
                                     crime_and_job["Total_Jobs"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]["total jobs"];
-                                    mc.information=crime_and_job;
+                                    //mc.information=crime_and_job;
+                                    var barData = [{
+                                        'x': '05',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2005"]["Violent_sum"]
+                                    }, {
+                                        'x': '06',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2006"]["Violent_sum"]
+                                    }, {
+                                        'x': '07',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2007"]["Violent_sum"]
+                                    }, {
+                                        'x': '08',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2008"]["Violent_sum"]
+                                    }, {
+                                        'x': '09',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2009"]["Violent_sum"]
+                                    }, {
+                                        'x': '10',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2010"]["Violent_sum"]
+                                    }, {
+                                        'x': '11',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2011"]["Violent_sum"]
+                                    }, {
+                                        'x': '12',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2012"]["Violent_sum"]
+                                    }, {
+                                        'x': '13',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2013"]["Violent_sum"]
+                                    }, {
+                                        'x': '14',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2014"]["Violent_sum"]
+                                    }];
+
+                                    mc.information=InitChart(barData);
+                                    mc.crimejob=1;
                                 }
                                 catch(err){
                                     console.info(err);
                                 }
                             else{
+                                mc.information={};
                                 mc.information[city[i]]=dataService.firebase[city[i]]["zip_codes"];
+                                mc.crimejob=0;
                             }
                         }
                     }
