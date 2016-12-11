@@ -342,8 +342,75 @@ angular.module('realValue')
                 dashArray: '3'
             });
         }
+        function InitChart(barData) {
+            $("#visualisation").empty();
+            $("#check_boxes").hide();
+            var vis = d3.select('#visualisation'),
+                WIDTH = 250,
+                HEIGHT = 250,
+                MARGINS = {
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                    left: 60
+                },
+                xRange = d3.scale.ordinal().rangeRoundBands([MARGINS.left, WIDTH - MARGINS.right], 0.1).domain(barData.map(function (d) {
+                    return d.x;
+                })),
 
+                yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,
+                    d3.max(barData, function (d) {
+                        return d.y;
+                    })
+                ]),
+                xAxis = d3.svg.axis()
+                    .scale(xRange)
+                    .tickSize(1)
+                    .tickSubdivide(true),
+
+                yAxis = d3.svg.axis()
+                    .scale(yRange)
+                    .tickSize(5)
+                    .orient("left")
+                    .tickSubdivide(true);
+            vis.append('svg:g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0,' + 230 + ')')
+                .call(xAxis);
+
+            vis.append('svg:g')
+                .attr('class', 'y axis')
+                .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+                .call(yAxis);
+
+            vis.selectAll('rect')
+                .data(barData)
+                .enter()
+                .append('rect')
+                .attr('x', function (d) {
+                    return xRange(d.x);
+                })
+                .attr('y', function (d) {
+                    return yRange(d.y);
+                })
+                .attr('width', 10)
+                .attr('height', function (d) {
+                    return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
+                })
+                .attr('fill', 'grey')
+                .on('mouseover',function(d){
+                    d3.select(this)
+                        .attr('fill','blue');
+                })
+                .on('mouseout',function(d){
+                    d3.select(this)
+                        .attr('fill','grey');
+                });
+
+
+        }
             function zoomToFeature(e) {
+
             var area_click_on=e.target.feature.properties.name;
             console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);
@@ -368,7 +435,6 @@ angular.module('realValue')
                     var crime_and_job={};
                     console.log(city);
                     if(city.length!==0){
-                        mc.information={};
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
                                 try{
@@ -393,13 +459,59 @@ angular.module('realValue')
                                     crime_and_job["2014 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
                                         ["crime"]["2014"]["Violent_sum"];
                                     crime_and_job["Total_Jobs"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]["total jobs"];
-                                    mc.information=crime_and_job;
+                                    //mc.information=crime_and_job;
+                                    var barData = [{
+                                        'x': '05',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2005"]["Violent_sum"]
+                                    }, {
+                                        'x': '06',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2006"]["Violent_sum"]
+                                    }, {
+                                        'x': '07',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2007"]["Violent_sum"]
+                                    }, {
+                                        'x': '08',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2008"]["Violent_sum"]
+                                    }, {
+                                        'x': '09',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2009"]["Violent_sum"]
+                                    }, {
+                                        'x': '10',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2010"]["Violent_sum"]
+                                    }, {
+                                        'x': '11',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2011"]["Violent_sum"]
+                                    }, {
+                                        'x': '12',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2012"]["Violent_sum"]
+                                    }, {
+                                        'x': '13',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2013"]["Violent_sum"]
+                                    }, {
+                                        'x': '14',
+                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                            ["crime"]["2014"]["Violent_sum"]
+                                    }];
+
+                                    mc.information=InitChart(barData);
+                                    mc.crimejob=1;
                                 }
                                 catch(err){
                                     console.info(err);
                                 }
                             else{
+                                mc.information={};
                                 mc.information[city[i]]=dataService.firebase[city[i]]["zip_codes"];
+                                mc.crimejob=0;
                             }
                         }
                     }
