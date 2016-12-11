@@ -17,7 +17,7 @@ angular.module('realValue')
 
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
             self.crime_and_job_data_analysis=snapshot.val();
-        })
+        });
 
         var defined_city = true;
 
@@ -29,7 +29,6 @@ angular.module('realValue')
                         result.push(city + ", CA");
                     }
                 }
-
             }
             return result;
         };
@@ -105,7 +104,6 @@ angular.module('realValue')
                                 //console.log("no crimes");
                             }
                             //console.log("job openings ", jobs_openings);
-
                             tammy_geojson.features[i].properties.jobs = jobs_openings;
                             tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
                         }
@@ -114,7 +112,6 @@ angular.module('realValue')
                 } else {
                     //console.log("zip city", zip_city);
                     if(zip_city[0] != undefined) {
-
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
@@ -124,16 +121,12 @@ angular.module('realValue')
                         } else {
                             crimes = 0;
                         }
-
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
                         tammy_geojson.features[i].properties.jobs = jobs_openings;
                         tammy_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
-
                     }
-
                 }
-
             }
 
             var zip_city;
@@ -165,7 +158,6 @@ angular.module('realValue')
 
                             losangeles_geojson.features[i].properties.jobs = jobs_openings;
                             losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
-                            ;
                         }
                     }
 
@@ -189,13 +181,10 @@ angular.module('realValue')
                         } else {
                             crimes = 0;
                         }
-
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"];
                         //console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
                         losangeles_geojson.features[i].properties.score = parseInt(jobs_openings) - parseInt(crimes);
-                        ;
-
                     }
                 }
 
