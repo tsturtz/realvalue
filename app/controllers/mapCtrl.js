@@ -456,9 +456,10 @@ angular.module('realValue')
                 dashArray: '3'
             });
         }
+
         function InitChart(barData) {
+            $scope.openSidenav.open();
             $("#visualisation").empty();
-            $("#check_boxes").hide();
             var vis = d3.select('#visualisation'),
                 WIDTH = 250,
                 HEIGHT = 250,
@@ -520,11 +521,13 @@ angular.module('realValue')
                     d3.select(this)
                         .attr('fill','grey');
                 });
-
-
         }
-            function zoomToFeature(e) {
 
+        // share method between controllers through obj prototypical inheritance
+        $scope.openSidenav = {};
+
+        function zoomToFeature(e) {
+            $scope.openSidenav.open();
             var area_click_on=e.target.feature.properties.name;
             console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);

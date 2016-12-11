@@ -1,6 +1,7 @@
 angular.module('realValue')
     .service('dataService', function ($q) {
         var self = this;
+
         var config = {
             apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
             authDomain: "realvalue-ebd58.firebaseapp.com",

@@ -154,18 +154,6 @@ layout
     background-size: cover;
 }
 
-#menu-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-}
-
-#checks-btm-left {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-}
-
 #temp1 {
     position: absolute;
     top: 0;
@@ -198,13 +186,6 @@ layout
     display: none;
 }
 
-/* ZOOM LEVELS */
-#zoom-levels {
-    position: absolute;
-    bottom: 140px;
-    left: 20px;
-}
-
 /* TOP TOOLBAR */
 #top-toolbar {
     position: absolute;
@@ -220,16 +201,19 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     left: 0;
 }
 
-/* CHECK-BOXES */
-.check-boxes {
-    margin-bottom: 0;
-}
-
 /* CARD BTM LEFT */
-#card-btm-left {
+#btm-left-card {
     position: absolute;
     bottom: 20px;
     left: 20px;
+}
+
+.checks {
+    margin-left: 10px;
+}
+
+.check-boxes:last-child {
+    margin-bottom: 0;
 }
 
 .md-errors-spacer {
