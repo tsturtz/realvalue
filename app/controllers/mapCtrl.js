@@ -169,9 +169,11 @@ angular.module('realValue')
                     zoom: 9
                 },
                 tiles: {
-                    url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    //url: "http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}",
+                    url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
-                        attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                        //attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
                     }
                 },
                 controls: {},
@@ -293,7 +295,7 @@ angular.module('realValue')
         };
 
         this.submit_zoom = function(zip) {
-
+/*
             losangeles_geojson.features.filter(function(data) {
                 //console.log("data", data);
                 $scope.geojson.data = data;
@@ -342,7 +344,7 @@ angular.module('realValue')
                         layer: baselayers.overlays.search
                     }
                 });
-            });
+            });*/
 
             var calculated_center;
             var match = false;
@@ -359,7 +361,7 @@ angular.module('realValue')
                         console.log("match!!!");
                         //console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
-                        //match = true;
+                        match = true;
                     }
                 }
 
