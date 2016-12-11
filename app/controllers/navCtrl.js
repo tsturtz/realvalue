@@ -110,7 +110,7 @@ angular.module('realValue')
 
         // logo image path
 
-        self.imagePath = './assets/img/RV-logo2.jpg';
+        self.logoTopLeft = './assets/img/RV-logo-white-green.png';
 
         // welcome dialog
 

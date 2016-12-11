@@ -100,7 +100,15 @@
     <div id="main-container" ng-controller="navCtrl as nc">
 
         <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
-                    md-whiteframe="4" md-disable-backdrop="true">
+                    md-whiteframe="8" md-disable-backdrop="true">
+            <md-toolbar class="md-accent md-medium-tall" layout-align="center center" layout="row">
+                <div class="md-toolbar-tools">
+                    <span flex>Data</span>
+                    <md-button md-no-ink ng-click="nc.openRightMenu()">
+                        <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
             <section id="data-here">
             </section>
             <svg id="visualisation" width="250" height="250"></svg>
@@ -122,46 +130,45 @@
 
         </md-sidenav>
 
-        <div layout="column">
-
-            <div id="check_boxes" layout="row" layout-align="start start">
-                <md-card class="check_boxes" md-whiteframe="4">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Select what's important to you</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                    <div id="options" layout="column">
-                        <md-input-container layout="column">
-                            <md-checkbox ng-model="checkbox.checked" ng-repeat="checkbox in nc.checkboxes"
-                                         ng-change="nc.updateData(this.checkbox)">
-                                {{checkbox.type}}
-                            </md-checkbox>
-                        </md-input-container>
-                    </div>
-                    </md-card-content>
-                </md-card>
-            </div>
-
-            <div id="menu-btn" layout-padding>
-                <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
+        <md-toolbar id="top-toolbar" class="md-primary md-medium-tall" layout-align="center center">
+            <div class="md-toolbar-tools">
+                <img ng-src="{{nc.logoTopLeft}}" alt="RealValue">
+                <md-button ng-repeat="checkbox in nc.checkboxes">
+                    <md-checkbox class="check-boxes" ng-model="checkbox.checked"
+                                 ng-change="nc.updateData(this.checkbox)">
+                        {{checkbox.type}}
+                    </md-checkbox>
+                </md-button>
+                <span flex></span>
+                <md-button md-no-ink ng-click="nc.openRightMenu()">
                     <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
                 </md-button>
             </div>
+        </md-toolbar>
 
-            <div id="card-btm-left" layout="column">
-                <md-card class="btm-left-card" md-whiteframe="4">
-                    <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
-                    <md-card-content layout="row">
-                        <md-input-container>
-                            <input type="text" placeholder="Enter city or zip" ng-model="mc.zip">
-                        </md-input-container>
-                        <md-button ng-click="mc.submit_zoom(mc.zip)">Submit</md-button>
-                    </md-card-content>
-                </md-card>
-            </div>
+        <!--<div id="checks-btm-left" layout="row" layout-align="start start">
+            <md-button class="md-primary md-raised" md-whiteframe="4" ng-repeat="checkbox in nc.checkboxes">
+                <span><md-checkbox class="check-boxes" ng-model="checkbox.checked" ng-change="nc.updateData(this.checkbox)">
+                    {{checkbox.type}}
+                </md-checkbox></span>
+            </md-button>
+        </div>-->
 
+        <!--<div id="menu-btn" layout-padding>
+            <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
+                <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
+            </md-button>
+        </div>-->
+
+        <div id="card-btm-left" layout="column">
+            <md-card class="btm-left-card" md-whiteframe="4">
+                <md-card-content layout="row">
+                    <md-input-container>
+                        <input type="text" placeholder="Enter city or zip" ng-model="mc.zip" ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
+                    </md-input-container>
+                    <md-button ng-click="mc.submit_zoom(mc.zip)">Submit</md-button>
+                </md-card-content>
+            </md-card>
         </div>
     </div>
 </div>

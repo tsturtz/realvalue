@@ -141,11 +141,6 @@ to {
 layout
 *********/
 
-/*.btm-left-card {
-    width: 15vw;
-    height: 25vh;
-}*/
-
 .md-backdrop {
     height: 100vh;
 }
@@ -161,20 +156,14 @@ layout
 
 #menu-btn {
     position: fixed;
-    top: 25px;
-    right: 25px;
+    top: 20px;
+    right: 20px;
 }
 
-#card-btm-left {
+#checks-btm-left {
     position: fixed;
-    bottom: 25px;
-    left: 25px;
-}
-
-#check_boxes {
-    position: fixed;
-    top: 25px;
-    left: 25px;
+    bottom: 20px;
+    left: 20px;
 }
 
 #temp1 {
@@ -202,4 +191,46 @@ layout
 
 .highlight {
     background-color: lavender;
+}
+
+/* ZOOM CONTROL */
+.leaflet-top.leaflet-left {
+    display: none;
+}
+
+/* TOP TOOLBAR */
+#top-toolbar {
+    position: absolute;
+    top: 0;
+    background-color: rgba(0,150,136,.8);
+}
+
+/* BOTTOM TOOLBAR */
+#bottom-toolbar {
+    position: absolute;
+    bottom: 0;
+}
+
+md-toolbar.ng-scope._md._md-toolbar-transitions {
+    min-width: 100vw;
+}
+
+.md-fab-toolbar-background {
+    left: 0;
+}
+
+/* CHECK-BOXES */
+.check-boxes {
+    margin-bottom: 0;
+}
+
+/* CARD BTM LEFT */
+#card-btm-left {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.md-errors-spacer {
+    display: none;
 }
