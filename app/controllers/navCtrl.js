@@ -87,30 +87,19 @@ angular.module('realValue')
             } else {
                 return false;
             }
-        }
+        };
 
         // checkboxes
 
         self.checkboxes = [
+            //{type: 'school', checked: true, weight: 10},
+            //{type: 'traffic', checked: true, weight: 10},
+            //{type: 'gas', checked: true, weight: 10},
             {type: 'jobs', checked: true, weight: 10},
-            {type: 'airport', checked: true, weight: 10},
-            {type: 'bar', checked: true, weight: 10},
-            {type: 'cafe', checked: true, weight: 10},
             {type: 'crimes', checked: true, weight: 10},
-            {type: 'gas', checked: true, weight: 10},
-            {type: 'gym', checked: true, weight: 10},
-            {type: 'hospital', checked: true, weight: 10},
             {type: 'housing', checked: true, weight: 10},
-            {type: 'library', checked: true, weight: 10},
-            {type: 'museum', checked: true, weight: 10},
-            {type: 'park', checked: true, weight: 10},
-            {type: 'police', checked: true, weight: 10},
-            {type: 'restaurant', checked: true, weight: 10},
-            {type: 'school', checked: true, weight: 10},
-            {type: 'traffic', checked: true, weight: 10},
-            {type: 'university', checked: true, weight: 10},
-            {type: 'walkScore', checked: true, weight: 10},
-            {type: 'zoo', checked: true, weight: 10}
+            {type: 'parks', checked: true, weight: 10},
+            {type: 'university', checked: true, weight: 10}
         ];
 
         // right sidenav

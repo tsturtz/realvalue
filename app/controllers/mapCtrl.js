@@ -80,8 +80,8 @@ angular.module('realValue')
                                     name : place.name,
                                     address : place.formatted_address,
                                     phone : place.formatted_phone_number,
-                                    openNow : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.open_now : ['Store hours unavailable'],
-                                    hours : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.weekday_text : false, // all days array
+                                    openNow : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.open_now : false, // boolean
+                                    hours : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.weekday_text : ['Store hours unavailable'], // all days array
                                     photos : place.photos, // all photos array
                                     reviews : place.reviews // all reviews array
                                 };
@@ -407,7 +407,7 @@ angular.module('realValue')
             return {
                 x:center_x,
                 y:center_y
-            }
+            };
             //console.log(center_x);
             //console.log(center_y);
         };

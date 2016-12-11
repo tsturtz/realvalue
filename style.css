@@ -141,10 +141,10 @@ to {
 layout
 *********/
 
-.btm-left-card {
+/*.btm-left-card {
     width: 15vw;
     height: 25vh;
-}
+}*/
 
 .md-backdrop {
     height: 100vh;
@@ -171,6 +171,12 @@ layout
     left: 25px;
 }
 
+#check_boxes {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+}
+
 #temp1 {
     position: absolute;
     top: 0;
@@ -192,10 +198,6 @@ layout
 .leaflet-label {
     font-weight: bold;
     font-size: 1.5em;
-}
-
-#check_boxes {
-    margin-right: 50px;
 }
 
 .highlight {
