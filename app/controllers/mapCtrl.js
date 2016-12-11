@@ -98,7 +98,11 @@ angular.module('realValue')
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             //console.log("resize");
+            // This code helps the map not get sized before it is finish loading
             map.invalidateSize(false);
+            // This code below removes the zoom control that's present on the map
+            map.removeControl(map.zoomControl);
+            map.options.minZoom = 7;
         });
         }, 400);
 
@@ -142,6 +146,17 @@ angular.module('realValue')
                     lat: 34.075406,
                     lng: -117.901087,
                     zoom: 9
+                },
+                maxbounds: {
+                    southWest: {
+                        lat:32.88,
+                        lng: -115.011
+                    },
+                    northEast: {
+                        lat:34.72,
+                        lng:-120.624
+                    }
+
                 },
                 tiles: {
                     //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
