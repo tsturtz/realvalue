@@ -92,11 +92,12 @@ angular.module('realValue')
 
                         this.service = new google.maps.places.PlacesService($('#data-here').get(0));
 
+                        //console.log('args', args.model);
                         console.log('passed in key: ', key);
 
                         if (key) {
                             this.service.getDetails({
-                                placeId: 'ChIJl_N4tlno3IARWDJLc0k1zX0' // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                                placeId: key // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
                             }, function(place){
                                 console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
                                 deets.placeObj = {
@@ -105,8 +106,8 @@ angular.module('realValue')
                                     name : place.name,
                                     address : place.formatted_address,
                                     phone : place.formatted_phone_number,
-                                    openNow : place.opening_hours.open_now, // boolean
-                                    hours : place.opening_hours.weekday_text, // all days array
+                                    openNow : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.open_now : ['Store hours unavailable'],
+                                    hours : (place.hasOwnProperty('opening_hours')) ? place.opening_hours.weekday_text : false, // all days array
                                     photos : place.photos, // all photos array
                                     reviews : place.reviews // all reviews array
                                 };
@@ -475,13 +476,13 @@ angular.module('realValue')
         }
 
         function zoomToFeature(e) {
-            var area_click_on=e.target.feature.properties.name;
+            var area_click_on = e.target.feature.properties.name;
             console.log("zip obj ",e);
             console.log("zip ", area_click_on);
-            if(area_click_on==="Los Angeles County"){
+            if(area_click_on === "Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
             }
-            else if(area_click_on==="Orange County"){
+            else if(area_click_on === "Orange County"){
                 mc.information=county_orange.features[0].properties;
             }
             else{
@@ -556,29 +557,31 @@ angular.module('realValue')
                     };
 
                     var res_markers = {};
-
-                    for(var i = 0;i<data.features.length;i++) {
-                        //console.log(data.features[i].geometry.coordinates);
-                        var res = leafletPip.pointInLayer(
-                            [data.features[i].geometry.coordinates[0], data.features[i].geometry.coordinates[1]], mc.gjLayer);
-                        if (res.length) {
-                            //console.log("name", res[0].feature.properties.name);
-                            if (zipCodeClicked === res[0].feature.properties.name) {
+                    console.log('places geojson: ', dataService.placesGeojson);
+                    if (!isNaN(area_click_on)) {
+                        console.log(area_click_on, 'is a number');
+                        for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
+                            console.log(dataService.placesGeojson.features[i].geometry.coordinates);
+                            var res = leafletPip.pointInLayer(
+                                [dataService.placesGeojson.features[i].geometry.coordinates[1], dataService.placesGeojson.features[i].geometry.coordinates[0]], mc.gjLayer);
+                            if (res.length) {
                                 //console.log("name", res[0].feature.properties.name);
-                                matched_data.features.push(data.features[i]);
-
-                                res_markers["id" + i] = {
-                                    "Place ID":dummy_place_id(),
-                                    "Place Type":"Restaurant",
-                                    "lat":data.features[i].geometry.coordinates[1],
-                                    "lng":data.features[i].geometry.coordinates[0]
+                                if (zipCodeClicked === res[0].feature.properties.name) {
+                                    console.log("name", res[0].feature.properties.name);
+                                    matched_data.features.push(data.features[i]);
+                                    res_markers["id" + i] = {
+                                        "Place ID": dataService.placesGeojson.features[i].properties.placeId,
+                                        "Place Type": dataService.placesGeojson.features[i].properties.type,
+                                        "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
+                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1]
+                                    }
                                 }
+                            } else {
+                                console.log("false");
                             }
-                        } else {
-                            console.log("false");
                         }
                     }
-                    //console.log("markers", res_markers);
+                    console.log("markers", res_markers);
                     //console.log("matched",matched_data);
                     //console.log("data",data);
 
