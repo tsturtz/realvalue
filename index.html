@@ -151,13 +151,13 @@
             <md-card-content layout="row">
                 <div layout="column" class="checks">
                     <md-divider></md-divider>
-                    <md-subheader class="subhead">SELECT VIEW:</md-subheader>
+                    <md-subheader class="subhead">WHAT DATA WOULD YOU LIKE TO INCLUDE?</md-subheader>
                     <md-checkbox ng-repeat="checkbox in nc.checkboxes" class="check-boxes" ng-model="checkbox.checked"
                                  ng-change="nc.updateData(this.checkbox)">
                         {{checkbox.type.toUpperCase()}}
                     </md-checkbox>
                     <md-divider></md-divider>
-                    <md-subheader class="subhead">ZOOM LEVELS:</md-subheader>
+                    <md-subheader class="subhead">SELECT A ZOOM LEVEL</md-subheader>
                     <div layout="row">
                         <md-button class="md-primary zoom-btn">
                             County
