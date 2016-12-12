@@ -134,7 +134,11 @@
             <div class="md-toolbar-tools">
                 <div id="logoTopLeft"></div>
 
-                <md-input-container flex="30">
+                <md-subheader class="toolbar-subhead">LA and OC</md-subheader>
+
+                <md-divider></md-divider>
+
+                <md-input-container flex="30" md-theme="search">
                     <md-icon class="md-accent" md-font-set="material-icons">search</md-icon>
                     <input type="text" placeholder="Search by city or zip code" ng-model="mc.zip"
                            ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
@@ -150,22 +154,26 @@
         <md-card id="btm-left-card" md-whiteframe="4">
             <md-card-content layout="row">
                 <div layout="column" class="checks">
-                    <md-divider></md-divider>
-                    <md-subheader class="subhead">WHAT DATA WOULD YOU LIKE TO INCLUDE?</md-subheader>
+                    <md-subheader class="subhead">
+                        <md-icon class="md-primary select-icons" md-font-set="material-icons">equalizer</md-icon>
+                        SELECT DATA TO INCLUDE
+                    </md-subheader>
                     <md-checkbox ng-repeat="checkbox in nc.checkboxes" class="check-boxes" ng-model="checkbox.checked"
                                  ng-change="nc.updateData(this.checkbox)">
                         {{checkbox.type.toUpperCase()}}
                     </md-checkbox>
-                    <md-divider></md-divider>
-                    <md-subheader class="subhead">SELECT A ZOOM LEVEL</md-subheader>
+                    <md-subheader class="subhead">
+                        <md-icon class="md-primary select-icons" md-font-set="material-icons">zoom_in</md-icon>
+                        SELECT A ZOOM LEVEL
+                    </md-subheader>
                     <div layout="row">
-                        <md-button class="md-primary zoom-btn">
+                        <md-button class="md-accent zoom-btn">
                             County
                         </md-button>
-                        <md-button class="md-primary zoom-btn" ng-disabled="true">
+                        <md-button class="md-accent zoom-btn" ng-disabled="true">
                             City
                         </md-button>
-                        <md-button class="md-primary zoom-btn">
+                        <md-button class="md-accent zoom-btn">
                             Zip
                         </md-button>
                     </div>
