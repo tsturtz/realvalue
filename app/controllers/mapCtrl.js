@@ -115,9 +115,10 @@ angular.module('realValue')
                     zoom: 8
                 },
                 tiles: {
-                    url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                    url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
-                        attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                        attribution: ''
                     }
                 },
                 geojson : {
@@ -143,9 +144,12 @@ angular.module('realValue')
             //console.log("cities",cities);
             angular.extend($scope, {
                 center: {
-                    lat: 34.075406,
-                    lng: -117.901087,
+                    lat: 33.8247936182649,
+                    lng: -118.03985595703125,
                     zoom: 9
+                },
+                defaults: {
+                    zoomAnimation: false
                 },
                 legend: {
                     position: 'bottomright',
@@ -239,8 +243,8 @@ angular.module('realValue')
             console.log("extend zip");
             angular.extend($scope, {
                 center: {
-                    lat: 33.63622083463071,
-                    lng: -117.73948073387146,
+                    lat: 33.8247936182649,
+                    lng: -118.03985595703125,
                     zoom: 10
                 },
                 geojson : {
@@ -373,7 +377,7 @@ angular.module('realValue')
                     var center = {
                         lat: calculated_center.x,
                         lng: calculated_center.y,
-                        zoom: 12
+                        zoom: 13
                     };
 
                     if(city.length) {
@@ -831,7 +835,6 @@ angular.module('realValue')
                 }
 
                 if (map.getZoom() > 12) {
-                    mc.zipcode_zoom();
                     mc.markers_zoom();
                 }
 
