@@ -1,23 +1,25 @@
-<md-dialog flex="50">
-    <form ng-cloak>
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                <h2>Welcome to Real Value</h2>
-                <span flex></span>
-                <md-button ng-click="dc.cancel()"><md-icon>close</md-icon></md-button>
-            </div>
-        </md-toolbar>
-
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <p>RealValue is an intuitive application built to display area values based on a number of statistics. Currently this service is only available in Los Angeles and Orange County, CA. You decide which statistics are important to you to update the map in real time. If you\'re looking to relocate or change jobs, RealValue can assist you to find an area that, to you, has real value.
-                </p>
-            </div>
-        </md-dialog-content>
-
-        <md-dialog-actions layout="row">
+<md-dialog flex="50" class="welcome-dialog">
+    <!--<md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Welcome to Real Value</h2>
             <span flex></span>
-            <md-button class="md-primary" ng-click="dc.cancel()">Continue</md-button>
-        </md-dialog-actions>
-    </form>
+            <md-button ng-click="dc.cancel()"><md-icon>close</md-icon></md-button>
+        </div>
+    </md-toolbar>-->
+
+    <div layout-align="center center">
+        <div id="logoWelcome"></div>
+        <div class="welcome-dialog-content">
+            <md-divider></md-divider>
+            <md-subheader class="welcome-dialog-headers">Los Angeles &amp; Orange County Area Ratings</md-subheader>
+            <md-divider></md-divider>
+                <p>Wish you lived near more parks and great restaurants? Maybe you are looking to find a spot with a lot of job openings, or maybe your car just got stolen so you're concerned about crime. With RealValue, you choose the data points that are important to you and watch the map update in real time! Thanks and enjoy browsing!</p>
+            <md-divider></md-divider>
+        </div>
+        <div layout-align="center center" class="welcome-dialog-btn">
+            <md-button class="md-accent md-raised" ng-click="dc.cancel()" layout-padding>
+                Check it out!
+            </md-button>
+        </div>
+    </div>
 </md-dialog>
