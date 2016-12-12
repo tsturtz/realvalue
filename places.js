@@ -11,7 +11,7 @@
 var map;
 var service;
 var infowindow;
-var placeType = 'restaurant'; // Change this var depending on the type of place currently being searched.
+var placeType = 'university'; // Change this var depending on the type of place currently being searched.
 
 // TAYLOR DB
 /*var config = {
@@ -64,7 +64,8 @@ function initMap() {
 
     var coordIndex = 0;
 
-    var apiInterval = setInterval(function(){ callApi() }, 60000);
+    var apiInterval;
+    apiInterval = setInterval(function(){ callApi() }, 60000);
 
     function callApi() {
         coordIndex++;
@@ -144,8 +145,8 @@ function initMap() {
                 //console.log(place);
             }
         }
-        console.log(coordIndex + ' -- ' + randomCoordinates.length);
-        if (coordIndex == randomCoordinates.length) {
+        console.log('current index: [ ' + coordIndex + ' ] ends at: [ ' + (randomCoordinates.length -1) + ' ]');
+        if (coordIndex === randomCoordinates.length-1) {
             clearInterval(apiInterval);
         }
     }
@@ -153,7 +154,7 @@ function initMap() {
 
 }
 
-fbTaylorData.ref('/features/').on('value', function (snapshot) {
+fbTaylorData.ref('/features/').once('value', function (snapshot) {
     console.warn(snapshot.val());
 });
 
