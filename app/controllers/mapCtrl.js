@@ -377,7 +377,7 @@ angular.module('realValue')
                     var center = {
                         lat: calculated_center.x,
                         lng: calculated_center.y,
-                        zoom: 12
+                        zoom: 13
                     };
 
                     if(city.length) {
@@ -835,7 +835,6 @@ angular.module('realValue')
                 }
 
                 if (map.getZoom() > 12) {
-                    mc.zipcode_zoom();
                     mc.markers_zoom();
                 }
 
