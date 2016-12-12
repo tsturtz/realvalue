@@ -112,7 +112,10 @@ angular.module('realValue')
         };
 
         $scope.openSidenav.open = function() {
-            $mdSidenav('right').open();
+            if(self.sidebarStatus) {
+                $mdSidenav('right').open();
+            }
+
         };
 
         // welcome dialog

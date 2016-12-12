@@ -521,6 +521,7 @@ angular.module('realValue')
         function zoomToFeature(e) {
             $scope.openSidenav.open();
             var area_click_on=e.target.feature.properties.name;
+            var county_click_on=e.target.feature.properties.county;
             console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);
             if(area_click_on==="Los Angeles County"){
@@ -542,7 +543,7 @@ angular.module('realValue')
                 else {
                     var city=dataService.find_city_based_on_zip_code(area_click_on);
                     var crime_and_job={};
-                    console.log(city);
+                    //console.log(city);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
@@ -647,7 +648,7 @@ angular.module('realValue')
 
                     var res_markers = {};
                     console.log('places geojson: ', dataService.placesGeojson);
-                    if (!isNaN(area_click_on) && area_click_on==="Orange County") {
+                    if (!isNaN(area_click_on) && county_click_on==="Orange") {
                         console.log(area_click_on, 'is a number');
                         for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
                             //console.log(dataService.placesGeojson.features[i].geometry.coordinates);
@@ -662,7 +663,8 @@ angular.module('realValue')
                                         "Place ID": dataService.placesGeojson.features[i].properties.placeId,
                                         "Place Type": dataService.placesGeojson.features[i].properties.type,
                                         "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
-                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1]
+                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1],
+                                        "icon": {}
                                     }
                                 }
                             } else {
