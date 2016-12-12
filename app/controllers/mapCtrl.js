@@ -148,6 +148,9 @@ angular.module('realValue')
                     lng: -118.03985595703125,
                     zoom: 9
                 },
+                defaults: {
+                    zoomAnimation: false
+                },
                 legend: {
                     position: 'bottomright',
                     colors: [ '#009787', '#AFD41D', '#D4DA21', '#E0C725','#FF403D', '#000' ],
