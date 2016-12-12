@@ -21,7 +21,7 @@ angular.module('realValue', ['ngMaterial','leaflet-directive'])
         $mdThemingProvider.theme('default')
             .primaryPalette('teal', {'default': '500'})
             .accentPalette('indigo', {'default': '500'})
-            .warnPalette('red', {'default': 'A200'});
+            .warnPalette('grey', {'default': '800'});
             //.dark();
         $mdThemingProvider.definePalette('white', {
             '50': '#fff',

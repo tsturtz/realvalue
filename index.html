@@ -100,8 +100,8 @@
     <div id="main-container" ng-controller="navCtrl as nc">
 
         <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
-                    md-whiteframe="8" md-disable-backdrop="true">
-            <md-toolbar class="md-accent md-medium-tall" layout-align="center center" layout="row">
+                    md-whiteframe="16" md-disable-backdrop="true">
+            <md-toolbar class="md-warn md-medium-tall" layout-align="center center" layout="row" md-whiteframe="4">
                 <div class="md-toolbar-tools">
                     <span flex>Data</span>
                     <md-button md-no-ink ng-click="nc.openRightMenu()">
@@ -122,7 +122,7 @@
 
             <span flex></span>
 
-            <div id="nav-close" flex>
+            <div id="nav-close">
                 <md-button class="md-raised" ng-click="nc.openRightMenu()">
                     Close
                 </md-button>
@@ -130,17 +130,15 @@
 
         </md-sidenav>
 
-        <md-toolbar id="top-toolbar" class="md-primary md-medium-tall" layout-align="center center">
+        <md-toolbar id="top-toolbar" class="md-primary md-medium-tall" layout-align="center center" md-whiteframe="4">
             <div class="md-toolbar-tools">
-                <img ng-src="{{nc.logoTopLeft}}" alt="RealValue">
+                <div id="logoTopLeft"></div>
 
-                <div layout="row">
-                    <md-input-container>
-                        <input type="text" placeholder="Enter city or zip" ng-model="mc.zip"
-                               ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
-                    </md-input-container>
-                    <md-button ng-click="mc.submit_zoom(mc.zip)">Submit</md-button>
-                </div>
+                <md-input-container flex="30">
+                    <md-icon class="md-accent" md-font-set="material-icons">search</md-icon>
+                    <input type="text" placeholder="Search by city or zip code" ng-model="mc.zip"
+                           ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
+                </md-input-container>
 
                 <span flex></span>
                 <md-button md-no-ink ng-click="nc.openRightMenu()">
@@ -149,27 +147,28 @@
             </div>
         </md-toolbar>
 
-        <md-card id="btm-left-card" md-whiteframe="8">
+        <md-card id="btm-left-card" md-whiteframe="4">
             <md-card-content layout="row">
-                <div layout="column">
-                    <md-subheader>ZOOM LEVELS:</md-subheader>
-                    <md-button class="md-primary md-raised">
-                        County
-                    </md-button>
-                    <md-button class="md-primary md-raised">
-                        City
-                    </md-button>
-                    <md-button class="md-primary md-raised">
-                        Zip
-                    </md-button>
-                </div>
-                <md-divider></md-divider>
                 <div layout="column" class="checks">
-                    <md-subheader>SELECT VIEW:</md-subheader>
+                    <md-divider></md-divider>
+                    <md-subheader class="subhead">SELECT VIEW:</md-subheader>
                     <md-checkbox ng-repeat="checkbox in nc.checkboxes" class="check-boxes" ng-model="checkbox.checked"
                                  ng-change="nc.updateData(this.checkbox)">
                         {{checkbox.type.toUpperCase()}}
                     </md-checkbox>
+                    <md-divider></md-divider>
+                    <md-subheader class="subhead">ZOOM LEVELS:</md-subheader>
+                    <div layout="row">
+                        <md-button class="md-primary md-raised zoom-btn">
+                            County
+                        </md-button>
+                        <md-button class="md-warn zoom-btn">
+                            City
+                        </md-button>
+                        <md-button class="md-primary md-raised zoom-btn">
+                            Zip
+                        </md-button>
+                    </div>
                 </div>
             </md-card-content>
         </md-card>

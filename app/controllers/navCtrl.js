@@ -112,10 +112,6 @@ angular.module('realValue')
             $mdSidenav('right').open();
         };
 
-        // logo image path
-
-        self.logoTopLeft = './assets/img/RV-logo-white-green.png';
-
         // welcome dialog
 
         self.welcomeDialog = function() {

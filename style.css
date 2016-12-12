@@ -186,11 +186,21 @@ layout
     display: none;
 }
 
+/* ZOOM BUTTONS */
+.zoom-btn {
+    margin: 5px 3px 0;
+}
+
 /* TOP TOOLBAR */
 #top-toolbar {
     position: absolute;
     top: 0;
-    background-color: rgba(0,150,136,.8);
+    /*primary color*/
+    /*background-color: rgba(0,150,136,.95);*/
+    /*accent color*/
+    background-color: rgba(63,81,181,.95);
+    /*dark color*/
+    /*background-color: rgba(66,66,66,.95);*/
 }
 
 md-toolbar.ng-scope._md._md-toolbar-transitions {
@@ -208,14 +218,20 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     left: 20px;
 }
 
-.checks {
-    margin-left: 10px;
-}
-
-.check-boxes:last-child {
-    margin-bottom: 0;
-}
-
 .md-errors-spacer {
     display: none;
+}
+
+/* LOGO TOP LEFT */
+
+#logoTopLeft {
+    background: url('./assets/img/RV-logo-white-green.png') no-repeat center center;
+    background-size: 80%;
+    height: 88px;
+    width: 180px;
+}
+
+/* SUBHEADER */
+.subhead {
+    margin-bottom: 5px;
 }
