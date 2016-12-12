@@ -159,13 +159,13 @@
                     <md-divider></md-divider>
                     <md-subheader class="subhead">SELECT A ZOOM LEVEL</md-subheader>
                     <div layout="row">
-                        <md-button class="md-primary zoom-btn">
+                        <md-button class="md-primary zoom-btn" ng-click="mc.county_zoom()">
                             County
                         </md-button>
-                        <md-button class="md-primary zoom-btn" ng-disabled="true">
+                        <md-button class="md-primary zoom-btn" ng-click="mc.city_zoom()">
                             City
                         </md-button>
-                        <md-button class="md-primary zoom-btn">
+                        <md-button class="md-primary zoom-btn" ng-click="mc.zipcode_zoom()">
                             Zip
                         </md-button>
                     </div>
