@@ -270,3 +270,33 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     margin-right: 8px;
     opacity: 0.7;
 }
+
+/* WELCOME DIALOG */
+.welcome-dialog {
+    background-color: rgb(0,150,136);
+    text-align: center;
+    color: rgb(0,77,64);
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.welcome-dialog-content {
+    padding: 0 40px;
+}
+
+.welcome-dialog-headers {
+    color: white;
+    background-color: rgba(0,0,0,0);
+}
+
+.welcome-dialog-btn {
+    padding: 30px;
+}
+
+#logoWelcome {
+    background: url('./assets/img/RV-logo2.jpg') no-repeat center center;
+    background-size: cover;
+    height: 120px;
+    width: 250px;
+    margin: auto;
+}

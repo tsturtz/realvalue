@@ -120,8 +120,8 @@ angular.module('realValue')
                 controllerAs: 'dc',
                 templateUrl: 'app/dialogs/welcome.html',
                 parent: angular.element(document.body),
-                clickOutsideToClose: false,
-                escapeToClose: false,
+                clickOutsideToClose: true,
+                escapeToClose: true,
                 fullscreen: true
             });
         };
