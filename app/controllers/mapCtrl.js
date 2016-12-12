@@ -147,6 +147,11 @@ angular.module('realValue')
                     lng: -117.901087,
                     zoom: 9
                 },
+                legend: {
+                    position: 'bottomright',
+                    colors: [ '#009787', '#AFD41D', '#D4DA21', '#E0C725','#FF403D', '#000' ],
+                    labels: [ 'Best', 'Average', 'Neutral', 'Bad', 'Worst', 'No Data']
+                },
                 maxbounds: {
                     southWest: {
                         lat:32.88,
@@ -766,12 +771,12 @@ angular.module('realValue')
                 d > 100   ? '#8ACE1A' :
                 d > 10   ? '#AFD41D' :
                 d > 0   ? '#D4DA21' :
-                d > -10   ? '#E0C725' :
-                d > -100      ? '#E6AC2A' :
-                d > -1000   ? '#EC922E' :
-                d > -5000   ? '#F27733' :
-                d > -10000   ? '#F85B38' :
-                d > -25000    ? '#FF403D' :
+                d > -100   ? '#E0C725' :
+                d > -1000      ? '#E6AC2A' :
+                d > -5000   ? '#EC922E' :
+                d > -10000   ? '#F27733' :
+                d > -50000   ? '#F85B38' :
+                d > -75000    ? '#FF403D' :
                 '#000'; //red
         }
 
