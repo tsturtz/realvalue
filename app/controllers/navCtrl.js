@@ -7,6 +7,7 @@ angular.module('realValue')
         var jobs;
         var weight;
         var temp_attr;
+        self.sidebarStatus;
 
         self.types = ['jobs', 'crimes', 'housing', 'park', 'university'];
 
@@ -38,10 +39,10 @@ angular.module('realValue')
         self.applyUpdate = function(attr, operator, checked) {
             if(attr === "crimes") {
                 console.log("crime");
-                weight = -1;
+                weight = -7;
             } else {
                 console.log("not crime");
-                weight = 1;
+                weight = 7;
             }
             console.log(attr);
             if(checked === 1) {
@@ -104,7 +105,9 @@ angular.module('realValue')
 
         // right sidenav
 
-        self.openRightMenu = function () {
+        self.openRightMenu = function (status) {
+            self.sidebarStatus = status;
+            console.log("status " + self.sidebarStatus);
             $mdSidenav('right').toggle();
         };
 
