@@ -8,7 +8,7 @@ angular.module('realValue')
         var weight;
         var temp_attr;
 
-        self.types = ['jobs', 'airport', 'bar', 'cafe', 'crimes', 'gas', 'gym', 'hospital', 'housing', 'library', 'museum', 'park', 'police', 'restaurant', 'school', 'traffic', 'university', 'walkScore', 'zoo'];
+        self.types = ['jobs', 'crimes', 'housing', 'park', 'university'];
 
         self.updateData = function (data) {
             //checkboxService.updateSelections(data);
@@ -108,9 +108,9 @@ angular.module('realValue')
             $mdSidenav('right').toggle();
         };
 
-        // logo image path
-
-        self.imagePath = './assets/img/RV-logo2.jpg';
+        $scope.openSidenav.open = function() {
+            $mdSidenav('right').open();
+        };
 
         // welcome dialog
 

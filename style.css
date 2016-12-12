@@ -141,11 +141,6 @@ to {
 layout
 *********/
 
-/*.btm-left-card {
-    width: 15vw;
-    height: 25vh;
-}*/
-
 .md-backdrop {
     height: 100vh;
 }
@@ -157,24 +152,6 @@ layout
 .zip-zoom {
     background: url(assets/img/zoom-map.jpg) no-repeat center;
     background-size: cover;
-}
-
-#menu-btn {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-}
-
-#card-btm-left {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-}
-
-#check_boxes {
-    position: fixed;
-    top: 25px;
-    left: 25px;
 }
 
 #temp1 {
@@ -204,6 +181,61 @@ layout
     background-color: lavender;
 }
 
+/* ZOOM CONTROL */
+.leaflet-top.leaflet-left {
+    display: none;
+}
+
+/* ZOOM BUTTONS */
+.zoom-btn {
+    margin: 5px 3px 0;
+}
+
+/* TOP TOOLBAR */
+#top-toolbar {
+    position: absolute;
+    top: 0;
+    /*primary color*/
+    /*background-color: rgba(0,150,136,.95);*/
+    /*accent color*/
+    background-color: rgba(63,81,181,.95);
+    /*dark color*/
+    /*background-color: rgba(66,66,66,.95);*/
+}
+
+md-toolbar.ng-scope._md._md-toolbar-transitions {
+    min-width: 100vw;
+}
+
+.md-fab-toolbar-background {
+    left: 0;
+}
+
+/* CARD BTM LEFT */
+#btm-left-card {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.md-errors-spacer {
+    display: none;
+}
+
+/* LOGO TOP LEFT */
+
+#logoTopLeft {
+    background: url('./assets/img/RV-logo-white-green.png') no-repeat center center;
+    background-size: 80%;
+    height: 88px;
+    width: 180px;
+}
+
+/* SUBHEADER */
+.subhead {
+    margin-bottom: 5px;
+}
+
 .legend {
     font: 14px/16px Arial, Helvetica, sans-serif;
     background: rgba(255,255,255, 0.9);
@@ -214,6 +246,7 @@ layout
     line-height: 18px;
     color: #555;
 }
+
 .legend i {
     width: 16px;
     height: 16px;
