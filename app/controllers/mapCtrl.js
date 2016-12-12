@@ -98,7 +98,11 @@ angular.module('realValue')
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             //console.log("resize");
+            // This code helps the map not get sized before it is finish loading
             map.invalidateSize(false);
+            // This code below removes the zoom control that's present on the map
+            map.removeControl(map.zoomControl);
+            map.options.minZoom = 7;
         });
         }, 400);
 
@@ -142,6 +146,22 @@ angular.module('realValue')
                     lat: 34.075406,
                     lng: -117.901087,
                     zoom: 9
+                },
+                legend: {
+                    position: 'bottomright',
+                    colors: [ '#009787', '#AFD41D', '#D4DA21', '#E0C725','#FF403D', '#000' ],
+                    labels: [ 'Best', 'Average', 'Neutral', 'Bad', 'Worst', 'No Data']
+                },
+                maxbounds: {
+                    southWest: {
+                        lat:32.88,
+                        lng: -115.011
+                    },
+                    northEast: {
+                        lat:34.72,
+                        lng:-120.624
+                    }
+
                 },
                 tiles: {
                     //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
@@ -754,12 +774,12 @@ angular.module('realValue')
                 d > 100   ? '#8ACE1A' :
                 d > 10   ? '#AFD41D' :
                 d > 0   ? '#D4DA21' :
-                d > -10   ? '#E0C725' :
-                d > -100      ? '#E6AC2A' :
-                d > -1000   ? '#EC922E' :
-                d > -5000   ? '#F27733' :
-                d > -10000   ? '#F85B38' :
-                d > -25000    ? '#FF403D' :
+                d > -100   ? '#E0C725' :
+                d > -1000      ? '#E6AC2A' :
+                d > -5000   ? '#EC922E' :
+                d > -10000   ? '#F27733' :
+                d > -50000   ? '#F85B38' :
+                d > -75000    ? '#FF403D' :
                 '#000'; //red
         }
 
