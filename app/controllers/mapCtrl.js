@@ -3,31 +3,14 @@ angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
         var mc = this;
+        var varMap;
         //mc.gjLayer;
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
-        //console.log("-------------------------"+dataService.firebase);
         self.name = "Map Obj";
-
         dataService.weikuan_init();
-
         console.log("init map");
-
-        /**
-         * Google Places Firebase config
-         */
-
-/*        placesFirebaseService.getFirebasePlacesData()
-            .then(
-                function (snapshot) {
-                    console.log('after successful data call: ', snapshot);
-                },
-                function (snapshot) {
-                    console.warn('fail: ', snapshot);
-                });*/
-
-
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
@@ -97,6 +80,7 @@ angular.module('realValue')
         });
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
+            varMap = map;
             //console.log("resize");
             // This code helps the map not get sized before it is finish loading
             map.invalidateSize(false);
@@ -153,8 +137,8 @@ angular.module('realValue')
                 },
                 legend: {
                     position: 'bottomright',
-                    colors: [ '#009787', '#AFD41D', '#D4DA21', '#E0C725','#FF403D', '#000' ],
-                    labels: [ 'Best', 'Average', 'Neutral', 'Bad', 'Worst', 'No Data']
+                    colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#000' ],
+                    labels: [ 'Best', 'Good', 'Average', 'Bad', 'Worst', 'No Data']
                 },
                 maxbounds: {
                     southWest: {
@@ -241,10 +225,10 @@ angular.module('realValue')
 
         this.zipcode_zoom = function() {
             console.log("extend zip");
+            console.log("center", varMap.getCenter());
             angular.extend($scope, {
                 center: {
-                    lat: 33.8247936182649,
-                    lng: -118.03985595703125,
+                    autoDiscover: true,
                     zoom: 10
                 },
                 geojson : {
@@ -283,22 +267,6 @@ angular.module('realValue')
 
         this.markers_zoom = function() {
             console.log("extend marker");
-            /*
-            angular.extend($scope, {
-                markers: {
-                    r1: restaurants["Restaurant1"],
-                    r2: restaurants["Restaurant2"],
-                    r3: restaurants["Restaurant3"],
-                    r4: restaurants["Restaurant4"],
-                    r5: restaurants["Restaurant5"],
-                    r6: restaurants["Restaurant6"],
-                    r7: restaurants["Restaurant7"],
-                    r8: restaurants["Restaurant8"],
-                    r9: restaurants["Restaurant9"],
-                    r10: restaurants["Restaurant10"]
-                }
-            });
-            */
         };
 
         this.submit_zoom = function(zip) {
@@ -455,6 +423,11 @@ angular.module('realValue')
 
         function highlightFeature(e) {
             var layer = e.target;
+            var zip_code_name = e.target.feature.properties.name;
+            var county_name = e.target.feature.properties.county;
+            var zip_code_score = e.target.feature.properties.score;
+            var zip_code_crimes = e.target.feature.properties.crimes;
+            var zip_code_jobs = e.target.feature.properties.jobs;
 
             layer.setStyle({
                 weight: 5,
@@ -466,7 +439,14 @@ angular.module('realValue')
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
                 layer.bringToFront();
             }
-
+            //console.log(e.target.feature.properties.name);
+            mc.information = {
+                name: zip_code_name,
+                county: county_name,
+                score: zip_code_score,
+                crimes: zip_code_crimes,
+                jobs: zip_code_jobs
+            }
             //info.update(layer.feature.properties);
         }
 
@@ -553,6 +533,7 @@ angular.module('realValue')
         function zoomToFeature(e) {
             $scope.openSidenav.open();
             var area_click_on=e.target.feature.properties.name;
+            var county_click_on=e.target.feature.properties.county;
             console.log("zip obj ",e.target.feature.properties);
             console.log("zip ", area_click_on);
             if(area_click_on==="Los Angeles County"){
@@ -574,7 +555,7 @@ angular.module('realValue')
                 else {
                     var city=dataService.find_city_based_on_zip_code(area_click_on);
                     var crime_and_job={};
-                    console.log(city);
+                    //console.log(city);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
@@ -679,22 +660,23 @@ angular.module('realValue')
 
                     var res_markers = {};
                     console.log('places geojson: ', dataService.placesGeojson);
-                    if (!isNaN(area_click_on)) {
+                    if (!isNaN(area_click_on) && county_click_on==="Orange") {
                         console.log(area_click_on, 'is a number');
                         for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
-                            console.log(dataService.placesGeojson.features[i].geometry.coordinates);
+                            //console.log(dataService.placesGeojson.features[i].geometry.coordinates);
                             var res = leafletPip.pointInLayer(
                                 [dataService.placesGeojson.features[i].geometry.coordinates[1], dataService.placesGeojson.features[i].geometry.coordinates[0]], mc.gjLayer);
                             if (res.length) {
                                 //console.log("name", res[0].feature.properties.name);
                                 if (zipCodeClicked === res[0].feature.properties.name) {
-                                    console.log("name", res[0].feature.properties.name);
+                                    //console.log("name", res[0].feature.properties.name);
                                     matched_data.features.push(data.features[i]);
                                     res_markers["id" + i] = {
                                         "Place ID": dataService.placesGeojson.features[i].properties.placeId,
                                         "Place Type": dataService.placesGeojson.features[i].properties.type,
                                         "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
-                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1]
+                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1],
+                                        "icon": {}
                                     }
                                 }
                             } else {
@@ -726,7 +708,7 @@ angular.module('realValue')
                     });
                     */
 
-                    map.fitBounds(e.target.getBounds(),{padding: [200, 200]});
+                    map.fitBounds(e.target.getBounds(),{padding: [250, 250]});
                 });
 
             });
@@ -766,7 +748,20 @@ angular.module('realValue')
                 d > 25000   ? '#248A7D' :
                            '#009788';*/
 
-            return d > 8000000 ? '#009787' : //green
+            return d > 100 ? '#006837' :
+                d > 90  ? '#1a9850' :
+                d > 80  ? '#66bd63' :
+                d > 70  ? '#a6d96a' :
+                d > 60   ? '#d9ef8b' :
+                d > 50   ? '#ffffbf' :
+                d > 40   ? '#fee08b' :
+                d > 30   ? '#fdae61' :
+                d > 20   ? '#f46d43' :
+                d > 10   ? '#d73027' :
+                d > 0   ? '#a50026' :
+                    '#000';
+/*
+            return d > 8000000 ? '#d73027' : //green
                 d > 100000  ? '#029D73' :
                 d > 60000  ? '#04A35D' :
                 d > 50000  ? '#07A946' :
@@ -785,6 +780,7 @@ angular.module('realValue')
                 d > -50000   ? '#F85B38' :
                 d > -75000    ? '#FF403D' :
                 '#000'; //red
+                */
         }
 
         function getCountyColor(d) {
