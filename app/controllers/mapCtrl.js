@@ -423,6 +423,11 @@ angular.module('realValue')
 
         function highlightFeature(e) {
             var layer = e.target;
+            var zip_code_name = e.target.feature.properties.name;
+            var county_name = e.target.feature.properties.county;
+            var zip_code_score = e.target.feature.properties.score;
+            var zip_code_crimes = e.target.feature.properties.crimes;
+            var zip_code_jobs = e.target.feature.properties.jobs;
 
             layer.setStyle({
                 weight: 5,
@@ -434,7 +439,14 @@ angular.module('realValue')
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
                 layer.bringToFront();
             }
-
+            //console.log(e.target.feature.properties.name);
+            mc.information = {
+                name: zip_code_name,
+                county: county_name,
+                score: zip_code_score,
+                crimes: zip_code_crimes,
+                jobs: zip_code_jobs
+            }
             //info.update(layer.feature.properties);
         }
 
@@ -444,7 +456,7 @@ angular.module('realValue')
             layer.setStyle({
                 weight: 2,
                 opacity: 1,
-                color: '#6f6c6c',
+                color: 'white',
                 dashArray: ''
             });
         }
@@ -657,7 +669,7 @@ angular.module('realValue')
                             if (res.length) {
                                 //console.log("name", res[0].feature.properties.name);
                                 if (zipCodeClicked === res[0].feature.properties.name) {
-                                    console.log("name", res[0].feature.properties.name);
+                                    //console.log("name", res[0].feature.properties.name);
                                     matched_data.features.push(data.features[i]);
                                     res_markers["id" + i] = {
                                         "Place ID": dataService.placesGeojson.features[i].properties.placeId,
@@ -709,7 +721,7 @@ angular.module('realValue')
                 fillColor: getColor(feature.properties.score),
                 weight: 2,
                 opacity: 1,
-                color: '#6f6c6c',
+                color: 'white',
                 dashArray: '',
                 fillOpacity: 0.7
             };
@@ -720,7 +732,7 @@ angular.module('realValue')
                 fillColor: getCountyColor(feature.properties.score),
                 weight: 2,
                 opacity: 1,
-                color: '#6f6c6c',
+                color: 'white',
                 dashArray: '',
                 fillOpacity: 0.7
             };
@@ -736,15 +748,17 @@ angular.module('realValue')
                 d > 25000   ? '#248A7D' :
                            '#009788';*/
 
-            return d > 100000 ? '#1a9850' :
-                d > 50000  ? '#66bd63' :
-                d > 10000  ? '#a6d96a' :
-                d > 1000  ? '#d9ef8b' :
-                d > 0   ? '#ffffbf' :
-                d > -1000   ? '#fee08b' :
-                d > -10000   ? '#fdae61' :
-                d > -50000   ? '#f46d43' :
-                d > -100000   ? '#d73027' :
+            return d > 100 ? '#006837' :
+                d > 90  ? '#1a9850' :
+                d > 80  ? '#66bd63' :
+                d > 70  ? '#a6d96a' :
+                d > 60   ? '#d9ef8b' :
+                d > 50   ? '#ffffbf' :
+                d > 40   ? '#fee08b' :
+                d > 30   ? '#fdae61' :
+                d > 20   ? '#f46d43' :
+                d > 10   ? '#d73027' :
+                d > 0   ? '#a50026' :
                     '#000';
 /*
             return d > 8000000 ? '#d73027' : //green

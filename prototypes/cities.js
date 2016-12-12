@@ -3,7 +3,8 @@ var cities = {
     "features": [{
     "type": "Feature",
     "properties": {
-        "name": "Irvine, CA"
+        "name": "Irvine, CA",
+        "score": 90
     },
     "geometry": {
         "type": "Polygon",
@@ -617,6 +618,7 @@ var cities = {
             "type": "Feature",
             "properties": {
                 "name": "Tustin, CA",
+                "score": 50
             },
             "geometry": {
                 "type": "MultiPolygon",
@@ -1143,7 +1145,8 @@ var cities = {
         }, {
         "type": "Feature",
         "properties": {
-            "name": "Santa Ana, CA"
+            "name": "Santa Ana, CA",
+            "score": 20
         },
         "geometry": {
             "type": "Polygon",
@@ -1592,7 +1595,8 @@ var cities = {
     }, {
         "type": "Feature",
         "properties": {
-            "name": "Orange, CA"
+            "name": "Orange, CA",
+            "score": 80
         },
         "geometry": {
             "type": "Polygon",

@@ -5,6 +5,7 @@ angular.module('realValue')
         var score;
         var attribute;
         var jobs;
+        var crimes;
         var weight;
         var temp_attr;
         self.sidebarStatus;
@@ -14,10 +15,9 @@ angular.module('realValue')
         self.updateData = function (data) {
             //checkboxService.updateSelections(data);
             self.itemPosition = self.types.indexOf(data.type);
-            console.log("pos ", self.itemPosition);
+            //console.log("pos ", self.itemPosition);
             if (data.checked === false) {
                 temp_attr = self.types[self.itemPosition];
-                this.applyUpdate(temp_attr, "-", 1);
                 //console.log(self.types);
                 //console.log(self.types.indexOf(data.type));
                 self.types.splice(self.itemPosition,1);
@@ -28,23 +28,46 @@ angular.module('realValue')
                 //console.log(self.types);
                 self.types.push(data.type);
                 //console.log(self.types);
-                this.applyUpdate(temp_attr, "+", 1);
             }
             self.totalChecked = self.types.length;
+            this.applyUpdate(temp_attr, "+", 1);
             //console.log(self.totalChecked);
             county_los_angeles.features[0].properties.score = self.totalChecked;
             county_orange.features[0].properties.score = self.totalChecked;
         };
 
         self.applyUpdate = function(attr, operator, checked) {
-            if(attr === "crimes") {
-                console.log("crime");
-                weight = -7;
+            //console.log(attr);
+            var counter = 0;
+            var total = 100;
+            var weight;
+            var jobs_yes;
+            var crimes_yes;
+            //console.log("counter " + counter);
+            //console.log("jobs find " + self.types.indexOf("jobs"));
+            if(self.types.indexOf("jobs") > -1) {
+                counter++;
+                jobs_yes = 1;
             } else {
-                console.log("not crime");
-                weight = 7;
+                jobs_yes = 0;
             }
-            console.log(attr);
+            //console.log("crime find " + self.types.indexOf("crimes"));
+            if(self.types.indexOf("crimes") > -1) {
+                counter++;
+                crimes_yes = 1;
+            } else {
+                crimes_yes = 0;
+            }
+            weight = 100 / counter;
+            console.log('counter ' + counter);
+            console.log('weight ' + weight);
+            console.log('crime ' + crimes_yes + ' jobs ' + jobs_yes);
+            var job_weight = (weight/dataService.crime_and_job_data_analysis.all.jobMax) * jobs_yes;
+            var crime_weight = (-1 * weight/dataService.crime_and_job_data_analysis.all.crimeMax) * crimes_yes;
+            console.log('job weight ' + job_weight);
+            console.log('crime weight ' + crime_weight);
+            //console.log("attributes " + counter);
+
             if(checked === 1) {
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     if(self.hasProperty(tammy_geojson.features[i].properties,attr)) {
@@ -52,7 +75,8 @@ angular.module('realValue')
                         attribute = tammy_geojson.features[i].properties[attr];
                         score = tammy_geojson.features[i].properties.score;
                         jobs = tammy_geojson.features[i].properties.jobs;
-                        tammy_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
+                        crimes = tammy_geojson.features[i].properties.crimes;
+                        tammy_geojson.features[i].properties.score = Math.round((parseInt(jobs)*job_weight) + ((weight*crime_weight) + parseInt(crimes)*crime_weight));
                     }
                 }
             }
@@ -65,7 +89,8 @@ angular.module('realValue')
                         attribute = losangeles_geojson.features[i].properties[attr];
                         score = losangeles_geojson.features[i].properties.score;
                         jobs = losangeles_geojson.features[i].properties.jobs;
-                        losangeles_geojson.features[i].properties.score = self.doMath(parseInt(score),parseInt(attribute*weight),operator);
+                        crimes = losangeles_geojson.features[i].properties.crimes;
+                        losangeles_geojson.features[i].properties.score = Math.round((parseInt(jobs)*job_weight) + ((weight*crime_weight) + parseInt(crimes)*crime_weight));
                     }
                 }
             }
