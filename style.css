@@ -207,10 +207,6 @@ md-input-container.md-icon-left {
     margin-left: 15px;
 }
 
-md-icon.md-search-theme.md-accent {
-    color: ;
-}
-
 .md-errors-spacer {
     display: none;
 }
@@ -300,4 +296,8 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     height: 120px;
     width: 250px;
     margin: auto;
+}
+
+.leaflet-zoom-hide {
+    display:none;
 }

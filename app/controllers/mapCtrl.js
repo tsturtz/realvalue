@@ -149,7 +149,7 @@ angular.module('realValue')
                     zoom: 9
                 },
                 defaults: {
-                    zoomAnimation: false
+                    zoomAnimation: true
                 },
                 legend: {
                     position: 'bottomright',
@@ -740,7 +740,7 @@ angular.module('realValue')
                 weight: 2,
                 opacity: 1,
                 color: 'white',
-                dashArray: '3',
+                dashArray: '',
                 fillOpacity: 0.7
             };
         }
@@ -820,6 +820,8 @@ angular.module('realValue')
 
             map.on('zoomend', function (event) {
                 console.log(map.getZoom());
+
+                console.log('overlay', map.getPanes().overlayPane);
 
                 if (map.getZoom() <= 8) {
                     mc.county_zoom();
