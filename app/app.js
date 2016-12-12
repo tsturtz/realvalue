@@ -41,8 +41,8 @@ angular.module('realValue', ['ngMaterial','leaflet-directive'])
         });
         $mdThemingProvider.theme('default')
             .primaryPalette('teal', {'default': '500'})
-            .accentPalette('indigo', {'default': '500'})
-            .warnPalette('grey', {'default': '800'});
+            .accentPalette('grey', {'default': '800'})
+            .warnPalette('orange', {'default': '500'});
             //.dark();
         $mdThemingProvider.theme('search')
             .primaryPalette('white')
