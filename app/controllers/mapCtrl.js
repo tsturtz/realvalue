@@ -835,7 +835,6 @@ angular.module('realValue')
                 }
 
                 if (map.getZoom() > 12) {
-                    mc.zipcode_zoom();
                     mc.markers_zoom();
                 }
 
