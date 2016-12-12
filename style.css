@@ -300,3 +300,7 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     width: 250px;
     margin: auto;
 }
+
+.leaflet-zoom-hide {
+    display:none;
+}
