@@ -428,6 +428,8 @@ angular.module('realValue')
             var zip_code_score = e.target.feature.properties.score;
             var zip_code_crimes = e.target.feature.properties.crimes;
             var zip_code_jobs = e.target.feature.properties.jobs;
+            var zip_code_crimes_zscore = e.target.feature.properties.crime_zscore;
+            var zip_code_jobs_zscore = e.target.feature.properties.job_zscore;
 
             layer.setStyle({
                 weight: 5,
@@ -445,7 +447,9 @@ angular.module('realValue')
                 county: county_name,
                 score: zip_code_score,
                 crimes: zip_code_crimes,
-                jobs: zip_code_jobs
+                jobs: zip_code_jobs,
+                jobs_zscore: zip_code_jobs_zscore,
+                crimes_zscore: zip_code_crimes_zscore
             }
             //info.update(layer.feature.properties);
         }
@@ -748,18 +752,17 @@ angular.module('realValue')
                 d > 25000   ? '#248A7D' :
                            '#009788';*/
 
-            return d > 100 ? '#006837' :
-                d > 90  ? '#1a9850' :
-                d > 80  ? '#66bd63' :
-                d > 70  ? '#a6d96a' :
-                d > 60   ? '#d9ef8b' :
-                d > 50   ? '#ffffbf' :
-                d > 40   ? '#fee08b' :
-                d > 30   ? '#fdae61' :
-                d > 20   ? '#f46d43' :
-                d > 10   ? '#d73027' :
-                d > 0   ? '#a50026' :
-                    '#000';
+            return d > 3 ? '#006837' :
+                d > 1  ? '#1a9850' :
+                d > .15  ? '#66bd63' :
+                d > .10  ? '#a6d96a' :
+                d > .08   ? '#d9ef8b' :
+                d > .05   ? '#ffffbf' :
+                d > .03  ? '#fee08b' :
+                d > .01   ? '#fdae61' :
+                d > 0   ? '#f46d43' :
+                d > -1   ? '#d73027' :
+                d > -3   ? '#a50026' : '#000';
 /*
             return d > 8000000 ? '#d73027' : //green
                 d > 100000  ? '#029D73' :

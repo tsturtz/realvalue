@@ -1,6 +1,8 @@
 angular.module('realValue')
     .service('dataService', function ($q) {
         var self = this;
+        self.jarray = [];
+        self.carray = [];
 
         var config = {
             apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
@@ -52,7 +54,7 @@ angular.module('realValue')
             });
         };
 
-        //this.makePlacesGeojson();
+        this.makePlacesGeojson();
 
         this.weikuan_init = function() {
 
@@ -70,12 +72,18 @@ angular.module('realValue')
                 self.firebase = response;
                 //console.log("Firebase:",self.firebase);
                 self.mergeData();
-                //console.log("la size", roughSizeOfObject(losangeles_geojson));
+                //console.log(self.jarray);
+                console.log("job sd", self.jarray.stanDeviate());
+                console.log("crime sd", self.carray.stanDeviate());
+                console.log("job avg " + self.crime_and_job_data_analysis.all.jobAverage);
+                console.log("crime avg " + self.crime_and_job_data_analysis.all.crimeAverage);
+                self.jobs_standard_deviation = self.jarray.stanDeviate();
+                console.log("array length " + self.jarray.length);
             });
 
         this.mergeData = function () {
             console.log("merging data");
-
+            var self_counter =0;
             var zip_city;
             var lookup_zip;
             var jobs_openings;
@@ -86,6 +94,8 @@ angular.module('realValue')
             var job_weight = self.weight_total/self.crime_and_job_data_analysis.all.jobMax;
             var crime_weight = -1 * self.weight_total/self.crime_and_job_data_analysis.all.crimeMax;
             var score;
+            var crime_zscore;
+            var job_zscore;
             for (var i = 0; i < tammy_geojson.features.length; i++) {
                 //console.log(miles_geojson.features[i].properties.name);
                 lookup_zip = tammy_geojson.features[i].properties.name;
@@ -97,7 +107,7 @@ angular.module('realValue')
                     for (var j = 0; j < zip_city.length; j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if (zip_city[j] != '') {
-                            jobs_openings = self.firebase[zip_city[j]]["Number of job openings"];
+                            jobs_openings = self.firebase[zip_city[j]]["Number of job openings"].all;
                             //console.log("data", self.firebase[zip_city[j]]);
                             if (self.firebase[zip_city[j]].hasOwnProperty("zip_codes")
                                 && self.firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
@@ -115,7 +125,8 @@ angular.module('realValue')
                             //console.log("jobs " + parseInt(jobs_openings) * job_weight);
                             //console.log("crimes " + parseInt(crimes) * crime_weight);
                             score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                            tammy_geojson.features[i].properties.score = Math.round(score)
+                            //job_zscore = self.calculateStatisticZScore(jobs_openings, "job");
+                            //tammy_geojson.features[i].properties.score = job_zscore.toFixed(2);
                         }
                     }
 
@@ -131,13 +142,20 @@ angular.module('realValue')
                         } else {
                             crimes = 0;
                         }
-                        jobs_openings = self.firebase[zip_city[0]]["Number of job openings"];
+                        jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         //console.log("job openings ", jobs_openings);
                         tammy_geojson.features[i].properties.jobs = jobs_openings;
                         //console.log("jobs " + parseInt(jobs_openings) * job_weight);
                         //console.log("crimes " + parseInt(crimes) * crime_weight);
-                        score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                        tammy_geojson.features[i].properties.score = Math.round(score)
+                        //console.log(self.calculateStatisticZScore(jobs_openings, "job"));
+                        job_zscore = self.calculateStatisticZScore(jobs_openings, "job");
+                        crime_zscore = self.calculateStatisticZScore(crimes, "crime");
+                        //console.log("job zscore " + job_zscore);
+                        //console.log("crime zscore " + crime_zscore);
+                        tammy_geojson.features[i].properties.crime_zscore = crime_zscore.toFixed(3);
+                        tammy_geojson.features[i].properties.job_zscore = job_zscore.toFixed(3);
+                        score = (crime_zscore.toFixed(2) * -1) + (job_zscore.toFixed(2) * 1);
+                        tammy_geojson.features[i].properties.score = score.toFixed(2);
                     }
                 }
             }
@@ -155,7 +173,7 @@ angular.module('realValue')
                     for (var j = 0; j < zip_city.length; j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                         if (zip_city[j] != '') {
-                            jobs_openings = self.firebase[zip_city[j]]["Number of job openings"];
+                            jobs_openings = self.firebase[zip_city[j]]["Number of job openings"].all;
                             //console.log("data", self.firebase[zip_city[j]]);
                             if(self.firebase[zip_city[j]].hasOwnProperty("zip_codes")
                                 && self.firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
@@ -171,7 +189,8 @@ angular.module('realValue')
 
                             losangeles_geojson.features[i].properties.jobs = jobs_openings;
                             score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                            losangeles_geojson.features[i].properties.score = Math.round(score)
+                            //job_zscore = self.calculateStatisticZScore(jobs_openings, "job");
+                            //losangeles_geojson.features[i].properties.score = job_zscore.toFixed(2);
                         }
                     }
 
@@ -195,25 +214,48 @@ angular.module('realValue')
                         } else {
                             crimes = 0;
                         }
-                        jobs_openings = self.firebase[zip_city[0]]["Number of job openings"];
+                        jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         //console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
                         score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                        if(score > 100) {
-                            console.log("crimes ", self.weight_total + (crimes * crime_weight));
-                            console.log("self weight " + self.weight_total);
-                            console.log("crimes " + crimes);
-                            console.log("crimes weight " + crime_weight);
-                            console.log("times " + crimes * crime_weight);
-                            console.log("jobs " + parseInt(jobs_openings) * job_weight);
-                        }
-                        losangeles_geojson.features[i].properties.score = Math.round(score)
+                        // if(score > 100) {
+                        //     console.log("crimes ", self.weight_total + (crimes * crime_weight));
+                        //     console.log("self weight " + self.weight_total);
+                        //     console.log("crimes " + crimes);
+                        //     console.log("crimes weight " + crime_weight);
+                        //     console.log("times " + crimes * crime_weight);
+                        //     console.log("jobs " + parseInt(jobs_openings) * job_weight);
+                        // }
+                        //console.log(self_counter++ + " opening", jobs_openings + " | " + lookup_zip + " | " + zip_city[0]);
+                        job_zscore = self.calculateStatisticZScore(jobs_openings, "job");
+                        crime_zscore = self.calculateStatisticZScore(crimes, "crime");
+                        losangeles_geojson.features[i].properties.crime_zscore = crime_zscore.toFixed(3);
+                        losangeles_geojson.features[i].properties.job_zscore = job_zscore.toFixed(3);
+                        score = (crime_zscore.toFixed(2) * -1) + (job_zscore.toFixed(2) * 1);
+                        losangeles_geojson.features[i].properties.score = score.toFixed(2);
                     }
                 }
 
             }
         };
         //self.crime_and_job =crime_and_job_data_analysis;
+        self.calculateStatisticZScore = function(data,prop) {
+            if(prop === "job") {
+                var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
+                self.jarray.push(Number(data));
+                var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.jobSD;
+                return zscore;
+            }
+            if(prop === "crime") {
+                var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
+                self.carray.push(Number(data));
+                var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.crimeSD;
+                return zscore;
+            }
+            //console.log(self.jobs_standard_deviation);
+            //console.log("prop average " + property_avg);
+            //console.log("z score " + (data - property_avg)/3000);
+        }
 
         Array.prototype.stanDeviate = function(){
             var i,j,total = 0, mean = 0, diffSqredArr = [];
