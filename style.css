@@ -298,6 +298,33 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     margin: auto;
 }
 
+/* PLACE DIALOG */
+.place-title {
+    margin: 0 0 15px 0;
+}
+
+.place-img {
+    display: inline-block;
+    width: 33%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.place-hours {
+    padding: 5px 0;
+    font-size: 12px;
+}
+
+.place-divider {
+    margin-bottom: 10px;
+}
+
+.place-reviews {
+    font-size: 12px;
+    font-style: italic;
+}
+
+/*
 .leaflet-zoom-hide {
     display:none;
-}
+}*/
