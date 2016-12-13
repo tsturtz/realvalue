@@ -264,12 +264,12 @@ angular.module('realValue')
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
                         //console.log("features", feature.properties);
-                        if(feature.properties.hasOwnProperty("score")){
-                            //console.log("Score exist!");
-                            layer.bindPopup(feature.properties.name + '<BR>Jobs: ' + feature.properties.jobs +
-                                '<BR>Crimes: ' + feature.properties.crimes +
-                                '<BR>Score: ' + feature.properties.score);
-                        }
+                        // if(feature.properties.hasOwnProperty("score")){
+                        //     //console.log("Score exist!");
+                        //     layer.bindPopup(feature.properties.name + '<BR>Jobs: ' + feature.properties.jobs +
+                        //         '<BR>Crimes: ' + feature.properties.crimes +
+                        //         '<BR>Score: ' + feature.properties.score);
+                        // }
 
 
                         leafletData.getMap().then(function(map) {
