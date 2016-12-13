@@ -115,7 +115,7 @@ angular.module('realValue')
             {type: 'crimes', checked: true, weight: 10},
             {type: 'housing', checked: true, weight: 10},
             {type: 'parks', checked: true, weight: 10},
-            {type: 'university', checked: true, weight: 10}
+            {type: 'schools', checked: true, weight: 10}
         ];
 
         // right sidenav

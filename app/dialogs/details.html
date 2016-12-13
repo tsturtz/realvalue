@@ -2,7 +2,8 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Place Details</h2>
+                <md-icon class="md-accent" md-font-set="material-icons">{{dc.placeObj.icon}}</md-icon>
+                &nbsp;<h2>Place Details</h2>
                 <span flex></span>
                 <md-button ng-click="dc.cancel()">
                     <md-icon>close</md-icon>
@@ -12,23 +13,35 @@
 
         <md-dialog-content>
             <div id="append-here" class="md-dialog-content">
-                <div>
-
-                    <span class="highlight"><img src="{{dc.placeObj.icon}}"></span>
-                    <div class="highlight">{{ dc.placeObj.name }}</div>
-                    <div class="highlight">{{dc.placeObj.type}}</div></span>
-                    <div class="highlight">{{dc.placeObj.address}}</div>
-                    <div class="highlight">{{dc.placeObj.phone}}</div>
-                    <ul>
-                        <li class="highlight" ng-repeat="hours in dc.placeObj.hours">
-                            {{hours}}
-                        </li>
-                        Open now? <span class="highlight">{{dc.placeObj.openNow}}</span>
-                    </ul>
-                    <span class="highlight" ng-repeat="photo in dc.placeObj.photos"><img src="{{ photo.getUrl({'maxWidth': 200, 'maxHeight': 200}) }}"></span>
-                    <span ng-repeat="review in dc.placeObj.reviews">
-                        Ratings: <span class="highlight">{{review.rating}}</span>
+                <!--<span class="highlight"><img ng-src="{{dc.placeObj.icon}}"></span>-->
+                <h1 class="md-display-2 place-title">{{ dc.placeObj.name }}</h1>
+                <!--<div class="highlight">{{dc.placeObj.type}}</div>-->
+                <span>
+                <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>{{dc.placeObj.address}}
+                </span>
+                <span>&nbsp;
+                <md-icon class="md-primary" md-font-set="material-icons">phone</md-icon> {{dc.placeObj.phone}}
+                </span>
+                <md-divider class="place-divider"></md-divider>
+                <div class="place-imgs-container">
+                    <div class="place-img" ng-repeat="photo in dc.placeObj.photos | limitTo : 3 : 0">
+                        <img ng-src="{{ photo.getUrl({'maxWidth': 300, 'maxHeight': 200}) }}">
+                    </div>
+                </div>
+                <md-subheader>Location Hours</md-subheader>
+                <md-divider></md-divider>
+                    <div class="place-hours" ng-repeat="hours in dc.placeObj.hours">
+                        {{hours}}
+                    </div>
+                <md-subheader>Location Reviews</md-subheader>
+                <md-divider></md-divider>
+                <div class="place-reviews" ng-repeat="review in dc.placeObj.reviews">
+                    <md-divider class="place-divider"></md-divider>
+                    <span>
+                        <md-icon ng-repeat="rating in dc.starRange(review.rating) track by $index" class="md-primary" md-font-set="material-icons">star_rate</md-icon>
+                        <md-icon ng-repeat="remaining in dc.starsRemaining(dc.remaining) track by $index" class="md-primary" md-font-set="material-icons">star_border</md-icon>
                     </span>
+                    {{review.text}}
                 </div>
             </div>
         </md-dialog-content>
