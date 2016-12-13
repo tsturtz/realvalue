@@ -1,4 +1,3 @@
-
 angular.module('realValue')
 
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
@@ -250,7 +249,7 @@ angular.module('realValue')
 
         this.zipcode_zoom = function() {
             console.log("extend zip");
-            console.log("center", varMap.getCenter());
+            //console.log("center", varMap.getCenter());
             angular.extend($scope, {
                 center: {
                     autoDiscover: true,
@@ -561,95 +560,95 @@ angular.module('realValue')
 
         function zoomToFeature(e) {
             $scope.openSidenav.open();
-            var area_click_on=e.target.feature.properties.name;
-            var county_click_on=e.target.feature.properties.county;
-            console.log("zip obj ",e.target.feature.properties);
-            console.log("zip ", area_click_on);
-            if(area_click_on==="Los Angeles County"){
+            mc.area_click_on=e.target.feature.properties.name;
+            mc.county_click_on=e.target.feature.properties.county;
+            //console.log("zip obj ",e.target.feature.properties);
+            //console.log("zip ", area_click_on);
+            if(mc.area_click_on==="Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
             }
-            else if(area_click_on==="Orange County"){
+            else if(mc.area_click_on==="Orange County"){
                 mc.information=county_orange.features[0].properties;
             }
             else{
-                if(dataService.firebase.hasOwnProperty(area_click_on)){
+                if(dataService.firebase.hasOwnProperty(mc.area_click_on)){
                     var temp={};
-                    for(var key in dataService.firebase[area_click_on]){
+                    for(var key in dataService.firebase[mc.area_click_on]){
                         if(key!=="zip_codes"){
-                            temp[key]=dataService.firebase[area_click_on][key];
+                            temp[key]=dataService.firebase[mc.area_click_on][key];
                         }
                     }
                     mc.information=temp;
                 }
                 else {
-                    var city=dataService.find_city_based_on_zip_code(area_click_on);
+                    var city=dataService.find_city_based_on_zip_code(mc.area_click_on);
                     var crime_and_job={};
                     //console.log(city);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
-                            if(dataService.firebase[city[i]]["zip_codes"][area_click_on]!==undefined)
+                            if(dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]!==undefined)
                                 try{
-                                    crime_and_job["2005 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2005 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2005"]["Violent_sum"];
-                                    crime_and_job["2006 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2006 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2006"]["Violent_sum"];
-                                    crime_and_job["2007 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2007 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2007"]["Violent_sum"];
-                                    crime_and_job["2008 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2008 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2008"]["Violent_sum"];
-                                    crime_and_job["2009 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2009 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2009"]["Violent_sum"];
-                                    crime_and_job["2010 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2010 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2010"]["Violent_sum"];
-                                    crime_and_job["2011 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2011 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2011"]["Violent_sum"];
-                                    crime_and_job["2012 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2012 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2012"]["Violent_sum"];
-                                    crime_and_job["2013 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2013 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2013"]["Violent_sum"];
-                                    crime_and_job["2014 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                    crime_and_job["2014 Violent Sum"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                         ["crime"]["2014"]["Violent_sum"];
-                                    crime_and_job["Total_Jobs"]=dataService.firebase[city[i]]["zip_codes"][area_click_on]["total jobs"];
+                                    crime_and_job["Total_Jobs"]=dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]["total jobs"];
                                     //mc.information=crime_and_job;
                                     var barData = [{
                                         'x': '05',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2005"]["Violent_sum"]
                                     }, {
                                         'x': '06',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2006"]["Violent_sum"]
                                     }, {
                                         'x': '07',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2007"]["Violent_sum"]
                                     }, {
                                         'x': '08',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2008"]["Violent_sum"]
                                     }, {
                                         'x': '09',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2009"]["Violent_sum"]
                                     }, {
                                         'x': '10',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2010"]["Violent_sum"]
                                     }, {
                                         'x': '11',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2011"]["Violent_sum"]
                                     }, {
                                         'x': '12',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2012"]["Violent_sum"]
                                     }, {
                                         'x': '13',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2013"]["Violent_sum"]
                                     }, {
                                         'x': '14',
-                                        'y': dataService.firebase[city[i]]["zip_codes"][area_click_on]
+                                        'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2014"]["Violent_sum"]
                                     }];
 
@@ -667,82 +666,92 @@ angular.module('realValue')
                         }
                     }
                     else{
-                        mc.information={name:area_click_on};
+                        mc.information={name:mc.area_click_on};
                     }
                 }
             }
             leafletData.getMap().then(function(map) {
-                //console.log(e);
+                mc.that = e;
                 //console.log("event",e.target.feature.properties.name);
-                var zipCodeClicked = e.target.feature.properties.name;
-                //debugger;
-                //console.log(map);
-
-                $http.get("./app/controllers/all_places.json?1").success(function(data, status) {
-                    //console.log("data",data);
                     //mc.gjLayer = L.geoJson(tammy_geojson);
                     //console.log("layer",gjLayer);
-                    var matched_data = {
-                        "type": "FeatureCollection",
-                        "features": []
-                    };
+                angular.extend($scope, {
+                    progress: true
+                });
+                dataService.makePlacesGeojson().then(function(response) {
+                    mc.placesGeojson2 = response;
+                    mc.scanMarkers();
+                    angular.extend($scope, {
+                        progress: false
+                    });
+                });
 
-                    var res_markers = {};
-                    console.log('places geojson: ', dataService.placesGeojson);
-                    if (!isNaN(area_click_on) && county_click_on==="Orange") {
-                        console.log(area_click_on, 'is a number');
-                        for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
-                            //console.log(dataService.placesGeojson.features[i].geometry.coordinates);
-                            var res = leafletPip.pointInLayer(
-                                [dataService.placesGeojson.features[i].geometry.coordinates[1], dataService.placesGeojson.features[i].geometry.coordinates[0]], mc.gjLayer);
-                            if (res.length) {
-                                //console.log("name", res[0].feature.properties.name);
-                                if (zipCodeClicked === res[0].feature.properties.name) {
-                                    //console.log("name", res[0].feature.properties.name);
-                                    matched_data.features.push(data.features[i]);
-                                    res_markers["id" + i] = {
-                                        "Place ID": dataService.placesGeojson.features[i].properties.placeId,
-                                        "Place Type": dataService.placesGeojson.features[i].properties.type,
-                                        "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
-                                        "lng": dataService.placesGeojson.features[i].geometry.coordinates[1],
-                                        "icon": {}
-                                    }
-                                }
-                            } else {
-                                console.log("false");
+                map.fitBounds(e.target.getBounds(),{padding: [230, 230]});
+
+            });
+        }
+
+        this.scanMarkers = function() {
+
+            var zipCodeClicked = mc.that.target.feature.properties.name;
+
+            var matched_data = {
+                "type": "FeatureCollection",
+                "features": []
+            };
+
+            var res_markers = {};
+            //console.log('places geojson: ', dataService.placesGeojson);
+            if (!isNaN(mc.area_click_on) && mc.county_click_on==="Orange") {
+                console.log(mc.area_click_on, 'is a number');
+                for (var rest in mc.placesGeojson2.restaurant) {
+                    //console.log(rest);
+                    var res = leafletPip.pointInLayer(
+                        [mc.placesGeojson2.restaurant[rest].geometry.coordinates[1], mc.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
+                    if (res.length) {
+                        //console.log(rest);
+                        //console.log("name", res[0].feature.properties.name);
+                        if (zipCodeClicked === res[0].feature.properties.name) {
+                            //console.log("name", res[0].feature.properties.name);
+                            //matched_data.features.push(data.features[i]);
+                            res_markers[rest.substr(rest.length-5).replace("-","_")] = {
+                                "Place ID": mc.placesGeojson2.restaurant[rest].properties.placeId,
+                                "Place Type": mc.placesGeojson2.restaurant[rest].properties.type,
+                                "lat": mc.placesGeojson2.restaurant[rest].geometry.coordinates[0],
+                                "lng": mc.placesGeojson2.restaurant[rest].geometry.coordinates[1],
+                                "icon": {}
                             }
                         }
                     }
-                    console.log("markers", res_markers);
-                    //console.log("matched",matched_data);
-                    //console.log("data",data);
+                }
 
-                    angular.extend($scope, {
-                        markers: res_markers
-                    });
+                // for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
+                //     //console.log(dataService.placesGeojson.features[i].geometry.coordinates);
+                //     var res = leafletPip.pointInLayer(
+                //         [dataService.placesGeojson.features[i].geometry.coordinates[1], dataService.placesGeojson.features[i].geometry.coordinates[0]], mc.gjLayer);
+                //     if (res.length) {
+                //         //console.log("name", res[0].feature.properties.name);
+                //         if (zipCodeClicked === res[0].feature.properties.name) {
+                //             //console.log("name", res[0].feature.properties.name);
+                //             matched_data.features.push(data.features[i]);
+                //             res_markers["id" + i] = {
+                //                 "Place ID": dataService.placesGeojson.features[i].properties.placeId,
+                //                 "Place Type": dataService.placesGeojson.features[i].properties.type,
+                //                 "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
+                //                 "lng": dataService.placesGeojson.features[i].geometry.coordinates[1],
+                //                 "icon": {}
+                //             }
+                //         }
+                //     } else {
+                //         console.log("false");
+                //     }
+                // }
+            }
+            console.log("markers", Object.size(res_markers));
 
-                    /*
-                    angular.extend($scope.layers.overlays, {
-                        cities: {
-                            name:'All Places (Awesome Markers)',
-                            type: 'geoJSONAwesomeMarker',
-                            data: data,
-                            visible: true,
-                            icon: {
-                                icon: 'heart',
-                                markerColor: 'green',
-                                prefix: 'fa'
-                            }
-                        }
-                    });
-                    */
-
-                    map.fitBounds(e.target.getBounds(),{padding: [250, 250]});
-                });
-
+            angular.extend($scope, {
+                markers: res_markers
             });
-            // Modified for Angular
-            // map.fitBounds(e.target.getBounds());
         }
 
         function style(feature) {
@@ -839,6 +848,14 @@ angular.module('realValue')
                 d > 2   ? '#F85B38' :
                 '#FF403D'; //red
         }
+
+        Object.size = function(obj) {
+            var size = 0, key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        };
 
         leafletData.getMap().then(function (map) {
 
