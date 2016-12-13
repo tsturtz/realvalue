@@ -333,8 +333,8 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 /* SIDENAV */
 .sidenav-close {
     position: relative;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 25px;
 }
 
 /*
