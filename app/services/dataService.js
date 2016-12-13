@@ -52,7 +52,7 @@ angular.module('realValue')
             });
         };
 
-        //this.makePlacesGeojson();
+        this.makePlacesGeojson();
 
         this.weikuan_init = function() {
 
