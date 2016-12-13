@@ -554,6 +554,44 @@ angular.module('realValue')
                         .attr('fill','grey');
                 });
         }
+        function job_pie_chart(dataset){
+            $("#chart").empty();
+            var width = 250;
+            var height = 250;
+            var radius = Math.min(width, height) / 2;
+
+            var color = d3.scale.ordinal()
+                .range(['#CA525A','#4FA242' ]);
+
+            var svg = d3.select('#chart')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(' + (width / 2) +
+                    ',' + (height / 2) + ')');
+
+            var arc = d3.svg.arc()
+                .innerRadius(0)
+                .outerRadius(radius);
+
+            var pie = d3.layout.pie()
+                .value(function(d) { return d.count; })
+                .sort(null);
+
+            var path = svg.selectAll('path')
+                .data(pie(dataset))
+                .enter()
+                .append('path')
+                .attr('d', arc)
+                .attr('fill', function(d) {
+                    return color(d.data.label);
+                });
+            path.append("text")
+                .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+                .text(function(d) { return d.data.label;})
+                .style("fill", "#ffffff");
+        }
 
         // share method between controllers through obj prototypical inheritance
         $scope.openSidenav = {};
@@ -583,7 +621,7 @@ angular.module('realValue')
                 else {
                     var city=dataService.find_city_based_on_zip_code(mc.area_click_on);
                     var crime_and_job={};
-                    //console.log(city);
+                    console.log(city);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]!==undefined)
@@ -651,8 +689,18 @@ angular.module('realValue')
                                         'y': dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]
                                             ["crime"]["2014"]["Violent_sum"]
                                     }];
-
+                                    var pie=[];
+                                    for (var data in dataService.firebase[city[i]]["Number of job openings"]){
+                                        var temp={};
+                                        if(data!=="all") {
+                                            temp["label"] = data;
+                                            temp["count"] = dataService.firebase[city[i]]["Number of job openings"][data];
+                                            pie.push(temp);
+                                        }
+                                    }
+                                    console.log(pie);
                                     mc.information=InitChart(barData);
+                                    job_pie_chart(pie);
                                     mc.crimejob=1;
                                 }
                                 catch(err){
