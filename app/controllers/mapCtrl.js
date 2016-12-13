@@ -250,7 +250,7 @@ angular.module('realValue')
 
         this.zipcode_zoom = function() {
             console.log("extend zip");
-            console.log("center", varMap.getCenter());
+            //console.log("center", varMap.getCenter());
             angular.extend($scope, {
                 center: {
                     autoDiscover: true,

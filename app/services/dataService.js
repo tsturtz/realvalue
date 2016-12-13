@@ -1,8 +1,6 @@
 angular.module('realValue')
     .service('dataService', function ($q) {
         var self = this;
-        self.jarray = [];
-        self.carray = [];
 
         var config = {
             apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
@@ -54,7 +52,7 @@ angular.module('realValue')
             });
         };
 
-        this.makePlacesGeojson();
+        //this.makePlacesGeojson();
 
         this.weikuan_init = function() {
 
@@ -73,12 +71,8 @@ angular.module('realValue')
                 //console.log("Firebase:",self.firebase);
                 self.mergeData();
                 //console.log(self.jarray);
-                console.log("job sd", self.jarray.stanDeviate());
-                console.log("crime sd", self.carray.stanDeviate());
                 console.log("job avg " + self.crime_and_job_data_analysis.all.jobAverage);
                 console.log("crime avg " + self.crime_and_job_data_analysis.all.crimeAverage);
-                self.jobs_standard_deviation = self.jarray.stanDeviate();
-                console.log("array length " + self.jarray.length);
             });
 
         this.mergeData = function () {
@@ -242,13 +236,11 @@ angular.module('realValue')
         self.calculateStatisticZScore = function(data,prop) {
             if(prop === "job") {
                 var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
-                self.jarray.push(Number(data));
                 var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.jobSD;
                 return zscore;
             }
             if(prop === "crime") {
                 var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
-                self.carray.push(Number(data));
                 var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.crimeSD;
                 return zscore;
             }
