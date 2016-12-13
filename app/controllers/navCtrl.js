@@ -120,6 +120,8 @@ angular.module('realValue')
 
         // right sidenav
 
+        self.sidebarStatus = null;
+
         self.openRightMenu = function (status) {
             self.sidebarStatus = status;
             console.log("status " + self.sidebarStatus);
@@ -127,10 +129,9 @@ angular.module('realValue')
         };
 
         $scope.openSidenav.open = function() {
-            if(self.sidebarStatus) {
+            if(self.sidebarStatus == null) {
                 $mdSidenav('right').open();
             }
-
         };
 
         // welcome dialog
