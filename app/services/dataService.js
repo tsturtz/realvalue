@@ -40,16 +40,23 @@ angular.module('realValue')
         };
 
         self.makePlacesGeojson = function () {
+            var defer = $q.defer();
             fbRef.ref("/features/").once('value', function (snapshot) {
                 console.log('%c PLACE DATA ', 'background: green; color: white; display: block;', snapshot.val());
-                var restaurants;
+                self.placesGeojson2 = snapshot.val();
+                //var restaurants;
+                /*
                 for (eachKey in snapshot.val().restaurant) {
-                    restaurants = snapshot.val().restaurant[eachKey];
+                    //restaurants = snapshot.val().restaurant[eachKey];
                     //console.log('each key in place: ', restaurants);
-                    self.placesGeojson.features.push(restaurants);
-                }
-                console.log('places geojson: ', self.placesGeojson);
+                    //self.placesGeojson.features.push(restaurants);
+                    //self.placesGeojson.features.push(snapshot.val().restaurant[eachKey]);
+                }*/
+                //console.log('places geojson: ', self.placesGeojson);
+                //console.log('places geojson2: ', self.placesGeojson2);
+                defer.resolve(snapshot.val());
             });
+            return defer.promise;
         };
 
         //this.makePlacesGeojson();
