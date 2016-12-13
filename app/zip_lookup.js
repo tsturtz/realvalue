@@ -427,7 +427,6 @@ var la_zips = {
     "Vacaville": {"zip_codes": ["95687", "95688", "94535", "95696", "95625"]},
     "Vallejo": {"zip_codes": ["94591", "94590", "94589", "94592"]},
     "Valley Springs": {"zip_codes": ["95252", "95225", "95226"]},
-    "Valyermo":{"zip_codes":["93563"]},
     "Vandenberg AFB": {"zip_codes": ["93437", "93438"]},
     "Ventura": {"zip_codes": ["93003", "93001", "93004", "93022", "93002", "93005", "93007", "93006", "93009"]},
     "Verdugo City": {"zip_codes": ["91046"]},

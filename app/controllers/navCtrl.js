@@ -8,6 +8,9 @@ angular.module('realValue')
         var crimes;
         var weight;
         var temp_attr;
+        var calc_score;
+        var job_zscore;
+        var crime_zscore;
         self.sidebarStatus;
 
         self.types = ['jobs', 'crimes', 'housing', 'park', 'university'];
@@ -58,15 +61,7 @@ angular.module('realValue')
             } else {
                 crimes_yes = 0;
             }
-            weight = 100 / counter;
-            console.log('counter ' + counter);
-            console.log('weight ' + weight);
             console.log('crime ' + crimes_yes + ' jobs ' + jobs_yes);
-            var job_weight = (weight/dataService.crime_and_job_data_analysis.all.jobMax) * jobs_yes;
-            var crime_weight = (-1 * weight/dataService.crime_and_job_data_analysis.all.crimeMax) * crimes_yes;
-            console.log('job weight ' + job_weight);
-            console.log('crime weight ' + crime_weight);
-            //console.log("attributes " + counter);
 
             if(checked === 1) {
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
@@ -76,7 +71,10 @@ angular.module('realValue')
                         score = tammy_geojson.features[i].properties.score;
                         jobs = tammy_geojson.features[i].properties.jobs;
                         crimes = tammy_geojson.features[i].properties.crimes;
-                        tammy_geojson.features[i].properties.score = Math.round((parseInt(jobs)*job_weight) + ((weight*crime_weight) + parseInt(crimes)*crime_weight));
+                        crime_zscore = tammy_geojson.features[i].properties.crime_zscore * crimes_yes;
+                        job_zscore = tammy_geojson.features[i].properties.job_zscore * jobs_yes;
+                        calc_score = (crime_zscore * -1) + (job_zscore * 1);
+                        tammy_geojson.features[i].properties.score = calc_score.toFixed(2);
                     }
                 }
             }
@@ -90,20 +88,12 @@ angular.module('realValue')
                         score = losangeles_geojson.features[i].properties.score;
                         jobs = losangeles_geojson.features[i].properties.jobs;
                         crimes = losangeles_geojson.features[i].properties.crimes;
-                        losangeles_geojson.features[i].properties.score = Math.round((parseInt(jobs)*job_weight) + ((weight*crime_weight) + parseInt(crimes)*crime_weight));
+                        crime_zscore = losangeles_geojson.features[i].properties.crime_zscore;
+                        job_zscore = losangeles_geojson.features[i].properties.job_zscore;
+                        calc_score = (parseInt(crime_zscore).toFixed(2) * -1 * crimes_yes) + (parseInt(job_zscore).toFixed(2) * 1 * jobs_yes);
+                        losangeles_geojson.features[i].properties.score = calc_score.toFixed(2);
                     }
                 }
-            }
-        };
-
-        self.doMath = function(param1, param2, operator) {
-            switch(operator) {
-                case "+":
-                    //console.log(param1 + param2);
-                    return param1 + param2;
-                case "-":
-                    //console.log(param1 + param2);
-                    return param1 - param2;
             }
         };
 
