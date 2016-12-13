@@ -8,6 +8,12 @@ html, body {
     padding: 0;
 }
 
+md-progress-circular {
+    left: 50%;
+    top: 50%;
+    z-index: 5;
+    position: absolute;
+}
 /*body {
     background: url(assets/img/mapMock.JPG) no-repeat center;
     background-size: cover;
@@ -335,3 +341,13 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 .leaflet-zoom-hide {
     display:none;
 }*/
+
+/*　d3 charts */
+.data_spacer {
+    min-height: 80%;
+}
+
+.crime-data, .job-data {
+    max-height: 50%;
+    min-height: 50%;
+}
