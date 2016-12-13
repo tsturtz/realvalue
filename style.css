@@ -324,6 +324,13 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     font-style: italic;
 }
 
+/* SIDENAV */
+.sidenav-close {
+    position: relative;
+    top: 10px;
+    right: 10px;
+}
+
 /*
 .leaflet-zoom-hide {
     display:none;

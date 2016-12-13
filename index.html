@@ -102,9 +102,9 @@
         <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
                     md-whiteframe="16" md-disable-backdrop="true">
             <!--<md-toolbar class="md-primary md-medium-tall" layout-align="center center" layout="row" md-whiteframe="4">-->
-                <div class="md-toolbar-tools">
+                <div class="md-toolbar-tools" layout-padding>
                     <span flex>Data</span>
-                    <md-button md-no-ink ng-click="nc.openRightMenu(false)">
+                    <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)" layout-padding>
                         <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
                     </md-button>
                 </div>
@@ -121,13 +121,6 @@
             </section>
 
             <span flex></span>
-
-            <div id="nav-close">
-                <md-button class="md-raised" ng-click="nc.openRightMenu(false)">
-                    Close
-                </md-button>
-            </div>
-
         </md-sidenav>
 
         <md-toolbar id="top-toolbar" class="md-primary md-medium-tall" layout-align="center center" md-whiteframe="4">
@@ -145,9 +138,10 @@
                 </md-input-container>
 
                 <span flex></span>
-                <md-button md-no-ink ng-click="nc.openRightMenu()">
-                    <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
+                <md-button class="md-fab md-primary" ng-click="nc.openRightMenu()">
+                    <md-icon class="md-accent" md-font-set="material-icons">poll</md-icon>
                 </md-button>
+                <span></span>
             </div>
         </md-toolbar>
 
