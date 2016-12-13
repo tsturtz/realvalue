@@ -9,6 +9,10 @@
 
 angular.module('realValue', ['ngMaterial','leaflet-directive'])
 
+    .config(function( $mdGestureProvider ) {
+        $mdGestureProvider.skipClickHijack();
+    })
+
     .config(function ($mdAriaProvider) {
         $mdAriaProvider.disableWarnings();
     })
