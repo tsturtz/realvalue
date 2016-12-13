@@ -43,6 +43,18 @@ angular.module('realValue')
                 this.cancel = function () {
                     $mdDialog.hide();
                 };
+
+                deets.remaining = 0;
+
+                this.starsRemaining = function(remaining) {
+                    return new Array(remaining);
+                };
+
+                this.starRange = function(stars) {
+                    deets.remaining = 5 - stars;
+                    return new Array(stars);
+                };
+
                 this.getPlaceDetails = function () {
                     // google places API call
                     this.callPlace = function(key) {
@@ -54,12 +66,24 @@ angular.module('realValue')
 
                         if (key) {
                             this.service.getDetails({
-                                placeId: key // real place id example: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
+                                placeId: key // key is passed in place ID. Here's a real place id for testing: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
                             }, function(place){
                                 console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
+                                console.log('just before placeObj definition: ', args.model);
                                 deets.placeObj = {
                                     type : place.types[0],
-                                    icon : place.icon,
+                                    icon :
+                                        (args.model["Place Type"] === "airport") ? 'local_airport' :
+                                        (args.model["Place Type"] === "bar") ? 'local_bar' :
+                                        (args.model["Place Type"] === "gas") ? 'gas_station' :
+                                        (args.model["Place Type"] === "gym") ? 'fitness_center' :
+                                        (args.model["Place Type"] === "hospital") ? 'local_hospital' :
+                                        (args.model["Place Type"] === "library") ? 'local_library' :
+                                        (args.model["Place Type"] === "park") ? 'nature_people' :
+                                        (args.model["Place Type"] === "restaurant") ? 'restaurant' :
+                                        (args.model["Place Type"] === "school") ? 'school' :
+                                        (args.model["Place Type"] === "university") ? 'school' :
+                                        'place',
                                     name : place.name,
                                     address : place.formatted_address,
                                     phone : place.formatted_phone_number,
@@ -73,6 +97,7 @@ angular.module('realValue')
                             console.warn('you didn\'t pass in a place id');
                         }
                     };
+                    console.log(args.model);
                     this.callPlace(args.model['Place ID']); // passed in place ID from event args
                 };
                 this.getPlaceDetails();
