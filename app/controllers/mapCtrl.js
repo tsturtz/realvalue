@@ -110,7 +110,7 @@ angular.module('realValue')
             map.invalidateSize(false);
             // This code below removes the zoom control that's present on the map
             map.removeControl(map.zoomControl);
-            map.options.minZoom = 7;
+            map.options.minZoom = 9;
         });
         }, 400);
 
@@ -155,7 +155,6 @@ angular.module('realValue')
             mc.zipLayer = false;
             mc.cityLayer = true;
             console.log("extend city");
-            //console.log("cities",cities);
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
@@ -166,18 +165,18 @@ angular.module('realValue')
                     zoomAnimation: true
                 },
                 legend: {
-                    position: 'topleft',
+                    position: 'bottomright',
                     colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#000' ],
                     labels: [ 'Best', 'Good', 'Average', 'Bad', 'Worst', 'No Data']
                 },
                 maxbounds: {
                     southWest: {
-                        lat:32.88,
-                        lng: -115.011
+                        lat:32.98,
+                        lng: -116.011
                     },
                     northEast: {
-                        lat:34.92,
-                        lng:-120.624
+                        lat:35.32,
+                        lng:-120.324
                     }
 
                 },
@@ -192,13 +191,10 @@ angular.module('realValue')
                 controls: {},
                 layers: {
                     overlays: {
-                        search: {
-                            name: 'search',
-                            type: 'group',
-                            visible: true,
-                            layerParams: {
-                                showOnSelector: false
-                            }
+                        restaurant: {
+                            name: 'restaurant',
+                            type: 'markercluster',
+                            visible: true
                         }
                     }
                 },
@@ -347,7 +343,7 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    alert("No Match!");
+                    alert("Taylor Put Toast for No Match!");
                 }
             mc.zip = ''; // resets input field
             }
@@ -736,6 +732,7 @@ angular.module('realValue')
                 var place_id = dataService.placesGeojson[i].place_id;
 
                 res_markers[place_id.substr(place_id.length-5).replace("-","_")] = {
+                    "layer": "restaurant",
                     "Place ID": place_id,
                     "Place Type": dataService.placesGeojson[i].type,
                     "lat": dataService.placesGeojson[i].lat,
@@ -789,6 +786,7 @@ angular.module('realValue')
                             //console.log("name", res[0].feature.properties.name);
                             //matched_data.features.push(data.features[i]);
                             res_markers[rest.substr(rest.length-5).replace("-","_")] = {
+                                "layer": "restaurant",
                                 "Place ID": dataService.placesGeojson2.restaurant[rest].properties.placeId,
                                 "Place Type": dataService.placesGeojson2.restaurant[rest].properties.type,
                                 "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],

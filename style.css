@@ -432,3 +432,13 @@ md-subheader.pre-visualisation {
 .leaflet-control-attribution.leaflet-control {
     display: none;
 }
+
+/* To hide leaflets version of overlay toggle menu */
+.leaflet-retina .leaflet-control-layers-toggle {
+    display: none;
+}
+
+/* Set The Z-Index so the leaflet bottom Legend doesn't show over the popup */
+.leaflet-bottom {
+    z-index: 1 !important;
+}

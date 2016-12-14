@@ -13,7 +13,8 @@
     <!--Angular Material Style Sheets-->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
     <!--RealValue Style Sheets-->
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -36,16 +37,24 @@
 
     <!--Map Js -->
     <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
-    <link rel="stylesheet"
-          href="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.css">
+    <!--<link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.css">-->
     <link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css"/>
+    <!--<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css">-->
+    <!--<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>-->
+
     <!--<link rel="stylesheet" href="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />-->
     <script src="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.js"></script>-->
+    <!--<script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>-->
+    <!--<script src="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>-->
+    <script src="Leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+    <!--<script src="./Leaflet.markercluster-1.0.0/dist/leaflet.markercluster.js"></script>-->
+    <!--<script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>-->
     <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <!--<script src="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>-->
-    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+    <!--<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>-->
     <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
-    <script src="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.js"></script>
+    <!--<script src="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.js"></script>-->
 
     <!--RealValue App-->
     <script src="app/app.js"></script>
@@ -53,32 +62,18 @@
     <script src="app/services/checkboxService.js"></script>
     <script src="app/services/dataService.js"></script>
 
-    <!--<script src="prototypes/simple-geojson/mike_local.js"></script>-->
     <script src="prototypes/simple-geojson/tammy-1-geojson.js"></script>
-    <!--<script src="prototypes/simple-geojson/miles-joif-geojson.js"></script>-->
-    <!--<script src="prototypes/simple-geojson/jason-geojson.js"></script>-->
     <script src="prototypes/simple-geojson/combined-geojson.js"></script>
-    <script src="app/controllers/geojson.js"></script>
     <script src="app/controllers/county.js"></script>
     <script src="prototypes/simple-geojson/cities.js"></script>
     <script src="app/zip_lookup.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="app/controllers/mapCtrl.js"></script>
-    <script src="app/controllers/map2Ctrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
     <script src="dummy.js"></script>
     <!--Google Maps Call for Place Details-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places"
             async defer></script>
-
-
-    <!--
-    <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
-    <script src="firebasemap.js"></script>
-    <script src="weather.js"></script>
-    <script src="walkscore.js"></script>
-    -->
 
     <!-- Init Google Map -->
 
