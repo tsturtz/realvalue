@@ -166,5 +166,4 @@ angular.module('realValue')
         }
 
 
-
     }]);
