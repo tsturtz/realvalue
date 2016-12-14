@@ -13,7 +13,7 @@ angular.module('realValue')
         var fbRef = firebase.database();
 
         fbRef.ref("/").once('value', function (snapshot) {
-            console.log('%c ALL DATA ', 'font-size: 14px; background: purple; color: white; display: block;', snapshot.val());
+            self.all=snapshot.val();
         });
 
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){

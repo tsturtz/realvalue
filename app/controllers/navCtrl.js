@@ -11,6 +11,7 @@ angular.module('realValue')
         var calc_score;
         var job_zscore;
         var crime_zscore;
+        var zindex;
         self.sidebarStatus;
 
         self.types = ['jobs', 'crimes', 'housing', 'park', 'university'];
@@ -46,6 +47,7 @@ angular.module('realValue')
             var weight;
             var jobs_yes;
             var crimes_yes;
+            var housing_yes;
             //console.log("counter " + counter);
             //console.log("jobs find " + self.types.indexOf("jobs"));
             if(self.types.indexOf("jobs") > -1) {
@@ -61,7 +63,13 @@ angular.module('realValue')
             } else {
                 crimes_yes = 0;
             }
-            console.log('crime ' + crimes_yes + ' jobs ' + jobs_yes);
+            if(self.types.indexOf("housing") > -1) {
+                counter++;
+                housing_yes = 1;
+            } else {
+                housing_yes = 0;
+            }
+            console.log('crime ' + crimes_yes + ' jobs ' + jobs_yes+' housing '+housing_yes);
 
             if(checked === 1) {
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
@@ -74,15 +82,18 @@ angular.module('realValue')
                         crime_zscore = tammy_geojson.features[i].properties.crime_zscore * crimes_yes;
                         job_zscore = tammy_geojson.features[i].properties.job_zscore * jobs_yes;
                         calc_score = (crime_zscore * -1) + (job_zscore * 1);
-                        tammy_geojson.features[i].properties.score = calc_score.toFixed(2);
+                        zindex=parseInt(dataService.all["zillow"]["oc"][tammy_geojson.features[i].properties.name]);
+                        console.log(zindex);
+                        tammy_geojson.features[i].properties.score = zindex.toFixed(2);
                     }
                 }
             }
 
             if(checked === 1) {
+
                 for(var i = 0; i<losangeles_geojson.features.length;i++) {
                     if(self.hasProperty(losangeles_geojson.features[i].properties,attr)) {
-                        //console.log(losangeles_geojson.features[i] + "has property");
+                        //console.log(losangeles_geojson.features[i] , "has property");
                         //console.log(losangeles_geojson.features[i].properties.crimes);
                         attribute = losangeles_geojson.features[i].properties[attr];
                         score = losangeles_geojson.features[i].properties.score;
@@ -91,7 +102,9 @@ angular.module('realValue')
                         crime_zscore = losangeles_geojson.features[i].properties.crime_zscore;
                         job_zscore = losangeles_geojson.features[i].properties.job_zscore;
                         calc_score = (parseInt(crime_zscore).toFixed(2) * -1 * crimes_yes) + (parseInt(job_zscore).toFixed(2) * 1 * jobs_yes);
-                        losangeles_geojson.features[i].properties.score = calc_score.toFixed(2);
+                        zindex=parseInt(dataService.all["zillow"]["lc"][losangeles_geojson.features[i].properties.name]);
+                        console.log(zindex);
+                        losangeles_geojson.features[i].properties.score = zindex.toFixed(2);
                     }
                 }
             }
