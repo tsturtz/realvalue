@@ -166,7 +166,7 @@ angular.module('realValue')
                     zoomAnimation: true
                 },
                 legend: {
-                    position: 'bottomright',
+                    position: 'topleft',
                     colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#000' ],
                     labels: [ 'Best', 'Good', 'Average', 'Bad', 'Worst', 'No Data']
                 },
@@ -397,6 +397,8 @@ angular.module('realValue')
             var zip_code_jobs = e.target.feature.properties.jobs;
             var zip_code_crimes_zscore = e.target.feature.properties.crime_zscore;
             var zip_code_jobs_zscore = e.target.feature.properties.job_zscore;
+            var zip_code_housing = e.target.feature.properties.housing;
+            var zip_code_house_zscore = e.target.feature.properties.house_zscore;
 
             layer.setStyle({
                 weight: 5,
@@ -416,7 +418,9 @@ angular.module('realValue')
                 crimes: zip_code_crimes,
                 jobs: zip_code_jobs,
                 jobs_zscore: zip_code_jobs_zscore,
-                crimes_zscore: zip_code_crimes_zscore
+                crimes_zscore: zip_code_crimes_zscore,
+                house_zscore: zip_code_house_zscore,
+                housing: zip_code_housing
             }
             //info.update(layer.feature.properties);
         }
@@ -696,7 +700,7 @@ angular.module('realValue')
         this.scanDatabaseMarkers = function() {
             var zipCodeClicked = mc.that.target.feature.properties.name;
             var res_markers = {};
-            console.log("geojson", dataService.placesGeojson);
+            //console.log("geojson", dataService.placesGeojson);
 
             for(var i=0;i<dataService.placesGeojson.length;i++){
                 var place_id = dataService.placesGeojson[i].place_id;
