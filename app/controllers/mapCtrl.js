@@ -312,7 +312,7 @@ angular.module('realValue')
                         });
                     }
                 }
-
+            mc.zip = ''; // resets input field
             }
         };
 
@@ -477,7 +477,7 @@ angular.module('realValue')
                 .attr('y', function (d) {
                     return yRange(d.y);
                 })
-                .attr('width', 10)
+                .attr('width', 15)
                 .attr('height', function (d) {
                     return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
                 })
