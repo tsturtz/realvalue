@@ -129,7 +129,7 @@ angular.module('realValue')
                     //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
                     url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
-                        attribution: ''
+                        //attribution: ''
                     }
                 },
                 geojson : {
@@ -493,12 +493,12 @@ angular.module('realValue')
                 ]),
                 xAxis = d3.svg.axis()
                     .scale(xRange)
-                    .tickSize(1)
+                    .tickSize(2)
                     .tickSubdivide(true),
 
                 yAxis = d3.svg.axis()
                     .scale(yRange)
-                    .tickSize(5)
+                    .tickSize(2)
                     .orient("left")
                     .tickSubdivide(true);
             vis.append('svg:g')
@@ -525,14 +525,14 @@ angular.module('realValue')
                 .attr('height', function (d) {
                     return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
                 })
-                .attr('fill', 'grey')
+                .attr('fill', 'rgba(0,150,136,.5)')
                 .on('mouseover',function(d){
                     d3.select(this)
-                        .attr('fill','blue');
+                        .attr('fill','rgba(0,150,136,1)');
                 })
                 .on('mouseout',function(d){
                     d3.select(this)
-                        .attr('fill','grey');
+                        .attr('fill','rgba(0,150,136,.5)');
                 });
             $scope.openSidenav.open();
         }
@@ -540,10 +540,10 @@ angular.module('realValue')
             $("#chart").empty();
             var width = 250;
             var height = 250;
-            var radius = Math.min(width, height) / 2;
+            var radius = Math.min(width, height) / 2.3;
 
             var color = d3.scale.ordinal()
-                .range(['#CA525A','#4FA242' ]);
+                .range(['rgba(0,150,136,.5)','rgba(0,150,136,1)' ]);
 
             var svg = d3.select('#chart')
                 .append('svg')
@@ -572,7 +572,8 @@ angular.module('realValue')
             path.append("text")
                 .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
                 .text(function(d) { return d.data.label;})
-                .style("fill", "#ffffff");
+                .style("fill", "rgb(66,66,66)");
+
         }
 
         function zoomToFeature(e) {
