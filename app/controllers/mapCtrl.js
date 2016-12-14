@@ -666,7 +666,7 @@ angular.module('realValue')
 
                     if(response === true) {
                         console.log("TRUE!");
-                        mc.scanDatabaseMarkers(paramClick);
+                        mc.scanDatabaseMarkers();
                     } else {
                         console.log("FALSE");
                         mc.scanObjectMarkers();
@@ -682,7 +682,7 @@ angular.module('realValue')
             });
         }
 
-        this.scanDatabaseMarkers = function(paramClick) {
+        this.scanDatabaseMarkers = function() {
             var zipCodeClicked = mc.that.target.feature.properties.name;
             var res_markers = {};
             console.log("geojson", dataService.placesGeojson);
@@ -691,7 +691,7 @@ angular.module('realValue')
                 var place_id = dataService.placesGeojson[i].place_id;
 
                 res_markers[place_id.substr(place_id.length-5).replace("-","_")] = {
-                    "Place ID": dataService.placesGeojson[i].placeId,
+                    "Place ID": place_id,
                     "Place Type": dataService.placesGeojson[i].type,
                     "lat": dataService.placesGeojson[i].lat,
                     "lng": dataService.placesGeojson[i].lng,
@@ -700,7 +700,6 @@ angular.module('realValue')
                 }
 
             }
-
             angular.extend($scope, {
                 markers: res_markers
             });
@@ -757,6 +756,10 @@ angular.module('realValue')
                 }
             }
             console.log("markers", Object.size(res_markers));
+
+            if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
+                alert("Taylor, put toast for no markers results here!");
+            }
             //console.log("markers", res_markers);
             //console.log("geoJson2", dataService.placesGeojson2);
 
