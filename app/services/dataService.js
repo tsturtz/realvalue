@@ -39,32 +39,30 @@ angular.module('realValue')
             "features": []
         };
 
-        self.makePlacesGeojson = function () {
+        self.makePlacesGeojson = function (clicked) {
             var defer = $q.defer();
+
+            fbRef.ref("/markerIndexZip/").once('value', function (snapshot) {
+                if (snapshot.hasChild(clicked)) {
+                    console.log("It does exist!");
+                    console.log('%c DB MARKER DATA ', 'background: green; color: white; display: block;', snapshot.val());
+                    self.placesGeojson = snapshot.val()[clicked];
+                    defer.resolve(true);
+                    return defer.promise;
+                }
+            });
+
             fbRef.ref("/features/").once('value', function (snapshot) {
                 console.log('%c PLACE DATA ', 'background: green; color: white; display: block;', snapshot.val());
                 self.placesGeojson2 = snapshot.val();
-                //var restaurants;
-                /*
-                for (eachKey in snapshot.val().restaurant) {
-                    //restaurants = snapshot.val().restaurant[eachKey];
-                    //console.log('each key in place: ', restaurants);
-                    //self.placesGeojson.features.push(restaurants);
-                    //self.placesGeojson.features.push(snapshot.val().restaurant[eachKey]);
-                }*/
-                //console.log('places geojson: ', self.placesGeojson);
-                //console.log('places geojson2: ', self.placesGeojson2);
                 defer.resolve(snapshot.val());
             });
             return defer.promise;
         };
 
         //this.makePlacesGeojson();
-
         this.weikuan_init = function() {
-
             var deferred = $q.defer();
-
             fbRef.ref("combine").once('value', function (snapshot) {
                 deferred.resolve(snapshot.val());
             });
@@ -219,15 +217,7 @@ angular.module('realValue')
                         //console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
                         score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                        // if(score > 100) {
-                        //     console.log("crimes ", self.weight_total + (crimes * crime_weight));
-                        //     console.log("self weight " + self.weight_total);
-                        //     console.log("crimes " + crimes);
-                        //     console.log("crimes weight " + crime_weight);
-                        //     console.log("times " + crimes * crime_weight);
-                        //     console.log("jobs " + parseInt(jobs_openings) * job_weight);
-                        // }
-                        //console.log(self_counter++ + " opening", jobs_openings + " | " + lookup_zip + " | " + zip_city[0]);
+
                         job_zscore = self.calculateStatisticZScore(jobs_openings, "job");
                         crime_zscore = self.calculateStatisticZScore(crimes, "crime");
                         losangeles_geojson.features[i].properties.crime_zscore = crime_zscore.toFixed(3);
@@ -251,22 +241,17 @@ angular.module('realValue')
                 var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.crimeSD;
                 return zscore;
             }
-            //console.log(self.jobs_standard_deviation);
-            //console.log("prop average " + property_avg);
-            //console.log("z score " + (data - property_avg)/3000);
-        }
-
-        Array.prototype.stanDeviate = function(){
-            var i,j,total = 0, mean = 0, diffSqredArr = [];
-            for(i=0;i<this.length;i+=1){
-                total+=this[i];
-            }
-            mean = total/this.length;
-            for(j=0;j<this.length;j+=1){
-                diffSqredArr.push(Math.pow((this[j]-mean),2));
-            }
-            return (Math.sqrt(diffSqredArr.reduce(function(firstEl, nextEl){
-                    return firstEl + nextEl;
-                })/this.length));
         };
+
+        self.indexMarkerInZip = function(click) {
+            //console.log('geojson', self.placesGeojson2);
+            console.log("indexing done on ", click);
+            if(self.placesGeojson2 && self.placesGeojson2.hasOwnProperty("zipCode")) {
+                for (var rest in self.placesGeojson2.zipCode) {
+                    //console.log("zip object is ", self.placesGeojson2.zipCode[rest]);
+                    fbRef.ref('markerIndexZip/'+rest).set(self.placesGeojson2.zipCode[rest]);
+                }
+            }
+        };
+
     });
