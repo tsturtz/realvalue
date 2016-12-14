@@ -119,8 +119,8 @@ angular.module('realValue')
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
-                    lng: -118.03985595703125,
-                    zoom: 8
+                    lng: -118.03985595703125
+                    //zoom: 8
                 },
                 tiles: {
                     //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
@@ -147,14 +147,14 @@ angular.module('realValue')
             });
         };
 
-        this.city_zoom = function() {
+        this.city_zoom = function(zoom) {
             console.log("extend city");
             //console.log("cities",cities);
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
                     lng: -118.03985595703125,
-                    zoom: 9
+                    zoom: zoom
                 },
                 defaults: {
                     zoomAnimation: true
@@ -221,7 +221,7 @@ angular.module('realValue')
             });
         };
 
-        mc.city_zoom();
+        mc.city_zoom(9);
 
         function roughSizeOfObject( object ) {
             var objectList = [];
@@ -253,9 +253,9 @@ angular.module('realValue')
             angular.extend($scope, {
                 center: {
                     lat: varMap.getCenter().lat,
-                    lng: varMap.getCenter().lng,
+                    lng: varMap.getCenter().lng
                     //autoDiscover: true,
-                    zoom: 10
+                    //zoom: 10
                 },
                 geojson : {
                     data: [ tammy_geojson,
@@ -879,20 +879,20 @@ angular.module('realValue')
                 //console.log('overlay', map.getPanes().overlayPane);
 
                 if (map.getZoom() <= 8) {
-                    mc.county_zoom();
+                    //mc.county_zoom();
                 }
 
                 if (map.getZoom() > 8 && map.getZoom() <=9 ) {
-                    mc.city_zoom();
+                    //mc.city_zoom();
                     //mc.city_geojson();
                 }
 
                 if (map.getZoom() > 9 && map.getZoom() <=12 ) {
-                    mc.zipcode_zoom();
+                    //mc.zipcode_zoom();
                 }
 
                 if (map.getZoom() > 12) {
-                    mc.markers_zoom();
+                    //mc.markers_zoom();
                 }
 
             });

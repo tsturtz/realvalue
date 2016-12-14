@@ -81,10 +81,11 @@ angular.module('realValue')
                         crimes = tammy_geojson.features[i].properties.crimes;
                         crime_zscore = tammy_geojson.features[i].properties.crime_zscore * crimes_yes;
                         job_zscore = tammy_geojson.features[i].properties.job_zscore * jobs_yes;
-                        calc_score = (crime_zscore * -1) + (job_zscore * 1);
+                        calc_score = ((crime_zscore * -1) * crimes_yes) + ((job_zscore * 1) * jobs_yes);
                         zindex=parseInt(dataService.all["zillow"]["oc"][tammy_geojson.features[i].properties.name]);
-                        console.log(zindex);
-                        tammy_geojson.features[i].properties.score = zindex.toFixed(2);
+                        //console.log(zindex);
+                        //tammy_geojson.features[i].properties.score = zindex.toFixed(2);
+                        tammy_geojson.features[i].properties.score = calc_score.toFixed(2);
                     }
                 }
             }
@@ -101,10 +102,12 @@ angular.module('realValue')
                         crimes = losangeles_geojson.features[i].properties.crimes;
                         crime_zscore = losangeles_geojson.features[i].properties.crime_zscore;
                         job_zscore = losangeles_geojson.features[i].properties.job_zscore;
-                        calc_score = (parseInt(crime_zscore).toFixed(2) * -1 * crimes_yes) + (parseInt(job_zscore).toFixed(2) * 1 * jobs_yes);
+                        //calc_score = (parseInt(crime_zscore).toFixed(2) * -1 * crimes_yes) + (parseInt(job_zscore).toFixed(2) * 1 * jobs_yes);
+                        calc_score = ((crime_zscore * -1) * crimes_yes) + ((job_zscore * 1) * jobs_yes);
                         zindex=parseInt(dataService.all["zillow"]["lc"][losangeles_geojson.features[i].properties.name]);
-                        console.log(zindex);
-                        losangeles_geojson.features[i].properties.score = zindex.toFixed(2);
+                        //console.log(zindex);
+                        //losangeles_geojson.features[i].properties.score = zindex.toFixed(2);
+                        losangeles_geojson.features[i].properties.score = calc_score.toFixed(2);
                     }
                 }
             }
