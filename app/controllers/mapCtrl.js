@@ -176,7 +176,7 @@ angular.module('realValue')
                         lng: -115.011
                     },
                     northEast: {
-                        lat:34.72,
+                        lat:34.92,
                         lng:-120.624
                     }
 
@@ -206,16 +206,6 @@ angular.module('realValue')
                     data: [cities],
                     style: style,
                     onEachFeature: function (feature, layer) {
-                        // fixed issue with referencing layer inside our reset Highlight function
-                        //layer.bindPopup(feature.properties.popupContent);
-
-                        leafletData.getMap().then(function(map) {
-                            label = new L.Label();
-                            label.setContent(feature.properties.name);
-                            label.setLatLng(layer.getBounds().getCenter());
-                            //console.log(feature.properties.name + " " + layer.getBounds().getCenter());
-                            //map.showLabel(label);
-                        });
 
                         layer.on({
                             mouseover: highlightFeature,
@@ -272,7 +262,7 @@ angular.module('realValue')
                             ],
                     style: style,
                     onEachFeature: function (feature, layer) {
-
+                        mc.ziphighlight = layer;
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: resetHighlight,
@@ -285,6 +275,34 @@ angular.module('realValue')
 
         this.markers_zoom = function() {
             console.log("extend marker");
+        };
+
+        this.zoom_out = function() {
+            //console.log("zoom out");
+            //console.log(varMap.getZoom());
+            var center = {
+                lat: varMap.getCenter().lat,
+                lng: varMap.getCenter().lng,
+                zoom: varMap.getZoom() - 1
+            };
+
+            angular.extend($scope, {
+                center: center
+            });
+        };
+
+        this.zoom_in = function() {
+            //console.log("zoom in");
+            //console.log(varMap.getZoom());
+            var center = {
+                lat: varMap.getCenter().lat,
+                lng: varMap.getCenter().lng,
+                zoom: varMap.getZoom() + 1
+            };
+
+            angular.extend($scope, {
+                center: center
+            });
         };
 
         this.submit_zoom = function(zip) {
@@ -320,6 +338,16 @@ angular.module('realValue')
                             center: center
                         });
                     }
+
+                    console.log(mc.ziphighlight);
+                    mc.ziphighlight.setStyle({
+                        weight: 5,
+                        color: '#666',
+                        dashArray: '',
+                        fillOpacity: 0.7
+                    });
+                } else {
+                    alert("No Match!");
                 }
             mc.zip = ''; // resets input field
             }
@@ -427,6 +455,7 @@ angular.module('realValue')
 
         function resetHighlight(e) {
             /* had to custom edit this for angular from interactive choropleth example */
+            //console.log(e);
             var layer = e.target;
             layer.setStyle({
                 weight: 2,
