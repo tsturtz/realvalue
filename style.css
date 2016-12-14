@@ -194,7 +194,9 @@ layout
 
 /* ZOOM BUTTONS */
 .layer-btn {
-    margin: 5px 3px 0;
+    margin: 0 5px;
+    color: white;
+    background-color: rgb(0,150,136) !important;
 }
 
 .zoom-btns {
@@ -231,32 +233,30 @@ md-input-container.md-icon-left {
     outline: none;
 }
 
-.toolbar-subhead {
-    /*background-color: rgba(60,75,170,1);*/
-    background-color: rgba(60,60,60,1);
-    color: white;
-    cursor: help;
+.toolbar-layers {
+    /*background-color: rgba(60,60,60,1);*/
+    background-color: rgba(0,0,0,0);
 }
 
-.toolbar-score {
-    background-color: rgba(60,60,60,1);
-    /*background-color: rgba(0,0,0,0);*/
-    color: white;
-    margin-left: 20px;
-    font-style: italic;
-    cursor: default;
+.toolbar-spacer {
+    margin: 0 20px;
+    height: 100%;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-color: rgba(66,66,66,1);
 }
 
-.toolbar-score-spacer-container {
+.score-spacer-container {
     width: 280px;
+    color: rgb(0,150,136);
 }
 
-.toolbar-score-spacer-name {
+.score-spacer-name {
     display: inline-block;
     width: 65%;
 }
 
-.toolbar-score-spacer-score {
+.score-spacer-score {
     display: inline-block;
     width: 25%;
 }
@@ -285,8 +285,8 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 }
 
 .check-boxes {
-    margin-top: 5px;
-    font-size: 16px;
+    height: 20px;
+    font-size: 14px;
 }
 
 /* LOGO TOP LEFT */
