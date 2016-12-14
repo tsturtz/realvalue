@@ -97,37 +97,51 @@
              hello="hello" legend="legend" defaults="defaults"
              width="100%" height="100vh"></leaflet>
 
-    <md-progress-circular md-mode="indeterminate" ng-show="progress"></md-progress-circular>
+    <!--<md-progress-circular md-mode="indeterminate" ng-if="root.activated" class="md-primary" md-diameter="50"></md-progress-circular>-->
+    <md-progress-circular md-mode="indeterminate" ng-if="progress" class="md-warn"
+                          md-diameter="50"></md-progress-circular>
 
     <div id="main-container" ng-controller="navCtrl as nc">
 
         <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="start center"
                     md-whiteframe="16" md-disable-backdrop="true">
-            <!--<md-toolbar class="md-primary md-medium-tall" layout-align="center center" layout="row" md-whiteframe="4">-->
+            <md-toolbar class="md-primary md-medium-tall" layout-align="center center" layout="row" md-whiteframe="4">
                 <div class="md-toolbar-tools" layout-padding>
                     <span flex>Data</span>
-                    <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)" layout-padding>
+                    <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)">
                         <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
                     </md-button>
                 </div>
-            <!--</md-toolbar>-->
-            <section id="data-here">
-            </section>
-            <div class="data_spacer">
-                <div class="crime-data">
-                    <svg id="visualisation" width="250" height="250"></svg>
-                </div>
-                <div class="job-data">
-                    <div id="chart"></div>
-                </div>
+            </md-toolbar>
+            <section id="data-here" flex="5"></section> <!-- LEAVE THIS - ITS FOR THE GOOGLE PLACES CALL -->
+            <div class="data_spacer" ng-if="mc.showDataVar === true">
+                <md-card class="crime-data">
+                    <md-card-title>
+                        <md-header>Crime Statistics</md-header>
+                    </md-card-title>
+                    <md-card-content>
+                        <md-subheader class="pre-visualisation">Click an area to view crime data</md-subheader>
+                        <svg id="visualisation" width="250" height="250"></svg>
+                    </md-card-content>
+                </md-card>
+                <md-card class="job-data">
+                    <md-card-title>
+                        <md-header>Job Availability Statistics</md-header>
+                    </md-card-title>
+                    <md-card-content>
+                        <div id="chart">
+                            <md-subheader class="pre-visualisation">Click an area to view crime data</md-subheader>
+                        </div>
+                    </md-card-content>
+                </md-card>
             </div>
-            <section ng-if="mc.information !== undefined">
-                <div>
-                    <ul>
-                        <li ng-repeat="(key, value) in mc.information">{{key}}: {{value}}</li>
-                    </ul>
-                </div>
-            </section>
+            <!--            <section ng-if="mc.information !== undefined">
+                            <div>
+                                <ul>
+                                    <li ng-repeat="(key, value) in mc.information">{{key}}: {{value}}</li>
+                                </ul>
+                            </div>
+                        </section>-->
 
             <span flex></span>
         </md-sidenav>
@@ -136,12 +150,16 @@
             <div class="md-toolbar-tools">
                 <div id="logoTopLeft"></div>
 
-                <md-subheader class="toolbar-subhead">LA and OC</md-subheader>
+                <md-subheader class="toolbar-subhead">LA and OC
+                    <md-tooltip md-direction="bottom">
+                        Currently only available in Los Angeles and Orange counties
+                    </md-tooltip>
+                </md-subheader>
 
                 <md-divider></md-divider>
 
                 <md-input-container flex="25" md-theme="search">
-                    <md-icon class="md-accent" md-font-set="material-icons">search</md-icon>
+                    <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons" ng-click="mc.submit_zoom(mc.zip)">search</md-icon>
                     <input type="text" placeholder="Search by city or zip code" ng-model="mc.zip"
                            ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
                 </md-input-container>
@@ -161,10 +179,15 @@
                         <md-icon class="md-primary select-icons" md-font-set="material-icons">equalizer</md-icon>
                         SELECT DATA TO INCLUDE
                     </md-subheader>
-                    <md-checkbox ng-repeat="checkbox in nc.checkboxes" class="check-boxes" ng-model="checkbox.checked"
-                                 ng-change="nc.updateData(this.checkbox)">
-                        {{checkbox.type.toUpperCase()}}
-                    </md-checkbox>
+                    <div class="checkboxes-column" ng-repeat="checkbox in nc.checkboxes">
+                        <md-checkbox class="check-boxes" ng-model="checkbox.checked" ng-disabled="{{checkbox.disabled}}"
+                                     ng-change="nc.updateData(this.checkbox)">
+                            {{checkbox.type.toUpperCase()}}
+                            <md-tooltip md-direction="right">
+                                {{checkbox.tooltip}}
+                            </md-tooltip>
+                        </md-checkbox>
+                    </div>
                     <md-subheader class="subhead">
                         <md-icon class="md-primary select-icons" md-font-set="material-icons">zoom_in</md-icon>
                         SELECT A ZOOM LEVEL

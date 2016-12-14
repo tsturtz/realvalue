@@ -217,10 +217,15 @@ md-input-container.md-icon-left {
     display: none;
 }
 
+.toolbar-search-icon {
+    cursor: pointer;
+}
+
 .toolbar-subhead {
     /*background-color: rgba(60,75,170,1);*/
     background-color: rgba(60,60,60,1);
     color: white;
+    cursor: help;
 }
 
 md-toolbar.ng-scope._md._md-toolbar-transitions {
@@ -240,6 +245,15 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 
 .select-icons {
     margin-right: 10px;
+}
+
+.checkboxes-column {
+    cursor: pointer;
+}
+
+.check-boxes {
+    margin-top: 5px;
+    font-size: 16px;
 }
 
 /* LOGO TOP LEFT */
@@ -333,14 +347,8 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 /* SIDENAV */
 .sidenav-close {
     position: relative;
-    top: 12px;
     right: 25px;
 }
-
-/*
-.leaflet-zoom-hide {
-    display:none;
-}*/
 
 /*　d3 charts */
 .data_spacer {
@@ -351,3 +359,12 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     max-height: 50%;
     min-height: 50%;
 }
+
+#visualisation text {
+    font-size: 10px;
+}
+
+/*
+md-subheader.pre-visualisation {
+    font-size: 40px;
+}*/

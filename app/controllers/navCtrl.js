@@ -111,11 +111,11 @@ angular.module('realValue')
             //{type: 'school', checked: true, weight: 10},
             //{type: 'traffic', checked: true, weight: 10},
             //{type: 'gas', checked: true, weight: 10},
-            {type: 'jobs', checked: true, weight: 10},
-            {type: 'crimes', checked: true, weight: 10},
-            {type: 'housing', checked: true, weight: 10},
-            {type: 'parks', checked: true, weight: 10},
-            {type: 'schools', checked: true, weight: 10}
+            {type: 'jobs', checked: true, weight: 10, tooltip: 'Job Availability', disabled: 'false'},
+            {type: 'crimes', checked: true, weight: 10, tooltip: 'Violent Crime Frequency', disabled: 'false'},
+            {type: 'housing', checked: true, weight: 10, tooltip: 'Average Home Value', disabled: 'false'},
+            {type: 'parks', checked: true, weight: 10, tooltip: 'Coming Soon!', disabled: 'true'},
+            {type: 'schools', checked: true, weight: 10, tooltip: 'Coming Soon!', disabled: 'true'}
         ];
 
         // right sidenav
