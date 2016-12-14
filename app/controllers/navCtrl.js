@@ -6,11 +6,13 @@ angular.module('realValue')
         var attribute;
         var jobs;
         var crimes;
+        var house;
         var weight;
         var temp_attr;
         var calc_score;
         var job_zscore;
         var crime_zscore;
+        var house_zscore;
         var zindex;
         self.sidebarStatus;
 
@@ -79,9 +81,12 @@ angular.module('realValue')
                         score = tammy_geojson.features[i].properties.score;
                         jobs = tammy_geojson.features[i].properties.jobs;
                         crimes = tammy_geojson.features[i].properties.crimes;
+                        house = tammy_geojson.features[i].properties.housing;
+                        console.log(house);
                         crime_zscore = tammy_geojson.features[i].properties.crime_zscore * crimes_yes;
                         job_zscore = tammy_geojson.features[i].properties.job_zscore * jobs_yes;
-                        calc_score = ((crime_zscore * -1) * crimes_yes) + ((job_zscore * 1) * jobs_yes);
+                        house_zscore = tammy_geojson.features[i].properties.house_zscore * housing_yes;
+                        calc_score = ((crime_zscore * -1) * crimes_yes) + ((job_zscore * 1) * jobs_yes) + ((house_zscore * 1) * housing_yes);
                         zindex=parseInt(dataService.all["zillow"]["oc"][tammy_geojson.features[i].properties.name]);
                         //console.log(zindex);
                         //tammy_geojson.features[i].properties.score = zindex.toFixed(2);
@@ -100,10 +105,12 @@ angular.module('realValue')
                         score = losangeles_geojson.features[i].properties.score;
                         jobs = losangeles_geojson.features[i].properties.jobs;
                         crimes = losangeles_geojson.features[i].properties.crimes;
+                        house = losangeles_geojson.features[i].properties.housing;
+                        console.log(house);
                         crime_zscore = losangeles_geojson.features[i].properties.crime_zscore;
                         job_zscore = losangeles_geojson.features[i].properties.job_zscore;
-                        //calc_score = (parseInt(crime_zscore).toFixed(2) * -1 * crimes_yes) + (parseInt(job_zscore).toFixed(2) * 1 * jobs_yes);
-                        calc_score = ((crime_zscore * -1) * crimes_yes) + ((job_zscore * 1) * jobs_yes);
+                        house_zscore = losangeles_geojson.features[i].properties.house_zscore;
+                        calc_score = ((crime_zscore * -1) * crimes_yes) + ((job_zscore * 1) * jobs_yes) + ((house_zscore * 1) * housing_yes);
                         zindex=parseInt(dataService.all["zillow"]["lc"][losangeles_geojson.features[i].properties.name]);
                         //console.log(zindex);
                         //losangeles_geojson.features[i].properties.score = zindex.toFixed(2);
