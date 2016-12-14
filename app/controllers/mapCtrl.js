@@ -115,6 +115,9 @@ angular.module('realValue')
         }, 400);
 
         this.county_zoom = function() {
+            mc.zipLayer = false;
+            mc.cityLayer = false;
+            mc.countyLayer = true;
             console.log("extend county");
             angular.extend($scope, {
                 center: {
@@ -148,6 +151,9 @@ angular.module('realValue')
         };
 
         this.city_zoom = function(zoom) {
+            mc.countyLayer = false;
+            mc.zipLayer = false;
+            mc.cityLayer = true;
             console.log("extend city");
             //console.log("cities",cities);
             angular.extend($scope, {
@@ -248,6 +254,9 @@ angular.module('realValue')
         }
 
         this.zipcode_zoom = function() {
+            mc.countyLayer = false;
+            mc.cityLayer = false;
+            mc.zipLayer = true;
             console.log("extend zip");
             //console.log("center", varMap.getCenter());
             angular.extend($scope, {
