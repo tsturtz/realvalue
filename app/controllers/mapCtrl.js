@@ -312,7 +312,7 @@ angular.module('realValue')
                         });
                     }
                 }
-
+            mc.zip = ''; // resets input field
             }
         };
 
@@ -427,8 +427,10 @@ angular.module('realValue')
         $scope.openSidenav = {};
 
         function InitChart(barData) {
+            mc.showSVG = true;
             $(".pre-visualisation").empty();
             $("#visualisation").empty();
+            $("#pre-data").empty();
             var vis = d3.select('#visualisation'),
                 WIDTH = 250,
                 HEIGHT = 250,
@@ -477,7 +479,7 @@ angular.module('realValue')
                 .attr('y', function (d) {
                     return yRange(d.y);
                 })
-                .attr('width', 10)
+                .attr('width', 15)
                 .attr('height', function (d) {
                     return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
                 })
@@ -531,10 +533,7 @@ angular.module('realValue')
                 .style("fill", "#ffffff");
         }
 
-        mc.showDataVar = false;
-
         function zoomToFeature(e) {
-            mc.showDataVar = true;
             mc.area_click_on=e.target.feature.properties.name;
             mc.county_click_on=e.target.feature.properties.county;
             //console.log("zip obj ",e.target.feature.properties);
