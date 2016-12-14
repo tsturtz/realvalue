@@ -7,7 +7,7 @@
  * @config Configure URL View Routes
  */
 
-angular.module('realValue', ['ngMaterial','leaflet-directive'])
+angular.module('realValue', ['ngMaterial','leaflet-directive']) //TODO ngMessages
 
     .config(function( $mdGestureProvider ) {
         $mdGestureProvider.skipClickHijack();
