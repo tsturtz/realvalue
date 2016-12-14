@@ -18,6 +18,6 @@
   "homepage": "https://github.com/tsturtz/c11_realvalue#readme",
   "dependencies": {
     "leaflet": "git://github.com/tombatossals/angular-leaflet-directive.git",
-    "markercluster": "git://github.com/Leaflet/Leaflet.markercluster"
+    "markercluster": "git://github.com/Leaflet/Leaflet.markercluster.git"
   }
 }
