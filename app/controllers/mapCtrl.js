@@ -346,6 +346,8 @@ angular.module('realValue')
                         dashArray: '',
                         fillOpacity: 0.7
                     });
+                } else {
+                    alert("No Match!");
                 }
             mc.zip = ''; // resets input field
             }

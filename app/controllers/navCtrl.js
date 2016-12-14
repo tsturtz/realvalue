@@ -82,7 +82,7 @@ angular.module('realValue')
                         jobs = tammy_geojson.features[i].properties.jobs;
                         crimes = tammy_geojson.features[i].properties.crimes;
                         house = tammy_geojson.features[i].properties.housing;
-                        console.log(house);
+                        //console.log(house);
                         crime_zscore = tammy_geojson.features[i].properties.crime_zscore * crimes_yes;
                         job_zscore = tammy_geojson.features[i].properties.job_zscore * jobs_yes;
                         house_zscore = tammy_geojson.features[i].properties.house_zscore * housing_yes;
@@ -106,7 +106,7 @@ angular.module('realValue')
                         jobs = losangeles_geojson.features[i].properties.jobs;
                         crimes = losangeles_geojson.features[i].properties.crimes;
                         house = losangeles_geojson.features[i].properties.housing;
-                        console.log(house);
+                        //console.log(house);
                         crime_zscore = losangeles_geojson.features[i].properties.crime_zscore;
                         job_zscore = losangeles_geojson.features[i].properties.job_zscore;
                         house_zscore = losangeles_geojson.features[i].properties.house_zscore;
