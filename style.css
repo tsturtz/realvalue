@@ -193,8 +193,14 @@ layout
 }
 
 /* ZOOM BUTTONS */
-.zoom-btn {
+.layer-btn {
     margin: 5px 3px 0;
+}
+
+.zoom-btns {
+    position: fixed;
+    top: 100px;
+    left: 20px;
 }
 
 /* TOP TOOLBAR */

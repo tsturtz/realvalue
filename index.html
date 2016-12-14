@@ -113,27 +113,36 @@
                     </md-button>
                 </div>
             </md-toolbar>
-            <section id="data-here" flex="5"></section> <!-- LEAVE THIS - ITS FOR THE GOOGLE PLACES CALL -->
-            <div class="data_spacer" ng-if="mc.showDataVar === true">
+            <section id="data-here" flex="3"></section> <!-- LEAVE THIS - ITS FOR THE GOOGLE PLACES CALL -->
+            <div class="data_spacer">
                 <md-card class="crime-data">
                     <md-card-title>
-                        <md-header>Crime Statistics</md-header>
+                        <md-card-title-text>
+                            <span class="md-headline">Violent Crime Statistics</span>
+                            <span class="md-subhead">Crime Frequency Over the Years</span>
+                        </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
-                        <md-subheader class="pre-visualisation">Click an area to view crime data</md-subheader>
+                        <md-subheader class="pre-visualisation">Click on a zip code to view crime data</md-subheader>
                         <svg id="visualisation" width="250" height="250"></svg>
                     </md-card-content>
                 </md-card>
+                <span></span>
                 <md-card class="job-data">
                     <md-card-title>
-                        <md-header>Job Availability Statistics</md-header>
+                        <md-card-title-text>
+                            <span class="md-headline">Job Availability Statistics</span>
+                            <span class="md-subhead">Tech Jobs vs. Other Jobs</span>
+                        </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
                         <div id="chart">
-                            <md-subheader class="pre-visualisation">Click an area to view crime data</md-subheader>
+                            <md-subheader class="pre-visualisation">Click on a zip code to view job availability data</md-subheader>
                         </div>
                     </md-card-content>
                 </md-card>
+                <span></span>
+
             </div>
             <!--            <section ng-if="mc.information !== undefined">
                             <div>
@@ -141,7 +150,9 @@
                                     <li ng-repeat="(key, value) in mc.information">{{key}}: {{value}}</li>
                                 </ul>
                             </div>
-                        </section>-->
+                        </section>
+                        TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        -->
 
             <span flex></span>
         </md-sidenav>
@@ -152,7 +163,7 @@
 
                 <md-subheader class="toolbar-subhead">LA and OC
                     <md-tooltip md-direction="bottom">
-                        Currently only available in Los Angeles and Orange counties
+                        Currently available in Los Angeles and Orange counties only
                     </md-tooltip>
                 </md-subheader>
 
@@ -171,6 +182,15 @@
                 <span></span>
             </div>
         </md-toolbar>
+
+        <div class="zoom-btns" layout="column">
+            <md-button class="md-fab md-primary md-mini">
+                <md-icon md-font-set="material-icons">add</md-icon>
+            </md-button>
+            <md-button class="md-fab md-primary md-mini">
+                <md-icon md-font-set="material-icons">remove</md-icon>
+            </md-button>
+        </div>
 
         <md-card id="btm-left-card" md-whiteframe="4">
             <md-card-content layout="row">
@@ -193,13 +213,13 @@
                         SELECT A DISPLAY LAYER
                     </md-subheader>
                     <div layout="row">
-                        <md-button class="md-primary zoom-btn" ng-click="mc.county_zoom()">
+                        <md-button class="md-primary layer-btn" ng-click="mc.county_zoom()">
                             County
                         </md-button>
-                        <md-button class="md-primary zoom-btn" ng-click="mc.city_zoom()">
+                        <md-button class="md-primary layer-btn" ng-click="mc.city_zoom()">
                             City
                         </md-button>
-                        <md-button class="md-primary zoom-btn" ng-click="mc.zipcode_zoom()">
+                        <md-button class="md-primary layer-btn" ng-click="mc.zipcode_zoom()">
                             Zip
                         </md-button>
                     </div>

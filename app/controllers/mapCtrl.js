@@ -429,6 +429,7 @@ angular.module('realValue')
         function InitChart(barData) {
             $(".pre-visualisation").empty();
             $("#visualisation").empty();
+            $("#pre-data").empty();
             var vis = d3.select('#visualisation'),
                 WIDTH = 250,
                 HEIGHT = 250,
@@ -531,10 +532,7 @@ angular.module('realValue')
                 .style("fill", "#ffffff");
         }
 
-        mc.showDataVar = false;
-
         function zoomToFeature(e) {
-            mc.showDataVar = true;
             mc.area_click_on=e.target.feature.properties.name;
             mc.county_click_on=e.target.feature.properties.county;
             //console.log("zip obj ",e.target.feature.properties);
