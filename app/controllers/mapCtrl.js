@@ -194,7 +194,7 @@ angular.module('realValue')
                     overlays: {
                         restaurant: {
                             name: 'restaurant',
-                            type: 'group',
+                            type: 'markercluster',
                             visible: true
                         }
                     }
