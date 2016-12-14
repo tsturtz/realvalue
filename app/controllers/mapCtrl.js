@@ -453,7 +453,7 @@ angular.module('realValue')
 
         function resetHighlight(e) {
             /* had to custom edit this for angular from interactive choropleth example */
-            console.log(e);
+            //console.log(e);
             var layer = e.target;
             layer.setStyle({
                 weight: 2,
