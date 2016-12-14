@@ -252,7 +252,9 @@ angular.module('realValue')
             //console.log("center", varMap.getCenter());
             angular.extend($scope, {
                 center: {
-                    autoDiscover: true,
+                    lat: varMap.getCenter().lat,
+                    lng: varMap.getCenter().lng,
+                    //autoDiscover: true,
                     zoom: 10
                 },
                 geojson : {
@@ -261,23 +263,6 @@ angular.module('realValue')
                             ],
                     style: style,
                     onEachFeature: function (feature, layer) {
-                        // fixed issue with referencing layer inside our reset Highlight function
-                        //console.log("features", feature.properties);
-                        // if(feature.properties.hasOwnProperty("score")){
-                        //     //console.log("Score exist!");
-                        //     layer.bindPopup(feature.properties.name + '<BR>Jobs: ' + feature.properties.jobs +
-                        //         '<BR>Crimes: ' + feature.properties.crimes +
-                        //         '<BR>Score: ' + feature.properties.score);
-                        // }
-
-
-                        leafletData.getMap().then(function(map) {
-                            label = new L.Label();
-                            label.setContent(feature.properties.name);
-                            label.setLatLng(layer.getBounds().getCenter());
-                            //console.log(feature.properties.name + " " + layer.getBounds().getCenter());
-                            //map.showLabel(label);
-                        });
 
                         layer.on({
                             mouseover: highlightFeature,
@@ -294,57 +279,6 @@ angular.module('realValue')
         };
 
         this.submit_zoom = function(zip) {
-/*
-            losangeles_geojson.features.filter(function(data) {
-                //console.log("data", data);
-                $scope.geojson.data = data;
-            });
-
-            leafletData.getMap().then(function(map) {
-
-                // var featuresLayer = new L.GeoJSON(tammy_geojson, {
-                // });
-
-                //map.addLayer(mc.gjLayer);
-                //console.log(featuresLayer);
-                console.log(dataService.crime_and_job_data_analysis);
-                console.log(mc.gjLayer);
-                var searchControl = new L.Control.Search({
-                    layer: mc.gjLayer,
-                    propertyName: 'name',
-                    circleLocation: false,
-                    moveToLocation: function(latlng, title, map) {
-                        //map.fitBounds( latlng.layer.getBounds() );
-                        var zoom = map.getBoundsZoom(latlng.layer.getBounds());
-                        map.setView(latlng, zoom); // access the zoom
-                    }
-                });
-
-                searchControl.on('search:locationfound', function(e) {
-
-                    e.layer.setStyle({fillColor: '#3f0', color: '#0f0'});
-                    if(e.layer._popup)
-                        e.layer.openPopup();
-
-                }).on('search:collapsed', function(e) {
-
-                    featuresLayer.eachLayer(function(layer) {	//restore feature color
-                        featuresLayer.resetStyle(layer);
-                    });
-                });
-
-                map.addControl( searchControl );
-            });
-
-            leafletData.getLayers().then(function(baselayers) {
-                console.log(baselayers);
-                angular.extend($scope.controls, {
-                    search: {
-                        layer: baselayers.overlays.search
-                    }
-                });
-            });*/
-
             var calculated_center;
             var match = false;
             //console.log("zoomed on: ", zip);
@@ -623,6 +557,7 @@ angular.module('realValue')
                 }
                 else {
                     var city=dataService.find_city_based_on_zip_code(mc.area_click_on);
+                    dataService.indexMarkerInZip(mc.area_click_on);
                     var crime_and_job={};
                     console.log(city);
                     if(city.length!==0){
@@ -723,15 +658,23 @@ angular.module('realValue')
             }
             leafletData.getMap().then(function(map) {
                 mc.that = e;
-                //console.log("event",e.target.feature.properties.name);
+                console.log("event",e.target.feature.properties.name);
+                var paramClick = e.target.feature.properties.name;
                     //mc.gjLayer = L.geoJson(tammy_geojson);
                     //console.log("layer",gjLayer);
                 angular.extend($scope, {
                     progress: true
                 });
-                dataService.makePlacesGeojson().then(function(response) {
-                    mc.placesGeojson2 = response;
-                    mc.scanMarkers();
+                dataService.makePlacesGeojson(paramClick).then(function(response) {
+
+                    if(response === true) {
+                        console.log("TRUE!");
+                        mc.scanDatabaseMarkers();
+                    } else {
+                        console.log("FALSE");
+                        mc.scanObjectMarkers();
+                    }
+
                     angular.extend($scope, {
                         progress: false
                     });
@@ -742,7 +685,30 @@ angular.module('realValue')
             });
         }
 
-        this.scanMarkers = function() {
+        this.scanDatabaseMarkers = function() {
+            var zipCodeClicked = mc.that.target.feature.properties.name;
+            var res_markers = {};
+            console.log("geojson", dataService.placesGeojson);
+
+            for(var i=0;i<dataService.placesGeojson.length;i++){
+                var place_id = dataService.placesGeojson[i].place_id;
+
+                res_markers[place_id.substr(place_id.length-5).replace("-","_")] = {
+                    "Place ID": place_id,
+                    "Place Type": dataService.placesGeojson[i].type,
+                    "lat": dataService.placesGeojson[i].lat,
+                    "lng": dataService.placesGeojson[i].lng,
+                    "zipCode": zipCodeClicked,
+                    "icon": {}
+                }
+
+            }
+            angular.extend($scope, {
+                markers: res_markers
+            });
+        };
+
+        this.scanObjectMarkers = function() {
 
             var zipCodeClicked = mc.that.target.feature.properties.name;
 
@@ -752,58 +718,58 @@ angular.module('realValue')
             };
 
             var res_markers = {};
-            //console.log('places geojson: ', dataService.placesGeojson);
+            //console.log('places geojson: ', dataService.placesGeojson2);
             if (!isNaN(mc.area_click_on) && mc.county_click_on==="Orange") {
                 console.log(mc.area_click_on, 'is a number');
-                for (var rest in mc.placesGeojson2.restaurant) {
+                if (dataService.placesGeojson2.hasOwnProperty("zipCode")) {
+                    dataService.placesGeojson2.zipCode[zipCodeClicked] = [];
+                } else {
+                    dataService.placesGeojson2.zipCode = {};
+                    dataService.placesGeojson2.zipCode[zipCodeClicked] = [];
+                }
+                for (var rest in dataService.placesGeojson2.restaurant) {
                     //console.log(rest);
                     var res = leafletPip.pointInLayer(
-                        [mc.placesGeojson2.restaurant[rest].geometry.coordinates[1], mc.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
+                        [dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1], dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
                     if (res.length) {
                         //console.log(rest);
                         //console.log("name", res[0].feature.properties.name);
                         if (zipCodeClicked === res[0].feature.properties.name) {
+
+                            // create a function for this, this uses the match library and assigns our object with a zip code
+                            var temp_obj = {
+                                "place_id":rest,
+                                "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],
+                                "lng": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1],
+                                "type": dataService.placesGeojson2.restaurant[rest].properties.type
+                            }
+                            dataService.placesGeojson2.zipCode[zipCodeClicked].push(temp_obj);
                             //console.log("name", res[0].feature.properties.name);
                             //matched_data.features.push(data.features[i]);
                             res_markers[rest.substr(rest.length-5).replace("-","_")] = {
-                                "Place ID": mc.placesGeojson2.restaurant[rest].properties.placeId,
-                                "Place Type": mc.placesGeojson2.restaurant[rest].properties.type,
-                                "lat": mc.placesGeojson2.restaurant[rest].geometry.coordinates[0],
-                                "lng": mc.placesGeojson2.restaurant[rest].geometry.coordinates[1],
+                                "Place ID": dataService.placesGeojson2.restaurant[rest].properties.placeId,
+                                "Place Type": dataService.placesGeojson2.restaurant[rest].properties.type,
+                                "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],
+                                "lng": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1],
+                                "zipCode": zipCodeClicked,
                                 "icon": {}
                             }
                         }
                     }
                 }
-
-                // for (var i = 0; i < dataService.placesGeojson.features.length; i++) {
-                //     //console.log(dataService.placesGeojson.features[i].geometry.coordinates);
-                //     var res = leafletPip.pointInLayer(
-                //         [dataService.placesGeojson.features[i].geometry.coordinates[1], dataService.placesGeojson.features[i].geometry.coordinates[0]], mc.gjLayer);
-                //     if (res.length) {
-                //         //console.log("name", res[0].feature.properties.name);
-                //         if (zipCodeClicked === res[0].feature.properties.name) {
-                //             //console.log("name", res[0].feature.properties.name);
-                //             matched_data.features.push(data.features[i]);
-                //             res_markers["id" + i] = {
-                //                 "Place ID": dataService.placesGeojson.features[i].properties.placeId,
-                //                 "Place Type": dataService.placesGeojson.features[i].properties.type,
-                //                 "lat": dataService.placesGeojson.features[i].geometry.coordinates[0],
-                //                 "lng": dataService.placesGeojson.features[i].geometry.coordinates[1],
-                //                 "icon": {}
-                //             }
-                //         }
-                //     } else {
-                //         console.log("false");
-                //     }
-                // }
             }
             console.log("markers", Object.size(res_markers));
+
+            if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
+                alert("Taylor, put toast for no markers results here!");
+            }
+            //console.log("markers", res_markers);
+            //console.log("geoJson2", dataService.placesGeojson2);
 
             angular.extend($scope, {
                 markers: res_markers
             });
-        }
+        };
 
         function style(feature) {
             return {
@@ -913,7 +879,7 @@ angular.module('realValue')
             map.on('zoomend', function (event) {
                 console.log(map.getZoom());
 
-                console.log('overlay', map.getPanes().overlayPane);
+                //console.log('overlay', map.getPanes().overlayPane);
 
                 if (map.getZoom() <= 8) {
                     mc.county_zoom();
