@@ -244,6 +244,7 @@ md-input-container.md-icon-left {
     color: white;
     margin-left: 20px;
     font-style: italic;
+    cursor: default;
 }
 
 .toolbar-score-spacer-container {

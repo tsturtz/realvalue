@@ -157,21 +157,16 @@
 
                 <div id="logoTopLeft"></div>
 
-                <md-subheader class="toolbar-subhead">LA and OC
+                <!--<md-subheader class="toolbar-subhead">LA and OC
                     <md-tooltip md-direction="bottom">
                         Currently available in Los Angeles and Orange counties only
                     </md-tooltip>
-                </md-subheader>
-
-                <md-input-container flex="25" md-theme="search">
-                    <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons"
-                             ng-click="mc.submit_zoom(mc.zip)">search
-                    </md-icon>
-                    <input type="text" placeholder="Search by city or zip code" ng-model="mc.zip"
-                           ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
-                </md-input-container>
+                </md-subheader>-->
 
                 <md-subheader class="toolbar-score">
+                    <md-tooltip md-direction="bottom">
+                        Hover over an area to see the RealValue Score!
+                    </md-tooltip>
                     <div class="toolbar-score-spacer-container" ng-hide="mc.information !== undefined">
                         <span class="toolbar-score-spacer-name">
                             <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
@@ -193,6 +188,14 @@
                         </span>
                     </div>
                 </md-subheader>
+
+                <md-input-container flex="25" md-theme="search">
+                    <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons"
+                             ng-click="mc.submit_zoom(mc.zip)">search
+                    </md-icon>
+                    <input type="text" placeholder="Search by city or zip code" ng-model="mc.zip"
+                           ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
+                </md-input-container>
 
                 <span flex></span>
                 <md-button class="md-fab md-primary" ng-click="nc.openRightMenu()">
