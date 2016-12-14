@@ -247,12 +247,17 @@ md-input-container.md-icon-left {
 }
 
 .toolbar-score-spacer-container {
-    width: 300px;
+    width: 280px;
 }
 
-.toolbar-score-spacer {
+.toolbar-score-spacer-name {
     display: inline-block;
-    width: 45%;
+    width: 65%;
+}
+
+.toolbar-score-spacer-score {
+    display: inline-block;
+    width: 25%;
 }
 
 md-toolbar.ng-scope._md._md-toolbar-transitions {

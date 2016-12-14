@@ -173,21 +173,21 @@
 
                 <md-subheader class="toolbar-score">
                     <div class="toolbar-score-spacer-container" ng-hide="mc.information !== undefined">
-                        <span class="toolbar-score-spacer">
+                        <span class="toolbar-score-spacer-name">
                             <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
                             Area
                         </span>
-                        <span class="toolbar-score-spacer">
+                        <span class="toolbar-score-spacer-score">
                             <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
                             Score
                         </span>
                     </div>
                     <div class="toolbar-score-spacer-container" ng-show="mc.information !== undefined">
-                        <span class="toolbar-score-spacer">
+                        <span class="toolbar-score-spacer-name">
                             <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
                             {{mc.information.name}}
                         </span>
-                        <span class="toolbar-score-spacer">
+                        <span class="toolbar-score-spacer-score">
                             <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
                             {{mc.information.score}}
                         </span>
