@@ -192,13 +192,10 @@ angular.module('realValue')
                 controls: {},
                 layers: {
                     overlays: {
-                        search: {
-                            name: 'search',
+                        restaurant: {
+                            name: 'restaurant',
                             type: 'group',
-                            visible: true,
-                            layerParams: {
-                                showOnSelector: false
-                            }
+                            visible: true
                         }
                     }
                 },
@@ -347,7 +344,7 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    alert("No Match!");
+                    alert("Taylor Put Toast for No Match!");
                 }
             mc.zip = ''; // resets input field
             }
@@ -735,6 +732,7 @@ angular.module('realValue')
                 var place_id = dataService.placesGeojson[i].place_id;
 
                 res_markers[place_id.substr(place_id.length-5).replace("-","_")] = {
+                    "layer": "restaurant",
                     "Place ID": place_id,
                     "Place Type": dataService.placesGeojson[i].type,
                     "lat": dataService.placesGeojson[i].lat,
@@ -788,6 +786,7 @@ angular.module('realValue')
                             //console.log("name", res[0].feature.properties.name);
                             //matched_data.features.push(data.features[i]);
                             res_markers[rest.substr(rest.length-5).replace("-","_")] = {
+                                "layer": "restaurant",
                                 "Place ID": dataService.placesGeojson2.restaurant[rest].properties.placeId,
                                 "Place Type": dataService.placesGeojson2.restaurant[rest].properties.type,
                                 "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],
