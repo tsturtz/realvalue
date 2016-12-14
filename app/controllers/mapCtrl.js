@@ -427,6 +427,7 @@ angular.module('realValue')
         $scope.openSidenav = {};
 
         function InitChart(barData) {
+            mc.showSVG = true;
             $(".pre-visualisation").empty();
             $("#visualisation").empty();
             $("#pre-data").empty();

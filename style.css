@@ -360,6 +360,10 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     right: 25px;
 }
 
+/*svg#visualisation {
+    display: none;
+}*/
+
 /*　d3 charts */
 .data_spacer {
     min-height: 80%;
