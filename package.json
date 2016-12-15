@@ -19,5 +19,6 @@
   "dependencies": {
     "leaflet": "git://github.com/tombatossals/angular-leaflet-directive.git",
     "markercluster": "git://github.com/Leaflet/Leaflet.markercluster.git"
+
   }
 }
