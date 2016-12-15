@@ -330,7 +330,7 @@ angular.module('realValue')
             if (zip != undefined) {
                 //console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
-                console.log("zooming on ", city);
+                //console.log("zooming on ", city);
                 //console.log("zip is ", zip);
 
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
@@ -338,7 +338,7 @@ angular.module('realValue')
                     //console.log(tammy_geojson.features[i]);
                     if(tammy_geojson.features[i].properties.name === zip) {
                         console.log("match!!!");
-                        console.log(tammy_geojson.features[i]);
+                        //console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
                         //match = true;
                     }
@@ -374,7 +374,7 @@ angular.module('realValue')
                         var matched_county;
                         var postal_code;
                         for(var i =0;i<components.length;i++){
-                            console.log(components[i]);
+                            //console.log(components[i]);
                             if(components[i].types[0] === 'postal_code') {
                                 postal_code = true;
                             }
