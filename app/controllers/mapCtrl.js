@@ -8,14 +8,24 @@ angular.module('realValue')
         var foodIcon = {
             iconUrl: 'assets/img/food.png',
 
-            iconSize:     [38, 38], // size of the icon
+            iconSize:     [40, 40], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             shadowAnchor: [4, 62],  // the same for the shadow
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         };
 
-        console.log("icon ", foodIcon);
+        var foodIcon = {
+            iconUrl: 'assets/img/school.png',
+
+            iconSize:     [40, 40], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        };
+
+        //console.log("icon ", foodIcon);
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
@@ -314,6 +324,11 @@ angular.module('realValue')
             });
         };
 
+        /**
+         *  This function looks up zip codes that people type and finds the associated polygon.  There's a bug where
+         *  a zipcode that's a mulit-polygon where it will not return a correct result (ie. 92705)
+         * @param zip
+         */
         this.submit_zoom = function(zip) {
             var calculated_center;
             var match = false;
@@ -321,14 +336,14 @@ angular.module('realValue')
             if (zip != undefined) {
                 //console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
-                //console.log("zooming on ", city);
+                console.log("zooming on ", city);
 
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     //searchObj(tammy_geojson.features[i]);
                     //console.log(tammy_geojson.features[i]);
                     if(tammy_geojson.features[i].properties.name === zip) {
                         console.log("match!!!");
-                        //console.log(tammy_geojson.features[i]);
+                        console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
                         match = true;
                     }
@@ -760,7 +775,10 @@ angular.module('realValue')
             });
             console.log("markers", res_markers);
         };
-
+        /**
+         * This function looks for downloaded Google places tied to coordinates and search if it's within the bounds
+         * of the current clicked on polygon (zip code)
+         */
         this.scanObjectMarkers = function() {
 
             var zipCodeClicked = mc.that.target.feature.properties.name;
@@ -782,6 +800,7 @@ angular.module('realValue')
                 }
                 for (var rest in dataService.placesGeojson2.restaurant) {
                     //console.log(rest);
+                    console.log(dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1]);
                     var res = leafletPip.pointInLayer(
                         [dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1], dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
                     if (res.length) {
