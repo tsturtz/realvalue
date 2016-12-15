@@ -220,6 +220,10 @@ layout
     display: none;
 }
 
+.leaflet-top.leaflet-right {
+    display: none;
+}
+
 md-input-container.md-icon-left {
     margin-left: 15px;
 }
@@ -244,9 +248,21 @@ md-input-container.md-icon-left {
 .toolbar-spacer {
     margin: 0 20px;
     height: 100%;
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-color: rgba(66,66,66,1);
+    border-right: 1px solid rgba(66,66,66,1);
+}
+
+.icon-spacer {
+    padding: 0 10px;
+    border-left: 1px solid rgba(0,130,116,1);
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+.icon-spacer2 {
+    padding: 0 10px;
+    border-left: 1px solid rgba(66,66,66,.2);
+    font-size: 16px;
+    vertical-align: bottom;
 }
 
 md-toolbar.ng-scope._md._md-toolbar-transitions {
@@ -301,14 +317,16 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 }
 
 .legend {
-    font: 14px/16px Arial, Helvetica, sans-serif;
-    background: rgba(255,255,255, 0.9);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
-    padding: 6px 8px;
+    font: 14px/16px Roboto, Helvetica, sans-serif;
+    background: rgba(255,255,255, 1);
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    border-radius: 2px;
+    padding: 16px;
     width: 100px;
     line-height: 18px;
-    color: #555;
+    color: rgb(66,66,66);
+    bottom: 20px;
+    right: 20px;
 }
 
 .legend i {
@@ -317,6 +335,11 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     float: left;
     margin-right: 8px;
     opacity: 0.7;
+}
+
+.leaflet-bottom .leaflet-control, .leaflet-right .leaflet-control {
+    margin-right: 8px !important;
+    margin-bottom: 8px !important;
 }
 
 /* WELCOME DIALOG */
@@ -381,11 +404,6 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     right: 25px;
 }
 
-.tooltip-alert {
-    font-size: 10px;
-    font-weight: bold;
-}
-
 /*svg#visualisation {
     display: none;
 }*/
@@ -400,7 +418,7 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
     min-height: 50%;
 }
 
-#visualisation text {
+#visualisation text, #visualisation1 text {
     font-size: 10px;
 }
 
@@ -444,4 +462,10 @@ md-subheader.pre-visualisation {
 /* Set The Z-Index so the leaflet bottom Legend doesn't show over the popup */
 .leaflet-bottom {
     z-index: 1 !important;
+}
+
+/* TOAST */
+md-toast {
+    left: 50%;
+    transform: translateX(-50%);
 }
