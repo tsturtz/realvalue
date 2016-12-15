@@ -71,6 +71,7 @@
     <script src="prototypes/simple-geojson/cities.js"></script>
     <script src="app/zip_lookup.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="prototypes/crime_and_job_data_analysis.js"></script>
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
     <script src="dummy.js"></script>
@@ -167,6 +168,19 @@
                     <md-card-content>
                         <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
                         <svg id="visualisation" width="250" height="250" ng-show="mc.showSVG"></svg>
+                    </md-card-content>
+                </md-card>
+                <span></span>
+                <md-card class="housing-data">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Housing Statistics</span>
+                            <span class="md-subhead">Clicked Zip zindex average v.s County zindex average</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
+                        <svg id="visualisation1" width="250" height="250" ng-show="mc.showSVG"></svg>
                     </md-card-content>
                 </md-card>
 
