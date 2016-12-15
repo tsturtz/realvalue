@@ -217,6 +217,10 @@ layout
     background-color: rgba(66,66,66,.96);
 }
 
+.leaflet-touch .leaflet-control-layers-toggle {
+    display: none;
+}
+
 md-input-container.md-icon-left {
     margin-left: 15px;
 }
@@ -246,10 +250,6 @@ md-input-container.md-icon-left {
     border-color: rgba(66,66,66,1);
 }
 
-.center {
-    text-align: center;
-}
-
 md-toolbar.ng-scope._md._md-toolbar-transitions {
     min-width: 100vw;
 }
@@ -267,17 +267,24 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 
 .select-icons {
     margin-right: 10px;
+    cursor: default;
 }
 
 .checkboxes-column {
-    width: 50%;
     cursor: pointer;
+    margin-left: 18px;
 }
 
 .check-boxes {
     height: 20px;
     font-size: 14px;
     margin-bottom: 5px;
+}
+
+.score {
+    color: rgb(0,150,136);
+    font-size: 18px;
+    cursor: default;
 }
 
 /* LOGO TOP LEFT */

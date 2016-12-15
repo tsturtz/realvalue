@@ -163,7 +163,7 @@
 
                 <md-divider class="toolbar-spacer"></md-divider>
 
-                <md-input-container flex="20" md-theme="search">
+                <md-input-container flex="25" md-theme="search">
                     <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons"
                              ng-click="mc.submit_zoom(mc.zip)">search
                     </md-icon>
@@ -173,8 +173,13 @@
 
                 <md-divider class="toolbar-spacer"></md-divider>
 
+                <md-icon class="md-primary select-icons" md-font-set="material-icons">
+                    layers
+                    <md-tooltip md-direction="bottom">
+                        Toggle area layer highlights here!
+                    </md-tooltip>
+                </md-icon>
                 <div class="toolbar-layers" layout="row" md-theme="search">
-                    <md-icon class="md-primary select-icons" md-font-set="material-icons">layers</md-icon>
                     <md-button class="md-primary md-raised layer-btn" ng-click="mc.county_zoom()"
                                ng-disabled="mc.countyLayer">
                         County
@@ -192,6 +197,9 @@
                 <span flex></span>
                 <md-button class="md-fab md-primary" ng-click="nc.openRightMenu()">
                     <md-icon class="md-accent" md-font-set="material-icons">poll</md-icon>
+                    <md-tooltip md-direction="left">
+                        View detailed area data here!
+                    </md-tooltip>
                 </md-button>
                 <span></span>
 
@@ -200,11 +208,11 @@
         </md-toolbar>
 
         <div class="zoom-btns" layout="column">
-            <md-button class="md-fab md-primary md-mini">
-                <md-icon class="zoom-btns-icons" md-font-set="material-icons" ng-click="mc.zoom_in()">add</md-icon>
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_in()">
+                <md-icon class="zoom-btns-icons" md-font-set="material-icons">add</md-icon>
             </md-button>
-            <md-button class="md-fab md-primary md-mini">
-                <md-icon class="zoom-btns-icons" md-font-set="material-icons" ng-click="mc.zoom_out()">remove</md-icon>
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_out()">
+                <md-icon class="zoom-btns-icons" md-font-set="material-icons">remove</md-icon>
             </md-button>
         </div>
 
@@ -218,32 +226,30 @@
                             SELECT DATA TO INCLUDE
                         </md-subheader>
 
-                        <div class="checkboxes-container" layout="row">
-                            <div class="checkboxes-column" layout="column">
-                                <md-checkbox class="check-boxes" ng-model="checkbox.checked"
-                                             ng-disabled="{{checkbox.disabled}}"
-                                             ng-change="nc.updateData(this.checkbox)"
-                                             ng-repeat="checkbox in nc.checkboxes">
-                                    {{checkbox.type.toUpperCase()}}
-                                    <md-tooltip md-direction="right">
-                                        {{checkbox.tooltip}}
-                                    </md-tooltip>
-                                </md-checkbox>
-                            </div>
+                        <div class="checkboxes-column" layout="column">
+                            <md-checkbox class="check-boxes" ng-model="checkbox.checked"
+                                         ng-disabled="{{checkbox.disabled}}"
+                                         ng-change="nc.updateData(this.checkbox)"
+                                         ng-repeat="checkbox in nc.checkboxes">
+                                {{checkbox.type.toUpperCase()}}
+                                <md-tooltip md-direction="right">
+                                    {{checkbox.tooltip}}
+                                </md-tooltip>
+                            </md-checkbox>
                         </div>
 
-                        <md-subheader class="center">
+                        <md-subheader class="score">
                             <md-tooltip md-direction="bottom">
                                 Hover over an area to see the RealValue Score!
                             </md-tooltip>
                             <div ng-hide="mc.information !== undefined">
                                 <div>
                                     <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                                    Area
+                                    Area Display
                                 </div>
                                 <div>
                                     <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                                    Score
+                                    Score Display
                                 </div>
                             </div>
                             <div ng-show="mc.information !== undefined">
