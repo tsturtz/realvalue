@@ -1,15 +1,15 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', '$mdToast', 'geoCodingService', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, $mdToast, geoCodingService) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', '$mdToast', 'geoCodingService', '$compile', '$timeout', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, $mdToast, geoCodingService, $compile, $timeout) {
         var mc = this;
         var varMap;
         //mc.gjLayer;
 
         var divIcon = {
-                type: 'div',
-                iconSize: [40, 40],
-                popupAnchor:  [0, 0],
-                html: "<div><md-button class='md-fab md-warn md-mini'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button></div>"
+            type: 'div',
+            iconSize: [40, 40],
+            popupAnchor:  [0, 0],
+            html: "<div class='icon-place-class'></div>"
         };
 
         var schoolIcon = {
@@ -1017,6 +1017,8 @@ angular.module('realValue')
             angular.extend($scope, {
                 markers: res_markers
             });
+
+            console.log('More markers:', res_markers);
         };
 
         function style(feature) {
@@ -1143,7 +1145,19 @@ angular.module('realValue')
                 }
 
                 if (map.getZoom() > 12) {
+                    $timeout(function(){
+                        var container = $('.icon-place-class');
+                        var icon = $("<md-button class='md-fab md-accent md-mini icon-place-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
+
+                        container.html('');
+                        container.append($compile(icon)($scope));
+                        $scope.$apply();
+                    });
                     //mc.markers_zoom();
+                }
+
+                if(map.getZoom() <= 12){
+
                 }
 
             });

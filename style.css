@@ -143,10 +143,6 @@ to {
     }
 }
 
-/*********
-layout
-*********/
-
 .md-backdrop {
     height: 100vh;
 }
@@ -396,6 +392,12 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 .place-reviews {
     font-size: 12px;
     font-style: italic;
+}
+
+/* PLACE ICONS */
+.leaflet-div-icon {
+    background-color: rgba(0,0,0,0) !important;
+    border: none !important;
 }
 
 /* SIDENAV */
