@@ -246,19 +246,8 @@ md-input-container.md-icon-left {
     border-color: rgba(66,66,66,1);
 }
 
-.score-spacer-container {
-    width: 280px;
-    color: rgb(0,150,136);
-}
-
-.score-spacer-name {
-    display: inline-block;
-    width: 65%;
-}
-
-.score-spacer-score {
-    display: inline-block;
-    width: 25%;
+.center {
+    text-align: center;
 }
 
 md-toolbar.ng-scope._md._md-toolbar-transitions {
@@ -281,12 +270,14 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 }
 
 .checkboxes-column {
+    width: 50%;
     cursor: pointer;
 }
 
 .check-boxes {
     height: 20px;
     font-size: 14px;
+    margin-bottom: 5px;
 }
 
 /* LOGO TOP LEFT */

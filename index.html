@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet"
+          href="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">
     <!--RealValue Style Sheets-->
     <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -214,40 +215,43 @@
                             SELECT DATA TO INCLUDE
                         </md-subheader>
 
-                        <div class="checkboxes-column" ng-repeat="checkbox in nc.checkboxes">
-                            <md-checkbox class="check-boxes" ng-model="checkbox.checked"
-                                         ng-disabled="{{checkbox.disabled}}"
-                                         ng-change="nc.updateData(this.checkbox)">
-                                {{checkbox.type.toUpperCase()}}
-                                <md-tooltip md-direction="right">
-                                    {{checkbox.tooltip}}
-                                </md-tooltip>
-                            </md-checkbox>
+                        <div class="checkboxes-container" layout="row">
+                            <div class="checkboxes-column" layout="column">
+                                <md-checkbox class="check-boxes" ng-model="checkbox.checked"
+                                             ng-disabled="{{checkbox.disabled}}"
+                                             ng-change="nc.updateData(this.checkbox)"
+                                             ng-repeat="checkbox in nc.checkboxes">
+                                    {{checkbox.type.toUpperCase()}}
+                                    <md-tooltip md-direction="right">
+                                        {{checkbox.tooltip}}
+                                    </md-tooltip>
+                                </md-checkbox>
+                            </div>
                         </div>
 
-                        <md-subheader>
+                        <md-subheader class="center">
                             <md-tooltip md-direction="bottom">
                                 Hover over an area to see the RealValue Score!
                             </md-tooltip>
-                            <div class="score-spacer-container" ng-hide="mc.information !== undefined">
-                        <span class="score-spacer-name">
-                            <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                            Area
-                        </span>
-                                <span class="score-spacer-score">
-                            <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                            Score
-                        </span>
+                            <div ng-hide="mc.information !== undefined">
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
+                                    Area
+                                </div>
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
+                                    Score
+                                </div>
                             </div>
-                            <div class="score-spacer-container" ng-show="mc.information !== undefined">
-                        <span class="score-spacer-name">
-                            <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                            {{mc.information.name}}
-                        </span>
-                                <span class="score-spacer-score">
-                            <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                            {{mc.information.score}}
-                        </span>
+                            <div ng-show="mc.information !== undefined">
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
+                                    {{mc.information.name}}
+                                </div>
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
+                                    {{mc.information.score}}
+                                </div>
                             </div>
                         </md-subheader>
 
