@@ -4,7 +4,7 @@ angular.module('realValue')
         var mc = this;
         var varMap;
         //mc.gjLayer;
-
+        /*
         var foodIcon = {
             iconUrl: './assets/img/restaurant-marker.png',
 
@@ -13,9 +13,23 @@ angular.module('realValue')
             iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
             shadowAnchor: [4, 62],  // the same for the shadow
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-        };
+        };*/
 
-        var foodIcon = {
+        var divIcon = {
+                type: 'div',
+                iconSize: [40, 40],
+                popupAnchor:  [0, 0],
+                html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
+        };
+/*
+        var divIcon = {
+            type: 'div',
+            iconSize: [40, 40],
+            popupAnchor:  [0, 0],
+            html: "<div><img src='./assets/img/school.png' /></div>"
+        };
+*/
+        var schoolIcon = {
             iconUrl: 'assets/img/school.png',
 
             iconSize:     [40, 40], // size of the icon
@@ -25,7 +39,7 @@ angular.module('realValue')
             popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
         };
 
-        //console.log("icon ", foodIcon);
+        console.log("icon ", divIcon);
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
@@ -766,7 +780,7 @@ angular.module('realValue')
                     "lat": dataService.placesGeojson[i].lat,
                     "lng": dataService.placesGeojson[i].lng,
                     "zipCode": zipCodeClicked,
-                    "icon": foodIcon
+                    "icon": divIcon
                 }
 
             }
@@ -789,7 +803,7 @@ angular.module('realValue')
             };
 
             var res_markers = {};
-            //console.log('places geojson: ', dataService.placesGeojson2);
+            console.log('places geojson: ', dataService.placesGeojson2);
             if (!isNaN(mc.area_click_on) && mc.county_click_on==="Orange") {
                 console.log(mc.area_click_on, 'is a number');
                 if (dataService.placesGeojson2.hasOwnProperty("zipCode")) {
@@ -825,7 +839,7 @@ angular.module('realValue')
                                 "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],
                                 "lng": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1],
                                 "zipCode": zipCodeClicked,
-                                "icon": foodIcon
+                                "icon": divIcon
                             }
                         }
                     }
