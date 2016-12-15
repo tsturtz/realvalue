@@ -366,8 +366,6 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    mc.showToastyToast();
-                    //alert("Taylor Put Toast for No Match!");
                     geoCodingService.getAPI(zip).then(function(response){
                         console.log("response",response);
                         var state = response.data.results[0].address_components[2].short_name;
@@ -376,7 +374,7 @@ angular.module('realValue')
                             var geocoding = response.data.results[0].geometry.location;
                             mc.centerToCoordinates(geocoding);
                         } else {
-                            alert("Cannot search outside California");
+                            mc.showToastyToast();
                         }
 
                     });
