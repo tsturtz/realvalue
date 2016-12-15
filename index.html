@@ -110,6 +110,9 @@
                     <span flex>Data</span>
                     <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)">
                         <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
+                        <md-tooltip md-direction="top" class="tooltip-alert">
+                            Closing this tab will turn off auto-open.
+                        </md-tooltip>
                     </md-button>
                 </div>
             </md-toolbar>
@@ -180,15 +183,15 @@
                     </md-tooltip>
                 </md-icon>
                 <div class="toolbar-layers" layout="row" md-theme="search">
-                    <md-button class="md-primary md-raised layer-btn" ng-click="mc.county_zoom()"
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.county_zoom()"
                                ng-disabled="mc.countyLayer">
                         County
                     </md-button>
-                    <md-button class="md-primary md-raised layer-btn" ng-click="mc.city_zoom()"
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.city_zoom()"
                                ng-disabled="mc.cityLayer">
                         City
                     </md-button>
-                    <md-button class="md-primary md-raised layer-btn" ng-click="mc.zipcode_zoom()"
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.zipcode_zoom()"
                                ng-disabled="mc.zipLayer">
                         Zip
                     </md-button>
@@ -239,7 +242,7 @@
                         </div>
 
                         <md-subheader class="score">
-                            <md-tooltip md-direction="bottom">
+                            <md-tooltip md-direction="right">
                                 Hover over an area to see the RealValue Score!
                             </md-tooltip>
                             <div ng-hide="mc.information !== undefined">

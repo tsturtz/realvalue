@@ -196,7 +196,6 @@ layout
 .layer-btn {
     margin: 0 5px;
     color: white;
-    background-color: rgb(0,150,136) !important;
 }
 
 .zoom-btns {
@@ -298,6 +297,7 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 /* SUBHEADER */
 .subhead {
     margin-bottom: 5px;
+    cursor: default;
 }
 
 .legend {
@@ -379,6 +379,11 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 .sidenav-close {
     position: relative;
     right: 25px;
+}
+
+.tooltip-alert {
+    font-size: 10px;
+    font-weight: bold;
 }
 
 /*svg#visualisation {
