@@ -477,12 +477,12 @@ angular.module('realValue')
         // share method between controllers through obj prototypical inheritance
         $scope.openSidenav = {};
 
-        function InitChart(barData) {
+        function InitChart(barData,id) {
             mc.showSVG = true;
             $(".pre-visualisation").empty();
-            $("#visualisation").empty();
+            $(id).empty();
             $("#pre-data").empty();
-            var vis = d3.select('#visualisation'),
+            var vis = d3.select(id),
                 WIDTH = 250,
                 HEIGHT = 250,
                 MARGINS = {
@@ -608,6 +608,13 @@ angular.module('realValue')
                 }
                 else {
                     var city=dataService.find_city_based_on_zip_code(mc.area_click_on);
+                    var county;
+                    if(oc_cities.indexOf(city[0])!==-1){
+                        county="O";
+                    }
+                    else{
+                        county="L";
+                    }
                     dataService.indexMarkerInZip(mc.area_click_on);
                     var crime_and_job={};
                     console.log(city);
@@ -688,8 +695,24 @@ angular.module('realValue')
                                         }
                                     }
                                     console.log(pie);
-                                    mc.information=InitChart(barData);
+                                    var z_bar_chart_data=[];
+                                    if(county==="O"){
+                                        console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
+                                        var object1={"x":mc.area_click_on,"y":dataService.all["zillow"]["oc"][mc.area_click_on]};
+                                        var object2={"x":"Average","y":dataService.all["crime-and-job-data-analysis"]["oc"]["zindexAverage"]};
+                                        z_bar_chart_data.push(object1);
+                                        z_bar_chart_data.push(object2);
+                                    }
+                                    else{
+                                        console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
+                                        var object1={"x":mc.area_click_on,"y":dataService.all["zillow"]["lc"][mc.area_click_on]};
+                                        var object2={"x":"Average","y":dataService.all["crime-and-job-data-analysis"]["lc"]["zindexAverage"]};
+                                        z_bar_chart_data.push(object1);
+                                        z_bar_chart_data.push(object2);
+                                    }
+                                    mc.information=InitChart(barData,"#visualisation");
                                     job_pie_chart(pie);
+                                    InitChart(z_bar_chart_data,"#visualisation1");
                                     mc.crimejob=1;
                                 }
                                 catch(err){
