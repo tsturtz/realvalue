@@ -9,7 +9,7 @@ angular.module('realValue')
                 type: 'div',
                 iconSize: [40, 40],
                 popupAnchor:  [0, 0],
-                html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
+                html: "<div><md-button class='md-fab md-warn md-mini'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button></div>"
         };
 
         var schoolIcon = {
