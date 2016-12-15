@@ -112,11 +112,11 @@
                     <div ng-show="mc.currentInfo === undefined" layout="column">
                         <div>
                             <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
-                            <span class="icon-spacer">Selected Area</span>
+                            <span class="icon-spacer">Select an area to</span>
                         </div>
                         <div>
                             <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
-                            <span class="icon-spacer">Selected Score</span>
+                            <span class="icon-spacer">see its Real Value!</span>
                         </div>
                     </div>
 
@@ -162,7 +162,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline">Violent Crime Statistics</span>
-                            <span class="md-subhead">Crime Frequency Over the Years</span>
+                            <span class="md-subhead">Crime frequency over the years</span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
@@ -174,8 +174,8 @@
                 <md-card class="housing-data">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">Housing Statistics</span>
-                            <span class="md-subhead">Clicked Zip zindex average v.s County zindex average</span>
+                            <span class="md-headline">Home Value Statistics</span>
+                            <span class="md-subhead">Average home value relative to area</span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
@@ -201,8 +201,6 @@
                         Currently available in Los Angeles and Orange counties only
                     </md-tooltip>
                 </md-subheader>-->
-
-                <md-divider class="toolbar-spacer"></md-divider>
 
                 <md-input-container flex="25" md-theme="search">
                     <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons"
@@ -283,26 +281,26 @@
 
                         <md-subheader class="score">
                             <md-tooltip md-direction="right">
-                                Hover over an area to see the RealValue Score!
+                                Hover over an area to see the Real Value!
                             </md-tooltip>
-                            <div ng-hide="mc.information !== undefined">
+                            <div ng-hide="mc.information !== undefined" ng-show="mc.information === undefined">
                                 <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
-                                    <span class="icon-spacer2">Area Display
+                                    <span class="icon-spacer2">Hover over an area to</span>
                                 </div>
                                 <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
-                                    <span class="icon-spacer2">Score Display
+                                    <span class="icon-spacer2">display its Real Value!</span>
                                 </div>
                             </div>
-                            <div ng-show="mc.information !== undefined">
+                            <div ng-show="mc.information !== undefined" ng-hide="mc.information === undefined">
                                 <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
-                                    <span class="icon-spacer2">{{mc.information.name}}
+                                    <span class="icon-spacer2">{{mc.information.name}}</span>
                                 </div>
                                 <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
-                                    <span class="icon-spacer2">{{mc.information.score}}
+                                    <span class="icon-spacer2">{{mc.information.score}}</span>
                                 </div>
                             </div>
                         </md-subheader>

@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', '$mdToast', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, $mdToast) {
         var mc = this;
         var varMap;
         //mc.gjLayer;
@@ -179,7 +179,7 @@ angular.module('realValue')
                 },
                 legend: {
                     position: 'bottomright',
-                    colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#000' ],
+                    colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#888888' ],
                     labels: [ 'Best', 'Good', 'Average', 'Bad', 'Worst', 'No Data']
                 },
                 maxbounds: {
@@ -356,7 +356,8 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    alert("Taylor Put Toast for No Match!");
+                    mc.showToastyToast();
+                    //alert("Taylor Put Toast for No Match!");
                 }
             mc.zip = ''; // resets input field
             }
@@ -489,7 +490,7 @@ angular.module('realValue')
                     top: 20,
                     right: 0,
                     bottom: 20,
-                    left: 40
+                    left: 45
                 },
                 xRange = d3.scale.ordinal().rangeRoundBands([MARGINS.left, WIDTH - MARGINS.right], 0.1).domain(barData.map(function (d) {
                     return d.x;
@@ -545,6 +546,97 @@ angular.module('realValue')
                 });
             $scope.openSidenav.open();
         }
+
+        function InitChart2(barData,id) {
+            $(".pre-visualisation").empty();
+            $(id).empty();
+            $("#pre-data").empty();
+            var vis = d3.select(id),
+                WIDTH = 250,
+                HEIGHT = 250,
+                MARGINS = {
+                    top: 20,
+                    right: 0,
+                    bottom: 20,
+                    left: 45
+                },
+                xRange = d3.scale.ordinal().rangeRoundBands([MARGINS.left, WIDTH - MARGINS.right], 0.1).domain(barData.map(function (d) {
+                    return d.x;
+                })),
+
+                yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,
+                    d3.max(barData, function (d) {
+                        return d.y;
+                    })
+                ]),
+                xAxis = d3.svg.axis()
+                    .scale(xRange)
+                    .tickSize(2)
+                    .tickSubdivide(true),
+
+                yAxis = d3.svg.axis()
+                    .scale(yRange)
+                    .tickSize(2)
+                    .orient("left")
+                    .tickSubdivide(true);
+            vis.append('svg:g')
+                .attr('class', 'x axis')
+                .attr('transform', 'translate(0,' + 230 + ')')
+                .call(xAxis);
+
+            vis.append('svg:g')
+                .attr('class', 'y axis')
+                .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+                .call(yAxis);
+
+            vis.selectAll('rect')
+                .data(barData)
+                .enter()
+                .append('rect')
+                .attr('x', function (d) {
+                    return xRange(d.x);
+                })
+                .attr('y', function (d) {
+                    return yRange(d.y);
+                })
+                .attr('width', 45)
+                .attr('height', function (d) {
+                    return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
+                })
+                .attr("fill", function(d) {
+                    //console.log('WHAT IS D? ---> ', d);
+                    if (d['x'] !== 'City' && d['x'] !== 'County' && d['x'] !== 'State') {
+                        return "rgba(0,150,136,.5)";
+                    } else {
+                        return "rgba(66,66,66,.5)";
+                    }
+                })
+
+                //('fill', 'rgba(66,66,66,.5)')
+                .on('mouseover',function(d){
+                    d3.select(this)
+                        .attr("fill", function(d) {
+                            //console.log('WHAT IS D? ---> ', d);
+                            if (d['x'] !== 'City' && d['x'] !== 'County' && d['x'] !== 'State') {
+                                return "rgba(0,150,136,1)";
+                            } else {
+                                return "rgba(66,66,66,.8)";
+                            }
+                        })
+                })
+                .on('mouseout',function(d){
+                    d3.select(this)
+                        .attr('fill',function(d) {
+                            //console.log('WHAT IS D? ---> ', d);
+                            if (d['x'] !== 'City' && d['x'] !== 'County' && d['x'] !== 'State') {
+                                return "rgba(0,150,136,.5)";
+                            } else {
+                                return "rgba(66,66,66,.5)";
+                            }
+                        })
+                });
+        }
+
         function job_pie_chart(dataset){
             $("#chart").empty();
             var width = 250;
@@ -552,7 +644,7 @@ angular.module('realValue')
             var radius = Math.min(width, height) / 2.3;
 
             var color = d3.scale.ordinal()
-                .range(['rgba(0,150,136,.5)','rgba(0,150,136,1)' ]);
+                .range(['rgba(0,150,136,.5)','rgba(0,150,136,.8)' ]);
 
             var svg = d3.select('#chart')
                 .append('svg')
@@ -721,7 +813,7 @@ angular.module('realValue')
                                     }
                                     mc.information=InitChart(barData,"#visualisation");
                                     job_pie_chart(pie);
-                                    InitChart(z_bar_chart_data,"#visualisation1");
+                                    InitChart2(z_bar_chart_data,"#visualisation1");
                                     mc.crimejob=1;
                                 }
                                 catch(err){
@@ -739,6 +831,7 @@ angular.module('realValue')
                     }
                 }
             }
+
             leafletData.getMap().then(function(map) {
                 mc.that = e;
                 console.log("event",e.target.feature.properties.name);
@@ -847,7 +940,8 @@ angular.module('realValue')
             console.log("markers", Object.size(res_markers));
 
             if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
-                alert("Taylor, put toast for no markers results here!");
+                mc.showToastyToast();
+                //alert("Taylor, put toast for no markers results here!");
             }
             //console.log("markers", res_markers);
             //console.log("geoJson2", dataService.placesGeojson2);
@@ -986,5 +1080,53 @@ angular.module('realValue')
 
             });
         });
+
+        // TOAST!
+
+        mc.toastPos = {
+            bottom: true,
+            top: false,
+            left: false,
+            right: true
+        };
+
+        mc.toastPosition = angular.extend({}, mc.toastPos);
+
+        mc.getToastPosition = function() {
+            return Object.keys(mc.toastPosition)
+                .filter(function(pos) { return mc.toastPosition[pos]; })
+                .join(' ');
+        };
+
+        mc.showSimpleToast = function() {
+            var pinTo = mc.getToastPosition();
+
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent('Simple Toast!')
+                    .position(pinTo)
+                    .hideDelay(4000)
+            );
+        };
+
+        mc.showToastyToast = function() {
+            var pinTo = mc.getToastPosition();
+            var toast = $mdToast.simple()
+                .textContent('Sorry, there were no results for this selection.')
+                .action('OK')
+                .highlightAction(true)
+                .highlightClass('md-primary')
+                .position(pinTo);
+
+            $mdToast.show(toast).then(function(response) {
+                if ( response == 'ok' ) {
+                    //alert('You clicked the action.');
+                }
+            });
+        };
+
+        mc.closeToast = function() {
+            $mdToast.hide();
+        };
 
     }]);
