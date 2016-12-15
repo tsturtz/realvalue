@@ -164,6 +164,13 @@ angular.module('realValue')
                         tammy_geojson.features[i].properties.job_zscore = job_zscore.toFixed(3);
                         tammy_geojson.features[i].properties.house_zscore = house_zscore.toFixed(3);
                         score = (crime_zscore.toFixed(2) * -1) + (job_zscore.toFixed(2) * 1)+ (house_zscore.toFixed(2) * 1);
+                        if(isNaN(score)) {
+                            console.log("zip code ", lookup_zip);
+                            console.log("housing ", housing);
+                            console.log("job zscore " + job_zscore);
+                            console.log("crime zscore " + crime_zscore);
+                            console.log("house zscore " + house_zscore);
+                        }
                         tammy_geojson.features[i].properties.score = score.toFixed(2);
                     }
                 }

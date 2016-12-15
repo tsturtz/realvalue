@@ -428,7 +428,7 @@ angular.module('realValue')
             angular.extend($scope, {
                 center: center
             });
-            varMap.fitBounds(bounds);
+            varMap.fitBounds(bounds,{padding: [150, 150]});
 
             if(boolean) {
                 this.zipcode_zoom();
