@@ -1,21 +1,25 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', 'geoCodingService', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, geoCodingService) {
         var mc = this;
         var varMap;
         //mc.gjLayer;
 
-        var foodIcon = {
-            iconUrl: './assets/img/restaurant-marker.png',
-
-            iconSize:     [38, 38], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        var divIcon = {
+                type: 'div',
+                iconSize: [40, 40],
+                popupAnchor:  [0, 0],
+                html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
         };
 
-        console.log("icon ", foodIcon);
+        var schoolIcon = {
+            type: 'div',
+            iconSize: [40, 40],
+            popupAnchor:  [0, 0],
+            html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
+        };
+
+        console.log("icon ", divIcon);
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
@@ -314,6 +318,11 @@ angular.module('realValue')
             });
         };
 
+        /**
+         *  This function looks up zip codes that people type and finds the associated polygon.  There's a bug where
+         *  a zipcode that's a mulit-polygon where it will not return a correct result (ie. 92705)
+         * @param zip
+         */
         this.submit_zoom = function(zip) {
             var calculated_center;
             var match = false;
@@ -321,14 +330,15 @@ angular.module('realValue')
             if (zip != undefined) {
                 //console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
-                //console.log("zooming on ", city);
+                console.log("zooming on ", city);
+                console.log("zip is ", zip);
 
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     //searchObj(tammy_geojson.features[i]);
                     //console.log(tammy_geojson.features[i]);
                     if(tammy_geojson.features[i].properties.name === zip) {
                         console.log("match!!!");
-                        //console.log(tammy_geojson.features[i]);
+                        console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
                         match = true;
                     }
@@ -356,10 +366,34 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    alert("Taylor Put Toast for No Match!");
+                    geoCodingService.getAPI(zip).then(function(response){
+                        console.log("response",response);
+                        var state = response.data.results[0].address_components[2].short_name;
+
+                        if(state === 'CA') {
+                            var geocoding = response.data.results[0].geometry.location;
+                            mc.centerToCoordinates(geocoding);
+                        } else {
+                            alert("Cannot search outside California");
+                        }
+
+                    });
                 }
             mc.zip = ''; // resets input field
             }
+        };
+
+        this.centerToCoordinates = function(obj) {
+            console.log("coords",obj);
+            var center = {
+                lat: obj.lat,
+                lng: obj.lng,
+                zoom: varMap.getZoom()
+            };
+
+            angular.extend($scope, {
+                center: center
+            });
         };
 
         this.findMinMaxNumber = function(arr) {
@@ -782,7 +816,7 @@ angular.module('realValue')
                     "lat": dataService.placesGeojson[i].lat,
                     "lng": dataService.placesGeojson[i].lng,
                     "zipCode": zipCodeClicked,
-                    "icon": foodIcon
+                    "icon": divIcon
                 }
 
             }
@@ -791,7 +825,10 @@ angular.module('realValue')
             });
             console.log("markers", res_markers);
         };
-
+        /**
+         * This function looks for downloaded Google places tied to coordinates and search if it's within the bounds
+         * of the current clicked on polygon (zip code)
+         */
         this.scanObjectMarkers = function() {
 
             var zipCodeClicked = mc.that.target.feature.properties.name;
@@ -802,7 +839,7 @@ angular.module('realValue')
             };
 
             var res_markers = {};
-            //console.log('places geojson: ', dataService.placesGeojson2);
+            console.log('places geojson: ', dataService.placesGeojson2);
             if (!isNaN(mc.area_click_on) && mc.county_click_on==="Orange") {
                 console.log(mc.area_click_on, 'is a number');
                 if (dataService.placesGeojson2.hasOwnProperty("zipCode")) {
@@ -813,6 +850,7 @@ angular.module('realValue')
                 }
                 for (var rest in dataService.placesGeojson2.restaurant) {
                     //console.log(rest);
+                    console.log(dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1]);
                     var res = leafletPip.pointInLayer(
                         [dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1], dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
                     if (res.length) {
@@ -837,7 +875,7 @@ angular.module('realValue')
                                 "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],
                                 "lng": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1],
                                 "zipCode": zipCodeClicked,
-                                "icon": foodIcon
+                                "icon": divIcon
                             }
                         }
                     }
