@@ -374,7 +374,7 @@ angular.module('realValue')
                         var matched_county;
                         var postal_code;
                         for(var i =0;i<components.length;i++){
-                            //console.log(components[i]);
+                            console.log(components[i]);
                             if(components[i].types[0] === 'postal_code') {
                                 postal_code = true;
                             }
