@@ -1,19 +1,9 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', 'geoCodingService', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, geoCodingService) {
         var mc = this;
         var varMap;
         //mc.gjLayer;
-        /*
-        var foodIcon = {
-            iconUrl: './assets/img/restaurant-marker.png',
-
-            iconSize:     [40, 40], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-        };*/
 
         var divIcon = {
                 type: 'div',
@@ -21,22 +11,12 @@ angular.module('realValue')
                 popupAnchor:  [0, 0],
                 html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
         };
-/*
-        var divIcon = {
+
+        var schoolIcon = {
             type: 'div',
             iconSize: [40, 40],
             popupAnchor:  [0, 0],
-            html: "<div><img src='./assets/img/school.png' /></div>"
-        };
-*/
-        var schoolIcon = {
-            iconUrl: 'assets/img/school.png',
-
-            iconSize:     [40, 40], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
-            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-            shadowAnchor: [4, 62],  // the same for the shadow
-            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
         };
 
         console.log("icon ", divIcon);
@@ -351,6 +331,7 @@ angular.module('realValue')
                 //console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
                 console.log("zooming on ", city);
+                console.log("zip is ", zip);
 
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     //searchObj(tammy_geojson.features[i]);
@@ -385,10 +366,34 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    alert("Taylor Put Toast for No Match!");
+                    geoCodingService.getAPI(zip).then(function(response){
+                        console.log("response",response);
+                        var state = response.data.results[0].address_components[2].short_name;
+
+                        if(state === 'CA') {
+                            var geocoding = response.data.results[0].geometry.location;
+                            mc.centerToCoordinates(geocoding);
+                        } else {
+                            alert("Cannot search outside California");
+                        }
+
+                    });
                 }
             mc.zip = ''; // resets input field
             }
+        };
+
+        this.centerToCoordinates = function(obj) {
+            console.log("coords",obj);
+            var center = {
+                lat: obj.lat,
+                lng: obj.lng,
+                zoom: varMap.getZoom()
+            };
+
+            angular.extend($scope, {
+                center: center
+            });
         };
 
         this.findMinMaxNumber = function(arr) {
