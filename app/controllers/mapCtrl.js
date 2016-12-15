@@ -458,7 +458,7 @@ angular.module('realValue')
                 crimes_zscore: zip_code_crimes_zscore,
                 house_zscore: zip_code_house_zscore,
                 housing: zip_code_housing
-            }
+            };
             //info.update(layer.feature.properties);
         }
 
@@ -586,6 +586,7 @@ angular.module('realValue')
         }
 
         function zoomToFeature(e) {
+            mc.currentInfo = mc.information;
             mc.area_click_on=e.target.feature.properties.name;
             mc.county_click_on=e.target.feature.properties.county;
             //console.log("zip obj ",e.target.feature.properties);

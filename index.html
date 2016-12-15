@@ -107,7 +107,31 @@
                     md-whiteframe="16" md-disable-backdrop="true">
             <md-toolbar class="md-primary md-medium-tall" layout-align="center center" layout="row" md-whiteframe="4">
                 <div class="md-toolbar-tools" layout-padding>
-                    <span flex>Data</span>
+
+                    <div ng-show="mc.currentInfo === undefined" layout="column">
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
+                            <span class="icon-spacer">Selected Area</span>
+                        </div>
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
+                            <span class="icon-spacer">Selected Score</span>
+                        </div>
+                    </div>
+
+                    <div ng-show="mc.currentInfo !== undefined" layout="column">
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
+                            <span class="icon-spacer">{{mc.currentInfo.name}}</span>
+                        </div>
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
+                            <span class="icon-spacer">{{mc.currentInfo.score}}</span>
+                        </div>
+                    </div>
+
+                    <span flex></span>
+
                     <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)">
                         <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
                         <md-tooltip md-direction="top" class="tooltip-alert">
@@ -241,28 +265,30 @@
                             </md-checkbox>
                         </div>
 
+                        <md-divider></md-divider>
+
                         <md-subheader class="score">
                             <md-tooltip md-direction="right">
                                 Hover over an area to see the RealValue Score!
                             </md-tooltip>
                             <div ng-hide="mc.information !== undefined">
                                 <div>
-                                    <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                                    Area Display
+                                    <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
+                                    <span class="icon-spacer2">Area Display
                                 </div>
                                 <div>
-                                    <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                                    Score Display
+                                    <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
+                                    <span class="icon-spacer2">Score Display
                                 </div>
                             </div>
                             <div ng-show="mc.information !== undefined">
                                 <div>
-                                    <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                                    {{mc.information.name}}
+                                    <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
+                                    <span class="icon-spacer2">{{mc.information.name}}
                                 </div>
                                 <div>
-                                    <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                                    {{mc.information.score}}
+                                    <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
+                                    <span class="icon-spacer2">{{mc.information.score}}
                                 </div>
                             </div>
                         </md-subheader>
