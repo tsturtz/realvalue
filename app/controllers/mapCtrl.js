@@ -699,16 +699,24 @@ angular.module('realValue')
                                     if(county==="O"){
                                         console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
                                         var object1={"x":mc.area_click_on,"y":dataService.all["zillow"]["oc"][mc.area_click_on]};
-                                        var object2={"x":"Average","y":dataService.all["crime-and-job-data-analysis"]["oc"]["zindexAverage"]};
+                                        var object2={"x":"City","y":dataService.all["zillow_city"]["oc"][city]};
+                                        var object3={"x":"County","y":dataService.all["crime-and-job-data-analysis"]["oc"]["zindexAverage"]};
+                                        var object4={"x":"State","y":479600};
                                         z_bar_chart_data.push(object1);
                                         z_bar_chart_data.push(object2);
+                                        z_bar_chart_data.push(object3);
+                                        z_bar_chart_data.push(object4);
                                     }
                                     else{
                                         console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
                                         var object1={"x":mc.area_click_on,"y":dataService.all["zillow"]["lc"][mc.area_click_on]};
-                                        var object2={"x":"Average","y":dataService.all["crime-and-job-data-analysis"]["lc"]["zindexAverage"]};
+                                        var object2={"x":"City","y":dataService.all["zillow_city"]["lc"][city]};
+                                        var object3={"x":"County","y":dataService.all["crime-and-job-data-analysis"]["lc"]["zindexAverage"]};
+                                        var object4={"x":"State","y":479600};
                                         z_bar_chart_data.push(object1);
                                         z_bar_chart_data.push(object2);
+                                        z_bar_chart_data.push(object3);
+                                        z_bar_chart_data.push(object4);
                                     }
                                     mc.information=InitChart(barData,"#visualisation");
                                     job_pie_chart(pie);
