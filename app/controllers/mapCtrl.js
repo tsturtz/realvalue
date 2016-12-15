@@ -369,39 +369,47 @@ angular.module('realValue')
 
                     geoCodingService.getAPI(zip).then(function(response){
                         //console.log("response",response);
-                        var components = response.data.results[0].address_components;
-                        var matched_state;
-                        var matched_county;
-                        var postal_code;
-                        for(var i =0;i<components.length;i++){
-                            //console.log(components[i]);
-                            if(components[i].types[0] === 'postal_code') {
-                                postal_code = true;
-                            }
-                            if(components[i].short_name === 'CA') {
-                                console.log("match state!");
-                                matched_state = components[i].short_name;
-                            }
-                            if(components[i].short_name === 'Orange County' || components[i].short_name === 'Los Angeles County') {
-                                console.log("match county!");
-                                matched_county = components[i].short_name;
-                            }
-                        }
-                        var boundsObj = response.data.results[0].geometry.bounds;
-                        var southWest = L.latLng(boundsObj.southwest.lat, boundsObj.southwest.lng);
-                        var northEast = L.latLng(boundsObj.northeast.lat, boundsObj.northeast.lng);
 
-                        var bounds = L.latLngBounds(southWest, northEast);
+                        if(response.data.results.length){
+                            var components = response.data.results[0].address_components;
+                            var matched_state;
+                            var matched_county;
+                            var postal_code;
+                            for(var i =0;i<components.length;i++){
+                                //console.log(components[i]);
+                                if(components[i].types[0] === 'postal_code') {
+                                    postal_code = true;
+                                }
+                                if(components[i].short_name === 'CA') {
+                                    console.log("match state!");
+                                    matched_state = components[i].short_name;
+                                }
+                                if(components[i].short_name === 'Orange County' || components[i].short_name === 'Los Angeles County') {
+                                    console.log("match county!");
+                                    matched_county = components[i].short_name;
+                                }
+                            }
+                            var boundsObj = response.data.results[0].geometry.bounds;
+                            var southWest = L.latLng(boundsObj.southwest.lat, boundsObj.southwest.lng);
+                            var northEast = L.latLng(boundsObj.northeast.lat, boundsObj.northeast.lng);
 
-                        console.log("matched state", matched_state);
-                        console.log("matched county", matched_county);
-                        console.log("postal search", postal_code);
-                        if(matched_state === 'CA' && (matched_county === 'Orange County' || matched_county === 'Los Angeles County')) {
-                            var geocoding = response.data.results[0].geometry.location;
-                            mc.centerToCoordinates(geocoding,bounds,postal_code);
+                            var bounds = L.latLngBounds(southWest, northEast);
+
+                            console.log("matched state", matched_state);
+                            console.log("matched county", matched_county);
+                            console.log("postal search", postal_code);
+                            if(matched_state === 'CA' && (matched_county === 'Orange County' || matched_county === 'Los Angeles County')) {
+                                var geocoding = response.data.results[0].geometry.location;
+                                mc.centerToCoordinates(geocoding,bounds,postal_code);
+                            } else {
+                                // Results not in LA or OC
+                                mc.showToastyToast();
+                            }
                         } else {
-                            mc.showToastyToast();
+                            //No results at all
+                            mc.showSimpleToast();
                         }
+
 
                     });
                 }
