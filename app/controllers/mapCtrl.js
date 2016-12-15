@@ -4,9 +4,22 @@ angular.module('realValue')
         var mc = this;
         var varMap;
         //mc.gjLayer;
+
+        var foodIcon = {
+            iconUrl: 'assets/img/food.png',
+
+            iconSize:     [38, 38], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+            iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+            shadowAnchor: [4, 62],  // the same for the shadow
+            popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+        };
+
+        console.log("icon ", foodIcon);
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
+
         self.name = "Map Obj";
         dataService.weikuan_init();
         console.log("init map");
@@ -738,13 +751,14 @@ angular.module('realValue')
                     "lat": dataService.placesGeojson[i].lat,
                     "lng": dataService.placesGeojson[i].lng,
                     "zipCode": zipCodeClicked,
-                    "icon": {}
+                    "icon": foodIcon
                 }
 
             }
             angular.extend($scope, {
                 markers: res_markers
             });
+            console.log("markers", res_markers);
         };
 
         this.scanObjectMarkers = function() {
@@ -792,7 +806,7 @@ angular.module('realValue')
                                 "lat": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0],
                                 "lng": dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1],
                                 "zipCode": zipCodeClicked,
-                                "icon": {}
+                                "icon": foodIcon
                             }
                         }
                     }
