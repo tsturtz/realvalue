@@ -19,7 +19,7 @@ angular.module('realValue')
             html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
         };
 
-        console.log("icon ", divIcon);
+        //console.log("icon ", divIcon);
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
@@ -331,7 +331,7 @@ angular.module('realValue')
                 //console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
                 console.log("zooming on ", city);
-                console.log("zip is ", zip);
+                //console.log("zip is ", zip);
 
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     //searchObj(tammy_geojson.features[i]);
@@ -340,7 +340,7 @@ angular.module('realValue')
                         console.log("match!!!");
                         console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
-                        match = true;
+                        //match = true;
                     }
                 }
 
@@ -366,17 +366,41 @@ angular.module('realValue')
                         fillOpacity: 0.7
                     });
                 } else {
-                    mc.showToastyToast();
                     //alert("Taylor Put Toast for No Match!");
                     geoCodingService.getAPI(zip).then(function(response){
-                        console.log("response",response);
-                        var state = response.data.results[0].address_components[2].short_name;
+                        //console.log("response",response);
+                        var components = response.data.results[0].address_components;
+                        var matched_state;
+                        var matched_county;
+                        var postal_code;
+                        for(var i =0;i<components.length;i++){
+                            console.log(components[i]);
+                            if(components[i].types[0] === 'postal_code') {
+                                postal_code = true;
+                            }
+                            if(components[i].short_name === 'CA') {
+                                console.log("match state!");
+                                matched_state = components[i].short_name;
+                            }
+                            if(components[i].short_name === 'Orange County' || components[i].short_name === 'Los Angeles County') {
+                                console.log("match county!");
+                                matched_county = components[i].short_name;
+                            }
+                        }
+                        var boundsObj = response.data.results[0].geometry.bounds;
+                        var southWest = L.latLng(boundsObj.southwest.lat, boundsObj.southwest.lng);
+                        var northEast = L.latLng(boundsObj.northeast.lat, boundsObj.northeast.lng);
 
-                        if(state === 'CA') {
+                        var bounds = L.latLngBounds(southWest, northEast);
+
+                        console.log("matched state", matched_state);
+                        console.log("matched county", matched_county);
+                        console.log("postal search", postal_code);
+                        if(matched_state === 'CA' && (matched_county === 'Orange County' || matched_county === 'Los Angeles County')) {
                             var geocoding = response.data.results[0].geometry.location;
-                            mc.centerToCoordinates(geocoding);
+                            mc.centerToCoordinates(geocoding,bounds,postal_code);
                         } else {
-                            alert("Cannot search outside California");
+                            mc.showToastyToast();
                         }
 
                     });
@@ -385,7 +409,7 @@ angular.module('realValue')
             }
         };
 
-        this.centerToCoordinates = function(obj) {
+        this.centerToCoordinates = function(obj,bounds,boolean) {
             console.log("coords",obj);
             var center = {
                 lat: obj.lat,
@@ -396,6 +420,11 @@ angular.module('realValue')
             angular.extend($scope, {
                 center: center
             });
+            varMap.fitBounds(bounds);
+
+            if(boolean) {
+                this.zipcode_zoom();
+            }
         };
 
         this.findMinMaxNumber = function(arr) {
@@ -945,7 +974,7 @@ angular.module('realValue')
                 }
                 for (var rest in dataService.placesGeojson2.restaurant) {
                     //console.log(rest);
-                    console.log(dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1]);
+                    //console.log(dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1]);
                     var res = leafletPip.pointInLayer(
                         [dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1], dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
                     if (res.length) {
