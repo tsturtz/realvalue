@@ -110,25 +110,15 @@
                     <span flex>Data</span>
                     <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)">
                         <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
+                        <md-tooltip md-direction="top" class="tooltip-alert">
+                            Closing this tab will turn off auto-open.
+                        </md-tooltip>
                     </md-button>
                 </div>
             </md-toolbar>
             <section id="data-here" flex="4"></section> <!-- LEAVE THIS - ITS FOR THE GOOGLE PLACES CALL -->
             <div class="data_spacer">
 
-                <md-card class="crime-data">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Violent Crime Statistics</span>
-                            <span class="md-subhead">Crime Frequency Over the Years</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
-                        <svg id="visualisation" width="250" height="250" ng-show="mc.showSVG"></svg>
-                    </md-card-content>
-                </md-card>
-                <span></span>
                 <md-card class="job-data">
                     <md-card-title>
                         <md-card-title-text>
@@ -143,6 +133,18 @@
                     </md-card-content>
                 </md-card>
                 <span></span>
+                <md-card class="crime-data">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Violent Crime Statistics</span>
+                            <span class="md-subhead">Crime Frequency Over the Years</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
+                        <svg id="visualisation" width="250" height="250" ng-show="mc.showSVG"></svg>
+                    </md-card-content>
+                </md-card>
 
             </div>
 
@@ -156,11 +158,13 @@
 
                 <div id="logoTopLeft"></div>
 
-                <md-subheader class="toolbar-subhead">LA and OC
+                <!--<md-subheader class="toolbar-subhead">LA and OC
                     <md-tooltip md-direction="bottom">
                         Currently available in Los Angeles and Orange counties only
                     </md-tooltip>
-                </md-subheader>
+                </md-subheader>-->
+
+                <md-divider class="toolbar-spacer"></md-divider>
 
                 <md-input-container flex="25" md-theme="search">
                     <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons"
@@ -170,32 +174,35 @@
                            ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
                 </md-input-container>
 
-                <md-subheader class="toolbar-score">
-                    <div class="toolbar-score-spacer-container" ng-hide="mc.information !== undefined">
-                        <span class="toolbar-score-spacer-name">
-                            <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                            Area
-                        </span>
-                        <span class="toolbar-score-spacer-score">
-                            <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                            Score
-                        </span>
-                    </div>
-                    <div class="toolbar-score-spacer-container" ng-show="mc.information !== undefined">
-                        <span class="toolbar-score-spacer-name">
-                            <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
-                            {{mc.information.name}}
-                        </span>
-                        <span class="toolbar-score-spacer-score">
-                            <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
-                            {{mc.information.score}}
-                        </span>
-                    </div>
-                </md-subheader>
+                <md-divider class="toolbar-spacer"></md-divider>
+
+                <md-icon class="md-primary select-icons" md-font-set="material-icons">
+                    layers
+                    <md-tooltip md-direction="bottom">
+                        Toggle area layer highlights here!
+                    </md-tooltip>
+                </md-icon>
+                <div class="toolbar-layers" layout="row" md-theme="search">
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.county_zoom()"
+                               ng-disabled="mc.countyLayer">
+                        County
+                    </md-button>
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.city_zoom()"
+                               ng-disabled="mc.cityLayer">
+                        City
+                    </md-button>
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.zipcode_zoom()"
+                               ng-disabled="mc.zipLayer">
+                        Zip
+                    </md-button>
+                </div>
 
                 <span flex></span>
                 <md-button class="md-fab md-primary" ng-click="nc.openRightMenu()">
                     <md-icon class="md-accent" md-font-set="material-icons">poll</md-icon>
+                    <md-tooltip md-direction="left">
+                        View detailed area data here!
+                    </md-tooltip>
                 </md-button>
                 <span></span>
 
@@ -204,11 +211,11 @@
         </md-toolbar>
 
         <div class="zoom-btns" layout="column">
-            <md-button class="md-fab md-primary md-mini">
-                <md-icon class="zoom-btns-icons" md-font-set="material-icons" ng-click="mc.zoom_in()">add</md-icon>
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_in()">
+                <md-icon class="zoom-btns-icons" md-font-set="material-icons">add</md-icon>
             </md-button>
-            <md-button class="md-fab md-primary md-mini">
-                <md-icon class="zoom-btns-icons" md-font-set="material-icons" ng-click="mc.zoom_out()">remove</md-icon>
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_out()">
+                <md-icon class="zoom-btns-icons" md-font-set="material-icons">remove</md-icon>
             </md-button>
         </div>
 
@@ -216,38 +223,50 @@
             <md-card id="btm-left-card" md-whiteframe="4">
                 <md-card-content layout="row">
                     <div layout="column" class="checks">
+
                         <md-subheader class="subhead">
                             <md-icon class="md-primary select-icons" md-font-set="material-icons">equalizer</md-icon>
                             SELECT DATA TO INCLUDE
                         </md-subheader>
-                        <div class="checkboxes-column" ng-repeat="checkbox in nc.checkboxes">
+
+                        <div class="checkboxes-column" layout="column">
                             <md-checkbox class="check-boxes" ng-model="checkbox.checked"
                                          ng-disabled="{{checkbox.disabled}}"
-                                         ng-change="nc.updateData(this.checkbox)">
+                                         ng-change="nc.updateData(this.checkbox)"
+                                         ng-repeat="checkbox in nc.checkboxes">
                                 {{checkbox.type.toUpperCase()}}
                                 <md-tooltip md-direction="right">
                                     {{checkbox.tooltip}}
                                 </md-tooltip>
                             </md-checkbox>
                         </div>
-                        <md-subheader class="subhead">
-                            <md-icon class="md-primary select-icons" md-font-set="material-icons">layers</md-icon>
-                            SELECT A DISPLAY LAYER
+
+                        <md-subheader class="score">
+                            <md-tooltip md-direction="right">
+                                Hover over an area to see the RealValue Score!
+                            </md-tooltip>
+                            <div ng-hide="mc.information !== undefined">
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
+                                    Area Display
+                                </div>
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
+                                    Score Display
+                                </div>
+                            </div>
+                            <div ng-show="mc.information !== undefined">
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">pin_drop</md-icon>
+                                    {{mc.information.name}}
+                                </div>
+                                <div>
+                                    <md-icon class="md-accent" md-font-set="material-icons">star</md-icon>
+                                    {{mc.information.score}}
+                                </div>
+                            </div>
                         </md-subheader>
-                        <div layout="row">
-                            <md-button class="md-primary layer-btn" ng-click="mc.county_zoom()"
-                                       ng-disabled="mc.countyLayer">
-                                County
-                            </md-button>
-                            <md-button class="md-primary layer-btn" ng-click="mc.city_zoom()"
-                                       ng-disabled="mc.cityLayer">
-                                City
-                            </md-button>
-                            <md-button class="md-primary layer-btn" ng-click="mc.zipcode_zoom()"
-                                       ng-disabled="mc.zipLayer">
-                                Zip
-                            </md-button>
-                        </div>
+
                     </div>
                 </md-card-content>
             </md-card>

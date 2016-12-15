@@ -6,7 +6,7 @@ angular.module('realValue')
         //mc.gjLayer;
 
         var foodIcon = {
-            iconUrl: 'assets/img/food.png',
+            iconUrl: './assets/img/restaurant-marker.png',
 
             iconSize:     [38, 38], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
