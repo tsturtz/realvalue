@@ -122,6 +122,7 @@ angular.module('realValue')
             var zip_city;
             var lookup_zip;
             var jobs_openings;
+            var jobrate;
             var crimes;
             var housing;
             var population;
@@ -215,7 +216,7 @@ angular.module('realValue')
                             console.error("zscore " + lookup_zip, score);
 
                         }
-                        console.error("crime rate", population/crimes);
+                        //console.error("crime rate", population/crimes);
                         if (isNaN((population/crimes))) {
                             console.error("zip code error", lookup_zip,zip_city[0]);
                         }
