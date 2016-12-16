@@ -52,6 +52,7 @@ angular.module('realValue')
         };
 
         self.makePlacesGeojson = function (clicked) {
+            console.log("clicked is ",clicked);
             var defer = $q.defer();
 
             fbRef.ref("/markerIndexZip/").once('value', function (snapshot) {
@@ -173,7 +174,8 @@ angular.module('realValue')
                 } else {
                     //console.log("zip city", zip_city);
                     if(zip_city[0] != undefined) {
-                        tammy_geojson.features[i].properties.name += " " + zip_city;
+                        var display_city = zip_city[0];
+                        tammy_geojson.features[i].properties.city = display_city.replace(", CA","");
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
@@ -286,7 +288,7 @@ angular.module('realValue')
                         defined_city = true;
                     }
                     if(zip_city[0] != undefined && defined_city){
-                       losangeles_geojson.features[i].properties.name += " " + zip_city;
+                       losangeles_geojson.features[i].properties.city = display_city.replace(", CA","");
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
