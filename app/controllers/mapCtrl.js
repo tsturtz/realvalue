@@ -6,7 +6,7 @@ angular.module('realValue')
         //mc.gjLayer;
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
-            varMap = map;
+            mc.varMap = map;
             //console.log("resize");
             // This code helps the map not get sized before it is finish loading
             map.invalidateSize(false);
