@@ -305,7 +305,7 @@ angular.module('realValue')
             });
         };
 
-        mc.city_zoom(9);
+        //mc.city_zoom(9);
         mc.zipcode_zoom(9);
 
         angular.extend($scope, {
