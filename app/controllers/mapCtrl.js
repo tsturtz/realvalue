@@ -16,6 +16,22 @@ angular.module('realValue')
         });
         }, 400);
 
+        $scope.$on("leafletDirectiveMarker.move", function(event, args){
+            var leafEvent = args.leafletEvent;
+            //console.log("event", leafEvent);
+            $timeout(function(){
+                var restaurantContainer = $('.icon-restaurant-class');
+                var restaurantIcon = $("<md-button class='md-fab md-accent md-mini icon-restaurant-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
+                restaurantContainer.html('');
+                restaurantContainer.append($compile(restaurantIcon)($scope));
+                var schoolContainer = $('.icon-school-class');
+                var schoolIcon = $("<md-button class='md-fab md-accent md-mini icon-school-class'><md-icon md-font-set='material-icons'>school</md-icon></md-button>");
+                schoolContainer.html('');
+                schoolContainer.append($compile(schoolIcon)($scope));
+                $scope.$apply();
+            });
+        });
+
         var divIcon = {
             type: 'div',
             iconSize: [40, 40],
@@ -210,7 +226,11 @@ angular.module('realValue')
                         restaurant: {
                             name: 'restaurant',
                             type: 'markercluster',
-                            visible: true
+                            visible: true,
+                            layerOptions: {
+                                showCoverageOnHover: false,
+                                disableClusteringAtZoom: 17
+                            }
                         }
                     }
                 },
@@ -514,8 +534,10 @@ angular.module('realValue')
         }
 
         function highlightFeature(e) {
+
             var layer = e.target;
             var zip_code_name = e.target.feature.properties.name;
+            var zip_code_city_name = e.target.feature.properties.city;
             var county_name = e.target.feature.properties.county;
             var zip_code_score = e.target.feature.properties.score;
             var zip_code_crimes = e.target.feature.properties.crimes;
@@ -524,6 +546,7 @@ angular.module('realValue')
             var zip_code_jobs_zscore = e.target.feature.properties.job_zscore;
             var zip_code_housing = e.target.feature.properties.housing;
             var zip_code_house_zscore = e.target.feature.properties.house_zscore;
+
 
             layer.setStyle({
                 weight: 3,
@@ -538,6 +561,7 @@ angular.module('realValue')
             //console.log(e.target.feature.properties.name);
             mc.information = {
                 name: zip_code_name,
+                city: zip_code_city_name,
                 county: county_name,
                 score: zip_code_score,
                 crimes: zip_code_crimes,
@@ -547,6 +571,8 @@ angular.module('realValue')
                 house_zscore: zip_code_house_zscore,
                 housing: zip_code_housing
             };
+
+            console.info("info ", mc.information);
             //info.update(layer.feature.properties);
         }
 
@@ -943,7 +969,7 @@ angular.module('realValue')
                     });
                 });
 
-                map.fitBounds(e.target.getBounds(),{padding: [230, 230]});
+                map.fitBounds(e.target.getBounds(),{padding: [120, 120]});
 
             });
         }
@@ -1122,19 +1148,8 @@ angular.module('realValue')
                     mc.markers_zoom();
                 }
 
-                if (map.getZoom() > 12) {
-                    $timeout(function(){
-                        var restaurantContainer = $('.icon-restaurant-class');
-                        var restaurantIcon = $("<md-button class='md-fab md-accent md-mini icon-restaurant-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
-                        restaurantContainer.html('');
-                        restaurantContainer.append($compile(restaurantIcon)($scope));
-                        var schoolContainer = $('.icon-school-class');
-                        var schoolIcon = $("<md-button class='md-fab md-accent md-mini icon-school-class'><md-icon md-font-set='material-icons'>school</md-icon></md-button>");
-                        schoolContainer.html('');
-                        schoolContainer.append($compile(schoolIcon)($scope));
-                        $scope.$apply();
-                    });
-                    //mc.markers_zoom();
+                if (map.getZoom() > 10) {
+
                 }
 
             });
