@@ -2,6 +2,8 @@ angular.module('realValue')
     .service('dataService', function ($q) {
         var self = this;
 
+        self.progress = true;
+
         var config = {
             apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
             authDomain: "realvalue-ebd58.firebaseapp.com",

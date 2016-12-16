@@ -287,13 +287,18 @@ angular.module('realValue')
 
         mc.city_zoom(9);
         mc.zipcode_zoom(9);
+        if (dataService.progress === false) {
+            $scope.progress = false;
+        } else {
+            $scope.progress = true;
+        }
 
         this.markers_zoom = function() {
             console.log("extend marker");
             var center = {
-                lat: varMap.getCenter().lat,
-                lng: varMap.getCenter().lng,
-                zoom: varMap.getZoom() - 1
+                lat: mc.varMap.getCenter().lat,
+                lng: mc.varMap.getCenter().lng,
+                zoom: mc.varMap.getZoom() - 1
             };
 
             angular.extend($scope, {
