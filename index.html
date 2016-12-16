@@ -74,7 +74,7 @@
     <script src="prototypes/crime_and_job_data_analysis.js"></script>
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
-    <script src="dummy.js"></script>
+    <!--<script src="dummy.js"></script>-->
     <!--Google Maps Call for Place Details-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places"
             async defer></script>
@@ -124,6 +124,10 @@
                         <div>
                             <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
                             <span class="icon-spacer">{{mc.currentInfo.name}}</span>
+                        </div>
+                        <div ng-if="mc.currentInfo.city !== undefined">
+                            <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
+                            <span class="icon-spacer">{{mc.currentInfo.city}}</span>
                         </div>
                         <div>
                             <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
@@ -299,6 +303,10 @@
                                     <span class="icon-spacer2">{{mc.information.name}}</span>
                                 </div>
                                 <div>
+                                    <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
+                                    <span class="icon-spacer2">{{mc.information.city}}</span>
+                                </div>
+                                <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
                                     <span class="icon-spacer2">{{mc.information.score}}</span>
                                 </div>
@@ -311,6 +319,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

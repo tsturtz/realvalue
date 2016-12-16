@@ -16,6 +16,22 @@ angular.module('realValue')
         });
         }, 400);
 
+        $scope.$on("leafletDirectiveMarker.move", function(event, args){
+            var leafEvent = args.leafletEvent;
+            //console.log("event", leafEvent);
+            $timeout(function(){
+                var restaurantContainer = $('.icon-restaurant-class');
+                var restaurantIcon = $("<md-button class='md-fab md-accent md-mini icon-restaurant-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
+                restaurantContainer.html('');
+                restaurantContainer.append($compile(restaurantIcon)($scope));
+                var schoolContainer = $('.icon-school-class');
+                var schoolIcon = $("<md-button class='md-fab md-accent md-mini icon-school-class'><md-icon md-font-set='material-icons'>school</md-icon></md-button>");
+                schoolContainer.html('');
+                schoolContainer.append($compile(schoolIcon)($scope));
+                $scope.$apply();
+            });
+        });
+
         var divIcon = {
             type: 'div',
             iconSize: [40, 40],
@@ -210,7 +226,11 @@ angular.module('realValue')
                         restaurant: {
                             name: 'restaurant',
                             type: 'markercluster',
-                            visible: true
+                            visible: true,
+                            layerOptions: {
+                                showCoverageOnHover: false,
+                                disableClusteringAtZoom: 17
+                            }
                         }
                     }
                 },
@@ -260,8 +280,8 @@ angular.module('realValue')
             console.log("extend zip");
             if(mc.varMap === undefined) {
                 var varcenter = {
-                    lat: 33.8247936182649,
-                    lng: -118.03985595703125,
+                    lat: 34.138,
+                    lng: -118.296,
                     zoom: param
                 }
             }
@@ -287,22 +307,21 @@ angular.module('realValue')
 
         mc.city_zoom(9);
         mc.zipcode_zoom(9);
-        if (dataService.progress === false) {
-            $scope.progress = false;
-        } else {
-            $scope.progress = true;
-        }
+
+        angular.extend($scope, {
+            progress: true
+        });
+        dataService.init_promise().then(function(response){
+            angular.extend($scope, {
+                progress: false
+            });
+        });
 
         this.markers_zoom = function() {
-            console.log("extend marker");
-            var center = {
-                lat: mc.varMap.getCenter().lat,
-                lng: mc.varMap.getCenter().lng,
-                zoom: mc.varMap.getZoom() - 1
-            };
+            console.log("clear marker");
 
             angular.extend($scope, {
-                center: center
+                markers: {}
             });
         };
 
@@ -419,13 +438,12 @@ angular.module('realValue')
                                 mc.centerToCoordinates(geocoding,bounds,postal_code);
                             } else {
                                 // Results not in LA or OC
-                                mc.showToastyToast();
+                                mc.showToastyToast('Sorry, please search in Orange or Los Angeles County.');
                             }
                         } else {
                             //No results at all
                             mc.showSimpleToast();
                         }
-
 
                     });
                 }
@@ -516,8 +534,10 @@ angular.module('realValue')
         }
 
         function highlightFeature(e) {
+
             var layer = e.target;
             var zip_code_name = e.target.feature.properties.name;
+            var zip_code_city_name = e.target.feature.properties.city;
             var county_name = e.target.feature.properties.county;
             var zip_code_score = e.target.feature.properties.score;
             var zip_code_crimes = e.target.feature.properties.crimes;
@@ -527,8 +547,9 @@ angular.module('realValue')
             var zip_code_housing = e.target.feature.properties.housing;
             var zip_code_house_zscore = e.target.feature.properties.house_zscore;
 
+
             layer.setStyle({
-                weight: 5,
+                weight: 3,
                 color: '#666',
                 dashArray: '',
                 fillOpacity: 0.7
@@ -540,6 +561,7 @@ angular.module('realValue')
             //console.log(e.target.feature.properties.name);
             mc.information = {
                 name: zip_code_name,
+                city: zip_code_city_name,
                 county: county_name,
                 score: zip_code_score,
                 crimes: zip_code_crimes,
@@ -549,6 +571,8 @@ angular.module('realValue')
                 house_zscore: zip_code_house_zscore,
                 housing: zip_code_housing
             };
+
+            //console.info("info ", mc.information);
             //info.update(layer.feature.properties);
         }
 
@@ -557,7 +581,7 @@ angular.module('realValue')
             //console.log(e);
             var layer = e.target;
             layer.setStyle({
-                weight: 2,
+                weight: 1,
                 opacity: 1,
                 color: 'white',
                 dashArray: ''
@@ -768,6 +792,7 @@ angular.module('realValue')
 
         function zoomToFeature(e) {
             mc.currentInfo = mc.information;
+            console.log(mc.currentInfo);
             mc.area_click_on=e.target.feature.properties.name;
             mc.county_click_on=e.target.feature.properties.county;
             //console.log("zip obj ",e.target.feature.properties);
@@ -799,7 +824,9 @@ angular.module('realValue')
                     }
                     dataService.indexMarkerInZip(mc.area_click_on);
                     var crime_and_job={};
-                    console.log(city);
+                    console.log("dataService.firebase", dataService);
+                    console.info("info ", mc.information);
+                    console.info("city ", mc.information);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]!==undefined)
@@ -876,7 +903,7 @@ angular.module('realValue')
                                             pie.push(temp);
                                         }
                                     }
-                                    console.log(pie);
+                                    //console.log(pie);
                                     var z_bar_chart_data=[];
                                     if(county==="O"){
                                         console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
@@ -945,7 +972,7 @@ angular.module('realValue')
                     });
                 });
 
-                map.fitBounds(e.target.getBounds(),{padding: [230, 230]});
+                map.fitBounds(e.target.getBounds(),{padding: [140, 140]});
 
             });
         }
@@ -1033,7 +1060,7 @@ angular.module('realValue')
             console.log("markers", Object.size(res_markers));
 
             if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
-                mc.showToastyToast();
+                mc.showToastyToast('Sorry, there are no place markers in this area.');
             }
             //console.log("markers", res_markers);
             //console.log("geoJson2", dataService.placesGeojson2);
@@ -1048,7 +1075,7 @@ angular.module('realValue')
         function style(feature) {
             return {
                 fillColor: getColor(feature.properties.score),
-                weight: 2,
+                weight: 1,
                 opacity: 1,
                 color: 'white',
                 dashArray: '',
@@ -1068,17 +1095,17 @@ angular.module('realValue')
         }
 
         function getColor(d) {
-            return d > 3 ? '#006837' :
-                d > 2.5  ? '#1a9850' :
-                d > 2.25  ? '#66bd63' :
+            return d > 5 ? '#006837' :
+                d > 4.25  ? '#1a9850' :
+                d > 3  ? '#66bd63' :
                 d > 2  ? '#a6d96a' :
                 d > 1.75   ? '#d9ef8b' :
                 d > 1.5  ? '#ffffbf' :
-                d > 1  ? '#fee08b' :
-                d > .5   ? '#fdae61' :
+                d > 1.25  ? '#fee08b' :
+                d > 1   ? '#fdae61' :
                 d > 0   ? '#f46d43' :
                 d > -1   ? '#d73027' :
-                d > -3   ? '#a50026' : '#888888';
+                d > -2   ? '#a50026' : '#888888';
         }
 
         function getCountyColor(d) {
@@ -1119,24 +1146,13 @@ angular.module('realValue')
                     //mc.city_geojson();
                 }
 
-                if (map.getZoom() > 9 && map.getZoom() <=10 ) {
+                if (map.getZoom() <10 ) {
                     //mc.zipcode_zoom();
                     mc.markers_zoom();
                 }
 
-                if (map.getZoom() > 12) {
-                    $timeout(function(){
-                        var restaurantContainer = $('.icon-restaurant-class');
-                        var restaurantIcon = $("<md-button class='md-fab md-accent md-mini icon-restaurant-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
-                        restaurantContainer.html('');
-                        restaurantContainer.append($compile(restaurantIcon)($scope));
-                        var schoolContainer = $('.icon-school-class');
-                        var schoolIcon = $("<md-button class='md-fab md-accent md-mini icon-school-class'><md-icon md-font-set='material-icons'>school</md-icon></md-button>");
-                        schoolContainer.html('');
-                        schoolContainer.append($compile(schoolIcon)($scope));
-                        $scope.$apply();
-                    });
-                    //mc.markers_zoom();
+                if (map.getZoom() > 10) {
+
                 }
 
             });
@@ -1170,16 +1186,16 @@ angular.module('realValue')
 
             $mdToast.show(
                 $mdToast.simple()
-                    .textContent('Simple Toast!')
+                    .textContent('No Search Results Found')
                     .position(pinTo)
                     .hideDelay(4000)
             );
         };
 
-        mc.showToastyToast = function() {
+        mc.showToastyToast = function(paramText) {
             var pinTo = mc.getToastPosition();
             var toast = $mdToast.simple()
-                .textContent('Sorry, there were no results for this selection.')
+                .textContent(paramText)
                 .action('OK')
                 .highlightAction(true)
                 .highlightClass('md-primary')
