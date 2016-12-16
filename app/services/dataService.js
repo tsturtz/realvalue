@@ -4,6 +4,15 @@ angular.module('realValue')
 
         self.progress = true;
 
+        self.init_promise = function() {
+
+            self.defer = $q.defer();
+
+            return self.defer.promise;
+        };
+
+
+
         var config = {
             apiKey: "AIzaSyDA0QfT-TwSiFshrNjrg3yQ67bPBo4HVsw",
             authDomain: "realvalue-ebd58.firebaseapp.com",
@@ -333,7 +342,13 @@ angular.module('realValue')
                 }
 
             }
+            self.progress_promise();
         };
+
+        self.progress_promise = function() {
+            self.defer.resolve();
+        }
+
         //self.crime_and_job =crime_and_job_data_analysis;
         self.calculateStatisticZScore = function(data, prop, pop, county) {
             if(county === 'oc'){

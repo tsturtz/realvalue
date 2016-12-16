@@ -287,11 +287,15 @@ angular.module('realValue')
 
         mc.city_zoom(9);
         mc.zipcode_zoom(9);
-        if (dataService.progress === false) {
-            $scope.progress = false;
-        } else {
-            $scope.progress = true;
-        }
+
+        angular.extend($scope, {
+            progress: true
+        });
+        dataService.init_promise().then(function(response){
+            angular.extend($scope, {
+                progress: false
+            });
+        });
 
         this.markers_zoom = function() {
             console.log("extend marker");
@@ -419,13 +423,12 @@ angular.module('realValue')
                                 mc.centerToCoordinates(geocoding,bounds,postal_code);
                             } else {
                                 // Results not in LA or OC
-                                mc.showToastyToast();
+                                mc.showToastyToast('Sorry, please search in Orange or Los Angeles County.');
                             }
                         } else {
                             //No results at all
                             mc.showSimpleToast();
                         }
-
 
                     });
                 }
@@ -1033,7 +1036,7 @@ angular.module('realValue')
             console.log("markers", Object.size(res_markers));
 
             if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
-                mc.showToastyToast();
+                mc.showToastyToast('Sorry, there are no place markers in this area.');
             }
             //console.log("markers", res_markers);
             //console.log("geoJson2", dataService.placesGeojson2);
@@ -1068,17 +1071,17 @@ angular.module('realValue')
         }
 
         function getColor(d) {
-            return d > 3 ? '#006837' :
-                d > 2.5  ? '#1a9850' :
+            return d > 5 ? '#006837' :
+                d > 4.25  ? '#1a9850' :
                 d > 2.25  ? '#66bd63' :
                 d > 2  ? '#a6d96a' :
                 d > 1.75   ? '#d9ef8b' :
                 d > 1.5  ? '#ffffbf' :
                 d > 1  ? '#fee08b' :
-                d > .5   ? '#fdae61' :
-                d > 0   ? '#f46d43' :
-                d > -1   ? '#d73027' :
-                d > -3   ? '#a50026' : '#888888';
+                d > .75   ? '#fdae61' :
+                d > .5   ? '#f46d43' :
+                d > 0   ? '#d73027' :
+                d > -1   ? '#a50026' : '#888888';
         }
 
         function getCountyColor(d) {
@@ -1170,16 +1173,16 @@ angular.module('realValue')
 
             $mdToast.show(
                 $mdToast.simple()
-                    .textContent('Simple Toast!')
+                    .textContent('No Search Results Found')
                     .position(pinTo)
                     .hideDelay(4000)
             );
         };
 
-        mc.showToastyToast = function() {
+        mc.showToastyToast = function(paramText) {
             var pinTo = mc.getToastPosition();
             var toast = $mdToast.simple()
-                .textContent('Sorry, there were no results for this selection.')
+                .textContent(paramText)
                 .action('OK')
                 .highlightAction(true)
                 .highlightClass('md-primary')
