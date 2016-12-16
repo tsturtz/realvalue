@@ -290,6 +290,15 @@ angular.module('realValue')
 
         this.markers_zoom = function() {
             console.log("extend marker");
+            var center = {
+                lat: varMap.getCenter().lat,
+                lng: varMap.getCenter().lng,
+                zoom: varMap.getZoom() - 1
+            };
+
+            angular.extend($scope, {
+                center: center
+            });
         };
 
         this.zoom_out = function() {
@@ -1148,8 +1157,9 @@ angular.module('realValue')
                     //mc.city_geojson();
                 }
 
-                if (map.getZoom() > 9 && map.getZoom() <=12 ) {
+                if (map.getZoom() > 9 && map.getZoom() <=10 ) {
                     //mc.zipcode_zoom();
+                    mc.markers_zoom();
                 }
 
                 if (map.getZoom() > 12) {

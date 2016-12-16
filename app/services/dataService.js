@@ -123,6 +123,7 @@ angular.module('realValue')
             var lookup_zip;
             var jobs_openings;
             var jobrate;
+            var crimerate;
             var crimes;
             var housing;
             var population;
@@ -181,11 +182,13 @@ angular.module('realValue')
                             console.log("population",population);
                         }
 
-                        job_zscore = self.calculateStatisticZScore(jobs_openings, "job", population, "oc");
-                        crime_zscore = self.calculateStatisticZScore( ((crimes/population)*100000 ), "crimerate", population, "oc");
+                        crimerate = ((crimes/population)*100000);
+                        jobrate = ( (jobs_openings/population)*100000);
+                        job_zscore = self.calculateStatisticZScore(jobrate, "jobrate", population, "oc");
+                        crime_zscore = self.calculateStatisticZScore(crimerate, "crimerate", population, "oc");
                         house_zscore = self.calculateStatisticZScore(housing, "zindex", population, "oc");
 
-                        //console.log("job zscore " + job_zscore);
+                        console.log("job zscore " + job_zscore);
                         //console.log("crime zscore " + crime_zscore);
                         tammy_geojson.features[i].properties.housing = parseInt(housing);
                         tammy_geojson.features[i].properties.population = parseInt(population);
@@ -281,9 +284,10 @@ angular.module('realValue')
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
                         score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
 
-                        var crimerate = (parseInt(crimes)/parseInt(population)) * 100000;
+                        crimerate = ((crimes/population)*100000);
+                        jobrate = ( (jobs_openings/population)*100000);
 
-                        job_zscore = self.calculateStatisticZScore(jobs_openings, "job", population, "la");
+                        job_zscore = self.calculateStatisticZScore(jobrate, "jobrate", population, "la");
                         crime_zscore = self.calculateStatisticZScore(crimerate, "crimerate", population, "la");
                         house_zscore = self.calculateStatisticZScore(housing, "zindex", population, "la");
 
@@ -333,9 +337,9 @@ angular.module('realValue')
             if(county === 'oc'){
                 //console.error("county OC",county);
             }
-            if(prop === "job") {
+            if(prop === "jobrate") {
                 var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
-                var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.jobSD;
+                var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.jobrateSD;
                 return zscore;
             }
             if(prop === "crimerate") {
