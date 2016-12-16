@@ -287,11 +287,15 @@ angular.module('realValue')
 
         mc.city_zoom(9);
         mc.zipcode_zoom(9);
-        if (dataService.progress === false) {
-            $scope.progress = false;
-        } else {
-            $scope.progress = true;
-        }
+
+        angular.extend($scope, {
+            progress: true
+        });
+        dataService.init_promise().then(function(response){
+            angular.extend($scope, {
+                progress: false
+            });
+        });
 
         this.markers_zoom = function() {
             console.log("extend marker");
@@ -425,7 +429,6 @@ angular.module('realValue')
                             //No results at all
                             mc.showSimpleToast();
                         }
-
 
                     });
                 }
