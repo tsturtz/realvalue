@@ -824,9 +824,9 @@ angular.module('realValue')
                     }
                     dataService.indexMarkerInZip(mc.area_click_on);
                     var crime_and_job={};
-                    console.log("dataService.firebase", dataService);
+                    console.log("dataService.firebase", dataService.firebase);
                     console.info("info ", mc.information);
-                    console.info("city ", mc.information);
+                    console.info("city ", city[i]);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]!==undefined)
