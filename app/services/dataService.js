@@ -194,6 +194,9 @@ angular.module('realValue')
                         }
 
                         crimerate = ((crimes/population)*100000);
+                        if(isNaN(crimerate)) {
+                            console.log("Crime is NaN for " + zip_city,lookup_zip);
+                        }
                         jobrate = ( (jobs_openings/population)*100000);
                         job_zscore = self.calculateStatisticZScore(jobrate, "jobrate", population, "oc");
                         crime_zscore = self.calculateStatisticZScore(crimerate, "crimerate", population, "oc");
@@ -296,6 +299,9 @@ angular.module('realValue')
                         score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
 
                         crimerate = ((crimes/population)*100000);
+                        if(isNaN(crimerate)) {
+                            console.log("Crime is NaN for " + zip_city,lookup_zip);
+                        }
                         jobrate = ( (jobs_openings/population)*100000);
 
                         job_zscore = self.calculateStatisticZScore(jobrate, "jobrate", population, "la");
