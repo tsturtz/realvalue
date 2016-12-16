@@ -792,6 +792,7 @@ angular.module('realValue')
 
         function zoomToFeature(e) {
             mc.currentInfo = mc.information;
+            console.log(mc.currentInfo);
             mc.area_click_on=e.target.feature.properties.name;
             mc.county_click_on=e.target.feature.properties.county;
             //console.log("zip obj ",e.target.feature.properties);
