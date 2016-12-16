@@ -52,6 +52,7 @@ angular.module('realValue')
         };
 
         self.makePlacesGeojson = function (clicked) {
+            console.log("clicked is ",clicked);
             var defer = $q.defer();
 
             fbRef.ref("/markerIndexZip/").once('value', function (snapshot) {
@@ -173,6 +174,8 @@ angular.module('realValue')
                 } else {
                     //console.log("zip city", zip_city);
                     if(zip_city[0] != undefined) {
+                        var display_city = zip_city[0];
+                        tammy_geojson.features[i].properties.city = display_city.replace(", CA","");
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
@@ -189,20 +192,24 @@ angular.module('realValue')
                         population = self.pfirebase[zip_city[0]];
 
                         if(population === undefined) {
-                            console.log("city",zip_city[0]);
-                            console.log("population",population);
+                            console.error("population is undefined for ", zip_city[0]);
+                            if(crimes === 0){
+                                population = 1;
+                            }
                         }
 
                         crimerate = ((crimes/population)*100000);
                         if(isNaN(crimerate)) {
                             console.log("Crime is NaN for " + zip_city,lookup_zip);
+                            console.log("crime",crimes);
+                            console.log("population",population);
                         }
                         jobrate = ( (jobs_openings/population)*100000);
                         job_zscore = self.calculateStatisticZScore(jobrate, "jobrate", population, "oc");
                         crime_zscore = self.calculateStatisticZScore(crimerate, "crimerate", population, "oc");
                         house_zscore = self.calculateStatisticZScore(housing, "zindex", population, "oc");
 
-                        console.log("job zscore " + job_zscore);
+                        //console.log("job zscore " + job_zscore);
                         //console.log("crime zscore " + crime_zscore);
                         tammy_geojson.features[i].properties.housing = parseInt(housing);
                         tammy_geojson.features[i].properties.population = parseInt(population);
@@ -281,6 +288,7 @@ angular.module('realValue')
                         defined_city = true;
                     }
                     if(zip_city[0] != undefined && defined_city){
+                       losangeles_geojson.features[i].properties.city = display_city.replace(", CA","");
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
@@ -293,7 +301,11 @@ angular.module('realValue')
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         housing = self.zfirebase.lc[lookup_zip];
                         population = self.pfirebase[zip_city[0]];
-
+                        if(population === undefined) {
+                            console.error("population is undefined for ", zip_city[0]);
+                            if(crimes === 0){
+                            }
+                        }
                         //console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
                         score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
@@ -301,6 +313,8 @@ angular.module('realValue')
                         crimerate = ((crimes/population)*100000);
                         if(isNaN(crimerate)) {
                             console.log("Crime is NaN for " + zip_city,lookup_zip);
+                            console.log("crime",crimes);
+                            console.log("population",population);
                         }
                         jobrate = ( (jobs_openings/population)*100000);
 
@@ -338,7 +352,7 @@ angular.module('realValue')
                             score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1)+ (house_zscore.toFixed(2) * 1);
                             console.error("zscore " + lookup_zip, score);
                         }
-                        if (job_zscore > 3) {
+                        if (job_zscore > 10) {
                             console.error("outlier for crime: " + lookup_zip, crime_zscore);
                             console.error("outlier for house: " + lookup_zip, house_zscore);
                             console.error("outlier for job: " + lookup_zip, job_zscore);
@@ -368,12 +382,6 @@ angular.module('realValue')
             if(prop === "crimerate") {
                 var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
                 var zscore = (data - property_avg)/this.crime_and_job_data_analysis.all.crimerateSD;
-                if (isNaN(zscore) || zscore === undefined) {
-                    console.info("data", data);
-                    console.info("property avg", property_avg);
-                    console.info("zscore ", zscore);
-                    console.error("Error in your data",county);
-                }
                 return zscore;
             }
             if(prop === "zindex") {
