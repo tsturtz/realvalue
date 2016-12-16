@@ -572,7 +572,7 @@ angular.module('realValue')
                 housing: zip_code_housing
             };
 
-            console.info("info ", mc.information);
+            //console.info("info ", mc.information);
             //info.update(layer.feature.properties);
         }
 
@@ -823,7 +823,9 @@ angular.module('realValue')
                     }
                     dataService.indexMarkerInZip(mc.area_click_on);
                     var crime_and_job={};
-                    console.log(city);
+                    console.log("dataService.firebase", dataService);
+                    console.info("info ", mc.information);
+                    console.info("city ", mc.information);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]!==undefined)
@@ -900,7 +902,7 @@ angular.module('realValue')
                                             pie.push(temp);
                                         }
                                     }
-                                    console.log(pie);
+                                    //console.log(pie);
                                     var z_bar_chart_data=[];
                                     if(county==="O"){
                                         console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
@@ -969,7 +971,7 @@ angular.module('realValue')
                     });
                 });
 
-                map.fitBounds(e.target.getBounds(),{padding: [120, 120]});
+                map.fitBounds(e.target.getBounds(),{padding: [140, 140]});
 
             });
         }
@@ -1094,12 +1096,12 @@ angular.module('realValue')
         function getColor(d) {
             return d > 5 ? '#006837' :
                 d > 4.25  ? '#1a9850' :
-                d > 2.25  ? '#66bd63' :
+                d > 3  ? '#66bd63' :
                 d > 2  ? '#a6d96a' :
                 d > 1.75   ? '#d9ef8b' :
                 d > 1.5  ? '#ffffbf' :
-                d > 1  ? '#fee08b' :
-                d > .5   ? '#fdae61' :
+                d > 1.25  ? '#fee08b' :
+                d > 1   ? '#fdae61' :
                 d > 0   ? '#f46d43' :
                 d > -1   ? '#d73027' :
                 d > -2   ? '#a50026' : '#888888';

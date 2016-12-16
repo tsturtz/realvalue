@@ -188,11 +188,18 @@ angular.module('realValue')
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
                             //console.log("crime totals ", crimes);
                             tammy_geojson.features[i].properties.crimes = crimes;
+                        } else {
+                            //console.error("This zone is missing crime from combined",lookup_zip,zip_city[0]);
+                            var modified_city = zip_city[0];
+                            var replaced_city = modified_city.replace(", CA","").replace(" ","-");
+                            if(self.all.crime["2014"].hasOwnProperty(replaced_city)) {
+                                crimes = self.all.crime["2014"][replaced_city]["total crime number"];
+                                tammy_geojson.features[i].properties.crimes = crimes;
+                            } else {
+                                console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data");
+                            }
                         }
 
-                        if (crimes === undefined) {
-                            console.error("This zone is missing crime ",lookup_zip,zip_city[0]);
-                        }
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         tammy_geojson.features[i].properties.jobs = jobs_openings;
                         //console.log("self firebase2", self.zfirebase.oc[lookup_zip]);
@@ -234,7 +241,7 @@ angular.module('realValue')
                             console.log("crime zscore " + lookup_zip, crime_zscore);
                             console.log("house zscore " + lookup_zip, house_zscore);
                             score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1);
-                        } else if (lookup_zip === '91748' ) { // lookup individual zip codes
+                        } else if (lookup_zip === '92637' ) { // lookup individual zip codes
                             console.error("zip code " + lookup_zip, lookup_zip);
 
                             console.error("housing " + lookup_zip, housing);
@@ -270,20 +277,6 @@ angular.module('realValue')
                 if (zip_city.length > 1) {
                     for (var j = 0; j < zip_city.length; j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
-                        if (zip_city[j] != '') {
-                            jobs_openings = self.firebase[zip_city[j]]["Number of job openings"].all;
-                            if(self.firebase[zip_city[j]].hasOwnProperty("zip_codes")
-                                && self.firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
-                                && self.firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime")) {
-                                crimes = self.firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                                console.log("crime totals ", crimes);
-                                losangeles_geojson.features[i].properties.crimes = crimes;
-                            } else {
-                                crimes = 0;
-                            }
-                            losangeles_geojson.features[i].properties.jobs = jobs_openings;
-                            score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                        }
                     }
 
                 } else {
@@ -306,7 +299,15 @@ angular.module('realValue')
                             //console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
                         } else {
-                            crimes = 0;
+                            //console.error("This zone is missing crime from combined",lookup_zip,zip_city[0]);
+                            var modified_city = zip_city[0];
+                            var replaced_city = modified_city.replace(", CA","").replace(" ","-");
+                            if(self.all.crime["2014"].hasOwnProperty(replaced_city)) {
+                                crimes = self.all.crime["2014"][replaced_city]["total crime number"];
+                                losangeles_geojson.features[i].properties.crimes = crimes;
+                            } else {
+                                console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data");
+                            }
                         }
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         housing = self.zfirebase.lc[lookup_zip];
