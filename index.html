@@ -98,8 +98,8 @@
              width="100%" height="100vh"></leaflet>
 
     <!--<md-progress-circular md-mode="indeterminate" ng-if="root.activated" class="md-primary" md-diameter="50"></md-progress-circular>-->
-    <md-progress-circular md-mode="indeterminate" ng-if="progress" class="md-warn"
-                          md-diameter="50"></md-progress-circular>
+    <div id="greyBG" ng-if="progress"><md-progress-circular md-mode="indeterminate"  class="md-primary"
+                          md-diameter="50"></md-progress-circular></div>
 
     <div id="main-container" ng-controller="navCtrl as nc">
 
