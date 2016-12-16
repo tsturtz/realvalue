@@ -531,7 +531,7 @@ angular.module('realValue')
             var zip_code_house_zscore = e.target.feature.properties.house_zscore;
 
             layer.setStyle({
-                weight: 5,
+                weight: 3,
                 color: '#666',
                 dashArray: '',
                 fillOpacity: 0.7
@@ -560,7 +560,7 @@ angular.module('realValue')
             //console.log(e);
             var layer = e.target;
             layer.setStyle({
-                weight: 2,
+                weight: 1,
                 opacity: 1,
                 color: 'white',
                 dashArray: ''
@@ -1051,7 +1051,7 @@ angular.module('realValue')
         function style(feature) {
             return {
                 fillColor: getColor(feature.properties.score),
-                weight: 2,
+                weight: 1,
                 opacity: 1,
                 color: 'white',
                 dashArray: '',
@@ -1078,10 +1078,10 @@ angular.module('realValue')
                 d > 1.75   ? '#d9ef8b' :
                 d > 1.5  ? '#ffffbf' :
                 d > 1  ? '#fee08b' :
-                d > .75   ? '#fdae61' :
-                d > .5   ? '#f46d43' :
-                d > 0   ? '#d73027' :
-                d > -1   ? '#a50026' : '#888888';
+                d > .5   ? '#fdae61' :
+                d > 0   ? '#f46d43' :
+                d > -1   ? '#d73027' :
+                d > -2   ? '#a50026' : '#888888';
         }
 
         function getCountyColor(d) {
