@@ -288,6 +288,47 @@ angular.module('realValue')
             //console.log("center", varMap.getCenter());
             angular.extend($scope, {
                 center: varcenter,
+                defaults: {
+                zoomAnimation: true
+            },
+            legend: {
+                position: 'bottomright',
+                    colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#888888' ],
+                    labels: [ 'Best', 'Good', 'Average', 'Bad', 'Worst', 'No Data']
+            },
+            maxbounds: {
+                southWest: {
+                    lat:32.98,
+                        lng: -116.011
+                },
+                northEast: {
+                    lat:35.32,
+                        lng:-120.324
+                }
+
+            },
+            tiles: {
+                //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+                //url: "http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}",
+                url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
+                    options: {
+                    //attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
+                }
+            },
+            controls: {},
+            layers: {
+                overlays: {
+                    restaurant: {
+                        name: 'restaurant',
+                            type: 'markercluster',
+                            visible: true,
+                            layerOptions: {
+                            showCoverageOnHover: false,
+                                disableClusteringAtZoom: 17
+                        }
+                    }
+                }
+            },
                 geojson : {
                     data: [ tammy_geojson,
                             losangeles_geojson
