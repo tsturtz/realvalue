@@ -196,7 +196,7 @@ angular.module('realValue')
                                 crimes = self.all.crime["2014"][replaced_city]["total crime number"];
                                 tammy_geojson.features[i].properties.crimes = crimes;
                             } else {
-                                console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data");
+                                console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data: " + crimes);
                             }
                         }
 
