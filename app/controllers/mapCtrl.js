@@ -1,8 +1,9 @@
 angular.module('realValue')
 
-    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', '$mdToast', 'geoCodingService', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, $mdToast, geoCodingService) {
+    .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', '$mdToast', 'geoCodingService', '$compile', '$timeout', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, $mdToast, geoCodingService, $compile, $timeout) {
         var mc = this;
-        var varMap;
+        mc.varMap;
+        //mc.gjLayer;
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             varMap = map;
@@ -16,17 +17,17 @@ angular.module('realValue')
         }, 400);
 
         var divIcon = {
-                type: 'div',
-                iconSize: [40, 40],
-                popupAnchor:  [0, 0],
-                html: "<div><md-button class='md-fab md-warn md-mini'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button></div>"
+            type: 'div',
+            iconSize: [40, 40],
+            popupAnchor:  [0, 0],
+            html: "<div class='icon-restaurant-class'></div>"
         };
 
         var schoolIcon = {
             type: 'div',
             iconSize: [40, 40],
             popupAnchor:  [0, 0],
-            html: "<div><img src='./assets/img/restaurant-marker.png' /></div>"
+            html: "<div class='icon-restaurant-class'></div>"
         };
 
         //console.log("icon ", divIcon);
@@ -34,7 +35,6 @@ angular.module('realValue')
             style: style
         });
 
-        self.name = "Map Obj";
         dataService.weikuan_init();
         console.log("init map");
 
@@ -258,7 +258,7 @@ angular.module('realValue')
             mc.cityLayer = false;
             mc.zipLayer = true;
             console.log("extend zip");
-            if(varMap === undefined) {
+            if(mc.varMap === undefined) {
                 var varcenter = {
                     lat: 33.8247936182649,
                     lng: -118.03985595703125,
@@ -305,9 +305,9 @@ angular.module('realValue')
             //console.log("zoom out");
             //console.log(varMap.getZoom());
             var center = {
-                lat: varMap.getCenter().lat,
-                lng: varMap.getCenter().lng,
-                zoom: varMap.getZoom() - 1
+                lat: mc.varMap.getCenter().lat,
+                lng: mc.varMap.getCenter().lng,
+                zoom: mc.varMap.getZoom() - 1
             };
 
             angular.extend($scope, {
@@ -319,9 +319,9 @@ angular.module('realValue')
             //console.log("zoom in");
             //console.log(varMap.getZoom());
             var center = {
-                lat: varMap.getCenter().lat,
-                lng: varMap.getCenter().lng,
-                zoom: varMap.getZoom() + 1
+                lat: mc.varMap.getCenter().lat,
+                lng: mc.varMap.getCenter().lng,
+                zoom: mc.varMap.getZoom() + 1
             };
 
             angular.extend($scope, {
@@ -433,13 +433,14 @@ angular.module('realValue')
             var center = {
                 lat: obj.lat,
                 lng: obj.lng,
-                zoom: varMap.getZoom()
+                zoom: mc.varMap.getZoom()
             };
 
             angular.extend($scope, {
                 center: center
             });
-            varMap.fitBounds(bounds,{padding: [150, 150]});
+
+            mc.varMap.fitBounds(bounds,{padding: [150, 150]});
 
             if(boolean) {
                 this.zipcode_zoom();
@@ -1028,7 +1029,6 @@ angular.module('realValue')
 
             if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
                 mc.showToastyToast();
-                //alert("Taylor, put toast for no markers results here!");
             }
             //console.log("markers", res_markers);
             //console.log("geoJson2", dataService.placesGeojson2);
@@ -1036,6 +1036,8 @@ angular.module('realValue')
             angular.extend($scope, {
                 markers: res_markers
             });
+
+            console.log('More markers:', res_markers);
         };
 
         function style(feature) {
@@ -1061,15 +1063,6 @@ angular.module('realValue')
         }
 
         function getColor(d) {
-/*            return d > 85000 ? '#FF403D' :
-                d > 75000  ? '#DA4C47' :
-                d > 65000  ? '#B65852' :
-                d > 55000  ? '#91655D' :
-                d > 45000   ? '#6D7167' :
-                d > 35000   ? '#487E72' :
-                d > 25000   ? '#248A7D' :
-                           '#009788';*/
-
             return d > 3 ? '#006837' :
                 d > 2.5  ? '#1a9850' :
                 d > 2.25  ? '#66bd63' :
@@ -1080,57 +1073,21 @@ angular.module('realValue')
                 d > .5   ? '#fdae61' :
                 d > 0   ? '#f46d43' :
                 d > -1   ? '#d73027' :
-                d > -2   ? '#a50026' : '#888888';
-/*
-            return d > 8000000 ? '#d73027' : //green
-                d > 100000  ? '#029D73' :
-                d > 60000  ? '#04A35D' :
-                d > 50000  ? '#07A946' :
-                d > 40000   ? '#09AF2E' :
-                d > 30000   ? '#0CB515' :
-                d > 10000   ? '#24BB0F' :
-                d > 5000   ? '#45C113' :
-                d > 1000   ? '#67C716' :
-                d > 100   ? '#8ACE1A' :
-                d > 10   ? '#AFD41D' :
-                d > 0   ? '#D4DA21' :
-                d > -100   ? '#E0C725' :
-                d > -1000      ? '#E6AC2A' :
-                d > -5000   ? '#EC922E' :
-                d > -10000   ? '#F27733' :
-                d > -50000   ? '#F85B38' :
-                d > -75000    ? '#FF403D' :
-                '#000'; //red
-                */
+                d > -3   ? '#a50026' : '#888888';
         }
 
         function getCountyColor(d) {
-/*            return d > 8000000 ? '#009788' :
-                d > 5000000  ? '#248A7D' :
-                d > 3000000  ? '#487E72' :
-                d > 1000000  ? '#6D7167' :
-                d > 500000   ? '#91655D' :
-                d > 300000   ? '#B65852' :
-                d > 100000   ? '#DA4C47' :
-                              '#FF403D';*/
-            return d > 8000000 ? '#009787' : //green
-                d > 17  ? '#029D73' :
-                d > 16  ? '#04A35D' :
-                d > 15  ? '#07A946' :
-                d > 14   ? '#09AF2E' :
-                d > 13   ? '#0CB515' :
-                d > 12   ? '#24BB0F' :
-                d > 11   ? '#45C113' :
-                d > 10   ? '#67C716' :
-                d > 9   ? '#8ACE1A' :
-                d > 8   ? '#AFD41D' :
-                d > 7   ? '#D4DA21' :
-                d > 6   ? '#E0C725' :
-                d > 5   ? '#E6AC2A' :
-                d > 4   ? '#EC922E' :
-                d > 3   ? '#F27733' :
-                d > 2   ? '#F85B38' :
-                '#FF403D'; //red
+            return d > 3 ? '#006837' :
+                d > 1  ? '#1a9850' :
+                d > .15  ? '#66bd63' :
+                d > .10  ? '#a6d96a' :
+                d > .08   ? '#d9ef8b' :
+                d > .05   ? '#ffffbf' :
+                d > .03  ? '#fee08b' :
+                d > .01   ? '#fdae61' :
+                d > 0   ? '#f46d43' :
+                d > -1   ? '#d73027' :
+                    d > -3   ? '#a50026' : '#888888';
         }
 
         Object.size = function(obj) {
@@ -1163,11 +1120,28 @@ angular.module('realValue')
                 }
 
                 if (map.getZoom() > 12) {
+                    $timeout(function(){
+                        var restaurantContainer = $('.icon-restaurant-class');
+                        var restaurantIcon = $("<md-button class='md-fab md-accent md-mini icon-restaurant-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
+                        restaurantContainer.html('');
+                        restaurantContainer.append($compile(restaurantIcon)($scope));
+                        var schoolContainer = $('.icon-school-class');
+                        var schoolIcon = $("<md-button class='md-fab md-accent md-mini icon-school-class'><md-icon md-font-set='material-icons'>school</md-icon></md-button>");
+                        schoolContainer.html('');
+                        schoolContainer.append($compile(schoolIcon)($scope));
+                        $scope.$apply();
+                    });
                     //mc.markers_zoom();
                 }
 
             });
         });
+
+        mc.checkZoom = function (zoomLevel) {
+            if (mc.varMap !== undefined && mc.varMap.getZoom() === zoomLevel) {
+                return true;
+            }
+        };
 
         // TOAST!
 
@@ -1208,7 +1182,7 @@ angular.module('realValue')
 
             $mdToast.show(toast).then(function(response) {
                 if ( response == 'ok' ) {
-                    //alert('You clicked the action.');
+                    // whatever happens after toast 'OK' click
                 }
             });
         };

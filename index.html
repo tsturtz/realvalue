@@ -19,6 +19,8 @@
     <!--RealValue Style Sheets-->
     <link rel="stylesheet" type="text/css" href="style.css">
 
+    <!--Jquery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
     <!-- Angular.js Libraries -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -32,9 +34,6 @@
 
     <!-- Firebase Database -->
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
-
-    <!--Jquery -->
-    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
     <!--Map Js -->
     <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
@@ -248,10 +247,10 @@
         </md-toolbar>
 
         <div class="zoom-btns" layout="column">
-            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_in()">
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_in()" ng-disabled="mc.checkZoom(18)">
                 <md-icon class="zoom-btns-icons" md-font-set="material-icons">add</md-icon>
             </md-button>
-            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_out()">
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_out()" ng-disabled="mc.checkZoom(9)">
                 <md-icon class="zoom-btns-icons" md-font-set="material-icons">remove</md-icon>
             </md-button>
         </div>

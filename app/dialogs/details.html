@@ -38,8 +38,8 @@
                 <div class="place-reviews" ng-repeat="review in dc.placeObj.reviews">
                     <md-divider class="place-divider"></md-divider>
                     <span>
-                        <md-icon ng-repeat="rating in dc.starRange(review.rating) track by $index" class="md-primary" md-font-set="material-icons">star_rate</md-icon>
-                        <md-icon ng-repeat="remaining in dc.starsRemaining(dc.remaining) track by $index" class="md-primary" md-font-set="material-icons">star_border</md-icon>
+                        <md-icon ng-repeat="rating in dc.starRange(review.rating) track by $index" class="md-primary" md-font-set="material-icons">star_rate</md-icon><!--
+                        --><md-icon ng-repeat="remaining in dc.starsRemaining(dc.remaining) track by $index" class="md-primary" md-font-set="material-icons">star_border</md-icon>
                     </span>
                     {{review.text}}
                 </div>
