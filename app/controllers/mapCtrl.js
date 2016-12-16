@@ -5,6 +5,17 @@ angular.module('realValue')
         mc.varMap;
         //mc.gjLayer;
 
+        setTimeout(function(){ leafletData.getMap().then(function(map) {
+            varMap = map;
+            //console.log("resize");
+            // This code helps the map not get sized before it is finish loading
+            map.invalidateSize(false);
+            // This code below removes the zoom control that's present on the map
+            map.removeControl(map.zoomControl);
+            map.options.minZoom = 9;
+        });
+        }, 400);
+
         var divIcon = {
             type: 'div',
             iconSize: [40, 40],
@@ -119,17 +130,6 @@ angular.module('realValue')
             }
         });
 
-        setTimeout(function(){ leafletData.getMap().then(function(map) {
-            mc.varMap = map;
-            //console.log("resize");
-            // This code helps the map not get sized before it is finish loading
-            map.invalidateSize(false);
-            // This code below removes the zoom control that's present on the map
-            map.removeControl(map.zoomControl);
-            map.options.minZoom = 9;
-        });
-        }, 400);
-
         this.county_zoom = function() {
             mc.zipLayer = false;
             mc.cityLayer = false;
@@ -229,8 +229,6 @@ angular.module('realValue')
             });
         };
 
-        mc.city_zoom(9);
-
         function roughSizeOfObject( object ) {
             var objectList = [];
             var recurse = function( value ) {
@@ -255,19 +253,21 @@ angular.module('realValue')
             return recurse( object );
         }
 
-        this.zipcode_zoom = function() {
+        this.zipcode_zoom = function(param) {
             mc.countyLayer = false;
             mc.cityLayer = false;
             mc.zipLayer = true;
             console.log("extend zip");
+            if(mc.varMap === undefined) {
+                var varcenter = {
+                    lat: 33.8247936182649,
+                    lng: -118.03985595703125,
+                    zoom: param
+                }
+            }
             //console.log("center", varMap.getCenter());
             angular.extend($scope, {
-                center: {
-                    lat: mc.varMap.getCenter().lat,
-                    lng: mc.varMap.getCenter().lng
-                    //autoDiscover: true,
-                    //zoom: 10
-                },
+                center: varcenter,
                 geojson : {
                     data: [ tammy_geojson,
                             losangeles_geojson
@@ -284,6 +284,9 @@ angular.module('realValue')
                 }
             });
         };
+
+        mc.city_zoom(9);
+        mc.zipcode_zoom(9);
 
         this.markers_zoom = function() {
             console.log("extend marker");
@@ -368,39 +371,47 @@ angular.module('realValue')
 
                     geoCodingService.getAPI(zip).then(function(response){
                         //console.log("response",response);
-                        var components = response.data.results[0].address_components;
-                        var matched_state;
-                        var matched_county;
-                        var postal_code;
-                        for(var i =0;i<components.length;i++){
-                            //console.log(components[i]);
-                            if(components[i].types[0] === 'postal_code') {
-                                postal_code = true;
-                            }
-                            if(components[i].short_name === 'CA') {
-                                console.log("match state!");
-                                matched_state = components[i].short_name;
-                            }
-                            if(components[i].short_name === 'Orange County' || components[i].short_name === 'Los Angeles County') {
-                                console.log("match county!");
-                                matched_county = components[i].short_name;
-                            }
-                        }
-                        var boundsObj = response.data.results[0].geometry.bounds;
-                        var southWest = L.latLng(boundsObj.southwest.lat, boundsObj.southwest.lng);
-                        var northEast = L.latLng(boundsObj.northeast.lat, boundsObj.northeast.lng);
 
-                        var bounds = L.latLngBounds(southWest, northEast);
+                        if(response.data.results.length){
+                            var components = response.data.results[0].address_components;
+                            var matched_state;
+                            var matched_county;
+                            var postal_code;
+                            for(var i =0;i<components.length;i++){
+                                //console.log(components[i]);
+                                if(components[i].types[0] === 'postal_code') {
+                                    postal_code = true;
+                                }
+                                if(components[i].short_name === 'CA') {
+                                    console.log("match state!");
+                                    matched_state = components[i].short_name;
+                                }
+                                if(components[i].short_name === 'Orange County' || components[i].short_name === 'Los Angeles County') {
+                                    console.log("match county!");
+                                    matched_county = components[i].short_name;
+                                }
+                            }
+                            var boundsObj = response.data.results[0].geometry.bounds;
+                            var southWest = L.latLng(boundsObj.southwest.lat, boundsObj.southwest.lng);
+                            var northEast = L.latLng(boundsObj.northeast.lat, boundsObj.northeast.lng);
 
-                        console.log("matched state", matched_state);
-                        console.log("matched county", matched_county);
-                        console.log("postal search", postal_code);
-                        if(matched_state === 'CA' && (matched_county === 'Orange County' || matched_county === 'Los Angeles County')) {
-                            var geocoding = response.data.results[0].geometry.location;
-                            mc.centerToCoordinates(geocoding,bounds,postal_code);
+                            var bounds = L.latLngBounds(southWest, northEast);
+
+                            console.log("matched state", matched_state);
+                            console.log("matched county", matched_county);
+                            console.log("postal search", postal_code);
+                            if(matched_state === 'CA' && (matched_county === 'Orange County' || matched_county === 'Los Angeles County')) {
+                                var geocoding = response.data.results[0].geometry.location;
+                                mc.centerToCoordinates(geocoding,bounds,postal_code);
+                            } else {
+                                // Results not in LA or OC
+                                mc.showToastyToast();
+                            }
                         } else {
-                            mc.showToastyToast();
+                            //No results at all
+                            mc.showSimpleToast();
                         }
+
 
                     });
                 }
@@ -419,7 +430,8 @@ angular.module('realValue')
             angular.extend($scope, {
                 center: center
             });
-            mc.varMap.fitBounds(bounds);
+
+            mc.varMap.fitBounds(bounds,{padding: [150, 150]});
 
             if(boolean) {
                 this.zipcode_zoom();
@@ -1043,13 +1055,13 @@ angular.module('realValue')
 
         function getColor(d) {
             return d > 3 ? '#006837' :
-                d > 1  ? '#1a9850' :
-                d > .15  ? '#66bd63' :
-                d > .10  ? '#a6d96a' :
-                d > .08   ? '#d9ef8b' :
-                d > .05   ? '#ffffbf' :
-                d > .03  ? '#fee08b' :
-                d > .01   ? '#fdae61' :
+                d > 2.5  ? '#1a9850' :
+                d > 2.25  ? '#66bd63' :
+                d > 2  ? '#a6d96a' :
+                d > 1.75   ? '#d9ef8b' :
+                d > 1.5  ? '#ffffbf' :
+                d > 1  ? '#fee08b' :
+                d > .5   ? '#fdae61' :
                 d > 0   ? '#f46d43' :
                 d > -1   ? '#d73027' :
                 d > -3   ? '#a50026' : '#888888';
