@@ -3,7 +3,17 @@ angular.module('realValue')
     .controller("mapController", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$q', '$mdToast', 'geoCodingService', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $q, $mdToast, geoCodingService) {
         var mc = this;
         var varMap;
-        //mc.gjLayer;
+
+        setTimeout(function(){ leafletData.getMap().then(function(map) {
+            varMap = map;
+            //console.log("resize");
+            // This code helps the map not get sized before it is finish loading
+            map.invalidateSize(false);
+            // This code below removes the zoom control that's present on the map
+            map.removeControl(map.zoomControl);
+            map.options.minZoom = 9;
+        });
+        }, 400);
 
         var divIcon = {
                 type: 'div',
@@ -120,17 +130,6 @@ angular.module('realValue')
             }
         });
 
-        setTimeout(function(){ leafletData.getMap().then(function(map) {
-            varMap = map;
-            //console.log("resize");
-            // This code helps the map not get sized before it is finish loading
-            map.invalidateSize(false);
-            // This code below removes the zoom control that's present on the map
-            map.removeControl(map.zoomControl);
-            map.options.minZoom = 9;
-        });
-        }, 400);
-
         this.county_zoom = function() {
             mc.zipLayer = false;
             mc.cityLayer = false;
@@ -230,8 +229,6 @@ angular.module('realValue')
             });
         };
 
-        mc.city_zoom(9);
-
         function roughSizeOfObject( object ) {
             var objectList = [];
             var recurse = function( value ) {
@@ -256,19 +253,21 @@ angular.module('realValue')
             return recurse( object );
         }
 
-        this.zipcode_zoom = function() {
+        this.zipcode_zoom = function(param) {
             mc.countyLayer = false;
             mc.cityLayer = false;
             mc.zipLayer = true;
             console.log("extend zip");
+            if(varMap === undefined) {
+                var varcenter = {
+                    lat: 33.8247936182649,
+                    lng: -118.03985595703125,
+                    zoom: param
+                }
+            }
             //console.log("center", varMap.getCenter());
             angular.extend($scope, {
-                center: {
-                    lat: varMap.getCenter().lat,
-                    lng: varMap.getCenter().lng
-                    //autoDiscover: true,
-                    //zoom: 10
-                },
+                center: varcenter,
                 geojson : {
                     data: [ tammy_geojson,
                             losangeles_geojson
@@ -285,6 +284,9 @@ angular.module('realValue')
                 }
             });
         };
+
+        mc.city_zoom(9);
+        mc.zipcode_zoom(9);
 
         this.markers_zoom = function() {
             console.log("extend marker");
@@ -428,7 +430,7 @@ angular.module('realValue')
             angular.extend($scope, {
                 center: center
             });
-            varMap.fitBounds(bounds);
+            varMap.fitBounds(bounds,{padding: [150, 150]});
 
             if(boolean) {
                 this.zipcode_zoom();
@@ -1060,16 +1062,16 @@ angular.module('realValue')
                            '#009788';*/
 
             return d > 3 ? '#006837' :
-                d > 1  ? '#1a9850' :
-                d > .15  ? '#66bd63' :
-                d > .10  ? '#a6d96a' :
-                d > .08   ? '#d9ef8b' :
-                d > .05   ? '#ffffbf' :
-                d > .03  ? '#fee08b' :
-                d > .01   ? '#fdae61' :
+                d > 2.5  ? '#1a9850' :
+                d > 2.25  ? '#66bd63' :
+                d > 2  ? '#a6d96a' :
+                d > 1.75   ? '#d9ef8b' :
+                d > 1.5  ? '#ffffbf' :
+                d > 1  ? '#fee08b' :
+                d > .5   ? '#fdae61' :
                 d > 0   ? '#f46d43' :
                 d > -1   ? '#d73027' :
-                d > -3   ? '#a50026' : '#888888';
+                d > -2   ? '#a50026' : '#888888';
 /*
             return d > 8000000 ? '#d73027' : //green
                 d > 100000  ? '#029D73' :
