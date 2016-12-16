@@ -123,7 +123,7 @@
                     <div ng-show="mc.currentInfo !== undefined" layout="column">
                         <div>
                             <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
-                            <span class="icon-spacer">{{mc.currentInfo.name}}</span>
+                            <span class="icon-spacer">{{mc.currentInfo.name + " " + mc.currentInfo.city}}</span>
                         </div>
                         <div>
                             <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
@@ -296,7 +296,7 @@
                             <div ng-show="mc.information !== undefined" ng-hide="mc.information === undefined">
                                 <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
-                                    <span class="icon-spacer2">{{mc.information.name}}</span>
+                                    <span class="icon-spacer2">{{mc.information.name + " " + mc.information.city}}</span>
                                 </div>
                                 <div>
                                     <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>

@@ -148,6 +148,26 @@ angular.module('realValue')
             var crime_zscore;
             var job_zscore;
             var house_zscore;
+            var display_city;
+
+            var hard_coded_pop = {
+                'Anaheim Hills, CA': 57202,
+                'Lake Elsinore, CA': 55288,
+                'Corona del Mar, CA': 13407,
+                'Newport Coast, CA': 9741,
+                'Silverado, CA': 1945,
+                'Santa Fe Springs, Los Angeles, CA': 17053,
+                'Westmont, CA': 31853,
+                'Willowbrook, CA': 35983,
+                'Altadena, CA': 42777,
+                'La Canada Flintridge, CA': 20553,
+                'Montrose, CA': 19653,
+                'Castaic, CA': 19015,
+                'Newbury Park, CA': 37775,
+                'Trabuco Canyon, CA': 32611,
+                'Capistrano Beach, CA': 7248,
+            };
+
             for (var i = 0; i < tammy_geojson.features.length; i++) {
                 lookup_zip = tammy_geojson.features[i].properties.name;
                 //console.log("all zipcodes", lookup_zip);
@@ -156,25 +176,11 @@ angular.module('realValue')
                 if (zip_city.length > 1) {
                     for (var j = 0; j < zip_city.length; j++) {
                         console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
-                        if (zip_city[j] != '') {
-                            jobs_openings = self.firebase[zip_city[j]]["Number of job openings"].all;
-                            if (self.firebase[zip_city[j]].hasOwnProperty("zip_codes")
-                                && self.firebase[zip_city[j]]["zip_codes"].hasOwnProperty(lookup_zip)
-                                && self.firebase[zip_city[j]]["zip_codes"][lookup_zip].hasOwnProperty("crime")) {
-                                crimes = self.firebase[zip_city[j]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                                tammy_geojson.features[i].properties.crimes = crimes;
-                            } else {
-                                crimes = 0;
-                            }
-                            tammy_geojson.features[i].properties.jobs = jobs_openings;
-                            score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
-                        }
                     }
-
                 } else {
                     //console.log("zip city", zip_city);
                     if(zip_city[0] != undefined) {
-                        var display_city = zip_city[0];
+                        display_city = zip_city[0];
                         tammy_geojson.features[i].properties.city = display_city.replace(", CA","");
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
@@ -182,8 +188,10 @@ angular.module('realValue')
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
                             //console.log("crime totals ", crimes);
                             tammy_geojson.features[i].properties.crimes = crimes;
-                        } else {
-                            crimes = 0;
+                        }
+
+                        if (crimes === undefined) {
+                            console.error("This zone is missing crime ",lookup_zip,zip_city[0]);
                         }
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         tammy_geojson.features[i].properties.jobs = jobs_openings;
@@ -194,8 +202,9 @@ angular.module('realValue')
                         if(population === undefined) {
                             console.error("population is undefined for ", zip_city[0]);
                             if(crimes === 0){
-                                population = 1;
+
                             }
+                            population = hard_coded_pop[zip_city[0]];
                         }
 
                         crimerate = ((crimes/population)*100000);
@@ -225,7 +234,7 @@ angular.module('realValue')
                             console.log("crime zscore " + lookup_zip, crime_zscore);
                             console.log("house zscore " + lookup_zip, house_zscore);
                             score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1);
-                        } else if (lookup_zip === '92806' ) { // lookup individual zip codes
+                        } else if (lookup_zip === '91748' ) { // lookup individual zip codes
                             console.error("zip code " + lookup_zip, lookup_zip);
 
                             console.error("housing " + lookup_zip, housing);
@@ -288,7 +297,8 @@ angular.module('realValue')
                         defined_city = true;
                     }
                     if(zip_city[0] != undefined && defined_city){
-                       losangeles_geojson.features[i].properties.city = display_city.replace(", CA","");
+                        display_city = zip_city[0];
+                        losangeles_geojson.features[i].properties.city = display_city.replace(", CA","");
                         if(self.firebase[zip_city[0]].hasOwnProperty("zip_codes")
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
@@ -304,7 +314,9 @@ angular.module('realValue')
                         if(population === undefined) {
                             console.error("population is undefined for ", zip_city[0]);
                             if(crimes === 0){
+
                             }
+                            population = hard_coded_pop[zip_city[0]];
                         }
                         //console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
