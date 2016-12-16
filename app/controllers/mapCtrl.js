@@ -14,7 +14,7 @@ angular.module('realValue')
             map.removeControl(map.zoomControl);
             map.options.minZoom = 9;
         });
-        }, 400);
+        }, 800);
 
         $scope.$on("leafletDirectiveMarker.move", function(event, args){
             var leafEvent = args.leafletEvent;
