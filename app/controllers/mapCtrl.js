@@ -260,8 +260,8 @@ angular.module('realValue')
             console.log("extend zip");
             if(mc.varMap === undefined) {
                 var varcenter = {
-                    lat: 33.8247936182649,
-                    lng: -118.03985595703125,
+                    lat: 34.138,
+                    lng: -118.296,
                     zoom: param
                 }
             }
