@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css">
-    <!--<link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">-->
     <link rel="stylesheet" href="./assets/css/MarkerCluster.Default.css">
     <!--RealValue Style Sheets-->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -36,27 +35,12 @@
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
     <!--Map Js -->
-    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
-    <!--<link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.css">-->
-    <link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css"/>
-    <!--<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css">-->
-    <!--<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>-->
+    <link rel="stylesheet" href="./assets/css/leaflet.css"/>
 
-    <!--<link rel="stylesheet" href="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />-->
-    <script src="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.js"></script>-->
-    <!--<script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>-->
-    <!--<script src="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>-->
-    <!--<script src="Leaflet.markercluster/dist/leaflet.markercluster.js"></script>-->
-    <script src="assets/js/leaflet.markercluster.js"></script>
-    <!--<script src="./node_modules/leaflet.markercluster/src/MarkerCluster.js"></script>-->
-    <!--<script src="./Leaflet.markercluster-1.0.0/dist/leaflet.markercluster.js"></script>-->
-    <!--<script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>-->
-    <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
-    <!--<script src="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>-->
-    <!--<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>-->
+    <script src="./assets/js/leaflet.js"></script>
+    <script src="./assets/js/leaflet.markercluster.js"></script>
+    <script src="./assets/js/angular-leaflet-directive.js"></script>
     <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
-    <!--<script src="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.js"></script>-->
 
     <!--RealValue App-->
     <script src="app/app.js"></script>
@@ -71,22 +55,12 @@
     <script src="assets/simple-geojson/cities.js"></script>
     <script src="app/zip_lookup.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-    <!--<script src="prototypes/crime_and_job_data_analysis.js"></script>-->
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
-    <!--<script src="dummy.js"></script>-->
+
     <!--Google Maps Call for Place Details-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places"
             async defer></script>
-
-
-    <!-- Init Google Map -->
-
-    <!--
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2kAIGCDvNlIMiixW5rwjBiDsari5dKrc&libraries=visualization&callback=initMap">
-    </script>
-    -->
 
 </head>
 <body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
