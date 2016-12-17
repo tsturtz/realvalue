@@ -14,6 +14,7 @@ Provides Beautiful Data Visualization using [Leaflet](http://leafletjs.com), [An
 - the score adjust in real-time to what the user thinks  are important to them
 - the map also gives markers for restaurants and schools in that area when the users zooms in
 
+### Developers and Contributors
 This project was developed by [Danh Le](https://github.com/dtle82/), [Taylor Sturtz](https://github.com/tsturtz/) and [Weikuan Sun](https://github.com/weikuansun) with contributions from Tammy Lau, Mike Justo, Miles Bretall and Jason Welch
 
 ### [AngularJS](https://angularjs.org/)
