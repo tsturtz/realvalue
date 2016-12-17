@@ -17,6 +17,9 @@ Provides Beautiful Data Visualization using [Leaflet](http://leafletjs.com), [An
 ### Developers and Contributors
 This project was developed by [Danh Le](https://github.com/dtle82/), [Taylor Sturtz](https://github.com/tsturtz/) and [Weikuan Sun](https://github.com/weikuansun) with contributions from Tammy Lau, Mike Justo, Miles Bretall and Jason Welch
 
+### Special Thanks To Daniel Paschal of LearningFuze
+For without his guidance, this project would not have been completed in a timely manner.
+
 This project was created using these technologies
 =================================
 
