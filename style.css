@@ -8,6 +8,23 @@ html, body {
     padding: 0;
 }
 
+md-progress-circular {
+    left: 50%;
+    top: 50%;
+    z-index: 5;
+    position: absolute;
+}
+
+#greyBG {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,.7);
+    z-index: 2;
+}
+
 /*body {
     background: url(assets/img/mapMock.JPG) no-repeat center;
     background-size: cover;
@@ -137,15 +154,6 @@ to {
     }
 }
 
-/*********
-layout
-*********/
-
-.btm-left-card {
-    width: 15vw;
-    height: 25vh;
-}
-
 .md-backdrop {
     height: 100vh;
 }
@@ -157,18 +165,6 @@ layout
 .zip-zoom {
     background: url(assets/img/zoom-map.jpg) no-repeat center;
     background-size: cover;
-}
-
-#menu-btn {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-}
-
-#card-btm-left {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
 }
 
 #temp1 {
@@ -192,4 +188,297 @@ layout
 .leaflet-label {
     font-weight: bold;
     font-size: 1.5em;
+}
+
+.highlight {
+    background-color: lavender;
+}
+
+/* ZOOM CONTROL */
+.leaflet-top.leaflet-left {
+    display: none;
+}
+
+/* ZOOM BUTTONS */
+.layer-btn {
+    margin: 0 5px;
+    color: white;
+}
+
+.zoom-btns {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+}
+
+/* TOP TOOLBAR */
+#top-toolbar {
+    position: absolute;
+    top: 0;
+    /*primary color*/
+    /*background-color: rgba(0,150,136,.98);*/
+    /*accent color*/
+    /*background-color: rgba(63,81,181,.98);*/
+    /*dark color*/
+    background-color: rgba(66,66,66,.96);
+}
+
+.leaflet-touch .leaflet-control-layers-toggle {
+    display: none;
+}
+
+.leaflet-top.leaflet-right {
+    display: none;
+}
+
+md-input-container.md-icon-left {
+    margin-left: 15px;
+}
+
+.md-errors-spacer {
+    display: none;
+}
+
+.toolbar-search-icon {
+    cursor: pointer;
+}
+
+.toolbar-search-icon:focus, .zoom-btns-icons:focus {
+    outline: none;
+}
+
+.toolbar-layers {
+    /*background-color: rgba(60,60,60,1);*/
+    background-color: rgba(0,0,0,0);
+}
+
+.toolbar-spacer {
+    margin: 0 20px;
+    height: 100%;
+    border-right: 1px solid rgba(66,66,66,1);
+}
+
+.icon-spacer {
+    padding: 0 10px;
+    border-left: 1px solid rgba(0,130,116,1);
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+.icon-spacer2 {
+    padding: 0 10px;
+    border-left: 1px solid rgba(66,66,66,.2);
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+md-toolbar.ng-scope._md._md-toolbar-transitions {
+    min-width: 100vw;
+}
+
+.md-fab-toolbar-background {
+    left: 0;
+}
+
+/* CARD BTM LEFT */
+#btm-left-card {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.select-icons {
+    margin-right: 10px;
+    cursor: default;
+}
+
+.checkboxes-column {
+    cursor: pointer;
+    margin-left: 18px;
+}
+
+.check-boxes {
+    height: 20px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.score {
+    color: rgb(0,150,136);
+    font-size: 18px;
+    cursor: default;
+}
+
+/* LOGO TOP LEFT */
+#logoTopLeft {
+    background: url('./assets/img/RV-logo-white-green.png') no-repeat center center;
+    background-size: 80%;
+    height: 88px;
+    width: 180px;
+}
+
+/* SUBHEADER */
+.subhead {
+    margin-bottom: 5px;
+    cursor: default;
+}
+
+.legend {
+    font: 14px/16px Roboto, Helvetica, sans-serif;
+    background: rgba(255,255,255, 1);
+    box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+    border-radius: 2px;
+    padding: 16px;
+    width: 100px;
+    line-height: 18px;
+    color: rgb(66,66,66);
+    bottom: 20px;
+    right: 20px;
+}
+
+.legend i {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.leaflet-bottom .leaflet-control, .leaflet-right .leaflet-control {
+    margin-right: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+/* WELCOME DIALOG */
+.welcome-dialog {
+    background-color: rgb(0,150,136);
+    text-align: center;
+    color: rgb(0,77,64);
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.welcome-dialog-content {
+    padding: 0 40px;
+}
+
+.welcome-dialog-headers {
+    color: white;
+    background-color: rgba(0,0,0,0);
+}
+
+.welcome-dialog-btn {
+    padding: 30px;
+}
+
+#logoWelcome {
+    background: url('./assets/img/RV-logo2.jpg') no-repeat center center;
+    background-size: cover;
+    height: 120px;
+    width: 250px;
+    margin: auto;
+}
+
+/* PLACE DIALOG */
+.place-title {
+    margin: 0 0 15px 0;
+}
+
+.place-img {
+    display: inline-block;
+    width: 33%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.place-hours {
+    padding: 5px 0;
+    font-size: 12px;
+}
+
+.place-divider {
+    margin-bottom: 10px;
+}
+
+.place-reviews {
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* PLACE ICONS */
+.leaflet-div-icon {
+    background-color: rgba(0,0,0,0) !important;
+    border: none !important;
+}
+
+/* SIDENAV */
+.sidenav-close {
+    position: relative;
+    right: 25px;
+}
+
+/*svg#visualisation {
+    display: none;
+}*/
+
+/*　d3 charts */
+.data_spacer {
+    min-height: 80%;
+}
+
+.crime-data, .job-data {
+    max-height: 50%;
+    min-height: 50%;
+}
+
+#visualisation text, #visualisation1 text {
+    font-size: 10px;
+}
+
+#chart svg {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/*
+md-subheader.pre-visualisation {
+    font-size: 40px;
+}*/
+
+/* SCROLL BAR */
+
+#sidenav-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0);
+}
+
+#sidenav-container::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(0,0,0,.2);
+}
+
+#sidenav-container::-webkit-scrollbar-thumb {
+    background-color: rgb(66,66,66);
+}
+
+/* REMOVE LEAFLET ATTRIBUTION */
+.leaflet-control-attribution.leaflet-control {
+    display: none;
+}
+
+/* To hide leaflets version of overlay toggle menu */
+.leaflet-retina .leaflet-control-layers-toggle {
+    display: none;
+}
+
+/* Set The Z-Index so the leaflet bottom Legend doesn't show over the popup */
+.leaflet-bottom {
+    z-index: 1 !important;
+}
+
+/* TOAST */
+md-toast {
+    left: 50%;
+    transform: translateX(-50%);
 }

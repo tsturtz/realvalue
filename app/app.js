@@ -7,18 +7,21 @@
  * @config Configure URL View Routes
  */
 
-angular.module('realValue', ['ngMaterial','leaflet-directive'])
+angular.module('realValue', ['ngMaterial','leaflet-directive']) //TODO ngMessages
+
+    .config(function( $mdGestureProvider ) {
+        $mdGestureProvider.skipClickHijack();
+    })
 
     .config(function ($mdAriaProvider) {
         $mdAriaProvider.disableWarnings();
     })
 
+    .config(function($logProvider){
+        $logProvider.debugEnabled(false);
+    })
+
     .config(function ($mdThemingProvider) {
-        $mdThemingProvider.theme('default')
-            .primaryPalette('teal', {'default': '500'})
-            .accentPalette('indigo', {'default': '500'})
-            .warnPalette('red', {'default': 'A200'});
-            //.dark();
         $mdThemingProvider.definePalette('white', {
             '50': '#fff',
             '100': '#fff',
@@ -40,6 +43,15 @@ angular.module('realValue', ['ngMaterial','leaflet-directive'])
                 '200', '300', '400', 'A100'],
             'contrastLightColors': undefined    // could also specify this if default was 'dark'
         });
+        $mdThemingProvider.theme('default')
+            .primaryPalette('teal', {'default': '500'})
+            .accentPalette('grey', {'default': '800'})
+            .warnPalette('orange', {'default': '500'});
+            //.dark();
+        $mdThemingProvider.theme('search')
+            .primaryPalette('white')
+            .accentPalette('teal', {'default': '500'})
+            .dark();
     });
 
 /* disabled routing for now - make sure to add back the ngRoute dependency

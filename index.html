@@ -2,7 +2,8 @@
 <html lang="en" ng-app="realValue">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <!--<meta name="viewport" content="initial-scale=1.0, user-scalable=no">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="RealValue">
     <meta name="keywords" content="Value,Map,Orange County">
     <meta name="author" content="WTD">
@@ -10,53 +11,74 @@
     <title>Real Value</title>
 
     <!--Angular Material Style Sheets-->
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css">
+    <!--<link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/MarkerCluster.Default.css">-->
+    <link rel="stylesheet" href="./node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css">
     <!--RealValue Style Sheets-->
     <link rel="stylesheet" type="text/css" href="style.css">
-
-
-    <!-- Angular.js Libraries -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
-    <!-- Angular Material Library -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-
-    <!-- Firebase Database -->
-    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
     <!--Jquery -->
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
+    <!-- Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+
     <!--Map Js -->
     <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />-->
-    <link rel="stylesheet" href="node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css" />
-    <script src="node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
-    <script src="node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
-    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+    <!--<link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.css">-->
+    <link rel="stylesheet" href="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.css"/>
+    <!--<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.css">-->
+    <!--<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>-->
 
+    <!--<link rel="stylesheet" href="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />-->
+    <script src="./node_modules/angular-leaflet-directive/bower_components/leaflet/dist/leaflet.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.js"></script>-->
+    <!--<script src="http://cdn.leafletjs.com/leaflet-1.0.0-b1/leaflet.js"></script>-->
+    <!--<script src="./node_modules/angular-leaflet-directive/bower_components/leaflet.markercluster/dist/leaflet.markercluster.js"></script>-->
+    <!--<script src="Leaflet.markercluster/dist/leaflet.markercluster.js"></script>-->
+    <script src="assets/js/leaflet.markercluster.js"></script>
+    <!--<script src="./node_modules/leaflet.markercluster/src/MarkerCluster.js"></script>-->
+    <!--<script src="./Leaflet.markercluster-1.0.0/dist/leaflet.markercluster.js"></script>-->
+    <!--<script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>-->
+    <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <!--<script src="./Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>-->
+    <!--<script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>-->
+    <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+    <!--<script src="./node_modules/angular-leaflet-directive/bower_components/leaflet-search/dist/leaflet-search.min.js"></script>-->
 
     <!--RealValue App-->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
-    <script src="app/controllers/geojson.js"></script>
-    <script src="app/controllers/county.js"></script>
-    <script src="app/controllers/mapCtrl.js"></script>
-    <script src="app/controllers/map2Ctrl.js"></script>
-    <script src="app/controllers/navCtrl.js"></script>
+    <script src="app/services/checkboxService.js"></script>
+    <script src="app/services/dataService.js"></script>
+    <script src="app/services/geocodingService.js"></script>
 
-    <!--
-    <script src="https://raw.githubusercontent.com/angular-ui/angular-google-maps/master/dist/angular-google-maps.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
-    <script src="firebasemap.js"></script>
-    <script src="weather.js"></script>
-    <script src="walkscore.js"></script>
-    -->
+    <script src="assets/simple-geojson/tammy-1-geojson.js"></script>
+    <script src="assets/simple-geojson/combined-geojson.js"></script>
+    <script src="app/controllers/county.js"></script>
+    <script src="assets/simple-geojson/cities.js"></script>
+    <script src="app/zip_lookup.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <!--<script src="prototypes/crime_and_job_data_analysis.js"></script>-->
+    <script src="app/controllers/mapCtrl.js"></script>
+    <script src="app/controllers/navCtrl.js"></script>
+    <!--<script src="dummy.js"></script>-->
+    <!--Google Maps Call for Place Details-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places"
+            async defer></script>
+
 
     <!-- Init Google Map -->
 
@@ -69,83 +91,233 @@
 </head>
 <body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
 
-<!--<div id='map2'></div>-->
+<div id="map" ng-controller="mapController as mc">
+    <leaflet tiles='tiles' maxbounds="maxbounds" controls="controls" markers="markers" layers="layers"
+             lf-center="center" geojson="geojson" bounds="bounds"
+             legend="legend" defaults="defaults"
+             width="100%" height="100vh"></leaflet>
 
-<div id="map" ng-controller="mapController">
-    <leaflet tiles='tiles' markers="markers" lf-center="center" geojson="geojson" width="100%" height="100vh"></leaflet>
-</div>
+    <!--<md-progress-circular md-mode="indeterminate" ng-if="root.activated" class="md-primary" md-diameter="50"></md-progress-circular>-->
+    <div id="greyBG" ng-if="progress"><md-progress-circular md-mode="indeterminate"  class="md-primary"
+                          md-diameter="50"></md-progress-circular></div>
 
-<div id="main-container" ng-controller="navCtrl as nc">
+    <div id="main-container" ng-controller="navCtrl as nc">
 
-    <md-sidenav md-component-id="right" class="md-sidenav-right" layout="column" layout-align="center center"
-                md-is-open="true" md-whiteframe="4" md-disable-backdrop="true">
-        <h4>Select what's important to you</h4>
-        <section id="check_boxes">
-            <div id="options" layout="column">
-                <md-input-container layout="column">
-                    <md-checkbox> restaurant</md-checkbox>
-                    <md-checkbox> airport</md-checkbox>
-                    <md-checkbox> library</md-checkbox>
-                    <md-checkbox> bar/nightclub</md-checkbox>
-                    <md-checkbox> cafe</md-checkbox>
-                    <md-checkbox> museum</md-checkbox>
-                    <md-checkbox> park</md-checkbox>
-                    <md-checkbox> police dept</md-checkbox>
-                    <md-checkbox> hospital/ doctor office</md-checkbox>
-                    <md-checkbox> school</md-checkbox>
-                    <md-checkbox> gas station</md-checkbox>
-                    <md-checkbox> university</md-checkbox>
-                    <md-checkbox> gym</md-checkbox>
-                    <md-checkbox> zoo</md-checkbox>
-                    <md-checkbox> crime</md-checkbox>
-                    <md-checkbox> housing/rental market</md-checkbox>
-                    <md-checkbox> traffic</md-checkbox>
-                    <md-checkbox> walk score</md-checkbox>
-                </md-input-container>
+        <md-sidenav id="sidenav-container" md-component-id="right" class="md-sidenav-right" layout="column"
+                    layout-align="start center"
+                    md-whiteframe="16" md-disable-backdrop="true">
+            <md-toolbar class="md-primary md-medium-tall" layout-align="center center" layout="row" md-whiteframe="4">
+                <div class="md-toolbar-tools" layout-padding>
+
+                    <div ng-show="mc.currentInfo === undefined" layout="column">
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
+                            <span class="icon-spacer">Select an area to</span>
+                        </div>
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
+                            <span class="icon-spacer">see its Real Value!</span>
+                        </div>
+                    </div>
+
+                    <div ng-show="mc.currentInfo !== undefined" layout="column">
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
+                            <span class="icon-spacer">{{mc.currentInfo.name}}</span>
+                        </div>
+                        <div ng-if="mc.currentInfo.city !== undefined">
+                            <md-icon class="md-warn" md-font-set="material-icons">pin_drop</md-icon>
+                            <span class="icon-spacer">{{mc.currentInfo.city}}</span>
+                        </div>
+                        <div>
+                            <md-icon class="md-warn" md-font-set="material-icons">star</md-icon>
+                            <span class="icon-spacer">{{mc.currentInfo.score}}</span>
+                        </div>
+                    </div>
+
+                    <span flex></span>
+
+                    <md-button class="md-fab md-accent sidenav-close" ng-click="nc.openRightMenu(false)">
+                        <md-icon class="md-accent" md-font-set="material-icons">close</md-icon>
+                        <md-tooltip md-direction="top" class="tooltip-alert">
+                            Closing this tab will turn off auto-open.
+                        </md-tooltip>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <section id="data-here" flex="4"></section> <!-- LEAVE THIS - ITS FOR THE GOOGLE PLACES CALL -->
+            <div class="data_spacer">
+
+                <md-card class="job-data">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Job Availability Statistics</span>
+                            <span class="md-subhead">Tech Jobs vs. Other Jobs</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div id="chart">
+                            <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
+                        </div>
+                    </md-card-content>
+                </md-card>
+                <span></span>
+                <md-card class="crime-data">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Violent Crime Statistics</span>
+                            <span class="md-subhead">Crime frequency over the years</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
+                        <svg id="visualisation" width="250" height="250" ng-show="mc.showSVG"></svg>
+                    </md-card-content>
+                </md-card>
+                <span></span>
+                <md-card class="housing-data">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Home Value Statistics</span>
+                            <span class="md-subhead">Average home value relative to area</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <md-subheader class="pre-visualisation">Click on a zip code to view data</md-subheader>
+                        <svg id="visualisation1" width="250" height="250" ng-show="mc.showSVG"></svg>
+                    </md-card-content>
+                </md-card>
+
             </div>
-        </section>
 
-        <span flex="10"></span>
+            <span flex></span>
 
-        <div id="nav-close">
-            <md-button class="md-raised" ng-click="nc.openRightMenu()">
-                Close
+        </md-sidenav>
+
+        <md-toolbar id="top-toolbar" class="md-primary md-medium-tall" layout-align="center center" md-whiteframe="4">
+
+            <div class="md-toolbar-tools">
+
+                <div id="logoTopLeft"></div>
+
+                <!--<md-subheader class="toolbar-subhead">LA and OC
+                    <md-tooltip md-direction="bottom">
+                        Currently available in Los Angeles and Orange counties only
+                    </md-tooltip>
+                </md-subheader>-->
+
+                <md-input-container flex="25" md-theme="search">
+                    <md-icon class="md-accent toolbar-search-icon" md-font-set="material-icons"
+                             ng-click="mc.submit_zoom(mc.zip)">search
+                    </md-icon>
+                    <input type="text" placeholder="Search by city or zip code" ng-model="mc.zip"
+                           ng-keyup="$event.keyCode == 13 && mc.submit_zoom(mc.zip)">
+                </md-input-container>
+
+                <md-divider class="toolbar-spacer"></md-divider>
+
+                <md-icon class="md-primary select-icons" md-font-set="material-icons">
+                    layers
+                    <md-tooltip md-direction="bottom">
+                        Toggle area layer highlights here!
+                    </md-tooltip>
+                </md-icon>
+                <div class="toolbar-layers" layout="row" md-theme="search">
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.county_zoom()"
+                               ng-disabled="mc.countyLayer">
+                        County
+                    </md-button>
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.city_zoom()"
+                               ng-disabled="mc.cityLayer">
+                        City
+                    </md-button>
+                    <md-button class="md-accent md-raised layer-btn" ng-click="mc.zipcode_zoom()"
+                               ng-disabled="mc.zipLayer">
+                        Zip
+                    </md-button>
+                </div>
+
+                <span flex></span>
+                <md-button class="md-fab md-primary" ng-click="nc.openRightMenu()">
+                    <md-icon class="md-accent" md-font-set="material-icons">poll</md-icon>
+                    <md-tooltip md-direction="left">
+                        View detailed area data here!
+                    </md-tooltip>
+                </md-button>
+                <span></span>
+
+            </div>
+
+        </md-toolbar>
+
+        <div class="zoom-btns" layout="column">
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_in()" ng-disabled="mc.checkZoom(18)">
+                <md-icon class="zoom-btns-icons" md-font-set="material-icons">add</md-icon>
+            </md-button>
+            <md-button class="md-fab md-primary md-mini" ng-click="mc.zoom_out()" ng-disabled="mc.checkZoom(9)">
+                <md-icon class="zoom-btns-icons" md-font-set="material-icons">remove</md-icon>
             </md-button>
         </div>
 
-    </md-sidenav>
-
-    <div layout="column">
-
-        <!------------------------- TEMP -------------------------->
-
-        <md-button href="zoom-temp.html" class="md-raised md-primary" id="temp1">
-            NEXT
-        </md-button>
-
-        <!------------------------- TEMP -------------------------->
-
-        <div id="menu-btn" layout-padding>
-            <md-button class="md-primary md-raised md-fab" ng-click="nc.openRightMenu()">
-                <md-icon class="md-accent" md-font-set="material-icons">menu</md-icon>
-            </md-button>
-        </div>
-
-        <div id="card-btm-left" layout="column">
-            <md-card class="btm-left-card">
-                <img ng-src="{{nc.imagePath}}" class="md-card-image" alt="RealValue">
+        <div id="btm-left-card-container">
+            <md-card id="btm-left-card" md-whiteframe="4">
                 <md-card-content layout="row">
-                    <md-input-container>
-                        <input type="text" placeholder="Enter city or zip">
-                    </md-input-container>
-                        <md-button>Submit</md-button>
+                    <div layout="column" class="checks">
+
+                        <md-subheader class="subhead">
+                            <md-icon class="md-primary select-icons" md-font-set="material-icons">equalizer</md-icon>
+                            SELECT DATA TO INCLUDE
+                        </md-subheader>
+
+                        <div class="checkboxes-column" layout="column">
+                            <md-checkbox class="check-boxes" ng-model="checkbox.checked"
+                                         ng-disabled="{{checkbox.disabled}}"
+                                         ng-change="nc.updateData(this.checkbox)"
+                                         ng-repeat="checkbox in nc.checkboxes">
+                                {{checkbox.type.toUpperCase()}}
+                                <md-tooltip md-direction="right">
+                                    {{checkbox.tooltip}}
+                                </md-tooltip>
+                            </md-checkbox>
+                        </div>
+
+                        <md-divider></md-divider>
+
+                        <md-subheader class="score">
+                            <md-tooltip md-direction="right">
+                                Hover over an area to see the Real Value!
+                            </md-tooltip>
+                            <div ng-hide="mc.information !== undefined" ng-show="mc.information === undefined">
+                                <div>
+                                    <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
+                                    <span class="icon-spacer2">Hover over an area to</span>
+                                </div>
+                                <div>
+                                    <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
+                                    <span class="icon-spacer2">display its Real Value!</span>
+                                </div>
+                            </div>
+                            <div ng-show="mc.information !== undefined" ng-hide="mc.information === undefined">
+                                <div>
+                                    <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
+                                    <span class="icon-spacer2">{{mc.information.name}}</span>
+                                </div>
+                                <div>
+                                    <md-icon class="md-primary" md-font-set="material-icons">pin_drop</md-icon>
+                                    <span class="icon-spacer2">{{mc.information.city}}</span>
+                                </div>
+                                <div>
+                                    <md-icon class="md-primary" md-font-set="material-icons">star</md-icon>
+                                    <span class="icon-spacer2">{{mc.information.score}}</span>
+                                </div>
+                            </div>
+                        </md-subheader>
+
+                    </div>
                 </md-card-content>
             </md-card>
         </div>
-
     </div>
-
 </div>
-
 </body>
 </html>
