@@ -17,6 +17,9 @@ Provides Beautiful Data Visualization using [Leaflet](http://leafletjs.com), [An
 ### Developers and Contributors
 This project was developed by [Danh Le](https://github.com/dtle82/), [Taylor Sturtz](https://github.com/tsturtz/) and [Weikuan Sun](https://github.com/weikuansun) with contributions from Tammy Lau, Mike Justo, Miles Bretall and Jason Welch
 
+This project was created using these technologies
+=================================
+
 ### [AngularJS](https://angularjs.org/)
 Our JavaScript framework providing incredible 2 way data binding.
 ### [Angular Leaflet](http://github.com/tombatossals/angular-leaflet-directive)
