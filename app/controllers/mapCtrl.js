@@ -159,7 +159,7 @@ angular.module('realValue')
                 },
                 tiles: {
                     //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                    url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
+                    url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
                         //attribution: ''
                     }
@@ -213,9 +213,7 @@ angular.module('realValue')
 
                 },
                 tiles: {
-                    //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-                    //url: "http://korona.geog.uni-heidelberg.de/tiles/roadsg/x={x}&y={y}&z={z}",
-                    url: "http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
+                    url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
                         //attribution: 'All maps &copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, map data &copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>'
                     }
