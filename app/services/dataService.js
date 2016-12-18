@@ -25,7 +25,7 @@ angular.module('realValue')
 
         fbRef.ref("/").once('value', function (snapshot) {
             self.all=snapshot.val();
-            console.log("SNAPSHOT.ALL", self.all);
+            //console.log("SNAPSHOT.ALL", self.all);
         });
 
         fbRef.ref("crime-and-job-data-analysis").on('value',function(snapshot){
@@ -52,13 +52,13 @@ angular.module('realValue')
         };
 
         self.makePlacesGeojson = function (clicked) {
-            console.log("clicked is ",clicked);
+            //console.log("clicked is ",clicked);
             var defer = $q.defer();
 
             fbRef.ref("/markerIndexZip/").once('value', function (snapshot) {
                 if (snapshot.hasChild(clicked)) {
-                    console.log("It does exist!");
-                    console.log('%c DB MARKER DATA ', 'background: green; color: white; display: block;', snapshot.val());
+                    //console.log("It does exist!");
+                    //console.log('%c DB MARKER DATA ', 'background: green; color: white; display: block;', snapshot.val());
                     self.placesGeojson = snapshot.val()[clicked];
                     defer.resolve(true);
                     return defer.promise;
@@ -66,7 +66,7 @@ angular.module('realValue')
             });
 
             fbRef.ref("/features/").once('value', function (snapshot) {
-                console.log('%c PLACE DATA ', 'background: green; color: white; display: block;', snapshot.val());
+                //console.log('%c PLACE DATA ', 'background: green; color: white; display: block;', snapshot.val());
                 self.placesGeojson2 = snapshot.val();
                 defer.resolve(snapshot.val());
             });
@@ -75,8 +75,8 @@ angular.module('realValue')
 
         //this.makePlacesGeojson();
         this.weikuan_init = function() {
-            console.log("What!");
-            console.log("downloading combined data...");
+            //console.log("What!");
+            //console.log("downloading combined data...");
             var deferred = $q.defer();
             fbRef.ref("combine").once('value', function (snapshot) {
                 deferred.resolve(snapshot.val());
@@ -104,32 +104,32 @@ angular.module('realValue')
 
         weikuan_promise.then( function (response) {
                 self.firebase = response;
-                console.log("downloading combined data complete");
+                //console.log("downloading combined data complete");
                 self.call_zillow_init_from_promise();
             });
 
         this.call_zillow_init_from_promise = function() {
-            console.log("downloading zillow data...");
+            //console.log("downloading zillow data...");
             this.zillow_init().then(
                 function (response) {
                     self.zfirebase = response;
-                    console.log("downloading zillow data complete");
+                    //console.log("downloading zillow data complete");
                     self.call_population_init_from_promise();
                 });
         };
 
         this.call_population_init_from_promise = function() {
-            console.log("downloading population data...");
+            //console.log("downloading population data...");
             this.population_init().then(
                 function (response) {
                     self.pfirebase = response;
-                    console.log("downloading population data complete");
+                    //console.log("downloading population data complete");
                     self.mergeData();
                 });
         };
 
         this.mergeData = function () {
-            console.log("merging data...");
+            //console.log("merging data...");
             var self_counter =0;
             var zip_city;
             var lookup_zip;
@@ -170,15 +170,15 @@ angular.module('realValue')
 
             for (var i = 0; i < tammy_geojson.features.length; i++) {
                 lookup_zip = tammy_geojson.features[i].properties.name;
-                //console.log("all zipcodes", lookup_zip);
+                ////console.log("all zipcodes", lookup_zip);
                 zip_city = this.find_city_based_on_zip_code(lookup_zip);
-                //console.log("find city ",zip_city);
+                ////console.log("find city ",zip_city);
                 if (zip_city.length > 1) {
                     for (var j = 0; j < zip_city.length; j++) {
-                        console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
+                        //console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                     }
                 } else {
-                    //console.log("zip city", zip_city);
+                    ////console.log("zip city", zip_city);
                     if(zip_city[0] != undefined) {
                         display_city = zip_city[0];
                         tammy_geojson.features[i].properties.city = display_city.replace(", CA","");
@@ -186,28 +186,28 @@ angular.module('realValue')
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            //console.log("crime totals ", crimes);
+                            ////console.log("crime totals ", crimes);
                             tammy_geojson.features[i].properties.crimes = crimes;
                         } else {
-                            //console.error("This zone is missing crime from combined",lookup_zip,zip_city[0]);
+                            ////console.error("This zone is missing crime from combined",lookup_zip,zip_city[0]);
                             var modified_city = zip_city[0];
                             var replaced_city = modified_city.replace(", CA","").replace(" ","-");
                             if(self.all.crime["2014"].hasOwnProperty(replaced_city)) {
                                 crimes = self.all.crime["2014"][replaced_city]["total crime number"];
                                 tammy_geojson.features[i].properties.crimes = crimes;
                             } else {
-                                console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data: " + crimes);
+                                //console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data: " + crimes);
                             }
                         }
 
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         tammy_geojson.features[i].properties.jobs = jobs_openings;
-                        //console.log("self firebase2", self.zfirebase.oc[lookup_zip]);
+                        ////console.log("self firebase2", self.zfirebase.oc[lookup_zip]);
                         housing = self.zfirebase.oc[lookup_zip];
                         population = self.pfirebase[zip_city[0]];
 
                         if(population === undefined) {
-                            console.error("population is undefined for ", zip_city[0]);
+                            //console.error("population is undefined for ", zip_city[0]);
                             if(crimes === 0){
 
                             }
@@ -216,17 +216,17 @@ angular.module('realValue')
 
                         crimerate = ((crimes/population)*100000);
                         if(isNaN(crimerate)) {
-                            console.log("Crime is NaN for " + zip_city,lookup_zip);
-                            console.log("crime",crimes);
-                            console.log("population",population);
+                            //console.log("Crime is NaN for " + zip_city,lookup_zip);
+                            //console.log("crime",crimes);
+                            //console.log("population",population);
                         }
                         jobrate = ( (jobs_openings/population)*100000);
                         job_zscore = self.calculateStatisticZScore(jobrate, "jobrate", population, "oc");
                         crime_zscore = self.calculateStatisticZScore(crimerate, "crimerate", population, "oc");
                         house_zscore = self.calculateStatisticZScore(housing, "zindex", population, "oc");
 
-                        //console.log("job zscore " + job_zscore);
-                        //console.log("crime zscore " + crime_zscore);
+                        ////console.log("job zscore " + job_zscore);
+                        ////console.log("crime zscore " + crime_zscore);
                         tammy_geojson.features[i].properties.housing = parseInt(housing);
                         tammy_geojson.features[i].properties.population = parseInt(population);
                         tammy_geojson.features[i].properties.crime_zscore = crime_zscore.toFixed(3);
@@ -234,31 +234,31 @@ angular.module('realValue')
                         tammy_geojson.features[i].properties.house_zscore = house_zscore.toFixed(3);
                         score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1)+ (house_zscore.toFixed(2) * 1);
                         if(isNaN(score)) {
-                            console.error("(needs index!) zip code " + lookup_zip, lookup_zip);
-                            console.log("housing " + lookup_zip, housing);
-                            console.log("population " + lookup_zip, population);
-                            console.log("job zscore " + lookup_zip, job_zscore);
-                            console.log("crime zscore " + lookup_zip, crime_zscore);
-                            console.log("house zscore " + lookup_zip, house_zscore);
+                            //console.error("(needs index!) zip code " + lookup_zip, lookup_zip);
+                            //console.log("housing " + lookup_zip, housing);
+                            //console.log("population " + lookup_zip, population);
+                            //console.log("job zscore " + lookup_zip, job_zscore);
+                            //console.log("crime zscore " + lookup_zip, crime_zscore);
+                            //console.log("house zscore " + lookup_zip, house_zscore);
                             score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1);
                         } else if (lookup_zip === '92637' ) { // lookup individual zip codes
-                            console.error("zip code " + lookup_zip, lookup_zip);
+                            //console.error("zip code " + lookup_zip, lookup_zip);
 
-                            console.error("housing " + lookup_zip, housing);
-                            console.error("crime " + lookup_zip, crimes);
-                            console.error("jobs " + lookup_zip, jobs_openings);
-                            console.error("population " + lookup_zip, population);
+                            //console.error("housing " + lookup_zip, housing);
+                            //console.error("crime " + lookup_zip, crimes);
+                            //console.error("jobs " + lookup_zip, jobs_openings);
+                            //console.error("population " + lookup_zip, population);
 
-                            console.error("job zscore " + lookup_zip, job_zscore);
-                            console.error("crime zscore " + lookup_zip, crime_zscore);
-                            console.error("house zscore " + lookup_zip, house_zscore);
+                            //console.error("job zscore " + lookup_zip, job_zscore);
+                            //console.error("crime zscore " + lookup_zip, crime_zscore);
+                            //console.error("house zscore " + lookup_zip, house_zscore);
                             score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1)+ (house_zscore.toFixed(2) * 1);
-                            console.error("zscore " + lookup_zip, score);
+                            //console.error("zscore " + lookup_zip, score);
 
                         }
-                        //console.error("crime rate", population/crimes);
+                        ////console.error("crime rate", population/crimes);
                         if (isNaN((population/crimes))) {
-                            console.error("zip code error", lookup_zip,zip_city[0]);
+                            //console.error("zip code error", lookup_zip,zip_city[0]);
                         }
                         tammy_geojson.features[i].properties.score = score.toFixed(2);
                     } else {
@@ -276,15 +276,15 @@ angular.module('realValue')
                 zip_city = this.find_city_based_on_zip_code(lookup_zip);
                 if (zip_city.length > 1) {
                     for (var j = 0; j < zip_city.length; j++) {
-                        console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
+                        //console.error("duplicate city: " + zip_city[j] + ' zipcode: ' + lookup_zip);
                     }
 
                 } else {
-                    //console.log(miles_geojson.features[i]);
-                    //console.log("la match zip: " + lookup_zip + " with " + zip_city);
-                    //console.log(zip_city[0]);
+                    ////console.log(miles_geojson.features[i]);
+                    ////console.log("la match zip: " + lookup_zip + " with " + zip_city);
+                    ////console.log(zip_city[0]);
                     if(!self.firebase.hasOwnProperty(zip_city[0])) {
-                        console.error("Firebase has no data for " + zip_city[0]);
+                        //console.error("Firebase has no data for " + zip_city[0]);
                         defined_city = false;
                     } else {
                         defined_city = true;
@@ -296,38 +296,38 @@ angular.module('realValue')
                             && self.firebase[zip_city[0]]["zip_codes"].hasOwnProperty(lookup_zip)
                             && self.firebase[zip_city[0]]["zip_codes"][lookup_zip].hasOwnProperty("crime") ) {
                             crimes = self.firebase[zip_city[0]]["zip_codes"][lookup_zip]["crime"]["2014"]["Violent_sum"];
-                            //console.log("crime totals ", crimes);
+                            ////console.log("crime totals ", crimes);
                             losangeles_geojson.features[i].properties.crimes = crimes;
                         } else {
-                            //console.error("This zone is missing crime from combined",lookup_zip,zip_city[0]);
+                            ////console.error("This zone is missing crime from combined",lookup_zip,zip_city[0]);
                             var modified_city = zip_city[0];
                             var replaced_city = modified_city.replace(", CA","").replace(" ","-");
                             if(self.all.crime["2014"].hasOwnProperty(replaced_city)) {
                                 crimes = self.all.crime["2014"][replaced_city]["total crime number"];
                                 losangeles_geojson.features[i].properties.crimes = crimes;
                             } else {
-                                console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data");
+                                //console.error("current city is " + replaced_city + " " + lookup_zip + " has no crime data");
                             }
                         }
                         jobs_openings = self.firebase[zip_city[0]]["Number of job openings"].all;
                         housing = self.zfirebase.lc[lookup_zip];
                         population = self.pfirebase[zip_city[0]];
                         if(population === undefined) {
-                            console.error("population is undefined for ", zip_city[0]);
+                            //console.error("population is undefined for ", zip_city[0]);
                             if(crimes === 0){
 
                             }
                             population = hard_coded_pop[zip_city[0]];
                         }
-                        //console.log("job openings ", jobs_openings);
+                        ////console.log("job openings ", jobs_openings);
                         losangeles_geojson.features[i].properties.jobs = jobs_openings;
                         score = parseInt(jobs_openings) * job_weight + (self.weight_total + (crimes) * crime_weight);
 
                         crimerate = ((crimes/population)*100000);
                         if(isNaN(crimerate)) {
-                            console.log("Crime is NaN for " + zip_city,lookup_zip);
-                            console.log("crime",crimes);
-                            console.log("population",population);
+                            //console.log("Crime is NaN for " + zip_city,lookup_zip);
+                            //console.log("crime",crimes);
+                            //console.log("population",population);
                         }
                         jobrate = ( (jobs_openings/population)*100000);
 
@@ -335,13 +335,13 @@ angular.module('realValue')
                         crime_zscore = self.calculateStatisticZScore(crimerate, "crimerate", population, "la");
                         house_zscore = self.calculateStatisticZScore(housing, "zindex", population, "la");
 
-                        //console.error("crime zscore " + lookup_zip, crime_zscore);
-                        //console.error("job zscore " + lookup_zip, job_zscore);
+                        ////console.error("crime zscore " + lookup_zip, crime_zscore);
+                        ////console.error("job zscore " + lookup_zip, job_zscore);
 
-                        //console.error("housing " + lookup_zip, housing);
-                        //console.error("crime " + lookup_zip, crimes);
-                        //console.error("jobs " + lookup_zip, jobs_openings);
-                        //console.error("population " + lookup_zip, population);
+                        ////console.error("housing " + lookup_zip, housing);
+                        ////console.error("crime " + lookup_zip, crimes);
+                        ////console.error("jobs " + lookup_zip, jobs_openings);
+                        ////console.error("population " + lookup_zip, population);
 
                         losangeles_geojson.features[i].properties.housing = parseInt(housing);
                         losangeles_geojson.features[i].properties.population = parseInt(population);
@@ -350,25 +350,25 @@ angular.module('realValue')
                         losangeles_geojson.features[i].properties.house_zscore = house_zscore.toFixed(3);
                         score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1) + (house_zscore.toFixed(2) * 1);
                         if (lookup_zip === '90045' ) { // lookup individual zip codes
-                            console.error("zip code " + lookup_zip, lookup_zip);
+                            //console.error("zip code " + lookup_zip, lookup_zip);
 
-                            console.error("housing " + lookup_zip, housing);
-                            console.error("crime " + lookup_zip, crimes);
-                            console.error("jobs " + lookup_zip, jobs_openings);
-                            console.error("population " + lookup_zip, population);
+                            //console.error("housing " + lookup_zip, housing);
+                            //console.error("crime " + lookup_zip, crimes);
+                            //console.error("jobs " + lookup_zip, jobs_openings);
+                            //console.error("population " + lookup_zip, population);
 
-                            console.error("job zscore " + lookup_zip, job_zscore);
-                            console.error("crime zscore " + lookup_zip, crime_zscore);
-                            console.error("house zscore " + lookup_zip, house_zscore);
-                            console.error("crimerate " + lookup_zip, crimerate);
+                            //console.error("job zscore " + lookup_zip, job_zscore);
+                            //console.error("crime zscore " + lookup_zip, crime_zscore);
+                            //console.error("house zscore " + lookup_zip, house_zscore);
+                            //console.error("crimerate " + lookup_zip, crimerate);
 
                             score = (crime_zscore.toFixed(2) * 1) + (job_zscore.toFixed(2) * 1)+ (house_zscore.toFixed(2) * 1);
-                            console.error("zscore " + lookup_zip, score);
+                            //console.error("zscore " + lookup_zip, score);
                         }
                         if (job_zscore > 10) {
-                            console.error("outlier for crime: " + lookup_zip, crime_zscore);
-                            console.error("outlier for house: " + lookup_zip, house_zscore);
-                            console.error("outlier for job: " + lookup_zip, job_zscore);
+                            //console.error("outlier for crime: " + lookup_zip, crime_zscore);
+                            //console.error("outlier for house: " + lookup_zip, house_zscore);
+                            //console.error("outlier for job: " + lookup_zip, job_zscore);
                         }
                         losangeles_geojson.features[i].properties.score = score.toFixed(2);
                     }
@@ -385,7 +385,7 @@ angular.module('realValue')
         //self.crime_and_job =crime_and_job_data_analysis;
         self.calculateStatisticZScore = function(data, prop, pop, county) {
             if(county === 'oc'){
-                //console.error("county OC",county);
+                ////console.error("county OC",county);
             }
             if(prop === "jobrate") {
                 var property_avg = this.crime_and_job_data_analysis.all[prop + "Average"];
@@ -405,11 +405,11 @@ angular.module('realValue')
         };
 
         self.indexMarkerInZip = function(click) {
-            //console.log('geojson', self.placesGeojson2);
-            console.log("indexing done on ", click);
+            ////console.log('geojson', self.placesGeojson2);
+            //console.log("indexing done on ", click);
             if(self.placesGeojson2 && self.placesGeojson2.hasOwnProperty("zipCode")) {
                 for (var rest in self.placesGeojson2.zipCode) {
-                    //console.log("zip object is ", self.placesGeojson2.zipCode[rest]);
+                    ////console.log("zip object is ", self.placesGeojson2.zipCode[rest]);
                     fbRef.ref('markerIndexZip/'+rest).set(self.placesGeojson2.zipCode[rest]);
                 }
             }

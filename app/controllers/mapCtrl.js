@@ -7,7 +7,7 @@ angular.module('realValue')
 
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             mc.varMap = map;
-            //console.log("resize");
+            ////console.log("resize");
             // This code helps the map not get sized before it is finish loading
             map.invalidateSize(false);
             // This code below removes the zoom control that's present on the map
@@ -18,7 +18,7 @@ angular.module('realValue')
 
         $scope.$on("leafletDirectiveMarker.move", function(event, args){
             var leafEvent = args.leafletEvent;
-            //console.log("event", leafEvent);
+            ////console.log("event", leafEvent);
             $timeout(function(){
                 var restaurantContainer = $('.icon-restaurant-class');
                 var restaurantIcon = $("<md-button class='md-fab md-accent md-mini icon-restaurant-class'><md-icon md-font-set='material-icons'>restaurant</md-icon></md-button>");
@@ -46,19 +46,19 @@ angular.module('realValue')
             html: "<div class='icon-restaurant-class'></div>"
         };
 
-        //console.log("icon ", divIcon);
+        ////console.log("icon ", divIcon);
         mc.gjLayer = L.geoJson(tammy_geojson, {
             style: style
         });
 
         dataService.weikuan_init();
-        console.log("init map");
+        //console.log("init map");
 
         // fixed issue when map is shown after the map container has been resized by css
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
         $scope.$on('leafletDirectiveMarker.click', function(e, args) {
 
-            console.log("model",args);
+            //console.log("model",args);
 
             // places dialog
             $mdDialog.show({
@@ -75,7 +75,7 @@ angular.module('realValue')
 
             // focus after dialog
             function afterShowAnimation(scope, element, options) {
-                console.log('after focus');
+                //console.log('after focus');
             }
 
             // dialog controller
@@ -103,15 +103,15 @@ angular.module('realValue')
 
                         this.service = new google.maps.places.PlacesService($('#data-here').get(0));
 
-                        //console.log('args', args.model);
-                        console.log('passed in key: ', key);
+                        ////console.log('args', args.model);
+                        //console.log('passed in key: ', key);
 
                         if (key) {
                             this.service.getDetails({
                                 placeId: key // key is passed in place ID. Here's a real place id for testing: 'ChIJl_N4tlno3IARWDJLc0k1zX0'
                             }, function(place){
-                                console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
-                                console.log('just before placeObj definition: ', args.model);
+                                //console.log('%c actual place ID call: ', 'background: green; color: white; display: block;', place);
+                                //console.log('just before placeObj definition: ', args.model);
                                 deets.placeObj = {
                                     type : place.types[0],
                                     icon :
@@ -136,10 +136,10 @@ angular.module('realValue')
                                 };
                             });
                         } else {
-                            console.warn('you didn\'t pass in a place id');
+                            //console.warn('you didn\'t pass in a place id');
                         }
                     };
-                    console.log(args.model);
+                    //console.log(args.model);
                     this.callPlace(args.model['Place ID']); // passed in place ID from event args
                 };
                 this.getPlaceDetails();
@@ -150,7 +150,7 @@ angular.module('realValue')
             mc.zipLayer = false;
             mc.cityLayer = false;
             mc.countyLayer = true;
-            console.log("extend county");
+            //console.log("extend county");
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
@@ -169,7 +169,7 @@ angular.module('realValue')
                     style: county_style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
-                        //console.log("layer",layer);
+                        ////console.log("layer",layer);
                         //layer.bindPopup(feature.properties.popupContent);
 
                         layer.on({
@@ -186,7 +186,7 @@ angular.module('realValue')
             mc.countyLayer = false;
             mc.zipLayer = false;
             mc.cityLayer = true;
-            console.log("extend city");
+            //console.log("extend city");
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
@@ -275,7 +275,7 @@ angular.module('realValue')
             mc.countyLayer = false;
             mc.cityLayer = false;
             mc.zipLayer = true;
-            console.log("extend zip");
+            //console.log("extend zip");
             if(mc.varMap === undefined) {
                 var varcenter = {
                     lat: 34.138,
@@ -283,7 +283,7 @@ angular.module('realValue')
                     zoom: param
                 }
             }
-            //console.log("center", varMap.getCenter());
+            ////console.log("center", varMap.getCenter());
             angular.extend($scope, {
                 center: varcenter,
                 geojson : {
@@ -316,7 +316,7 @@ angular.module('realValue')
         });
 
         this.markers_zoom = function() {
-            console.log("clear marker");
+            //console.log("clear marker");
 
             angular.extend($scope, {
                 markers: {}
@@ -324,8 +324,8 @@ angular.module('realValue')
         };
 
         this.zoom_out = function() {
-            //console.log("zoom out");
-            //console.log(varMap.getZoom());
+            ////console.log("zoom out");
+            ////console.log(varMap.getZoom());
             var center = {
                 lat: mc.varMap.getCenter().lat,
                 lng: mc.varMap.getCenter().lng,
@@ -338,8 +338,8 @@ angular.module('realValue')
         };
 
         this.zoom_in = function() {
-            //console.log("zoom in");
-            //console.log(varMap.getZoom());
+            ////console.log("zoom in");
+            ////console.log(varMap.getZoom());
             var center = {
                 lat: mc.varMap.getCenter().lat,
                 lng: mc.varMap.getCenter().lng,
@@ -359,26 +359,26 @@ angular.module('realValue')
         this.submit_zoom = function(zip) {
             var calculated_center;
             var match = false;
-            //console.log("zoomed on: ", zip);
+            ////console.log("zoomed on: ", zip);
             if (zip != undefined) {
-                //console.log("zooming");
+                ////console.log("zooming");
                 var city = dataService.find_city_based_on_zip_code(zip);
-                //console.log("zooming on ", city);
-                //console.log("zip is ", zip);
+                ////console.log("zooming on ", city);
+                ////console.log("zip is ", zip);
 
                 for(var i = 0; i<tammy_geojson.features.length;i++) {
                     //searchObj(tammy_geojson.features[i]);
-                    //console.log(tammy_geojson.features[i]);
+                    ////console.log(tammy_geojson.features[i]);
                     if(tammy_geojson.features[i].properties.name === zip) {
-                        console.log("match!!!");
-                        //console.log(tammy_geojson.features[i]);
+                        //console.log("match!!!");
+                        ////console.log(tammy_geojson.features[i]);
                         calculated_center = this.findCenterFromCoordinatesArray(tammy_geojson.features[i].geometry.coordinates[0]);
                         //match = true;
                     }
                 }
 
                 if(match) {
-                    console.log(calculated_center);
+                    //console.log(calculated_center);
                     var center = {
                         lat: calculated_center.x,
                         lng: calculated_center.y,
@@ -391,7 +391,7 @@ angular.module('realValue')
                         });
                     }
 
-                    console.log(mc.ziphighlight);
+                    //console.log(mc.ziphighlight);
                     mc.ziphighlight.setStyle({
                         weight: 5,
                         color: '#666',
@@ -401,7 +401,7 @@ angular.module('realValue')
                 } else {
 
                     geoCodingService.getAPI(zip).then(function(response){
-                        //console.log("response",response);
+                        ////console.log("response",response);
 
                         if(response.data.results.length){
                             var components = response.data.results[0].address_components;
@@ -409,16 +409,16 @@ angular.module('realValue')
                             var matched_county;
                             var postal_code;
                             for(var i =0;i<components.length;i++){
-                                //console.log(components[i]);
+                                ////console.log(components[i]);
                                 if(components[i].types[0] === 'postal_code') {
                                     postal_code = true;
                                 }
                                 if(components[i].short_name === 'CA') {
-                                    console.log("match state!");
+                                    //console.log("match state!");
                                     matched_state = components[i].short_name;
                                 }
                                 if(components[i].short_name === 'Orange County' || components[i].short_name === 'Los Angeles County') {
-                                    console.log("match county!");
+                                    //console.log("match county!");
                                     matched_county = components[i].short_name;
                                 }
                             }
@@ -428,9 +428,9 @@ angular.module('realValue')
 
                             var bounds = L.latLngBounds(southWest, northEast);
 
-                            console.log("matched state", matched_state);
-                            console.log("matched county", matched_county);
-                            console.log("postal search", postal_code);
+                            //console.log("matched state", matched_state);
+                            //console.log("matched county", matched_county);
+                            //console.log("postal search", postal_code);
                             if(matched_state === 'CA' && (matched_county === 'Orange County' || matched_county === 'Los Angeles County')) {
                                 var geocoding = response.data.results[0].geometry.location;
                                 mc.centerToCoordinates(geocoding,bounds,postal_code);
@@ -450,7 +450,7 @@ angular.module('realValue')
         };
 
         this.centerToCoordinates = function(obj,bounds,boolean) {
-            console.log("coords",obj);
+            //console.log("coords",obj);
             var center = {
                 lat: obj.lat,
                 lng: obj.lng,
@@ -496,13 +496,13 @@ angular.module('realValue')
                 array_x.push(array[i][1]);
                 array_y.push(array[i][0]);
             }
-            // console.log(array_x);
-            // console.log(array_y);
+            // //console.log(array_x);
+            // //console.log(array_y);
             var maxmin_x = this.findMinMaxNumber(array_x);
             var maxmin_y = this.findMinMaxNumber(array_y);
 
-            //console.log(maxmin_x);
-            //console.log(maxmin_y);
+            ////console.log(maxmin_x);
+            ////console.log(maxmin_y);
             var center_x = maxmin_x.min + ((maxmin_x.max - maxmin_x.min) / 2);
             var center_y = maxmin_y.min + ((maxmin_y.max - maxmin_y.min) / 2);
 
@@ -510,8 +510,8 @@ angular.module('realValue')
                 x:center_x,
                 y:center_y
             };
-            //console.log(center_x);
-            //console.log(center_y);
+            ////console.log(center_x);
+            ////console.log(center_y);
         };
 
 
@@ -524,7 +524,7 @@ angular.module('realValue')
                 }
 
                 if (value === query) {
-                    console.log('property=' + key + ' value=' + value);
+                    //console.log('property=' + key + ' value=' + value);
                 }
 
             }
@@ -556,7 +556,7 @@ angular.module('realValue')
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
                 layer.bringToFront();
             }
-            //console.log(e.target.feature.properties.name);
+            ////console.log(e.target.feature.properties.name);
             mc.information = {
                 name: zip_code_name,
                 city: zip_code_city_name,
@@ -570,13 +570,13 @@ angular.module('realValue')
                 housing: zip_code_housing
             };
 
-            //console.info("info ", mc.information);
+            ////console.info("info ", mc.information);
             //info.update(layer.feature.properties);
         }
 
         function resetHighlight(e) {
             /* had to custom edit this for angular from interactive choropleth example */
-            //console.log(e);
+            ////console.log(e);
             var layer = e.target;
             layer.setStyle({
                 weight: 1,
@@ -715,7 +715,7 @@ angular.module('realValue')
                     return ((HEIGHT - MARGINS.bottom) - yRange(d.y));
                 })
                 .attr("fill", function(d) {
-                    //console.log('WHAT IS D? ---> ', d);
+                    ////console.log('WHAT IS D? ---> ', d);
                     if (d['x'] !== 'City' && d['x'] !== 'County' && d['x'] !== 'State') {
                         return "rgba(0,150,136,.5)";
                     } else {
@@ -727,7 +727,7 @@ angular.module('realValue')
                 .on('mouseover',function(d){
                     d3.select(this)
                         .attr("fill", function(d) {
-                            //console.log('WHAT IS D? ---> ', d);
+                            ////console.log('WHAT IS D? ---> ', d);
                             if (d['x'] !== 'City' && d['x'] !== 'County' && d['x'] !== 'State') {
                                 return "rgba(0,150,136,1)";
                             } else {
@@ -738,7 +738,7 @@ angular.module('realValue')
                 .on('mouseout',function(d){
                     d3.select(this)
                         .attr('fill',function(d) {
-                            //console.log('WHAT IS D? ---> ', d);
+                            ////console.log('WHAT IS D? ---> ', d);
                             if (d['x'] !== 'City' && d['x'] !== 'County' && d['x'] !== 'State') {
                                 return "rgba(0,150,136,.5)";
                             } else {
@@ -790,11 +790,11 @@ angular.module('realValue')
 
         function zoomToFeature(e) {
             mc.currentInfo = mc.information;
-            console.log(mc.currentInfo);
+            //console.log(mc.currentInfo);
             mc.area_click_on=e.target.feature.properties.name;
             mc.county_click_on=e.target.feature.properties.county;
-            //console.log("zip obj ",e.target.feature.properties);
-            //console.log("zip ", area_click_on);
+            ////console.log("zip obj ",e.target.feature.properties);
+            ////console.log("zip ", area_click_on);
             if(mc.area_click_on==="Los Angeles County"){
                 mc.information=county_los_angeles.features[0].properties;
             }
@@ -822,9 +822,9 @@ angular.module('realValue')
                     }
                     dataService.indexMarkerInZip(mc.area_click_on);
                     var crime_and_job={};
-                    console.log("dataService.firebase", dataService.firebase);
-                    console.info("info ", mc.information);
-                    console.info("city ", city[i]);
+                    //console.log("dataService.firebase", dataService.firebase);
+                    //console.info("info ", mc.information);
+                    //console.info("city ", city[i]);
                     if(city.length!==0){
                         for(var i=0;i<city.length;i++){
                             if(dataService.firebase[city[i]]["zip_codes"][mc.area_click_on]!==undefined)
@@ -901,10 +901,10 @@ angular.module('realValue')
                                             pie.push(temp);
                                         }
                                     }
-                                    //console.log(pie);
+                                    ////console.log(pie);
                                     var z_bar_chart_data=[];
                                     if(county==="O"){
-                                        console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
+                                        //console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
                                         var object1={"x":mc.area_click_on,"y":dataService.all["zillow"]["oc"][mc.area_click_on]};
                                         var object2={"x":"City","y":dataService.all["zillow_city"]["oc"][city]};
                                         var object3={"x":"County","y":dataService.all["crime-and-job-data-analysis"]["oc"]["zindexAverage"]};
@@ -915,7 +915,7 @@ angular.module('realValue')
                                         z_bar_chart_data.push(object4);
                                     }
                                     else{
-                                        console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
+                                        //console.log(dataService.all["zillow"]["oc"][mc.area_click_on]);
                                         var object1={"x":mc.area_click_on,"y":dataService.all["zillow"]["lc"][mc.area_click_on]};
                                         var object2={"x":"City","y":dataService.all["zillow_city"]["lc"][city]};
                                         var object3={"x":"County","y":dataService.all["crime-and-job-data-analysis"]["lc"]["zindexAverage"]};
@@ -931,7 +931,7 @@ angular.module('realValue')
                                     mc.crimejob=1;
                                 }
                                 catch(err){
-                                    console.info(err);
+                                    //console.info(err);
                                 }
                             else{
                                 mc.information={};
@@ -948,20 +948,20 @@ angular.module('realValue')
 
             leafletData.getMap().then(function(map) {
                 mc.that = e;
-                console.log("event",e.target.feature.properties.name);
+                //console.log("event",e.target.feature.properties.name);
                 var paramClick = e.target.feature.properties.name;
                     //mc.gjLayer = L.geoJson(tammy_geojson);
-                    //console.log("layer",gjLayer);
+                    ////console.log("layer",gjLayer);
                 angular.extend($scope, {
                     progress: true
                 });
                 dataService.makePlacesGeojson(paramClick).then(function(response) {
 
                     if(response === true) {
-                        console.log("TRUE!");
+                        //console.log("TRUE!");
                         mc.scanDatabaseMarkers();
                     } else {
-                        console.log("FALSE");
+                        //console.log("FALSE");
                         mc.scanObjectMarkers();
                     }
 
@@ -978,7 +978,7 @@ angular.module('realValue')
         this.scanDatabaseMarkers = function() {
             var zipCodeClicked = mc.that.target.feature.properties.name;
             var res_markers = {};
-            //console.log("geojson", dataService.placesGeojson);
+            ////console.log("geojson", dataService.placesGeojson);
 
             for(var i=0;i<dataService.placesGeojson.length;i++){
                 var place_id = dataService.placesGeojson[i].place_id;
@@ -997,7 +997,7 @@ angular.module('realValue')
             angular.extend($scope, {
                 markers: res_markers
             });
-            console.log("markers", res_markers);
+            //console.log("markers", res_markers);
         };
         /**
          * This function looks for downloaded Google places tied to coordinates and search if it's within the bounds
@@ -1013,9 +1013,9 @@ angular.module('realValue')
             };
 
             var res_markers = {};
-            console.log('places geojson: ', dataService.placesGeojson2);
+            //console.log('places geojson: ', dataService.placesGeojson2);
             if (!isNaN(mc.area_click_on) && mc.county_click_on==="Orange") {
-                console.log(mc.area_click_on, 'is a number');
+                //console.log(mc.area_click_on, 'is a number');
                 if (dataService.placesGeojson2.hasOwnProperty("zipCode")) {
                     dataService.placesGeojson2.zipCode[zipCodeClicked] = [];
                 } else {
@@ -1023,13 +1023,13 @@ angular.module('realValue')
                     dataService.placesGeojson2.zipCode[zipCodeClicked] = [];
                 }
                 for (var rest in dataService.placesGeojson2.restaurant) {
-                    //console.log(rest);
-                    //console.log(dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1]);
+                    ////console.log(rest);
+                    ////console.log(dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1]);
                     var res = leafletPip.pointInLayer(
                         [dataService.placesGeojson2.restaurant[rest].geometry.coordinates[1], dataService.placesGeojson2.restaurant[rest].geometry.coordinates[0]], mc.gjLayer);
                     if (res.length) {
-                        //console.log(rest);
-                        //console.log("name", res[0].feature.properties.name);
+                        ////console.log(rest);
+                        ////console.log("name", res[0].feature.properties.name);
                         if (zipCodeClicked === res[0].feature.properties.name) {
 
                             // create a function for this, this uses the match library and assigns our object with a zip code
@@ -1040,7 +1040,7 @@ angular.module('realValue')
                                 "type": dataService.placesGeojson2.restaurant[rest].properties.type
                             }
                             dataService.placesGeojson2.zipCode[zipCodeClicked].push(temp_obj);
-                            //console.log("name", res[0].feature.properties.name);
+                            ////console.log("name", res[0].feature.properties.name);
                             //matched_data.features.push(data.features[i]);
                             res_markers[rest.substr(rest.length-5).replace("-","_")] = {
                                 "layer": "restaurant",
@@ -1055,19 +1055,19 @@ angular.module('realValue')
                     }
                 }
             }
-            console.log("markers", Object.size(res_markers));
+            //console.log("markers", Object.size(res_markers));
 
             if(!isNaN(mc.area_click_on) && Object.size(res_markers) === 0){
                 mc.showToastyToast('Sorry, there are no place markers in this area.');
             }
-            //console.log("markers", res_markers);
-            //console.log("geoJson2", dataService.placesGeojson2);
+            ////console.log("markers", res_markers);
+            ////console.log("geoJson2", dataService.placesGeojson2);
 
             angular.extend($scope, {
                 markers: res_markers
             });
 
-            console.log('More markers:', res_markers);
+            //console.log('More markers:', res_markers);
         };
 
         function style(feature) {
@@ -1131,9 +1131,9 @@ angular.module('realValue')
         leafletData.getMap().then(function (map) {
 
             map.on('zoomend', function (event) {
-                console.log(map.getZoom());
+                //console.log(map.getZoom());
 
-                //console.log('overlay', map.getPanes().overlayPane);
+                ////console.log('overlay', map.getPanes().overlayPane);
 
                 if (map.getZoom() <= 8) {
                     //mc.county_zoom();
