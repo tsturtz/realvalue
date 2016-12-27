@@ -43,7 +43,7 @@ angular.module('realValue')
             type: 'div',
             iconSize: [40, 40],
             popupAnchor:  [0, 0],
-            html: "<div class='icon-restaurant-class'></div>"
+            html: "<div class='icon-school-class'></div>"
         };
 
         ////console.log("icon ", divIcon);
