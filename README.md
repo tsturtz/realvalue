@@ -1,7 +1,7 @@
 Real Value OC & LA 
 =====================
 
-![Real Value](http://35.160.245.130/c11_realvalue/assets/img/RV-logo2.jpg)
+![Real Value](http://taylorsturtz.com/images/RealValue-WebMock-sm.jpg)
 
 
 Provides Beautiful Data Visualization using [Leaflet](http://leafletjs.com), [AngularJS](https://angularjs.org/), and [Angular Material](https://material.angularjs.org/latest/).
