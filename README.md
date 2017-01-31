@@ -1,5 +1,4 @@
-Real Value OC & LA 
-=====================
+# Real Value OC & LA 
 
 **[Live link](http://www.realvalue.io/)**
 
@@ -16,19 +15,18 @@ A dynamic web app for visualizing data across LA and Orange counties. Users who 
 - the score adjust in real-time to what the user thinks  are important to them
 - the map also gives markers for restaurants and schools in that area when the users zooms in
 
-### Developers and Contributors
+## Developers and Contributors
 This project was developed by [Danh Le](https://github.com/dtle82/), [Taylor Sturtz](https://github.com/tsturtz/) and [Weikuan Sun](https://github.com/weikuansun) with contributions from Tammy Lau, Mike Justo, Miles Bretall and Jason Welch
 
-This project was created using these technologies
-=================================
+## This project was created using these technologies
 
-### [AngularJS](https://angularjs.org/)
-Our JavaScript framework providing incredible 2 way data binding.
-### [Angular Leaflet](http://github.com/tombatossals/angular-leaflet-directive)
-Angular Leaflet was chosen over Angular Google Maps.  Our map datasets are largely driven by geoJSON.
-### [Angular Material](https://material.angularjs.org/latest/)
-Our project was designed with Google Material Design methodology. 
-### [d3.JS](https://d3js.org/)
-The graphs and pie charts was created using D3, a document database driven library for JavaScript
-### [Firebase](https://firebase.google.com/)
-Firebase was used to host our datasets that were collected through various APIs.  JSON data was called from Zillow API, Glassdoor, and public crime data files.
+**[AngularJS](https://angularjs.org/)**
+AngularJS JavaScript framework providing incredible 2 way data binding.
+**[Angular Leaflet](http://github.com/tombatossals/angular-leaflet-directive)**
+Angular Leaflet was chosen over Angular Google Maps. Our map datasets are largely driven by **geoJSON**.
+**[Angular Material](https://material.angularjs.org/latest/)**
+Our project was designed using Angular Material component based framework and with Google Material Design methodology.
+**[d3.JS](https://d3js.org/)**
+The graphs and pie charts was created using D3, a document database driven library for JavaScript.
+**[Firebase](https://firebase.google.com/)**
+Firebase was used to host our datasets that were collected through various APIs. JSON data was called from Zillow API, Glassdoor, and public crime data files.
