@@ -53,24 +53,3 @@ angular.module('realValue', ['ngMaterial','leaflet-directive']) //TODO ngMessage
             .accentPalette('teal', {'default': '500'})
             .dark();
     });
-
-/* disabled routing for now - make sure to add back the ngRoute dependency
-
-    .config(function($routeProvider) {
-        $routeProvider
-            .when('/',{
-                templateUrl: 'views/map.html',
-                controller: 'mapController'
-            })
-            .when('/map',{
-                templateUrl: 'views/map.html',
-                controller: 'mapController'
-            })
-            .when('/about',{
-                templateUrl: 'views/about.html',
-                controller: 'aboutController'
-            })
-            .otherwise({ redirectTo: 'views/map.html' });
-    });
-
-*/
