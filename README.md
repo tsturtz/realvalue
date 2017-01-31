@@ -1,6 +1,8 @@
 Real Value OC & LA 
 =====================
 
+**[Live link](http://www.realvalue.io/)**
+
 ![Real Value](http://taylorsturtz.com/images/RealValue-WebMock-sm.jpg)
 
 A dynamic web app for visualizing data across LA and Orange counties. Users who are looking to relocate or are just curious about their surroundings will benefit from the data presented. RealValue provides an area score derived from calculating the standard deviation from each data set (average home value, violent crime frequency, job availability) and adding them together. The RealValue score is shown on a color scale and on mouse hover; the score adjusts in real-time according to user selections. On zoom, clusters of restaurants (parks, and schools coming soon) are shown with individual place details on click.
