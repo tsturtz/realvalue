@@ -69,7 +69,7 @@ angular.module('realValue')
                 clickOutsideToClose: true,
                 escapeToClose: true,
                 fullscreen: true,
-                targetEvent: null, // weird angular material bug - this should be 'e' but for some reason it throws an error. setting targetEvent to null is a fix. refer to https://github.com/angular/material/issues/5363
+                targetEvent: e,
                 onComplete: afterShowAnimation
             });
 
@@ -89,10 +89,12 @@ angular.module('realValue')
                 deets.remaining = 0;
 
                 this.starsRemaining = function(remaining) {
+                    console.info(remaining);
                     return new Array(remaining);
                 };
 
                 this.starRange = function(stars) {
+                    console.warn(stars);
                     deets.remaining = 5 - stars;
                     return new Array(stars);
                 };
@@ -150,18 +152,15 @@ angular.module('realValue')
             mc.zipLayer = false;
             mc.cityLayer = false;
             mc.countyLayer = true;
-            //console.log("extend county");
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
                     lng: -118.03985595703125
-                    //zoom: 8
                 },
                 tiles: {
-                    //url: "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
                     url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png",
                     options: {
-                        //attribution: ''
+                        // attribution: ''
                     }
                 },
                 geojson : {
@@ -169,9 +168,7 @@ angular.module('realValue')
                     style: county_style,
                     onEachFeature: function (feature, layer) {
                         // fixed issue with referencing layer inside our reset Highlight function
-                        ////console.log("layer",layer);
-                        //layer.bindPopup(feature.properties.popupContent);
-
+                        // layer.bindPopup(feature.properties.popupContent);
                         layer.on({
                             mouseover: highlightFeature,
                             mouseout: resetHighlight,
@@ -186,7 +183,6 @@ angular.module('realValue')
             mc.countyLayer = false;
             mc.zipLayer = false;
             mc.cityLayer = true;
-            //console.log("extend city");
             angular.extend($scope, {
                 center: {
                     lat: 33.8247936182649,
@@ -199,7 +195,7 @@ angular.module('realValue')
                 legend: {
                     position: 'bottomright',
                     colors: [ '#1a9850', '#a6d96a', '#ffffbf', '#fdae61','#d73027', '#888888' ],
-                    labels: [ 'Best', 'Good', 'Average', 'Bad', 'Worst', 'No Data']
+                    labels: [ 'Highest', 'Higher', 'Average', 'Lower', 'Lowest', 'No Data']
                 },
                 maxbounds: {
                     southWest: {
@@ -258,12 +254,11 @@ angular.module('realValue')
                     bytes = value.length * 2;
                 } else if ( typeof value === 'number' ) {
                     bytes = 8;
-                } else if (typeof value === 'object'
-                    && objectList.indexOf( value ) === -1) {
+                } else if (typeof value === 'object' && objectList.indexOf( value ) === -1) {
                     objectList[ objectList.length ] = value;
                     for( i in value ) {
                         bytes+= 8; // assumed existence overhead
-                        bytes+= recurse( value[i] )
+                        bytes+= recurse( value[i] );
                     }
                 }
                 return bytes;
@@ -281,7 +276,7 @@ angular.module('realValue')
                     lat: 34.138,
                     lng: -118.296,
                     zoom: param
-                }
+                };
             }
             ////console.log("center", varMap.getCenter());
             angular.extend($scope, {
@@ -744,7 +739,7 @@ angular.module('realValue')
                             } else {
                                 return "rgba(66,66,66,.5)";
                             }
-                        })
+                        });
                 });
         }
 
@@ -1109,12 +1104,12 @@ angular.module('realValue')
         function getCountyColor(d) {
             return d > 3 ? '#006837' :
                 d > 1  ? '#1a9850' :
-                d > .15  ? '#66bd63' :
-                d > .10  ? '#a6d96a' :
-                d > .08   ? '#d9ef8b' :
-                d > .05   ? '#ffffbf' :
-                d > .03  ? '#fee08b' :
-                d > .01   ? '#fdae61' :
+                d > 0.15  ? '#66bd63' :
+                d > 0.10  ? '#a6d96a' :
+                d > 0.08   ? '#d9ef8b' :
+                d > 0.05   ? '#ffffbf' :
+                d > 0.03  ? '#fee08b' :
+                d > 0.01   ? '#fdae61' :
                 d > 0   ? '#f46d43' :
                 d > -1   ? '#d73027' :
                     d > -3   ? '#a50026' : '#888888';

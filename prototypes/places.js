@@ -68,9 +68,10 @@ function initMap() {
     apiInterval = setInterval(function(){ callApi() }, 60000);
 
     function callApi() {
-        coordIndex++;
 
         var randomCoord = new google.maps.LatLng(randomCoordinates[coordIndex][0],randomCoordinates[coordIndex][1]);
+
+        coordIndex++;
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: randomCoord,

@@ -99,21 +99,16 @@ angular.module('realValue')
 
                 for(var i = 0; i<losangeles_geojson.features.length;i++) {
                     if(self.hasProperty(losangeles_geojson.features[i].properties,attr)) {
-                        ////console.log(losangeles_geojson.features[i] , "has property");
-                        ////console.log(losangeles_geojson.features[i].properties.crimes);
                         attribute = losangeles_geojson.features[i].properties[attr];
                         score = losangeles_geojson.features[i].properties.score;
                         jobs = losangeles_geojson.features[i].properties.jobs;
                         crimes = losangeles_geojson.features[i].properties.crimes;
                         house = losangeles_geojson.features[i].properties.housing;
-                        ////console.log(house);
                         crime_zscore = losangeles_geojson.features[i].properties.crime_zscore;
                         job_zscore = losangeles_geojson.features[i].properties.job_zscore;
                         house_zscore = losangeles_geojson.features[i].properties.house_zscore;
                         calc_score = ((crime_zscore * 1) * crimes_yes) + ((job_zscore * 1) * jobs_yes) + ((house_zscore * 1) * housing_yes);
                         zindex=parseInt(dataService.all["zillow"]["lc"][losangeles_geojson.features[i].properties.name]);
-                        ////console.log(zindex);
-                        //losangeles_geojson.features[i].properties.score = zindex.toFixed(2);
                         losangeles_geojson.features[i].properties.score = calc_score.toFixed(2);
                     }
                 }
@@ -144,7 +139,6 @@ angular.module('realValue')
 
         self.openRightMenu = function (status) {
             self.sidebarStatus = status;
-            //console.log("status " + self.sidebarStatus);
             $mdSidenav('right').toggle();
         };
 
@@ -166,12 +160,6 @@ angular.module('realValue')
                 escapeToClose: true,
                 fullscreen: true
             });
-        };
-
-
-        self.submit = function() {
-
-            //console.log(mc);
         };
 
         self.welcomeDialog();
