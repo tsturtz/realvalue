@@ -1,6 +1,6 @@
 angular.module('realValue')
 
-    .controller("navCtrl", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$mdSidenav', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $mdSidenav) {
+    .controller("navCtrl", [ '$scope', '$http', 'leafletData', 'leafletMapEvents', 'checkboxService','dataService','$mdDialog', '$mdSidenav', '$timeout', function($scope, $http, leafletData, leafletMapEvents, checkboxService,dataService, $mdDialog, $mdSidenav, $timeout) {
         var self = this;
         var score;
         var attribute;
@@ -107,11 +107,11 @@ angular.module('realValue')
         // checkboxes
 
         self.checkboxes = [
-            {type: 'jobs', checked: true, weight: 10, tooltip: 'Number of Recent Job Openings', disabled: 'false'},
-            {type: 'crimes', checked: true, weight: 10, tooltip: 'Violent Crime Frequency', disabled: 'false'},
-            {type: 'housing', checked: true, weight: 10, tooltip: 'Average Home Value', disabled: 'false'},
-            {type: 'parks', checked: true, weight: 10, tooltip: 'Coming Soon!', disabled: 'true'},
-            {type: 'schools', checked: true, weight: 10, tooltip: 'Coming Soon!', disabled: 'true'}
+            {type: 'jobs', checked: true, weight: 10, tooltip: 'Number of recent job openings', disabled: 'false'},
+            {type: 'crimes', checked: true, weight: 10, tooltip: 'Violent crime frequency', disabled: 'false'},
+            {type: 'housing', checked: true, weight: 10, tooltip: 'Average home value', disabled: 'false'},
+            {type: 'parks', checked: true, weight: 10, tooltip: 'Not available (planned addition)', disabled: 'true'},
+            {type: 'schools', checked: true, weight: 10, tooltip: 'Not available (planned addition)', disabled: 'true'}
         ];
 
         // right sidenav
@@ -143,8 +143,6 @@ angular.module('realValue')
             });
         };
 
-        self.welcomeDialog();
-
         // dialog controller
 
         function dialogCtrl($mdDialog) {
@@ -154,5 +152,11 @@ angular.module('realValue')
                 $mdDialog.cancel();
             };
         }
+
+        // Delay initial welcome dialog 2 seconds for introduction UX purposes
+
+        $timeout(
+        self.welcomeDialog,
+        2000);
 
     }]);

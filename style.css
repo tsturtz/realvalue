@@ -355,7 +355,7 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 .welcome-dialog {
     background-color: rgb(0,150,136);
     text-align: center;
-    color: rgb(0,77,64);
+    color: rgb(255,255,255);
     font-size: 18px;
     line-height: 1.5;
 }
@@ -365,7 +365,7 @@ md-toolbar.ng-scope._md._md-toolbar-transitions {
 }
 
 .welcome-dialog-headers {
-    color: white;
+    color: rgb(0,77,64);
     background-color: rgba(0,0,0,0);
 }
 
@@ -483,4 +483,46 @@ md-subheader.pre-visualisation {
 md-toast {
     left: 50%;
     transform: translateX(-50%);
+}
+
+#mobile {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: rgb(0,150,136);
+    z-index: 9999;
+}
+
+#mobile-wrapper {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#logoMobile {
+    background: url('./assets/img/RV-logo2.jpg') no-repeat center center;
+    background-size: cover;
+    height: 120px;
+    width: 250px;
+    position: relative;
+    right: 5vw;
+    margin: auto;
+}
+
+#mobile-msg {
+    position: relative;
+    margin: 30px 10vw;
+    padding-bottom: 10vh;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+@media only screen and (max-width: 900px) {
+    html {
+        overflow: hidden;
+    }
 }

@@ -3,14 +3,25 @@
         <div id="logoWelcome"></div>
         <div class="welcome-dialog-content">
             <md-divider></md-divider>
-            <md-subheader class="welcome-dialog-headers">Los Angeles &amp; Orange County Area Ratings</md-subheader>
+            <!-- Commented out for Irvine disclaimer
+            <md-subheader class="welcome-dialog-headers">
+                Los Angeles &amp; Orange County Area Ratings
+            </md-subheader>
+            Commented out for Irvine disclaimer -->
+            <md-subheader class="welcome-dialog-headers">
+                <em>Due to incomplete data at this time, some areas have limited experiences.<br>
+                    For the most complete experience, check the Irvine area.</em>
+            </md-subheader>
             <md-divider></md-divider>
-                <p>Wish you lived near more parks and great restaurants? Maybe you are looking to find a spot with a lot of job openings, or maybe your car just got stolen so you're concerned about crime. With RealValue, you choose the data points that are important to you and watch the map update in real time! Thanks and enjoy browsing!</p>
+            <p>Wish you lived near more parks and great restaurants? Maybe you are looking to find a spot with a lot of job openings, or maybe you're concerned about crime. With RealValue, you choose the data points that are important to you and watch the map update in real time!</p>
             <md-divider></md-divider>
         </div>
         <div layout-align="center center" class="welcome-dialog-btn">
             <md-button class="md-accent md-raised" ng-click="dc.cancel()" layout-padding>
-                Check it out!
+                Check it out
+                <md-tooltip md-direction="top">
+                  For the best experience at this time, check the Irvine area!
+                </md-tooltip>
             </md-button>
         </div>
     </div>

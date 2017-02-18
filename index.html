@@ -64,8 +64,18 @@
 </head>
 <body ng-cloak layout="column" style="overflow-x:hidden;" id="popupContainer">
 
+<div id="mobile" hide-gt-sm flex="100">
+    <div id="mobile-wrapper">
+        <div id="logoMobile"></div>
+        <md-divider></md-divider>
+        <md-subheader class="welcome-dialog-headers">Los Angeles &amp; Orange County Area Ratings</md-subheader>
+        <md-divider></md-divider>
+        <div id="mobile-msg">At this time, this application is best experienced on a laptop or desktop.</div>
+    </div>
+</div>
+
 <div id="map" ng-controller="mapController as mc">
-    <leaflet tiles='tiles' maxbounds="maxbounds" controls="controls" markers="markers" layers="layers"
+    <leaflet tiles="tiles" maxbounds="maxbounds" controls="controls" markers="markers" layers="layers"
              lf-center="center" geojson="geojson" bounds="bounds"
              legend="legend" defaults="defaults"
              width="100%" height="100vh"></leaflet>
@@ -197,10 +207,10 @@
                     <md-button md-no-ink class="md-warn layer-btn" ng-click="">
                         County
                         <md-tooltip md-direction="bottom">
-                            Planned addition.
+                            Not Available (planned addition)
                         </md-tooltip>
                     </md-button>
-                    <md-button md-theme="search" class="md-accent md-raised layer-btn" ng-click="mc.city_zoom(); openSidenav.open()" ng-disabled="mc.cityLayer">
+                    <md-button md-theme="search" class="md-accent md-raised layer-btn" ng-click="mc.city_zoom()" ng-disabled="mc.cityLayer">
                         City
                     </md-button>
                     <md-button md-theme="search" class="md-accent md-raised layer-btn" ng-click="mc.zipcode_zoom(); openSidenav.open()" ng-disabled="mc.zipLayer">
@@ -241,10 +251,12 @@
                         </md-subheader>
 
                         <div class="checkboxes-column" layout="column">
-                            <md-checkbox class="check-boxes" ng-model="checkbox.checked"
-                                         ng-disabled="{{checkbox.disabled}}"
-                                         ng-change="nc.updateData(this.checkbox)"
-                                         ng-repeat="checkbox in nc.checkboxes">
+                            <md-checkbox class="check-boxes"
+                            ng-model="checkbox.checked"
+                            ng-disabled="{{checkbox.disabled}}"
+                            ng-change="nc.updateData(this.checkbox)"
+                            ng-repeat="checkbox in nc.checkboxes"
+                            ng-attr-md-indeterminate="{{checkbox.disabled}}">
                                 {{checkbox.type.toUpperCase()}}
                                 <md-tooltip md-direction="right">
                                     {{checkbox.tooltip}}
