@@ -46,10 +46,10 @@ angular.module('realValue', ['ngMaterial','leaflet-directive']) //TODO ngMessage
         $mdThemingProvider.theme('default')
             .primaryPalette('teal', {'default': '500'})
             .accentPalette('grey', {'default': '800'})
-            .warnPalette('orange', {'default': '500'});
-            //.dark();
+            .warnPalette('grey', {'default': '900'});
         $mdThemingProvider.theme('search')
             .primaryPalette('white')
             .accentPalette('teal', {'default': '500'})
+            .warnPalette('grey', {'default': '900'})
             .dark();
     });
