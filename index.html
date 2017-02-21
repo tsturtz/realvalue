@@ -2,23 +2,39 @@
 <html lang="en" ng-app="realValue">
 <head>
     <meta charset="UTF-8">
-    <!--<meta name="viewport" content="initial-scale=1.0, user-scalable=no">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RealValue">
-    <meta name="keywords" content="Value,Map,Orange County">
-    <meta name="author" content="WTD">
 
-    <title>Real Value</title>
+    <!-- Site Info -->
+    <meta name="description"  content="RealValue LA &amp; OC Area Ratings">
+    <meta name="keywords"     content="realvalue, map, area rating, value, ratings, los angeles, orange county, california">
+    <meta name="author"       content="Taylor Sturtz, Danh Le, and Weikuan Sun">
 
-    <!--Angular Material Style Sheets-->
+    <!--Social media sharing-->
+    <meta property="og:url"          content="http://www.realvalue.io">
+    <meta property="og:type"         content="website">
+    <meta property="og:title"        content="RealValue LA &amp; OC Area Ratings">
+    <meta property="og:description"  content="Area ratings in LA and Orange County based on a number of user selected factors">
+    <meta property="og:image"        content="http://www.taylorsturtz.com/assets/img/RV-logo2.jpg">
+    <meta name="twitter:card"        content="summary_large_image">
+
+    <title>Real Value LA &amp; OC</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/img/rv-favicon.png">
+
+    <!-- Angular Material Style Sheets -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css">
     <link rel="stylesheet" href="./assets/css/MarkerCluster.Default.css">
-    <!--RealValue Style Sheets-->
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="./assets/css/leaflet.css"/>
+
+    <!-- RealValue -->
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <!--Jquery -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
     <!-- Angular.js Libraries -->
@@ -34,28 +50,31 @@
     <!-- Firebase Database -->
     <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
-    <!--Map Js -->
-    <link rel="stylesheet" href="./assets/css/leaflet.css"/>
-
+    <!-- Leaflet -->
     <script src="./assets/js/leaflet.js"></script>
     <script src="./assets/js/leaflet.markercluster.js"></script>
     <script src="./assets/js/angular-leaflet-directive.js"></script>
     <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
 
-    <!--RealValue App-->
+    <!-- D3.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+    <!-- App config -->
     <script src="app/app.js"></script>
+    <!-- Services -->
     <script src="app/services/checkboxService.js"></script>
     <script src="app/services/dataService.js"></script>
     <script src="app/services/geocodingService.js"></script>
-
-    <script src="assets/simple-geojson/tammy-1-geojson.js"></script>
-    <script src="assets/simple-geojson/combined-geojson.js"></script>
-    <script src="app/controllers/county.js"></script>
-    <script src="assets/simple-geojson/cities.js"></script>
-    <script src="app/zip_lookup.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <!-- Controllers -->
     <script src="app/controllers/mapCtrl.js"></script>
     <script src="app/controllers/navCtrl.js"></script>
+    <!-- Assets -->
+    <script src="assets/simple-geojson/tammy-1-geojson.js"></script>
+    <script src="assets/simple-geojson/combined-geojson.js"></script>
+    <script src="assets/simple-geojson/cities.js"></script>
+    <script src="app/zip_lookup.js"></script>
+    <!-- Disabled while county is disabled -->
+    <!-- <script src="app/controllers/county.js"></script> -->
 
     <!--Google Maps Call for Place Details-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZISd2dj9XOcOLvQC162avw5TOoS7d9_k&libraries=places"

@@ -7,7 +7,7 @@ angular.module('realValue')
         setTimeout(function(){ leafletData.getMap().then(function(map) {
             mc.varMap = map;
             // This code helps the map not get sized before it is finish loading
-            map.invalidateSize(false);
+            map.invalidateSize(true);
             // This code below removes the zoom control that's present on the map
             map.removeControl(map.zoomControl);
             map.options.minZoom = 9;
@@ -53,7 +53,7 @@ angular.module('realValue')
         // http://stackoverflow.com/questions/24412325/resizing-a-leaflet-map-on-container-resize
         $scope.$on('leafletDirectiveMarker.click', function(e, args) {
 
-            // places dialog
+            // Angular Material place dialog
             $mdDialog.show({
                 controller: detailsCtrl,
                 controllerAs: 'dc',
@@ -81,10 +81,10 @@ angular.module('realValue')
 
                 deets.remaining = 0;
 
+                // new Array() used here to create elements based on a number
                 this.starsRemaining = function(remaining) {
                     return new Array(remaining);
                 };
-
                 this.starRange = function(stars) {
                     deets.remaining = 5 - stars;
                     return new Array(stars);
@@ -92,8 +92,9 @@ angular.module('realValue')
 
                 this.getPlaceDetails = function () {
                     // google places API call
+                    // 'key' is the passed in Google Place ID.
                     this.callPlace = function(key) {
-
+                        // Create google map and assign it to HTML node, so that the places service may be used on the Leaflet map.
                         this.service = new google.maps.places.PlacesService($('#data-here').get(0));
 
                         if (key) {
@@ -518,7 +519,7 @@ angular.module('realValue')
         }
 
         function resetHighlight(e) {
-            /* had to custom edit this for angular from interactive choropleth example */
+            // had to custom edit this for angular from interactive choropleth example
             var layer = e.target;
             layer.setStyle({
                 weight: 1,
@@ -528,7 +529,7 @@ angular.module('realValue')
             });
         }
 
-        // share method between controllers through obj prototypical inheritance
+        // share method between controllers through inheritance
         $scope.openSidenav = {};
 
         function InitChart(barData,id) {
