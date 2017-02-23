@@ -1,5 +1,4 @@
 # Real Value OC & LA
-=======
 
 **[Live link](http://www.realvalue.io/)**
 
@@ -20,7 +19,6 @@ A dynamic web app for visualizing data across LA and Orange counties. Users who 
 This project was developed by [Danh Le](https://github.com/dtle82/), [Taylor Sturtz](https://github.com/tsturtz/) and [Weikuan Sun](https://github.com/weikuansun) with contributions from Tammy Lau, Mike Justo, Miles Bretall and Jason Welch
 
 ## Key Technologies
-=======
 
 ### [AngularJS](https://angularjs.org/)
 AngularJS JavaScript framework providing incredible 2 way data binding.
