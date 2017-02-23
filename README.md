@@ -1,4 +1,5 @@
-# Real Value OC & LA 
+# Real Value OC & LA
+=======
 
 **[Live link](http://www.realvalue.io/)**
 
@@ -18,7 +19,8 @@ A dynamic web app for visualizing data across LA and Orange counties. Users who 
 ## Developers and Contributors
 This project was developed by [Danh Le](https://github.com/dtle82/), [Taylor Sturtz](https://github.com/tsturtz/) and [Weikuan Sun](https://github.com/weikuansun) with contributions from Tammy Lau, Mike Justo, Miles Bretall and Jason Welch
 
-## This project was created using these technologies
+## Key Technologies
+=======
 
 ### [AngularJS](https://angularjs.org/)
 AngularJS JavaScript framework providing incredible 2 way data binding.
@@ -30,3 +32,12 @@ Our project was designed using Angular Material component based framework and wi
 The graphs and pie charts was created using D3, a document database driven library for JavaScript.
 ### [Firebase](https://firebase.google.com/)
 Firebase was used to host our datasets that were collected through various APIs. JSON data was called from Zillow API, Glassdoor, and public crime data files.
+
+## Planned Additions
+
+- Add the following data factors to area rating algorithm: **parks** frequency and **schools** frequency and rating.
+- Add the following place locations as map pins (buttons with place details): **parks**, **schools**, **museums**, **zoos**, and **hospitals**
+- Add user profile to save search locations and favorite specific zip codes
+- Collect more robust data for the zip codes with incomplete data in LA & OC, aggregate for **county** and **city** levels
+- Complete city level boundary lines
+- Output a more friendly number for area ratings (ie: between 0 and 100)
